@@ -89,18 +89,26 @@
               <p class="caption"><span class="caption-text">Guides</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="lingui-react.html">React</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id5">}</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id10">}</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id15">}</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id20">}</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#add-locale"><code class="docutils literal"><span class="pre">add-locale</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extract"><code class="docutils literal"><span class="pre">extract</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compile"><code class="docutils literal"><span class="pre">compile</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="lingui-conf.html">Configuration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
 </ul>
 
             
@@ -168,166 +176,123 @@
 <h1>API Reference - CLI (lingui-cli)<a class="headerlink" href="#api-reference-cli-lingui-cli" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal"><span class="pre">lingui-cli</span></code> manages locales, extracts messages from source files into
 message catalogs and compiles message catalogs for production use.</p>
-<p>## Install</p>
-<p><cite>lingui-cli</cite> can be installed both globally and locally:</p>
-<p><code class="docutils literal"><span class="pre">`sh</span>
-<span class="pre">yarn</span> <span class="pre">global</span> <span class="pre">add</span> <span class="pre">lingui-cli</span>
-<span class="pre">#</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--global</span> <span class="pre">lingui-cli</span>
-<span class="pre">`</span></code></p>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">lingui-cli</span></code> can be installed both globally and locally:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn global add lingui-cli
+<span class="c1"># npm install --global lingui-cli</span>
+</pre></div>
+</div>
 <p>or locally:</p>
-<p><code class="docutils literal"><span class="pre">`sh</span>
-<span class="pre">yarn</span> <span class="pre">add</span> <span class="pre">--dev</span> <span class="pre">lingui-cli</span>
-<span class="pre">#</span> <span class="pre">npm</span> <span class="pre">install</span> <span class="pre">--save-dev</span> <span class="pre">lingui-cli</span>
-<span class="pre">`</span></code></p>
-<p><strong>Note:</strong> When installed locally, you need either run it from
-<cite>node_modules/.bin/lingui</cite> or add it to your <cite>package.json</cite>:</p>
-<p><a href="#id1"><span class="problematic" id="id2">``</span></a><a href="#id3"><span class="problematic" id="id4">`</span></a>json
-{</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>“scripts”: {</dt>
-<dd>“add-locale”: “lingui add-locale”,
-“extract”: “lingui extract”,
-“compile”: “lingui compile”</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-<div class="section" id="id5">
-<h2>}<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn add --dev lingui-cli
+<span class="c1"># npm install --save-dev lingui-cli</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When installed locally, you need either run it from
+<code class="docutils literal"><span class="pre">node_modules/.bin/lingui</span></code> or add it to your <code class="docutils literal"><span class="pre">package.json</span></code>:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;add-locale&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui add-locale&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;extract&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui extract&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;compile&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui compile&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>Then you can use:</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">add-locale</span> <span class="pre">--</span> <span class="pre">en</span> <span class="pre">cs</span>
-<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span>
-<span class="pre">npm</span> <span class="pre">run</span> <span class="pre">compile</span>
-<span class="pre">`</span></code></p>
-<p>## Commands</p>
-<dl class="option">
-<dt id="cmdoption-lingui-add-locale-arg-locale">
-<code class="descname">locale</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-lingui-add-locale-arg-locale" title="Permalink to this definition">¶</a></dt>
+<div class="last highlight-shell"><div class="highlight"><pre><span></span>npm run add-locale -- en cs
+npm run extract
+npm run compile
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="add-locale">
+<h3><code class="docutils literal"><span class="pre">add-locale</span></code><a class="headerlink" href="#add-locale" title="Permalink to this headline">¶</a></h3>
+<dl class="lingui-cli">
+<dt id="lingui-cli-add-locale">
+<code class="descname">lingui-cli add-locale [locales...] [--format &lt;format&gt;]</code><a class="headerlink" href="#lingui-cli-add-locale" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="option">
-<dt id="cmdoption-lingui-add-locale-format">
-<code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-lingui-add-locale-format" title="Permalink to this definition">¶</a></dt>
+<p>This command creates a new directory for each locale in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a>.</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># Add English, French and Spanish locale</span>
+lingui add-locale en fr es
+</pre></div>
+</div>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-add-locale-format">
+<code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-add-locale-format" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Format of message catalog (see [format][format] option)</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">lingui</span> <span class="pre">add-locale</span> <span class="pre">[locales...]</span> <span class="pre">[--format</span> <span class="pre">&lt;format&gt;]</span>
-<span class="pre">#</span> <span class="pre">e.g:</span> <span class="pre">lingui</span> <span class="pre">add-locale</span> <span class="pre">en</span> <span class="pre">fr</span> <span class="pre">es</span>
-<span class="pre">`</span></code></p>
-<p>This command creates a new directory for each locale in [localeDir][localeDir]</p>
-<p>### extract</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">lingui</span> <span class="pre">extract</span> <span class="pre">[--clean]</span> <span class="pre">[--format</span> <span class="pre">&lt;format&gt;]</span> <span class="pre">[--verbose]</span>
-<span class="pre">`</span></code></p>
+<p>Format of message catalog (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option)</p>
+</div>
+<div class="section" id="extract">
+<h3><code class="docutils literal"><span class="pre">extract</span></code><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
+<dl class="lingui-cli">
+<dt id="lingui-cli-extract">
+<code class="descname">lingui-cli extract [--clean] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <p>This command extract messages from source files and creates message catalog for each language in following steps:</p>
 <ol class="arabic simple">
-<li>Extract messages from all <cite>*.jsx?</cite> files inside [srcPathDirs][srcPathDirs]</li>
-<li>Merge them with existing catalogs in [localeDir][localeDir] (if any)</li>
-<li>Write updated message catalogs to [localeDir][localeDir]</li>
+<li>Extract messages from all <code class="docutils literal"><span class="pre">*.jsx?</span></code> files inside <a class="reference internal" href="lingui-conf.html#std:config-srcPathDirs"><code class="xref std std-conf docutils literal"><span class="pre">srcPathDirs</span></code></a></li>
+<li>Merge them with existing catalogs in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a> (if any)</li>
+<li>Write updated message catalogs to <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a></li>
 </ol>
-<p><cite>–clean</cite> - Remove obsolete messages from catalogs. Message becomes obsolete
-when it’s no longer in source code.
-<cite>–format</cite> - Format of message catalogs (see [format][format] option)
-<cite>–verbose</cite> - Prints additional information</p>
-<p>### compile</p>
-<p><code class="docutils literal"><span class="pre">`bash</span>
-<span class="pre">lingui</span> <span class="pre">compile</span> <span class="pre">[--strict]</span> <span class="pre">[--format</span> <span class="pre">&lt;format&gt;]</span> <span class="pre">[--verbose]</span>
-<span class="pre">`</span></code></p>
-<p>This command compiles message catalogs in [localeDir][localeDir] and writes
+<dl class="lingui-cli-option">
+<dt id="cmdoption-extract-clean">
+<code class="descname">--clean</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-extract-clean" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Remove obsolete messages from catalogs. Message becomes obsolete
+when it’s no longer in source code.</p>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-extract-format">
+<code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-extract-format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Format of message catalogs (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option)</p>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-extract-verbose">
+<code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-extract-verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Prints additional information.</p>
+</div>
+<div class="section" id="compile">
+<h3><code class="docutils literal"><span class="pre">compile</span></code><a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h3>
+<dl class="lingui-cli">
+<dt id="lingui-cli-compile">
+<code class="descname">lingui-cli compile [--strict] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-compile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>This command compiles message catalogs in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a> and writes
 minified Javascript files. Each message is replace with function call,
 which returns translated message.</p>
 <p>Also language data (plurals) are written to message catalog as well.</p>
-<p><cite>–strict</cite> - Fail when some catalog has missing translations.
-<cite>–format</cite> - Format of message catalogs (see [format][format] option)
-<cite>–verbose</cite> - Prints additional information</p>
-<p>## Configuration</p>
-<p>Configuration is read from <cite>lingui</cite> section in <cite>package.json</cite>.</p>
-<p>Default config:</p>
-<p><a href="#id6"><span class="problematic" id="id7">``</span></a><a href="#id8"><span class="problematic" id="id9">`</span></a>json
-{</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>“lingui”: {</dt>
-<dd><p class="first">“fallbackLocale”: “”,
-“sourceLocale”: “”,
-“localeDir”: “&lt;rootDir&gt;/locale”,
-“srcPathDirs”: [</p>
-<blockquote>
-<div>“&lt;rootDir&gt;”</div></blockquote>
-<p>],
-“srcPathIgnorePatterns”: [</p>
-<blockquote>
-<div>“/node_modules/”</div></blockquote>
-<p class="last">],
-“format”: “lingui”</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-compile-strict">
+<code class="descname">--strict</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-compile-strict" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Fail when some catalog has missing translations.</p>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-compile-format">
+<code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-compile-format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Format of message catalogs (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option)</p>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-compile-verbose">
+<code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-compile-verbose" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Prints additional information</p>
 </div>
-<div class="section" id="id10">
-<h2>}<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
-<p>### fallbackLocale [string]</p>
-<p><cite>fallbackLocale</cite> is used when translation for given locale is missing.</p>
-<p>If <cite>fallbackLocale</cite> isn’t defined or translation in <cite>fallbackLocale</cite> is
-missing too, either message defaults or message ID is used instead.</p>
-<p>### sourceLocale [string]</p>
-<p>Locale of message IDs, which is used in source files.
-Catalog for <cite>sourceLocale</cite> don’t require translated messages, because message
-IDs are used by default. However, it’s still possible to override message ID by
-providing custom translation.</p>
-<p>The difference between <cite>fallbackLocale</cite> and <cite>sourceLocale</cite> is, that for
-<cite>fallbackLocale</cite> is used translation, while for <cite>sourceLocale</cite> is used message
-ID.</p>
-<p>### localeDir [string]</p>
-<p>Default: <cite>&lt;rootDir&gt;/locale</cite></p>
-<p>Directory where message catalogs are stored.</p>
-<p>### srcPathDirs [Array]</p>
-<p>Default: <cite>[&lt;rootDir&gt;]</cite></p>
-<p>List of directories with source files from which messages are extracted. Ignored
-directories are defined in [srcPathIgnorePatters][srcPathIgnorePatters].</p>
-<p>### srcPathIgnorePatterns [Array]</p>
-<p>Default: <cite>[“/node_modules/”]</cite></p>
-<p>Ignored directories when looking for source files to extract messages.</p>
-<p>### format [string]</p>
-<p>Default: <cite>lingui</cite></p>
-<p>Format of message catalogs. Possible values are:</p>
-<p>#### <cite>lingui</cite></p>
-<p>Each message is object in following format. Origin is filename and line number
-from where the message was extracted:</p>
-<p><a href="#id11"><span class="problematic" id="id12">``</span></a><a href="#id13"><span class="problematic" id="id14">`</span></a>json
-{</p>
-<blockquote>
-<div><dl class="docutils">
-<dt>“MessageID”: {</dt>
-<dd><p class="first">“translation”: “Translated Message”,
-“defaults”: “Default string (from source code)”,
-“origin”: [</p>
-<blockquote>
-<div>[“path/to/src.js”, 42]</div></blockquote>
-<p class="last">]</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
-</div>
-<div class="section" id="id15">
-<h2>}<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
-<p>#### <cite>minimal</cite></p>
-<p>Simple source - translation mapping:</p>
-<p><a href="#id16"><span class="problematic" id="id17">``</span></a><a href="#id18"><span class="problematic" id="id19">`</span></a>json
-{</p>
-<blockquote>
-<div>“MessageID”: “Translated Message”</div></blockquote>
-</div>
-<div class="section" id="id20">
-<h2>}<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h2>
-<p>[localeDir]: #localedir-string
-[srcPathDirs]: #srcpathdirs-array
-[srcPathIgnorePatters]: #srcpathignorepatterns-array
-[format]: #format-string</p>
 </div>
 </div>
 

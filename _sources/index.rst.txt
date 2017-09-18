@@ -29,6 +29,7 @@ Key features
    :caption: Guides
 
    How plurals work <guides/plurals>
+   Dynamic loading of translations <guides/dynamic-loading-catalogs.rst>
 
 .. toctree::
    :maxdepth: 1
@@ -37,6 +38,12 @@ Key features
    React <ref/lingui-react>
    CLI <ref/lingui-cli>
    Configuration <ref/lingui-conf>
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Releases
+
+   Migration from 0.x to 1.x <releases/migration-1>
 
 
 Indices
