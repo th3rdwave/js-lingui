@@ -225,19 +225,19 @@ to ECMAScript. We need to install <code class="docutils literal"><span class="pr
 from <code class="docutils literal"><span class="pre">lingui-react</span></code>. Active language is loaded from redux store, while
 messages are dynamically loaded and stored in local state.</p>
 <p>The render method looks like this:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
-   <span class="kr">const</span> <span class="p">{</span> <span class="nx">children</span><span class="p">,</span> <span class="nx">language</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
-   <span class="kr">const</span> <span class="p">{</span> <span class="nx">catalogs</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span>render () {
+   const { children, language } = this.props
+   const { catalogs } = this.state
 
-   <span class="c1">// Skip rendering when catalog isn&#39;t loaded.</span>
-   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">catalogs</span><span class="p">[</span><span class="nx">language</span><span class="p">])</span> <span class="k">return</span>
+   // Skip rendering when catalog isn&#39;t loaded.
+   if (!catalogs[language]) return
 
-   <span class="k">return</span> <span class="p">(</span>
-      <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">{language}</span> <span class="na">catalogs</span><span class="o">=</span><span class="s">{catalogs}</span><span class="p">&gt;</span>
-         <span class="p">{</span><span class="nx">children</span><span class="p">}</span>
-      <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
-   <span class="p">)</span>
-<span class="p">}</span>
+   return (
+      &lt;I18nProvider language={language} catalogs={catalogs}&gt;
+         {children}
+      &lt;/I18nProvider&gt;
+   )
+}
 </pre></div>
 </div>
 <p>Next, we want to load message catalog when language changes and we haven’t
@@ -310,66 +310,66 @@ good old promises:</p>
 <div class="section" id="i18nloadercomponent">
 <span id="id1"></span><h2>Final component<a class="headerlink" href="#i18nloadercomponent" title="Permalink to this headline">¶</a></h2>
 <p>Here’s the full source of <code class="docutils literal"><span class="pre">I18nLoader</span></code> component:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">unpackCatalog</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-i18n&#39;</span>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span>import React from &#39;react&#39;
+import { connect } from &#39;react-redux&#39;
+import { I18nProvider } from &#39;lingui-react&#39;
+import { unpackCatalog } from &#39;lingui-i18n&#39;
 
-<span class="kr">export</span> <span class="kr">class</span> <span class="nx">I18nLoader</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
-  <span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">catalogs</span><span class="o">:</span> <span class="p">{},</span>
-  <span class="p">}</span>
+export class I18nLoader extends React.Component {
+  state = {
+    catalogs: {},
+  }
 
-  <span class="nx">loadCatalog</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">language</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">catalog</span> <span class="o">=</span> <span class="nx">await</span> <span class="kr">import</span><span class="p">(</span>
-      <span class="cm">/* webpackMode: &quot;lazy&quot;, webpackChunkName: &quot;i18n-[index]&quot; */</span>
-      <span class="sb">`locale/</span><span class="si">${</span><span class="nx">language</span><span class="si">}</span><span class="sb">/messages.js`</span><span class="p">)</span>
+  loadCatalog = async (language) =&gt; {
+    const catalog = await import(
+      /* webpackMode: &quot;lazy&quot;, webpackChunkName: &quot;i18n-[index]&quot; */
+      `locale/${language}/messages.js`)
 
-    <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">state</span> <span class="p">=&gt;</span> <span class="p">({</span>
-      <span class="nx">catalogs</span><span class="o">:</span> <span class="p">{</span>
-        <span class="p">...</span><span class="nx">state</span><span class="p">.</span><span class="nx">catalogs</span><span class="p">,</span>
-        <span class="p">[</span><span class="nx">language</span><span class="p">]</span><span class="o">:</span> <span class="nx">unpackCatalog</span><span class="p">(</span><span class="nx">catalog</span><span class="p">)</span>
-      <span class="p">}</span>
-    <span class="p">}))</span>
-  <span class="p">}</span>
+    this.setState(state =&gt; ({
+      catalogs: {
+        ...state.catalogs,
+        [language]: unpackCatalog(catalog)
+      }
+    }))
+  }
 
-  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">loadCatalog</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">language</span><span class="p">)</span>
-  <span class="p">}</span>
+  componentDidMount() {
+    this.loadCatalog(this.props.language)
+  }
 
-  <span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="p">{</span> <span class="nx">language</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">nextProps</span>
-    <span class="kr">const</span> <span class="p">{</span> <span class="nx">catalogs</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">nextState</span>
+  shouldComponentUpdate(nextProps, nextState) {
+    const { language } = nextProps
+    const { catalogs } = nextState
 
-    <span class="k">if</span> <span class="p">(</span><span class="nx">language</span> <span class="o">!==</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">language</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">catalogs</span><span class="p">[</span><span class="nx">language</span><span class="p">])</span> <span class="p">{</span>
-      <span class="k">this</span><span class="p">.</span><span class="nx">loadCatalog</span><span class="p">(</span><span class="nx">language</span><span class="p">)</span>
-      <span class="k">return</span> <span class="kc">false</span>
-    <span class="p">}</span>
+    if (language !== this.props.language &amp;&amp; !catalogs[language]) {
+      this.loadCatalog(language)
+      return false
+    }
 
-    <span class="k">return</span> <span class="kc">true</span>
-  <span class="p">}</span>
+    return true
+  }
 
-  <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="p">{</span> <span class="nx">children</span><span class="p">,</span> <span class="nx">language</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
-    <span class="kr">const</span> <span class="p">{</span> <span class="nx">catalogs</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span>
+  render () {
+    const { children, language } = this.props
+    const { catalogs } = this.state
 
-    <span class="c1">// Skip rendering when catalog isn&#39;t loaded.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">catalogs</span><span class="p">[</span><span class="nx">language</span><span class="p">])</span> <span class="k">return</span>
+    // Skip rendering when catalog isn&#39;t loaded.
+    if (!catalogs[language]) return
 
-    <span class="k">return</span> <span class="p">(</span>
-      <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">{language}</span> <span class="na">catalogs</span><span class="o">=</span><span class="s">{catalogs}</span><span class="p">&gt;</span>
-        <span class="p">{</span><span class="nx">children</span><span class="p">}</span>
-      <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
-    <span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+    return (
+      &lt;I18nProvider language={language} catalogs={catalogs}&gt;
+        {children}
+      &lt;/I18nProvider&gt;
+    )
+  }
+}
 
-<span class="c1">// Example: depends on implementation of reducer</span>
-<span class="kr">const</span> <span class="nx">getLanguage</span> <span class="o">=</span> <span class="nx">state</span> <span class="p">=&gt;</span> <span class="nx">state</span><span class="p">.</span><span class="nx">locale</span><span class="p">.</span><span class="nx">language</span>
+// Example: depends on implementation of reducer
+const getLanguage = state =&gt; state.locale.language
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">state</span> <span class="p">=&gt;</span> <span class="p">({</span>
-  <span class="nx">language</span><span class="o">:</span> <span class="nx">getLanguage</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span>
-<span class="p">}))(</span><span class="nx">I18nLoader</span><span class="p">)</span>
+export default connect(state =&gt; ({
+  language: getLanguage(state)
+}))(I18nLoader)
 </pre></div>
 </div>
 </div>
