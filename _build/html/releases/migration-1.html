@@ -205,28 +205,28 @@ single space, while newlines are removed completely:</p>
 are replaced with single space, but newlines between components or text and
 component are removed and no space is added:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
-  This message is wrapped
-  on <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>multiple<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>lines<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+  <span class="nx">This</span> <span class="nx">message</span> <span class="nx">is</span> <span class="nx">wrapped</span>
+  <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span><span class="nx">multiple</span><span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="nx">lines</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
 
 <span class="c1">// babel-plugin-lingui-transform-react 0.x</span>
-<span class="s">&quot;This message is wrapped\n  on &lt;em&gt;multiple&lt;em&gt;\n  &lt;0&gt;lines&lt;/0&gt;&quot;</span>
+<span class="s2">&quot;This message is wrapped\n  on &lt;em&gt;multiple&lt;em&gt;\n  &lt;0&gt;lines&lt;/0&gt;&quot;</span>
 
 <span class="c1">// babel-plugin-lingui-transform-react 1.x</span>
-<span class="s">&quot;This message is wrapped on &lt;0&gt;multiple&lt;0&gt;&lt;1&gt;lines&lt;/1&gt;&quot;</span>
+<span class="s2">&quot;This message is wrapped on &lt;0&gt;multiple&lt;0&gt;&lt;1&gt;lines&lt;/1&gt;&quot;</span>
 </pre></div>
 </div>
 <p>As weird as it is, this is consistent how JSX works. If you need to force
 a space at the end of line, add <code class="docutils literal"><span class="pre">{&quot;</span> <span class="pre">&quot;}</span></code>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
-  This message is wrapped
-  on <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>multiple<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;{</span><span class="s">&quot; &quot;</span><span class="p">}</span>
-  <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>lines<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
+  <span class="nx">This</span> <span class="nx">message</span> <span class="nx">is</span> <span class="nx">wrapped</span>
+  <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span><span class="nx">multiple</span><span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;{</span><span class="s2">&quot; &quot;</span><span class="p">}</span>
+  <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="nx">lines</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
 
 <span class="c1">// This will result in:</span>
-<span class="s">&quot;This message is wrapped on &lt;0&gt;multiple&lt;0&gt; &lt;1&gt;lines&lt;/1&gt;&quot;</span>
+<span class="s2">&quot;This message is wrapped on &lt;0&gt;multiple&lt;0&gt; &lt;1&gt;lines&lt;/1&gt;&quot;</span>
 </pre></div>
 </div>
 <p>This change won’t break the code, but it’s necessary to update message catalogs.</p>
@@ -374,39 +374,39 @@ were replaced with <code class="docutils literal"><span class="pre">catalogs</sp
 warning in console.</p>
 <p>Development data must be loaded explicitely. It works in the same way as in
 <code class="docutils literal"><span class="pre">lingui-i18n</span></code>:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s">&#39;lingui-react&#39;</span>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
 
-<span class="kd">const</span> <span class="nx">dev</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">!==</span> <span class="s">&#39;production&#39;</span>
+<span class="kr">const</span> <span class="nx">dev</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">!==</span> <span class="s1">&#39;production&#39;</span>
   <span class="c1">// this import is required in development only</span>
-  <span class="p">?</span> <span class="nx">require</span><span class="p">(</span><span class="s">&#39;lingui-i18n/dev&#39;</span><span class="p">)</span>
-  <span class="p">:</span> <span class="k">null</span>
+  <span class="o">?</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lingui-i18n/dev&#39;</span><span class="p">)</span>
+  <span class="o">:</span> <span class="kc">null</span>
 
-<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">development</span><span class="o">=</span><span class="p">{</span><span class="nx">dev</span><span class="p">}&gt;</span>
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">development</span><span class="o">=</span><span class="s">{dev}</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">Content</span> <span class="p">/&gt;</span>
     <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Also, messages were replaced with catalogs:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s">&#39;lingui-react&#39;</span>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span>import { I18nProvider } from &#39;lingui-react&#39;
 
-<span class="kd">const</span> <span class="nx">dev</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">!==</span> <span class="s">&#39;production&#39;</span>
-  <span class="c1">// this import is required in development only</span>
-  <span class="p">?</span> <span class="nx">require</span><span class="p">(</span><span class="s">&#39;lingui-i18n/dev&#39;</span><span class="p">)</span>
-  <span class="p">:</span> <span class="k">null</span>
+const dev = process.env.NODE_ENV !== &#39;production&#39;
+  // this import is required in development only
+  ? require(&#39;lingui-i18n/dev&#39;)
+  : null
 
-<span class="kd">const</span> <span class="nx">catalog</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="nx">messages</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nx">msg</span><span class="p">:</span> <span class="s">&quot;Hello&quot;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+const catalog = {
+    messages: {
+        msg: &quot;Hello&quot;
+    }
+}
 
-<span class="kd">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">catalogs</span><span class="o">=</span><span class="p">{{</span> <span class="nx">en</span><span class="p">:</span> <span class="nx">catalog</span> <span class="p">}}</span> <span class="na">development</span><span class="o">=</span><span class="p">{</span><span class="nx">dev</span><span class="p">}&gt;</span>
-        <span class="p">&lt;</span><span class="nt">Content</span> <span class="p">/&gt;</span>
-    <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
-<span class="p">}</span>
+const App = () =&gt; {
+    &lt;I18nProvider language=&quot;en&quot; catalogs={{ en: catalog }} development={dev}&gt;
+        &lt;Content /&gt;
+    &lt;/I18nProvider&gt;
+}
 </pre></div>
 </div>
 </div>
