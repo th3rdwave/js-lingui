@@ -183,7 +183,7 @@
 message catalogs and compiles message catalogs for production use.</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">lingui-cli</span></code> can be installed both globally and locally:</p>
+<p><code class="docutils literal"><span class="pre">lingui-cli</span></code> can be installed both globally:</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>yarn global add lingui-cli
 <span class="c1"># npm install --global lingui-cli</span>
 </pre></div>
@@ -195,7 +195,7 @@ message catalogs and compiles message catalogs for production use.</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>When installed locally, you need either run it from
+<p>When installed locally, you need to either run it from
 <code class="docutils literal"><span class="pre">node_modules/.bin/lingui</span></code> or add it to your <code class="docutils literal"><span class="pre">package.json</span></code>:</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -224,7 +224,7 @@ npm run compile
 <dd></dd></dl>
 
 <p>This command creates a new directory for each locale in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a>.</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># Add English, French and Spanish locale</span>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="c1"># Add English, French and Spanish locales</span>
 lingui add-locale en fr es
 </pre></div>
 </div>
@@ -233,7 +233,7 @@ lingui add-locale en fr es
 <code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-add-locale-format" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Format of message catalog (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option)</p>
+<p>Format of message catalog (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option).</p>
 </div>
 <div class="section" id="extract">
 <h3><code class="docutils literal"><span class="pre">extract</span></code><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
@@ -242,7 +242,8 @@ lingui add-locale en fr es
 <code class="descname">lingui-cli extract [--clean] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>This command extract messages from source files and creates message catalog for each language in following steps:</p>
+<p>This command extracts messages from source files and creates a message catalog for
+each language using the following steps:</p>
 <ol class="arabic simple">
 <li>Extract messages from all <code class="docutils literal"><span class="pre">*.jsx?</span></code> files inside <a class="reference internal" href="lingui-conf.html#std:config-srcPathDirs"><code class="xref std std-conf docutils literal"><span class="pre">srcPathDirs</span></code></a></li>
 <li>Merge them with existing catalogs in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a> (if any)</li>
@@ -254,13 +255,13 @@ lingui add-locale en fr es
 <dd></dd></dl>
 
 <p>Remove obsolete messages from catalogs. Message becomes obsolete
-when it’s no longer in source code.</p>
+when it’s no longer in the source code.</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-extract-format">
 <code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-extract-format" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Format of message catalogs (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option)</p>
+<p>Format of message catalogs (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option).</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-extract-verbose">
 <code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-extract-verbose" title="Permalink to this definition">¶</a></dt>
@@ -275,28 +276,28 @@ when it’s no longer in source code.</p>
 <code class="descname">lingui-cli compile [--strict] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-compile" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>This command compiles message catalogs in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a> and writes
-minified Javascript files. Each message is replace with function call,
-which returns translated message.</p>
-<p>Also language data (plurals) are written to message catalog as well.</p>
+<p>This command compiles message catalogs in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a> and outputs
+minified Javascript files. Each message is replaced with a function
+that returns the translated message when called.</p>
+<p>Also, language data (pluralizations) are written to the message catalog as well.</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-compile-strict">
 <code class="descname">--strict</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-compile-strict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Fail when some catalog has missing translations.</p>
+<p>Fail if a catalog has missing translations.</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-compile-format">
 <code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-compile-format" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Format of message catalogs (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option)</p>
+<p>Format of message catalogs (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option).</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-compile-verbose">
 <code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-compile-verbose" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<p>Prints additional information</p>
+<p>Prints additional information.</p>
 </div>
 </div>
 </div>
