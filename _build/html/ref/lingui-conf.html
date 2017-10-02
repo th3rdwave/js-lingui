@@ -206,7 +206,7 @@
 <p>Default: <code class="docutils literal"><span class="pre">''</span></code></p>
 <p>Translation from <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal"><span class="pre">fallbackLocale</span></code></a> is used when translation for given locale is missing.</p>
 <p>If <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal"><span class="pre">fallbackLocale</span></code></a> isn’t defined or translation in <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal"><span class="pre">fallbackLocale</span></code></a> is
-missing too, either message defaults or message ID is used instead.</p>
+missing too, either message default or message ID is used instead.</p>
 </div>
 <div class="section" id="format">
 <span id="std:config-format"></span><h2>format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h2>
@@ -214,7 +214,7 @@ missing too, either message defaults or message ID is used instead.</p>
 <p>Format of message catalogs. Possible values are:</p>
 <div class="section" id="lingui">
 <h3>lingui<a class="headerlink" href="#lingui" title="Permalink to this headline">¶</a></h3>
-<p>Each message is object in following format:</p>
+<p>Each message is an object composed in the following format:</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;MessageID&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Translated Message&quot;</span><span class="p">,</span>
@@ -230,7 +230,7 @@ missing too, either message defaults or message ID is used instead.</p>
 </div>
 <div class="section" id="minimal">
 <h3>minimal<a class="headerlink" href="#minimal" title="Permalink to this headline">¶</a></h3>
-<p>Simple source-translation mapping:</p>
+<p>Simple source -&gt; translation mapping:</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;MessageID&quot;</span><span class="p">:</span> <span class="s2">&quot;Translated Message&quot;</span>
 <span class="p">}</span>
@@ -245,9 +245,9 @@ missing too, either message defaults or message ID is used instead.</p>
 Catalog for <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a> doesn’t require translated messages, because message
 IDs are used by default. However, it’s still possible to override message ID by
 providing custom translation.</p>
-<p>The difference between <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal"><span class="pre">fallbackLocale</span></code></a> and <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a> is, that
-for <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal"><span class="pre">fallbackLocale</span></code></a> is used translation, while for <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a> is
-used message ID.</p>
+<p>The difference between <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal"><span class="pre">fallbackLocale</span></code></a> and <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a> is that
+<a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal"><span class="pre">fallbackLocale</span></code></a> is used in translation, while <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a> is
+used for the message ID.</p>
 </div>
 <div class="section" id="srcpathdirs">
 <span id="std:config-srcPathDirs"></span><h2>srcPathDirs<a class="headerlink" href="#srcpathdirs" title="Permalink to this headline">¶</a></h2>
@@ -258,12 +258,12 @@ directories are defined in <a class="reference internal" href="#std:config-srcPa
 <div class="section" id="srcpathignorepatterns">
 <span id="std:config-srcPathIgnorePatterns"></span><h2>srcPathIgnorePatterns<a class="headerlink" href="#srcpathignorepatterns" title="Permalink to this headline">¶</a></h2>
 <p>Default: <code class="docutils literal"><span class="pre">[&quot;/node_modules/&quot;]</span></code></p>
-<p>Ignored paths when looking for source files to extract messages.</p>
+<p>Ignored paths when looking for source files to extract messages from.</p>
 </div>
 <div class="section" id="localedir">
 <span id="std:config-localeDir"></span><h2>localeDir<a class="headerlink" href="#localedir" title="Permalink to this headline">¶</a></h2>
 <p>Default: <code class="docutils literal"><span class="pre">&lt;rootDir&gt;/locale</span></code></p>
-<p>Directory to save message catalogs.</p>
+<p>Directory where message catalogs should be saved.</p>
 </div>
 </div>
 
