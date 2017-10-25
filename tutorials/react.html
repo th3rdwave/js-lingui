@@ -316,7 +316,7 @@ Yes, that’s a great question, but we need to focus! We’re not going to chang
 the language unless we have translated the message catalog. And we won’t have
 translated the catalog before we extract all messages from source.</p>
 <p class="last">Let’s deal with language switching later… but if you’re still curious,
-take a look at <a class="reference external" href="dynamic-loadng-catalogs">example</a> with Redux and Webpack.</p>
+take a look at <a class="reference internal" href="../guides/dynamic-loading-catalogs.html#dynamic-loading-catalogs"><span class="std std-ref">example</span></a> with Redux and Webpack.</p>
 </div>
 </div>
 <div class="section" id="introducing-internationalization">
@@ -580,7 +580,7 @@ languages have up to 6 plural forms and some don’t have plurals at all!</p>
 <p>How do we know which plural form we should use? It’s very simple:
 we, as developers, only need to know plural forms of the language we use in
 our source. Our component is written in English, so looking at
-<a class="reference external" href="englishRules">English plural rules</a> we’ll
+<a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a> we’ll
 need just two forms:</p>
 <dl class="docutils">
 <dt><code class="docutils literal"><span class="pre">one</span></code></dt>
@@ -639,8 +639,8 @@ least we don’t have to write this message manually!</p>
 </div>
 <p>This component will render <code class="docutils literal"><span class="pre">There're</span> <span class="pre">0</span> <span class="pre">messages</span> <span class="pre">in</span> <span class="pre">your</span> <span class="pre">inbox</span></code> for
 <code class="docutils literal"><span class="pre">messagesCount</span> <span class="pre">=</span> <span class="pre">0</span></code>. Why so? Because English doesn’t have <code class="docutils literal"><span class="pre">zero</span></code>
-<a class="reference external" href="englishRules">plural form</a>.</p>
-<p>Looking at <a class="reference external" href="englishRules">English plural rules</a>, it’s:</p>
+<a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">plural form</a>.</p>
+<p>Looking at <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a>, it’s:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="5%" />
@@ -805,7 +805,7 @@ we’ll just use &lt;DateTimeFormat&gt; component:</p>
 <h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
 <p>Our work here is done and we can start working with message catalogs. First,
 we need to extract all messages from the source code. <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> has a handy CLI
-for this task, so let’s pause here and go to <a class="reference external" href="./cli">CLI tutorial</a> to
+for this task, so let’s pause here and go to <a class="reference internal" href="cli.html#tutorial-cli"><span class="std std-ref">CLI tutorial</span></a> to
 add locales, extract messages and compile translated message catalogs.</p>
 </div>
 <div class="section" id="loading-translations">
@@ -843,14 +843,14 @@ locale:</p>
 </div>
 <p>The <code class="docutils literal"><span class="pre">catalogs</span></code> prop expects a dictionary of message catalogs in <em>all</em> languages,
 but we can load them on demand. It depends on your setup and there’s
-an example <a class="reference external" href="dynamic-loading-catalogs">how to do it with webpack</a>.</p>
+an example <a class="reference internal" href="../guides/dynamic-loading-catalogs.html#dynamic-loading-catalogs"><span class="std std-ref">how to do it with webpack</span></a>.</p>
 </div>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="../ref/lingui-react">lingui-react reference documentation</a></li>
-<li><a class="reference external" href="../ref/lingui-cli">lingui-cli reference documentation</a></li>
-<li><a class="reference external" href="../guide/plurals">Pluralization Guide</a></li>
+<li><a class="reference external" href="../ref/lingui-react.html">lingui-react reference documentation</a></li>
+<li><a class="reference external" href="../ref/lingui-cli.html">lingui-cli reference documentation</a></li>
+<li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
 </ul>
 </div>
 </div>
