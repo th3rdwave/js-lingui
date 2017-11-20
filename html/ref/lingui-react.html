@@ -359,7 +359,7 @@ Selected plural form depends on active language and <code class="docutils litera
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">count</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># book} other {# books}}</span>
 </pre></div>
 </div>
-<p>Plural forms for all languages can be found at <a class="reference external" href="cldrPluralRules">CLDR Plural Rules</a>
+<p>Plural forms for all languages can be found at <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR Plural Rules</a>
 page.</p>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -480,7 +480,7 @@ it uses <strong>ordinal</strong> plural forms, instead of <strong>cardinal</stro
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
 <li><strong>value</strong> (<em>number</em>) – Date to be formatted</li>
-<li><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="IntlDateTimeFormat">Intl.DateTimeFormat</a>.</li>
+<li><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>.</li>
 </ul>
 </td>
 </tr>
@@ -488,9 +488,10 @@ it uses <strong>ordinal</strong> plural forms, instead of <strong>cardinal</stro
 </table>
 </dd></dl>
 
-<p><a class="reference internal" href="#component-DateFormat">&lt;DateFormat&gt;</a> component is a wrapper around <a class="reference external" href="IntlDateTimeFormat">Intl.DateTimeFormat</a>. It takes a date as a <code class="docutils literal"><span class="pre">value</span></code> prop and formats it
+<p><a class="reference internal" href="#component-DateFormat">&lt;DateFormat&gt;</a> component is a wrapper around <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>.
+It takes a date as a <code class="docutils literal"><span class="pre">value</span></code> prop and formats it
 using <code class="docutils literal"><span class="pre">format</span></code> options. <code class="docutils literal"><span class="pre">format</span></code> prop supports the same options as
-<a class="reference external" href="IntlDateTimeFormat">Intl.DateTimeFormat</a>:</p>
+<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span>const now = new Date();
 // default language format
 &lt;DateFormat value={now} /&gt;;
@@ -513,7 +514,7 @@ const now = new Date();
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
 <li><strong>value</strong> (<em>number</em>) – Date to be formatted</li>
-<li><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="IntlNumberFormat">Intl.NumberFormat</a></li>
+<li><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.NumberFormat</a></li>
 </ul>
 </td>
 </tr>
@@ -522,9 +523,9 @@ const now = new Date();
 </dd></dl>
 
 <p><a class="reference internal" href="#component-NumberFormat">&lt;NumberFormat&gt;</a> component is a wrapper around
-<a class="reference external" href="IntlNumberFormat">Intl.NumberFormat</a>. It takes a number as a <code class="docutils literal"><span class="pre">value</span></code> prop
+<cite>Intl.NumberFormat_. It takes a number as a ``value`</cite> prop
 and formats it using <code class="docutils literal"><span class="pre">format</span></code> options. <code class="docutils literal"><span class="pre">format</span></code> prop supports the same
-options as <a class="reference external" href="IntlNumberFormat">Intl.NumberFormat</a>:</p>
+options as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.NumberFormat</a>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span>const num = 0.42;
 // default language format
 &lt;NumberFormat value={num} /&gt;;
@@ -564,7 +565,7 @@ down to wrapped component and shadows all implementation details.</p>
 </dd></dl>
 
 <p><code class="docutils literal"><span class="pre">defaultRender</span></code> has the same meaning as <code class="docutils literal"><span class="pre">render</span></code> in other i18n
-components. <a class="reference external" href="rendering-translations">Rendering of translations</a> is explained
+components. <a class="reference internal" href="#rendering-translations"><span class="std std-ref">Rendering of translations</span></a> is explained
 at the beginning of this document.</p>
 <p><code class="docutils literal"><span class="pre">catalogs</span></code> is a type of <code class="docutils literal"><span class="pre">Catalogs</span></code>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// One catalog per language</span>

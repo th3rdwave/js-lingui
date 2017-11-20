@@ -196,8 +196,8 @@ catalogs using <a class="reference external" href="https://webpack.js.org/guides
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <p>We are using the <a class="reference external" href="https://github.com/tc39/proposal-dynamic-import">Dynamic Import() Proposal</a>
 to ECMAScript. We need to install <code class="docutils literal"><span class="pre">babel-plugin-syntax-dynamic-import</span></code> and
-<code class="docutils literal"><span class="pre">babel-plugin-dynamic-import-node</span></code> to make it work:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn add --dev babel-plugin-syntax-dynamic-import babel-plugin-dynamic-import-node
+<code class="docutils literal"><span class="pre">babel-plugin-dynamic-import-node</span></code> to make it work. Also, the code examples given here make use of <code class="docutils literal"><span class="pre">babel-plugin-transform-class-properties</span></code></p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn add --dev babel-plugin-syntax-dynamic-import babel-plugin-dynamic-import-node babel-plugin-transform-class-properties
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -207,7 +207,8 @@ to ECMAScript. We need to install <code class="docutils literal"><span class="pr
 <div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// .babelrc</span>
 <span class="p">{</span>
   <span class="s2">&quot;plugins&quot;</span><span class="o">:</span> <span class="p">[</span>
-    <span class="s2">&quot;syntax-dynamic-import&quot;</span>
+    <span class="s2">&quot;syntax-dynamic-import&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;transform-class-properties&quot;</span>
   <span class="p">],</span>
   <span class="s2">&quot;env&quot;</span><span class="o">:</span> <span class="p">{</span>
     <span class="s2">&quot;test&quot;</span><span class="o">:</span> <span class="p">{</span>
@@ -243,7 +244,7 @@ messages are dynamically loaded and stored in local state.</p>
 <p>Next, we need to load message catalog when language changes which isn’t done yet. Dynamic import returns a promise and we don’t want to re-render
 our component until the message catalog is loaded. Let’s add a
 <code class="docutils literal"><span class="pre">shouldComponentUpdate()</span></code> method:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">newProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
    <span class="kr">const</span> <span class="p">{</span> <span class="nx">language</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">nextProps</span>
    <span class="kr">const</span> <span class="p">{</span> <span class="nx">catalogs</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">nextState</span>
 
@@ -274,7 +275,7 @@ Here we use the dynamic import syntax to load the message catalog:</p>
 <div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">loadCatalog</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">language</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">catalog</span> <span class="o">=</span> <span class="nx">await</span> <span class="kr">import</span><span class="p">(</span>
     <span class="cm">/* webpackMode: &quot;lazy&quot;, webpackChunkName: &quot;i18n-[index]&quot; */</span>
-    <span class="sb">`locale/data/</span><span class="si">${</span><span class="nx">language</span><span class="si">}</span><span class="sb">/messages.js`</span><span class="p">)</span>
+    <span class="sb">`locale/</span><span class="si">${</span><span class="nx">language</span><span class="si">}</span><span class="sb">/messages.js`</span><span class="p">)</span>
 
   <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">(</span><span class="nx">state</span> <span class="p">=&gt;</span> <span class="p">({</span>
     <span class="nx">catalogs</span><span class="o">:</span> <span class="p">{</span>
