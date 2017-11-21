@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="jsLingui  documentation" href="../index.html"/>
         <link rel="next" title="API Reference - CLI (lingui-cli)" href="lingui-cli.html"/>
-        <link rel="prev" title="Dynamic loading of message catalogs" href="../guides/dynamic-loading-catalogs.html"/> 
+        <link rel="prev" title="Optimized components" href="../guides/optimized-components.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -95,6 +95,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul class="current">
@@ -613,7 +614,9 @@ const App = ({ language} ) =&gt; {
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
 <li><strong>Object</strong> (<em>options</em>) – Configuration for high-order component</li>
-<li><strong>bool</strong> (<em>withRef</em>) – Returns reference to wrapped instance in <cite>getWrappedInstance</cite></li>
+<li><strong>bool</strong> (<em>withRef</em>) – Subscribe to catalog and activate language updates</li>
+<li><strong>bool</strong> – Pass unique <code class="docutils literal"><span class="pre">i18nHash</span></code> prop to force underlying PureComponent re-render on catalog and active language update</li>
+<li><strong>bool</strong> – Returns reference to wrapped instance in <code class="docutils literal"><span class="pre">getWrappedInstance</span></code></li>
 </ul>
 </td>
 </tr>
@@ -686,7 +689,7 @@ components:</p>
         <a href="lingui-cli.html" class="btn btn-neutral float-right" title="API Reference - CLI (lingui-cli)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../guides/dynamic-loading-catalogs.html" class="btn btn-neutral" title="Dynamic loading of message catalogs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../guides/optimized-components.html" class="btn btn-neutral" title="Optimized components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
