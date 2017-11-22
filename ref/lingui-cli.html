@@ -221,7 +221,7 @@ npm run compile
 <h3><code class="docutils literal"><span class="pre">add-locale</span></code><a class="headerlink" href="#add-locale" title="Permalink to this headline">¶</a></h3>
 <dl class="lingui-cli">
 <dt id="lingui-cli-add-locale">
-<code class="descname">lingui-cli add-locale [locales...] [--format &lt;format&gt;]</code><a class="headerlink" href="#lingui-cli-add-locale" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lingui add-locale [locales...] [--format &lt;format&gt;]</code><a class="headerlink" href="#lingui-cli-add-locale" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>This command creates a new directory for each locale in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a>.</p>
@@ -240,7 +240,7 @@ lingui add-locale en fr es
 <h3><code class="docutils literal"><span class="pre">extract</span></code><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
 <dl class="lingui-cli">
 <dt id="lingui-cli-extract">
-<code class="descname">lingui-cli extract [--clean] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lingui extract [--clean] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>This command extracts messages from source files and creates a message catalog for
@@ -256,7 +256,7 @@ each language using the following steps:</p>
 <dd></dd></dl>
 
 <p>Remove obsolete messages from catalogs. Message becomes obsolete
-when it’s no longer in the source code.</p>
+when it’s missing in the source code.</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-extract-format">
 <code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-extract-format" title="Permalink to this definition">¶</a></dt>
@@ -274,7 +274,7 @@ when it’s no longer in the source code.</p>
 <h3><code class="docutils literal"><span class="pre">compile</span></code><a class="headerlink" href="#compile" title="Permalink to this headline">¶</a></h3>
 <dl class="lingui-cli">
 <dt id="lingui-cli-compile">
-<code class="descname">lingui-cli compile [--strict] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-compile" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lingui compile [--strict] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-compile" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>This command compiles message catalogs in <a class="reference internal" href="lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal"><span class="pre">localeDir</span></code></a> and outputs

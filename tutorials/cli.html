@@ -95,6 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#preparing-catalogs-for-production">Preparing catalogs for production</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cleaning-up-obsolete-messages">Cleaning up obsolete messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#validation-of-message-catalogs">Validation of message catalogs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-source-locale">Configuring source locale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
@@ -187,7 +188,7 @@ message catalogs:</p>
 <div class="section" id="add-a-new-locale">
 <h2>Add a new locale<a class="headerlink" href="#add-a-new-locale" title="Permalink to this headline">¶</a></h2>
 <p>First, we need to add all the locales we want to translate our application into.
-::<cite>add-locale</cite> command creates a new directory in the <code class="docutils literal"><span class="pre">locale</span></code> directory
+<a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-add-locale"><code class="xref std std-cli docutils literal"><span class="pre">add-locale</span></code></a> command creates a new directory in the <code class="docutils literal"><span class="pre">locale</span></code> directory
 and also checks if ‘locale’ exists:</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>lingui add-locale en cs
 </pre></div>
@@ -202,7 +203,7 @@ Added locale cs.
 </div>
 <div class="section" id="extracting-messages">
 <h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
-<p>We’re going to use an app we built in a previous tutorial. The ::<cite>extract</cite>
+<p>We’re going to use an app we built in a previous tutorial. The <a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal"><span class="pre">extract</span></code></a>
 command looks for messages in the source files and extracts them:</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>lingui extract
 </pre></div>
@@ -269,7 +270,7 @@ Catalog statistics:
 <p>It’s in a JSON dictionary, where ‘key’ is message ID and value is an object with some
 relevant information: translation, defaults and origin for the message.</p>
 <p>This catalog is ready for translation. Let’s translate it into Czech by filling the
-<cite>translation</cite> fields:</p>
+<code class="docutils literal"><span class="pre">translation</span></code> fields:</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;Message Inbox&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Přijaté zprávy&quot;</span><span class="p">,</span>
@@ -310,7 +311,7 @@ relevant information: translation, defaults and origin for the message.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If we run the ::<cite>extract</cite> command again, we can see in the stats that all
+<p>If we run the <a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal"><span class="pre">extract</span></code></a> command again, we can see in the stats that all
 messages are translated:</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>Catalog statistics:
 ┌──────────┬─────────────┬─────────┐
@@ -326,13 +327,13 @@ Messages extracted!
 <span class="o">(</span>use <span class="s2">&quot;lingui compile&quot;</span> to compile catalogs <span class="k">for</span> production<span class="o">)</span>
 </pre></div>
 </div>
-<p>::<cite>extract</cite> merges all translations with new messages, so you can run
+<p><a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal"><span class="pre">extract</span></code></a> merges all translations with new messages, so you can run
 this command any time without worrying about losing any translations.</p>
 </div>
 <div class="section" id="preparing-catalogs-for-production">
 <h2>Preparing catalogs for production<a class="headerlink" href="#preparing-catalogs-for-production" title="Permalink to this headline">¶</a></h2>
 <p>Once we have all catalogs ready and translated, we can compile the JSON into a
-minified JS file with the ::<cite>compile</cite> command. This command parses the
+minified JS file with the <a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal"><span class="pre">compile</span></code></a> command. This command parses the
 messages in MessageFormat and compiles them into simple functions. It also adds
 plural rules to a production ready catalog:</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>  lingui compile
@@ -343,16 +344,16 @@ plural rules to a production ready catalog:</p>
   Done!
 </pre></div>
 </div>
-<p>The ‘Locale’ dir now contains the source catalogs (<code class="docutils literal"><span class="pre">messages.json</span></code>) and the compiled
-ones (<code class="docutils literal"><span class="pre">messages.js</span></code>).</p>
+<p>The <code class="docutils literal"><span class="pre">locale</span></code> dir now contains the source catalogs (<code class="docutils literal"><span class="pre">messages.json</span></code>) and
+the compiled ones (<code class="docutils literal"><span class="pre">messages.js</span></code>).</p>
 </div>
 <div class="section" id="cleaning-up-obsolete-messages">
 <h2>Cleaning up obsolete messages<a class="headerlink" href="#cleaning-up-obsolete-messages" title="Permalink to this headline">¶</a></h2>
-<p>By default, the ::<cite>extract</cite> command merges messages extracted from source
+<p>By default, the <a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal"><span class="pre">extract</span></code></a> command merges messages extracted from source
 files with the existing message catalogs. This is safe as we won’t accidentally lose
 translated messages.</p>
-<p>However, sooner or later some messages will be removed from the source. We can use the
-<code class="docutils literal"><span class="pre">--clean</span></code> option to clean up our message catalogs:</p>
+<p>However, sooner or later some messages will be removed from the source. We can
+use the <code class="docutils literal"><span class="pre">--clean</span></code> option to clean up our message catalogs:</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>lingui extract --clean
 </pre></div>
 </div>
@@ -360,7 +361,7 @@ translated messages.</p>
 <div class="section" id="validation-of-message-catalogs">
 <h2>Validation of message catalogs<a class="headerlink" href="#validation-of-message-catalogs" title="Permalink to this headline">¶</a></h2>
 <p>It might be useful to check if all messages were translated (e.g: in a
-continous integration runner). The ::<cite>compile</cite> command has a <code class="docutils literal"><span class="pre">--strict</span></code>
+continous integration runner). The <a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal"><span class="pre">compile</span></code></a> command has a <code class="docutils literal"><span class="pre">--strict</span></code>
 option, which does exactly that.</p>
 <p>The example output might look like this:</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>lingui compile --strict
@@ -371,6 +372,41 @@ Error: Failed to compile catalog <span class="k">for</span> locale en!
 Missing <span class="m">42</span> translation<span class="o">(</span>s<span class="o">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="configuring-source-locale">
+<h2>Configuring source locale<a class="headerlink" href="#configuring-source-locale" title="Permalink to this headline">¶</a></h2>
+<p>We see that checking for missing translations has one drawback –
+English message catalog doesn’t require any translations because we’re using
+English in our source code!</p>
+<p>Let’s fix it by setting <a class="reference internal" href="../ref/lingui-conf.html#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a> in <code class="docutils literal"><span class="pre">package.json</span></code>:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span><span class="o">{</span>
+   <span class="s2">&quot;lingui&quot;</span>: <span class="o">{</span>
+      <span class="s2">&quot;sourceLocale&quot;</span>: <span class="s2">&quot;en&quot;</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>Running <code class="docutils literal"><span class="pre">lingui</span> <span class="pre">extract</span></code> again shows the correct statistics:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>Catalog statistics:
+┌─────────────┬─────────────┬─────────┐
+│ Language    │ Total count │ Missing │
+├─────────────┼─────────────┼─────────┤
+│ cs          │      <span class="m">4</span>      │    <span class="m">0</span>    │
+│ en <span class="o">(</span><span class="nb">source</span><span class="o">)</span> │      <span class="m">4</span>      │    -    │
+└─────────────┴─────────────┴─────────┘
+</pre></div>
+</div>
+<p>And compilation in strict mode no longer throws an error:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>lingui compile --strict
+</pre></div>
+</div>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>Compiling message catalogs…
+Done!
+</pre></div>
+</div>
+<p>If you use natural language for message IDs (that’s the default),
+set <a class="reference internal" href="../ref/lingui-conf.html#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a>. You shouldn’t use this config if you’re using custom
+IDs (e.g: <code class="docutils literal"><span class="pre">Component.title</span></code>).</p>
 </div>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
