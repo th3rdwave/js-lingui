@@ -1,0 +1,34 @@
+$primary-color: #D62727;
+$text-color: #4A4A4A;
+
+%primary-color {
+  color: $primary-color;
+}
+
+body {
+  color: $text-color;
+}
+
+.welcome_hero { }
+
+.welcome_features {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.welcome_feature {
+  width: 300px;
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 20px;
+    @extend %primary-color;
+  }
+}
+
+.welcome_package {
+  sub {
+    @extend %primary-color;
+  }
+}

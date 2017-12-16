@@ -1,0 +1,18 @@
+.welcome_feature h2, .welcome_package sub {
+  color: #D62727; }
+
+body {
+  color: #4A4A4A; }
+
+.welcome_features {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.welcome_feature {
+  width: 300px;
+  padding: 20px; }
+  .welcome_feature h2 {
+    margin-bottom: 20px; }
+
+/*# sourceMappingURL=welcome.css.map */
