@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference - CLI (lingui-cli) &mdash; jsLingui  documentation</title>
+  <title>API Reference - CLI (@lingui/cli) &mdash; jsLingui  documentation</title>
   
 
   
@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="jsLingui  documentation" href="../index.html"/>
         <link rel="next" title="Lingui Configuration" href="lingui-conf.html"/>
-        <link rel="prev" title="API Reference - React (lingui-react)" href="lingui-react.html"/> 
+        <link rel="prev" title="API Reference - React (@lingui/react)" href="lingui-react.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -159,7 +159,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>API Reference - CLI (lingui-cli)</li>
+      <li>API Reference - CLI (&#64;lingui/cli)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -179,19 +179,19 @@
            <div itemprop="articleBody">
             
   <div class="section" id="api-reference-cli-lingui-cli">
-<h1>API Reference - CLI (lingui-cli)<a class="headerlink" href="#api-reference-cli-lingui-cli" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">lingui-cli</span></code> manages locales, extracts messages from source files into
+<h1>API Reference - CLI (&#64;lingui/cli)<a class="headerlink" href="#api-reference-cli-lingui-cli" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">&#64;lingui/cli</span></code> manages locales, extracts messages from source files into
 message catalogs and compiles message catalogs for production use.</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">lingui-cli</span></code> can be installed both globally:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn global add lingui-cli
-<span class="c1"># npm install --global lingui-cli</span>
+<p><code class="docutils literal"><span class="pre">&#64;lingui/cli</span></code> can be installed both globally:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn global add @lingui/cli
+<span class="c1"># npm install --global @lingui/cli</span>
 </pre></div>
 </div>
 <p>or locally:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn add --dev lingui-cli
-<span class="c1"># npm install --save-dev lingui-cli</span>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn add --dev @lingui/cli
+<span class="c1"># npm install --save-dev @lingui/cli</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -240,7 +240,7 @@ lingui add-locale en fr es
 <h3><code class="docutils literal"><span class="pre">extract</span></code><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
 <dl class="lingui-cli">
 <dt id="lingui-cli-extract">
-<code class="descname">lingui extract [--clean] [--format &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lingui extract [--clean] [--format &lt;format&gt;] [--convert-from &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>This command extracts messages from source files and creates a message catalog for
@@ -263,6 +263,12 @@ when it’s missing in the source code.</p>
 <dd></dd></dl>
 
 <p>Format of message catalogs (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option).</p>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-extract-convert-from">
+<code class="descname">--convert-from</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-extract-convert-from" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Convert message catalogs from previous format (see <a class="reference internal" href="lingui-conf.html#std:config-format"><code class="xref std std-conf docutils literal"><span class="pre">format</span></code></a> option).</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-extract-verbose">
 <code class="descname">--verbose</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-extract-verbose" title="Permalink to this definition">¶</a></dt>
@@ -316,7 +322,7 @@ that returns the translated message when called.</p>
         <a href="lingui-conf.html" class="btn btn-neutral float-right" title="Lingui Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="lingui-react.html" class="btn btn-neutral" title="API Reference - React (lingui-react)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="lingui-react.html" class="btn btn-neutral" title="API Reference - React (@lingui/react)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

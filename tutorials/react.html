@@ -248,29 +248,29 @@ internationalize. You can pick whichever tool you want to use in your project.
 We’re trying to use most of them to show the full power of jsLingui.</p>
 <p>Let’s start with the three major packages:</p>
 <dl class="docutils">
-<dt><code class="docutils literal"><span class="pre">lingui-react</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">&#64;lingui/react</span></code></dt>
 <dd>React components for translation and formatting</dd>
-<dt><code class="docutils literal"><span class="pre">babel-preset-lingui-react</span></code></dt>
-<dd>Transforms messages wrapped in components from <code class="docutils literal"><span class="pre">lingui-react</span></code> to ICU
+<dt><code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code></dt>
+<dd>Transforms messages wrapped in components from <code class="docutils literal"><span class="pre">&#64;lingui/react</span></code> to ICU
 MessageFormat and validates them</dd>
-<dt><code class="docutils literal"><span class="pre">lingui-cli</span></code></dt>
+<dt><code class="docutils literal"><span class="pre">&#64;lingui/cli</span></code></dt>
 <dd>CLI for working with message catalogs</dd>
 </dl>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal"><span class="pre">babel-preset-lingui-react</span></code> as a development dependency,
-<code class="docutils literal"><span class="pre">lingui-react</span></code> as a runtime dependency and <code class="docutils literal"><span class="pre">lingui-cli</span></code> globally:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>npm install -g lingui-cli
-npm install --save lingui-react
-npm install --save-dev babel-preset-lingui-react
+<li><p class="first">Install <code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code> as a development dependency,
+<code class="docutils literal"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency and <code class="docutils literal"><span class="pre">&#64;lingui/cli</span></code> globally:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>npm install -g @lingui/cli
+npm install --save @lingui/react
+npm install --save-dev @lingui/babel-preset-react
 </pre></div>
 </div>
 </li>
-<li><p class="first">Add <code class="docutils literal"><span class="pre">lingui-react</span></code> preset to Babel config (e.g: <code class="docutils literal"><span class="pre">.babelrc</span></code>):</p>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code> preset to Babel config (e.g: <code class="docutils literal"><span class="pre">.babelrc</span></code>):</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;env&quot;</span><span class="p">,</span>
     <span class="s2">&quot;react&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;lingui-react&quot;</span>
+    <span class="s2">&quot;@lingui/babel-preset-react&quot;</span>
   <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
@@ -286,21 +286,17 @@ to complete one more step to setup our application.</p>
 <p>Components needs to be aware of their active language. All <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> components
 read translations and language settings from the context. In order to get this
 information into the React context, we need to wrap our application in
-<a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> component. In development we’re also going to need
-some more <em>stuff</em>, but don’t worry about it now. It’ll be explained later.</p>
+<a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> component.</p>
 <p>Let’s add all required imports and wrap our app inside <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// index.js</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
 <span class="kr">import</span> <span class="nx">Inbox</span> <span class="nx">from</span> <span class="s1">&#39;./Inbox.js&#39;</span>
 
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
-
-<span class="c1">// required in development only (huge dependency)</span>
-<span class="kr">const</span> <span class="nx">dev</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">!==</span> <span class="s1">&#39;production&#39;</span> <span class="o">?</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lingui-i18n/dev&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="kc">undefined</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
 
 <span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
-  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">development</span><span class="o">=</span><span class="s">{dev}</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">Inbox</span> <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
 <span class="p">)</span>
@@ -308,8 +304,6 @@ some more <em>stuff</em>, but don’t worry about it now. It’ll be explained l
 <span class="nx">render</span><span class="p">(&lt;</span><span class="nt">App</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>I know, the development import looks ugly! But we’re doing this for greater
-good, saving a lot of bandwidth data.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
 <p>You might be wondering: how are we going to change the active language?
@@ -326,7 +320,7 @@ take a look at <a class="reference internal" href="../guides/dynamic-loading-cat
 to <em>translate</em> from one language to another right now. Instead, we’re going to
 <em>prepare</em> our app for translation. This process is called
 <em>internationalization</em> and you should practice saying this word aloud until
-you’re able to say it three times very quickly. /funny/</p>
+you’re able to say it three times very quickly.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">From now on, <em>internationalization</em> will be shortened to a common acronym <em>i18n</em>.</p>
@@ -768,7 +762,7 @@ we’ll just use &lt;DateTimeFormat&gt; component:</p>
 <p>After all modifications, the final component with i18n looks like this:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Inbox.js</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span><span class="p">,</span> <span class="nx">Plural</span><span class="p">,</span> <span class="nx">DateFormat</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span><span class="p">,</span> <span class="nx">Plural</span><span class="p">,</span> <span class="nx">DateFormat</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
 
 <span class="kr">const</span> <span class="nx">Inbox</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">messages</span><span class="p">,</span> <span class="nx">markAsRead</span><span class="p">,</span> <span class="nx">user</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">messagesCount</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">.</span><span class="nx">length</span>
@@ -819,22 +813,19 @@ locale:</p>
 <dt><code class="docutils literal"><span class="pre">messages.js</span></code></dt>
 <dd>Minified JS file with compiled messages (for application)</dd>
 </dl>
-<p>We’ll just import a compiled message catalog, unpack it and pass it to
+<p>We’ll just import a compiled message catalog and pass it to
 <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span>// index.js
 import React from &#39;react&#39;
 import { render } from &#39;react-dom&#39;
 import Inbox from &#39;./Inbox.js&#39;
 
-import { I18nProvider } from &#39;lingui-react&#39;
-// required in development only (huge dependency)
-const dev = process.env.NODE_ENV !== &#39;production&#39; ? require(&#39;lingui-i18n/dev&#39;) : undefined
+import { I18nProvider } from &#39;@lingui/react&#39;
 
-import { unpackCatalog } from &#39;lingui-i18n&#39;
 import catalog from &#39;locale/cs/messages.js&#39;
 
 const App = () =&gt; (
-  &lt;I18nProvider language=&quot;cs&quot; catalogs={{ cs: unpackCatalog(catalog) }} development={dev}&gt;
+  &lt;I18nProvider language=&quot;cs&quot; catalogs={{ cs: catalog }}&gt;
     &lt;Inbox /&gt;
   &lt;/I18nProvider&gt;
 )
@@ -849,8 +840,8 @@ an example <a class="reference internal" href="../guides/dynamic-loading-catalog
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="../ref/lingui-react.html">lingui-react reference documentation</a></li>
-<li><a class="reference external" href="../ref/lingui-cli.html">lingui-cli reference documentation</a></li>
+<li><a class="reference external" href="../ref/lingui-react.html">&#64;lingui/react reference documentation</a></li>
+<li><a class="reference external" href="../ref/lingui-cli.html">&#64;lingui/cli reference documentation</a></li>
 <li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
 </ul>
 </div>

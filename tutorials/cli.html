@@ -180,9 +180,9 @@
             
   <div class="section" id="working-with-jslingui-cli">
 <h1>Working with jsLingui CLI<a class="headerlink" href="#working-with-jslingui-cli" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">lingui-cli</span></code> provides the <code class="docutils literal"><span class="pre">lingui</span></code> command for extracting, merging and compiling
-message catalogs:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>npm install --global lingui-cli
+<p><code class="docutils literal"><span class="pre">&#64;lingui/cli</span></code> provides the <code class="docutils literal"><span class="pre">lingui</span></code> command for extracting, merging and
+compiling message catalogs:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>npm install --global @lingui/cli
 </pre></div>
 </div>
 <div class="section" id="add-a-new-locale">
@@ -228,42 +228,10 @@ Catalog statistics:
 </div>
 <p>The message catalog will look like this:</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;Message Inbox&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">10</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;See all &lt;0&gt;unread messages&lt;/0&gt; or &lt;1&gt;mark them&lt;/1&gt; as read.&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">13</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;{messagesCount, plural, one {There&#39;s {messagesCount} message in your inbox.} other {There&#39;re {messagesCount} messages in your inbox.}}&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">20</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;Last login on {lastLogin,date}.&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">28</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
+  <span class="nt">&quot;Message Inbox&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;See all &lt;0&gt;unread messages&lt;/0&gt; or &lt;1&gt;mark them&lt;/1&gt; as read.&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;{messagesCount, plural, one {There&#39;s {messagesCount} message in your inbox.} other {There&#39;re {messagesCount} messages in your inbox.}}&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Last login on {lastLogin,date}.&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -272,42 +240,10 @@ relevant information: translation, defaults and origin for the message.</p>
 <p>This catalog is ready for translation. Let’s translate it into Czech by filling the
 <code class="docutils literal"><span class="pre">translation</span></code> fields:</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;Message Inbox&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Přijaté zprávy&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">10</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;See all &lt;0&gt;unread messages&lt;/0&gt; or &lt;1&gt;mark them&lt;/1&gt; as read.&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Zobrazit všechny &lt;0&gt;nepřečtené zprávy&lt;/0&gt; nebo je &lt;1&gt;označit&lt;/1&gt; jako přečtené.&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">13</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;{messagesCount, plural, one {There&#39;s {messagesCount} message in your inbox.} other {There&#39;re {messagesCount} messages in your inbox.}}&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;{messagesCount, plural, one {V příchozí poště je {messagesCount} zpráva.} few {V příchozí poště jsou {messagesCount} zprávy. } other {V příchozí poště je {messagesCount} zpráv.}}&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">20</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;Last login on {lastLogin,date}.&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Poslední přihlášení {lastLogin,date}&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span>
-        <span class="s2">&quot;Inbox.js&quot;</span><span class="p">,</span>
-        <span class="mi">28</span>
-      <span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
+  <span class="nt">&quot;Message Inbox&quot;</span><span class="p">:</span> <span class="s2">&quot;Přijaté zprávy&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;See all &lt;0&gt;unread messages&lt;/0&gt; or &lt;1&gt;mark them&lt;/1&gt; as read.&quot;</span><span class="p">:</span> <span class="s2">&quot;Zobrazit všechny &lt;0&gt;nepřečtené zprávy&lt;/0&gt; nebo je &lt;1&gt;označit&lt;/1&gt; jako přečtené.&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;{messagesCount, plural, one {There&#39;s {messagesCount} message in your inbox.} other {There&#39;re {messagesCount} messages in your inbox.}}&quot;</span><span class="p">:</span> <span class="s2">&quot;{messagesCount, plural, one {V příchozí poště je {messagesCount} zpráva.} few {V příchozí poště jsou {messagesCount} zprávy. } other {V příchozí poště je {messagesCount} zpráv.}}&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;Last login on {lastLogin,date}.&quot;</span><span class="p">:</span> <span class="s2">&quot;Poslední přihlášení {lastLogin,date}&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
 </div>

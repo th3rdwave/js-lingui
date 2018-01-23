@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference - React (lingui-react) &mdash; jsLingui  documentation</title>
+  <title>API Reference - React (@lingui/react) &mdash; jsLingui  documentation</title>
   
 
   
@@ -36,7 +36,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="jsLingui  documentation" href="../index.html"/>
-        <link rel="next" title="API Reference - CLI (lingui-cli)" href="lingui-cli.html"/>
+        <link rel="next" title="API Reference - CLI (@lingui/cli)" href="lingui-cli.html"/>
         <link rel="prev" title="Optimized components" href="../guides/optimized-components.html"/> 
 
   
@@ -162,7 +162,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>API Reference - React (lingui-react)</li>
+      <li>API Reference - React (&#64;lingui/react)</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -182,8 +182,8 @@
            <div itemprop="articleBody">
             
   <div class="section" id="api-reference-react-lingui-react">
-<h1>API Reference - React (lingui-react)<a class="headerlink" href="#api-reference-react-lingui-react" title="Permalink to this headline">¶</a></h1>
-<p>Components from <code class="docutils literal"><span class="pre">lingui-react</span></code> wrap the vanilla JS API from <code class="docutils literal"><span class="pre">lingui-i18n</span></code>.
+<h1>API Reference - React (&#64;lingui/react)<a class="headerlink" href="#api-reference-react-lingui-react" title="Permalink to this headline">¶</a></h1>
+<p>Components from <code class="docutils literal"><span class="pre">&#64;lingui/react</span></code> wrap the vanilla JS API from <code class="docutils literal"><span class="pre">lingui-i18n</span></code>.
 React components handle changes of active language or interpolated variables
 better than low-level API and also take care of re-rendering when wrapped inside
 pure components.</p>
@@ -191,11 +191,10 @@ pure components.</p>
 <h2>General Concepts<a class="headerlink" href="#general-concepts" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="rendering-of-translations">
 <span id="rendering-translations"></span><h3>Rendering of Translations<a class="headerlink" href="#rendering-of-translations" title="Permalink to this headline">¶</a></h3>
-<p>All i18n components render translation inside <code class="docutils literal"><span class="pre">&lt;span&gt;</span></code> tag. This tag can be
+<p>All i18n components render translation as a text without a wrapping tag. This can be
 customized in two different ways: globally: using <code class="docutils literal"><span class="pre">defaultRender</span></code> prop on
 <a class="reference internal" href="#component-I18nProvider">&lt;I18nProvider&gt;</a> component; or locally: using <code class="docutils literal"><span class="pre">render</span></code> prop on i18n
-components. Each component also supports <code class="docutils literal"><span class="pre">className</span></code> as a shortcut for the most
-basic use cases.</p>
+components.</p>
 <div class="section" id="global-configuration">
 <h4>Global Configuration<a class="headerlink" href="#global-configuration" title="Permalink to this headline">¶</a></h4>
 <p>Default rendering component can be set using <code class="docutils literal"><span class="pre">defaultRender</span></code> prop in
@@ -204,8 +203,6 @@ in <code class="docutils literal"><span class="pre">&lt;Text&gt;</span></code> c
 <p>It’s possible to pass in either a string for built-in elements (<cite>span</cite>, <cite>h1</cite>),
 React elements or React classes. This prop has the same type as <code class="docutils literal"><span class="pre">render</span></code> prop on
 i18n components described below.</p>
-<p>Changed in <strong>lingui-react&#64;1.3.0</strong>: <code class="docutils literal"><span class="pre">defaultRender</span></code> accepts <code class="docutils literal"><span class="pre">null</span></code> value to
-render string without wrapping component in React 16.</p>
 </div>
 <div class="section" id="local-configuration">
 <h4>Local Configuration<a class="headerlink" href="#local-configuration" title="Permalink to this headline">¶</a></h4>
@@ -254,10 +251,10 @@ to get more control over the rendering of translation. Component passed to
 // renders as &lt;Icon label=&quot;Sign in&quot; /&gt;
 </pre></div>
 </div>
-<p>Changed in <strong>lingui-react&#64;1.3.0</strong>: <code class="docutils literal"><span class="pre">render</span></code> accepts <code class="docutils literal"><span class="pre">null</span></code> value to render
-string without wrapping component in React 16.</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Render string in React 16</span>
-<span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">render</span><span class="o">=</span><span class="s">{null}</span><span class="p">&gt;</span><span class="nx">Heading</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;;</span>
+<p><code class="docutils literal"><span class="pre">render</span></code> also accepts <code class="docutils literal"><span class="pre">null</span></code> value to render
+string without wrapping component. This can be used to override
+custom <code class="docutils literal"><span class="pre">defaultRender</span></code> config.</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">render</span><span class="o">=</span><span class="s">{null}</span><span class="p">&gt;</span><span class="nx">Heading</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;;</span>
 <span class="c1">// renders as &quot;Heading&quot;</span>
 </pre></div>
 </div>
@@ -592,7 +589,7 @@ at the beginning of this document.</p>
 top-level application component. However, if the <code class="docutils literal"><span class="pre">language</span></code> is stored in a
 <code class="docutils literal"><span class="pre">redux</span></code> store, this component should be inserted below <code class="docutils literal"><span class="pre">react-redux/Provider</span></code>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span>import React from &#39;react&#39;;
-import { I18nProvider } from &#39;lingui-react&#39;;
+import { I18nProvider } from &#39;@lingui/react&#39;;
 
 const App = ({ language} ) =&gt; {
      const catalog = require(`locales/${language}.js`);
@@ -628,18 +625,12 @@ const App = ({ language} ) =&gt; {
 wrapped component. <code class="docutils literal"><span class="pre">i18n</span></code> object is needed when you have to access plain JS
 API for translation of JSX props:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span>import React from &#39;react&#39;;
-import { Trans, withI18n } from &#39;lingui-react&#39;;
+import { Trans, withI18n } from &#39;@lingui/react&#39;;
 
 const LogoutIcon = withI18n()(
     ({ i18n }) =&gt; &lt;Icon name=&quot;turn-off&quot; aria-label={i18n.t`Log out`}/&gt;
 );
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p><em>Changed in lingui-react&#64;1.1.0:</em></p>
-<p class="last">Previous version of this component, named <cite>WithI18n</cite> (upper-cased first letter),
-is deprecated and will be removed in <code class="docutils literal"><span class="pre">lingui-react&#64;2.0</span></code></p>
 </div>
 <dl class="function">
 <dt id="i18nMark">
@@ -686,7 +677,7 @@ components:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="lingui-cli.html" class="btn btn-neutral float-right" title="API Reference - CLI (lingui-cli)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="lingui-cli.html" class="btn btn-neutral float-right" title="API Reference - CLI (@lingui/cli)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../guides/optimized-components.html" class="btn btn-neutral" title="Optimized components" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
