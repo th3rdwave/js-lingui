@@ -196,19 +196,51 @@
 <h2>Backward incompatible changes<a class="headerlink" href="#backward-incompatible-changes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="new-scope-of-npm-packages">
 <h3>New scope of NPM packages<a class="headerlink" href="#new-scope-of-npm-packages" title="Permalink to this headline">¶</a></h3>
-<p>Packages are now released under <code class="docutils literal"><span class="pre">&#64;lingui</span></code> organization. Package names remains
-the same:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Before</span>
-<span class="n">lingui</span><span class="o">-</span><span class="n">react</span>
-<span class="n">lingui</span><span class="o">-</span><span class="n">cli</span>
-<span class="n">babel</span><span class="o">-</span><span class="n">preset</span><span class="o">-</span><span class="n">lingui</span><span class="o">-</span><span class="n">react</span>
-
-<span class="o">//</span> <span class="n">After</span>
-<span class="nd">@lingui</span><span class="o">/</span><span class="n">lingui</span><span class="o">-</span><span class="n">react</span>
-<span class="nd">@lingui</span><span class="o">/</span><span class="n">lingui</span><span class="o">-</span><span class="n">cli</span>
-<span class="nd">@lingui</span><span class="o">/</span><span class="n">babel</span><span class="o">-</span><span class="n">preset</span><span class="o">-</span><span class="n">lingui</span><span class="o">-</span><span class="n">react</span>
-</pre></div>
-</div>
+<p>Packages are now released under <code class="docutils literal"><span class="pre">&#64;lingui</span></code> organization. Some package names
+were renamed:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">New package name</th>
+<th class="head">Previous package name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#64;lingui/babel-preset-js</td>
+<td>babel-preset-lingui-js</td>
+</tr>
+<tr class="row-odd"><td>&#64;lingui/babel-preset-react</td>
+<td>babel-preset-lingui-react</td>
+</tr>
+<tr class="row-even"><td>&#64;lingui/babel-plugin-transform-js</td>
+<td>babel-plugin-lingui-transform-js</td>
+</tr>
+<tr class="row-odd"><td>&#64;lingui/babel-plugin-transform-react</td>
+<td>babel-plugin-lingui-transform-react</td>
+</tr>
+<tr class="row-even"><td>&#64;lingui/babel-plugin-extract-messages</td>
+<td>babel-plugin-lingui-extract-messages</td>
+</tr>
+<tr class="row-odd"><td>&#64;lingui/react</td>
+<td>lingui-react</td>
+</tr>
+<tr class="row-even"><td>&#64;lingui/core</td>
+<td>lingui-i18n</td>
+</tr>
+<tr class="row-odd"><td>&#64;lingui/cli</td>
+<td>lingui-cli</td>
+</tr>
+<tr class="row-even"><td>&#64;lingui/loader</td>
+<td>lingui-loader</td>
+</tr>
+<tr class="row-odd"><td>&#64;lingui/conf</td>
+<td>lingui-conf</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="default-message-catalog-format">
 <h3>Default message catalog format<a class="headerlink" href="#default-message-catalog-format" title="Permalink to this headline">¶</a></h3>
