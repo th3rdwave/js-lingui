@@ -199,7 +199,7 @@ and Arabic.</p>
 the source language</strong>.</p>
 <p>If we use English in the source code, then we’ll use only <em>one</em> and <em>other</em>:</p>
 <div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
-  <span class="nx">count</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
 <span class="p">})</span>
@@ -228,7 +228,7 @@ the process:</p>
 <ol class="arabic">
 <li><p class="first">In source code, we have:</p>
 <div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
-   <span class="nx">count</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
+   <span class="nx">value</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
    <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
    <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
 <span class="p">})</span>
@@ -257,7 +257,7 @@ the process:</p>
 <p>That works perfectly fine! Just learn what [plural forms][cldrPluralRules] your
 languages has and then you can use them. Here’s the example in Czech:</p>
 <div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
-  <span class="nx">count</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;# kniha&#39;</span><span class="p">,</span>
   <span class="nx">few</span><span class="o">:</span> <span class="s1">&#39;# knihy&#39;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s1">&#39;# knih&#39;</span>
