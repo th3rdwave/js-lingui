@@ -89,6 +89,7 @@
               <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Guides</span></p>
@@ -513,7 +514,7 @@ const now = new Date();
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
 <li><strong>value</strong> (<em>number</em>) – Date to be formatted</li>
-<li><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.NumberFormat</a></li>
+<li><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a></li>
 </ul>
 </td>
 </tr>
@@ -524,7 +525,7 @@ const now = new Date();
 <p><a class="reference internal" href="#component-NumberFormat">&lt;NumberFormat&gt;</a> component is a wrapper around
 <cite>Intl.NumberFormat_. It takes a number as a ``value`</cite> prop
 and formats it using <code class="docutils literal"><span class="pre">format</span></code> options. <code class="docutils literal"><span class="pre">format</span></code> prop supports the same
-options as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.NumberFormat</a>:</p>
+options as <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a>:</p>
 <div class="highlight-jsx"><div class="highlight"><pre><span></span>const num = 0.42;
 // default language format
 &lt;NumberFormat value={num} /&gt;;

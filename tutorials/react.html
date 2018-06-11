@@ -36,7 +36,7 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="jsLingui  documentation" href="../index.html"/>
-        <link rel="next" title="Working with jsLingui CLI" href="cli.html"/>
+        <link rel="next" title="Tutorial - Internationalization of JavaScript apps" href="javascript.html"/>
         <link rel="prev" title="jsLingui - Seamless i18n in Javascript and React" href="../index.html"/> 
 
   
@@ -110,6 +110,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Guides</span></p>
@@ -710,7 +711,7 @@ wrap messages in <a class="reference internal" href="../ref/lingui-react.html#co
 <div class="highlight-jsx"><div class="highlight"><pre><span></span>&lt;p&gt;
    &lt;Plural
       value={messagesCount}
-      one=`There&#39;s # message in your inbox, ${name}`
+      one={`There&#39;s # message in your inbox, ${name}`}
       other={&lt;Trans&gt;There&#39;re &lt;strong&gt;#&lt;/strong&gt; messages in your inbox, {name}&lt;/Trans&gt;}
    /&gt;
 &lt;/p&gt;
@@ -858,7 +859,7 @@ an example <a class="reference internal" href="../guides/dynamic-loading-catalog
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cli.html" class="btn btn-neutral float-right" title="Working with jsLingui CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="javascript.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of JavaScript apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="jsLingui - Seamless i18n in Javascript and React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
