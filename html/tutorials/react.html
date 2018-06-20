@@ -1,0 +1,925 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Tutorial - Internationalization of React apps &mdash; jsLingui  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="jsLingui  documentation" href="../index.html"/>
+        <link rel="next" title="Tutorial - Internationalization of JavaScript apps" href="javascript.html"/>
+        <link rel="prev" title="jsLingui - Seamless i18n in Javascript and React" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> jsLingui
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">React</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#let-s-start">Let’s Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-jslingui">Installing jsLingui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introducing-internationalization">Introducing internationalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trans-component"><code class="docutils literal"><span class="pre">Trans</span></code> component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message-id">Message ID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plurals">Plurals</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#english-plural-rules">English plural rules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#beware-of-zeroes">Beware of zeroes!</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#exact-forms">Exact forms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables-and-components">Variables and components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-message-id">Custom message ID</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#formats">Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#review">Review</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extracting-messages">Extracting messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loading-translations">Loading translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">jsLingui</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Tutorial - Internationalization of React apps</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/react.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial-internationalization-of-react-apps">
+<h1>Tutorial - Internationalization of React apps<a class="headerlink" href="#tutorial-internationalization-of-react-apps" title="Permalink to this headline">¶</a></h1>
+<p>Through this tutorial, we’ll learn how to add internationalization
+to an existing application in React JS.</p>
+<div class="section" id="let-s-start">
+<h2>Let’s Start<a class="headerlink" href="#let-s-start" title="Permalink to this headline">¶</a></h2>
+<p>We’re going to translate the following app:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// index.js</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+<span class="kr">import</span> <span class="nx">Inbox</span> <span class="nx">from</span> <span class="s1">&#39;./Inbox.js&#39;</span>
+
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">&lt;</span><span class="nt">Inbox</span> <span class="p">/&gt;</span>
+
+<span class="nx">render</span><span class="p">(&lt;</span><span class="nt">App</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Inbox.js</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+
+<span class="kr">const</span> <span class="nx">Inbox</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">messages</span><span class="p">,</span> <span class="nx">markAsRead</span><span class="p">,</span> <span class="nx">user</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+   <span class="kr">const</span> <span class="nx">messagesCount</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">.</span><span class="nx">length</span>
+   <span class="kr">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">lastLogin</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">user</span>
+
+   <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+          <span class="nx">See</span> <span class="nx">all</span> <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span><span class="nx">unread</span> <span class="nx">messages</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;{</span><span class="s2">&quot; or &quot;</span><span class="p">}</span>
+          <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="s">{markAsRead}</span><span class="p">&gt;</span><span class="nx">mark</span> <span class="nx">them</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="nx">as</span> <span class="nx">read</span><span class="p">.</span>
+        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+          <span class="p">{</span>
+            <span class="nx">messagesCount</span> <span class="o">===</span> <span class="mi">1</span>
+              <span class="o">?</span> <span class="s2">&quot;There&#39;s {messagesCount} message in your inbox.&quot;</span>
+              <span class="o">:</span> <span class="s2">&quot;There&#39;re {messagesCount} messages in your inbox.&quot;</span>
+          <span class="p">}</span>
+        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+          <span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">{</span><span class="nx">lastLogin</span><span class="p">}.</span>
+        <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As you can see, it’s a simple mailbox application with only one page.</p>
+</div>
+<div class="section" id="installing-jslingui">
+<h2>Installing jsLingui<a class="headerlink" href="#installing-jslingui" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> isn’t just a package. It’s a set of tools which helps you to
+internationalize. You can pick whichever tool you want to use in your project.
+We’re trying to use most of them to show the full power of jsLingui.</p>
+<p>Let’s start with the three major packages:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">&#64;lingui/react</span></code></dt>
+<dd>React components for translation and formatting</dd>
+<dt><code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code></dt>
+<dd>Transforms messages wrapped in components from <code class="docutils literal"><span class="pre">&#64;lingui/react</span></code> to ICU
+MessageFormat and validates them</dd>
+<dt><code class="docutils literal"><span class="pre">&#64;lingui/cli</span></code></dt>
+<dd>CLI for working with message catalogs</dd>
+</dl>
+<ol class="arabic">
+<li><p class="first">Install <code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code> as a development dependency,
+<code class="docutils literal"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency and <code class="docutils literal"><span class="pre">&#64;lingui/cli</span></code> globally:</p>
+<div class="highlight-shell"><div class="highlight"><pre><span></span>npm install -g @lingui/cli
+npm install --save @lingui/react
+npm install --save-dev @lingui/babel-preset-react
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add <code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code> preset to Babel config (e.g: <code class="docutils literal"><span class="pre">.babelrc</span></code>):</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;env&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;react&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;@lingui/babel-preset-react&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Now we have the environment up and running and we can start internationalizing our app!</p>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>We will directly start translating the <code class="docutils literal"><span class="pre">Inbox</span></code> component, but we need
+to complete one more step to setup our application.</p>
+<p>Components needs to be aware of their active language. All <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> components
+read translations and language settings from the context. In order to get this
+information into the React context, we need to wrap our application in
+<a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> component.</p>
+<p>Let’s add all required imports and wrap our app inside <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// index.js</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
+<span class="kr">import</span> <span class="nx">Inbox</span> <span class="nx">from</span> <span class="s1">&#39;./Inbox.js&#39;</span>
+
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
+
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Inbox</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
+<span class="p">)</span>
+
+<span class="nx">render</span><span class="p">(&lt;</span><span class="nt">App</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>You might be wondering: how are we going to change the active language?
+Yes, that’s a great question, but we need to focus! We’re not going to change
+the language unless we have translated the message catalog. And we won’t have
+translated the catalog before we extract all messages from source.</p>
+<p class="last">Let’s deal with language switching later… but if you’re still curious,
+take a look at <a class="reference internal" href="../guides/dynamic-loading-catalogs.html#dynamic-loading-catalogs"><span class="std std-ref">example</span></a> with Redux and Webpack.</p>
+</div>
+</div>
+<div class="section" id="introducing-internationalization">
+<h2>Introducing internationalization<a class="headerlink" href="#introducing-internationalization" title="Permalink to this headline">¶</a></h2>
+<p>Now we’re finally going to <em>translate</em> our app. Actually, we aren’t going
+to <em>translate</em> from one language to another right now. Instead, we’re going to
+<em>prepare</em> our app for translation. This process is called
+<em>internationalization</em> and you should practice saying this word aloud until
+you’re able to say it three times very quickly.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">From now on, <em>internationalization</em> will be shortened to a common acronym <em>i18n</em>.</p>
+</div>
+<p>Let’s start with the basics - static messages. These messages don’t have any variables, HTML or components inside.
+Just some text:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>All we need to make this heading translatable is wrap it in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>
+component:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Yes, that’s it. Let’s move on to another paragraph. This paragraph has some
+variables, some HTML and components inside:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="nx">See</span> <span class="nx">all</span> <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span><span class="nx">unread</span> <span class="nx">messages</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;{</span><span class="s2">&quot; or &quot;</span><span class="p">}</span>
+   <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="s">{markAsRead}</span><span class="p">&gt;</span><span class="nx">mark</span> <span class="nx">them</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="nx">as</span> <span class="nx">read</span><span class="p">.</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Nothing special here. Again, we just need to wrap the content in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>
+component:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+      <span class="nx">See</span> <span class="nx">all</span> <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span><span class="nx">unread</span> <span class="nx">messages</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;{</span><span class="s2">&quot; or &quot;</span><span class="p">}</span>
+      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="s">{markAsRead}</span><span class="p">&gt;</span><span class="nx">mark</span> <span class="nx">them</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="nx">as</span> <span class="nx">read</span><span class="p">.</span>
+   <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Spooky, right? Let’s pause for a while.</p>
+<p>All children of <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component are transformed into ICU MessageFormat
+syntax, which is the standard format for i18n.</p>
+<p>This component:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>… is transformed into this:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;Message Inbox&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>It’s more interesting with variables and components. Our paragraph:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+      <span class="nx">See</span> <span class="nx">all</span> <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span><span class="nx">unread</span> <span class="nx">messages</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;{</span><span class="s2">&quot; or &quot;</span><span class="p">}</span>
+      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="s">{markAsRead}</span><span class="p">&gt;</span><span class="nx">mark</span> <span class="nx">them</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="nx">as</span> <span class="nx">read</span><span class="p">.</span>
+   <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>… is transformed into this:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span>&lt;p&gt;
+   &lt;Trans
+      id=&quot;See all &lt;0&gt;unread messages&lt;/0&gt; or &lt;1&gt;mark them&lt;/1&gt; as read.&quot;
+      components={[
+         &lt;Link to=&quot;/unread&quot; /&gt;,
+         &lt;a onClick={markAsRead} /&gt;
+      ]}
+   /&gt;
+&lt;/p&gt;
+</pre></div>
+</div>
+<p>All these transformations happen under the hood and we don’t need to
+do them manually. However, it’s good to know what’s going on, because content
+of <code class="docutils literal"><span class="pre">id</span></code> prop is <em>what our translators get</em>!</p>
+<p>Let’s make it clear – when we have the following code:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+      <span class="nx">See</span> <span class="nx">all</span> <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span><span class="nx">unread</span> <span class="nx">messages</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;{</span><span class="s2">&quot; or &quot;</span><span class="p">}</span>
+      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="s">{markAsRead}</span><span class="p">&gt;</span><span class="nx">mark</span> <span class="nx">them</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="nx">as</span> <span class="nx">read</span><span class="p">.</span>
+   <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>… it will be transformed and these messages will be extracted for translators:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Message</span> <span class="n">Inbox</span>
+<span class="n">See</span> <span class="nb">all</span> <span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="n">unread</span> <span class="n">messages</span><span class="o">&lt;/</span><span class="mi">0</span><span class="o">&gt;</span> <span class="ow">or</span> <span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="n">mark</span> <span class="n">them</span><span class="o">&lt;/</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">as</span> <span class="n">read</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>You may notice that components and html tags are replaced with indexed
+tags (<cite>&lt;0&gt;</cite>, <cite>&lt;1&gt;</cite>). This is a little extension to the ICU MessageFormat which
+allows rich-text formatting inside translations. Components and their props
+remains in the source code and don’t scare our translators. Also, in case we
+change a <code class="docutils literal"><span class="pre">className</span></code>, we don’t need to update our message catalogs. How
+cool is that?</p>
+</div>
+<div class="section" id="trans-component">
+<h2><a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component<a class="headerlink" href="#trans-component" title="Permalink to this headline">¶</a></h2>
+<p>It may look a bit <em>hackish</em> at first sight, but these transformations are
+actually very easy, intuitive and feel very <em>Reactish</em>. We don’t have to think
+about the MessageFormat, because it’s created by the library. We write our
+components in the same way as we’re used to and simply wrap text in
+<a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
+<p>Let’s see some examples with MessageFormat equivalents:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Expressions</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="c1">// Hello {name}</span>
+</pre></div>
+</div>
+<p>Any expression is allowed, not just simple variables. The only difference is,
+the variable name won’t be included in the extracted message:</p>
+<dl class="docutils">
+<dt>Simple variable -&gt; named argument</dt>
+<dd><div class="first last highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="c1">// Hello {name}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Any expression -&gt; positional argument</dt>
+<dd><div class="first last highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">user</span><span class="p">.</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="c1">// Hello {0}</span>
+</pre></div>
+</div>
+</dd>
+<dt>Object, arrays, function calls -&gt; positional argument</dt>
+<dd><div class="first last highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">The</span> <span class="nx">random</span> <span class="nx">number</span> <span class="nx">is</span> <span class="p">{</span><span class="nb">Math</span><span class="p">.</span><span class="nx">rand</span><span class="p">()}&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="c1">// The random number is {0}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>Components might get tricky, but like we saw, it’s really easy:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Read</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/more&quot;</span><span class="p">&gt;</span><span class="nx">more</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;.&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<span class="c1">// Read &lt;0&gt;more&lt;/0&gt;.</span>
+</pre></div>
+</div>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+   <span class="nx">Dear</span> <span class="nx">Watson</span><span class="p">,&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
+   <span class="nx">it</span><span class="s1">&#39;s not exactly what I had in my mind.</span>
+<span class="s1">&lt;/Trans&gt;</span>
+<span class="s1">// Dead Watson,&lt;0/&gt;it&#39;</span><span class="nx">s</span> <span class="nx">not</span> <span class="nx">exactly</span> <span class="nx">what</span> <span class="nx">I</span> <span class="nx">had</span> <span class="k">in</span> <span class="nx">my</span> <span class="nx">mind</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Obviously, you can also shoot yourself in the foot. Some expressions are <em>valid</em>
+and won’t throw any error, it doesn’t make any sense to write:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Oh, seriously?</span>
+<span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+   <span class="p">{</span><span class="nx">isOpen</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">Modal</span> <span class="p">/&gt;}</span>
+<span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Everytime you’re in doubt, imagine how the final message should look like.</p>
+</div>
+<div class="section" id="message-id">
+<h2>Message ID<a class="headerlink" href="#message-id" title="Permalink to this headline">¶</a></h2>
+<p>At this point we’re going to explain what message ID is and how to set it manually.</p>
+<p>Translators work with the <em>message catalogs</em>. No matter what format
+we use (gettext, xliff, json), it’s just mapping of
+message ID to the translation.</p>
+<p>Here’s an example of simple message catalog in <strong>Czech</strong> language:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="58%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Message ID</th>
+<th class="head">Translation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Monday</td>
+<td>Pondělí</td>
+</tr>
+<tr class="row-odd"><td>Tuesday</td>
+<td>Úterý</td>
+</tr>
+<tr class="row-even"><td>Wednesday</td>
+<td>Středa</td>
+</tr>
+</tbody>
+</table>
+<p>… and the same catalog in <strong>French</strong> language:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="58%" />
+<col width="42%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Message ID</th>
+<th class="head">Translation</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Monday</td>
+<td>Lundi</td>
+</tr>
+<tr class="row-odd"><td>Tuesday</td>
+<td>Mardi</td>
+</tr>
+<tr class="row-even"><td>Wednesday</td>
+<td>Mercredi</td>
+</tr>
+</tbody>
+</table>
+<p>The message ID is <em>what all catalogs have in common</em> – Lundi, Pondělí and Monday
+represent the same message in different languages. It’s also the same as the <code class="docutils literal"><span class="pre">id</span></code>
+prop in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
+<p>There are two common approaches to message IDs:</p>
+<ol class="arabic simple">
+<li>Use source language (e.g. English as in example above)</li>
+<li>Use a custom key (e.g. <code class="docutils literal"><span class="pre">weekday.monday</span></code>)</li>
+</ol>
+<p>Both approaches have their pros and cons and it’s not in the scope of this tutorial
+to compare them.</p>
+<p>By default, <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> generates message ID from the content of <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>
+component, which means it uses source language. However, we can easily override
+it by setting <code class="docutils literal"><span class="pre">id</span></code> prop manually:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inbox.title&quot;</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This will generate:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inbox.title&quot;</span> <span class="na">defaults</span><span class="o">=</span><span class="s">&quot;Message Inbox&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>In our message catalog, we’ll see <code class="docutils literal"><span class="pre">inbox.title</span></code> as message ID, but we also
+get <code class="docutils literal"><span class="pre">Message</span> <span class="pre">Inbox</span></code> as default translation for English language.</p>
+<p>For the rest of this tutorial, we’ll use auto-generated message IDs to keep
+it simple.</p>
+</div>
+<div class="section" id="plurals">
+<h2>Plurals<a class="headerlink" href="#plurals" title="Permalink to this headline">¶</a></h2>
+<p>Let’s move on and add i18n to another text in our component:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">{</span>
+      <span class="nx">messagesCount</span> <span class="o">===</span> <span class="mi">1</span>
+         <span class="o">?</span> <span class="s2">&quot;There&#39;s {messagesCount} message in your inbox.&quot;</span>
+         <span class="o">:</span> <span class="s2">&quot;There&#39;re {messagesCount} messages in your inbox.&quot;</span>
+   <span class="p">}</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This message is a bit special, because it depends on the value of the <code class="docutils literal"><span class="pre">messagesCount</span></code>
+variable. Most languages use different forms of words when describing quantities
+- this is called <a class="reference external" href="https://en.wikipedia.org/wiki/Plural">pluralization</a>.</p>
+<p>What’s tricky is that different langauges use different number of plural forms.
+For example, English has only two forms - singular and plural - as we can see
+in the example above. However, Czech language has three plural forms. Some
+languages have up to 6 plural forms and some don’t have plurals at all!</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">Plural forms for all languages can be found in the
+<a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR repository</a>.</p>
+</div>
+<div class="section" id="english-plural-rules">
+<h3>English plural rules<a class="headerlink" href="#english-plural-rules" title="Permalink to this headline">¶</a></h3>
+<p>How do we know which plural form we should use? It’s very simple:
+we, as developers, only need to know plural forms of the language we use in
+our source. Our component is written in English, so looking at
+<a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a> we’ll
+need just two forms:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">one</span></code></dt>
+<dd>Singular form</dd>
+<dt><code class="docutils literal"><span class="pre">other</span></code></dt>
+<dd>Plural form</dd>
+</dl>
+<p>We don’t need to select these forms manually. We’ll use <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a>
+component, which takes a <code class="docutils literal"><span class="pre">value</span></code> prop and based on the active language, selects
+the right plural form:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Plural</span>
+      <span class="na">value</span><span class="o">=</span><span class="s">{messagesCount}</span>
+      <span class="na">one</span><span class="o">=</span><span class="s">&quot;There&#39;s # message in your inbox&quot;</span>
+      <span class="na">other</span><span class="o">=</span><span class="s">&quot;There&#39;re # messages in your inbox&quot;</span>
+   <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This component will render <code class="docutils literal"><span class="pre">There's</span> <span class="pre">1</span> <span class="pre">message</span> <span class="pre">in</span> <span class="pre">your</span> <span class="pre">inbox</span></code> when
+<code class="docutils literal"><span class="pre">messageCount</span> <span class="pre">=</span> <span class="pre">1</span></code> and <code class="docutils literal"><span class="pre">There're</span> <span class="pre">#</span> <span class="pre">messages</span> <span class="pre">in</span> <span class="pre">your</span> <span class="pre">inbox</span></code> for any other
+values of <code class="docutils literal"><span class="pre">messageCount</span></code>. <code class="docutils literal"><span class="pre">#</span></code> is a placeholder, which is replaced with <code class="docutils literal"><span class="pre">value</span></code>.</p>
+<p>Cool! Curious how this component is transformed under the hood and how the
+message looks in MessageFormat syntax?</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Trans</span>
+      <span class="na">id</span><span class="o">=</span><span class="s">&quot;{messagesCount, plural, one {There&#39;s # message in your inbox} other {There&#39;re # messages in your inbox}}&quot;</span>
+      <span class="na">values</span><span class="o">=</span><span class="s">{{</span> <span class="na">messagesCount</span> <span class="p">}}</span>
+   <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> is gone and replaced with <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> again!
+The purpose of <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> is to generate proper syntax in message.</p>
+<p>Our translator will work with this message:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">messagesCount</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span>
+   <span class="n">one</span> <span class="p">{</span><span class="n">There</span><span class="s1">&#39;s # message in your inbox}</span>
+   <span class="n">other</span> <span class="p">{</span><span class="n">There</span><span class="s1">&#39;re # messages in your inbox}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Things are getting a bit more complicated, but i18n is a complex process. At
+least we don’t have to write this message manually!</p>
+</div>
+<div class="section" id="beware-of-zeroes">
+<h3>Beware of zeroes!<a class="headerlink" href="#beware-of-zeroes" title="Permalink to this headline">¶</a></h3>
+<p>Just a short detour, because it’s a common misunderstanding.</p>
+<p>You may wonder, why the following code doesn’t work as expected:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Plural</span>
+   <span class="na">value</span><span class="o">=</span><span class="s">{messagesCount}</span>
+   <span class="na">zero</span><span class="o">=</span><span class="s">&quot;There&#39;re no messages&quot;</span>
+   <span class="na">one</span><span class="o">=</span><span class="s">&quot;There&#39;s # message in your inbox&quot;</span>
+   <span class="na">other</span><span class="o">=</span><span class="s">&quot;There&#39;re # messages in your inbox&quot;</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>This component will render <code class="docutils literal"><span class="pre">There're</span> <span class="pre">0</span> <span class="pre">messages</span> <span class="pre">in</span> <span class="pre">your</span> <span class="pre">inbox</span></code> for
+<code class="docutils literal"><span class="pre">messagesCount</span> <span class="pre">=</span> <span class="pre">0</span></code>. Why so? Because English doesn’t have <code class="docutils literal"><span class="pre">zero</span></code>
+<a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">plural form</a>.</p>
+<p>Looking at <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a>, it’s:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="5%" />
+<col width="95%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">N</th>
+<th class="head">Form</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0</td>
+<td>other</td>
+</tr>
+<tr class="row-odd"><td>1</td>
+<td>one</td>
+</tr>
+<tr class="row-even"><td>n</td>
+<td>other (anything else)</td>
+</tr>
+</tbody>
+</table>
+<p>However, decimal numbers (even <code class="docutils literal"><span class="pre">1.0</span></code>) use <code class="docutils literal"><span class="pre">other</span></code> form every time:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">There</span><span class="s1">&#39;re 0.0 messages in your inbox.</span>
+</pre></div>
+</div>
+<p>Aren’t languages beautiful?</p>
+</div>
+<div class="section" id="exact-forms">
+<h3>Exact forms<a class="headerlink" href="#exact-forms" title="Permalink to this headline">¶</a></h3>
+<p>Alright, back to our example. What if we really want to render <code class="docutils literal"><span class="pre">There're</span> <span class="pre">no</span> <span class="pre">messages</span></code>
+for <code class="docutils literal"><span class="pre">messagesCount</span> <span class="pre">=</span> <span class="pre">0</span></code>? Exact forms to the rescue!</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Plural</span>
+   <span class="na">value</span><span class="o">=</span><span class="s">{messagesCount}</span>
+   <span class="na">_0</span><span class="o">=</span><span class="s">&quot;There&#39;re no messages&quot;</span>
+   <span class="na">one</span><span class="o">=</span><span class="s">&quot;There&#39;s # message in your inbox&quot;</span>
+   <span class="na">other</span><span class="o">=</span><span class="s">&quot;There&#39;re # messages in your inbox&quot;</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>What’s that <code class="docutils literal"><span class="pre">_0</span></code>? MessageFormat allows exact forms, like <code class="docutils literal"><span class="pre">=0</span></code>. However,
+React props can’t start with <code class="docutils literal"><span class="pre">=</span></code> and can’t be numbers either, so we need to
+write <code class="docutils literal"><span class="pre">_N</span></code> instead of <code class="docutils literal"><span class="pre">=0</span></code>.</p>
+<p>It works with any number, so we can go wild and customize it this way:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Plural</span>
+   <span class="na">value</span><span class="o">=</span><span class="s">{messagesCount}</span>
+   <span class="na">_0</span><span class="o">=</span><span class="s">&quot;There&#39;re no messages&quot;</span>
+   <span class="na">_1</span><span class="o">=</span><span class="s">&quot;There&#39;s one message in your inbox&quot;</span>
+   <span class="na">_2</span><span class="o">=</span><span class="s">&quot;There&#39;re two messages in your inbox, that&#39;s not much!&quot;</span>
+   <span class="na">other</span><span class="o">=</span><span class="s">&quot;There&#39;re # messages in your inbox&quot;</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>… and so on. Exact matches always take precedence before plural forms.</p>
+</div>
+<div class="section" id="variables-and-components">
+<h3>Variables and components<a class="headerlink" href="#variables-and-components" title="Permalink to this headline">¶</a></h3>
+<p>Let’s go back to our original pluralized message:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Plural</span>
+      <span class="na">value</span><span class="o">=</span><span class="s">{messagesCount}</span>
+      <span class="na">one</span><span class="o">=</span><span class="s">&quot;There&#39;s # message in your inbox&quot;</span>
+      <span class="na">other</span><span class="o">=</span><span class="s">&quot;There&#39;re # messages in your inbox&quot;</span>
+   <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>What if we want to use variables or components inside messages? Easy! Either
+wrap messages in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component or use template literals
+(suppose we have an variable <code class="docutils literal"><span class="pre">name</span></code>):</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span>&lt;p&gt;
+   &lt;Plural
+      value={messagesCount}
+      one={`There&#39;s # message in your inbox, ${name}`}
+      other={&lt;Trans&gt;There&#39;re &lt;strong&gt;#&lt;/strong&gt; messages in your inbox, {name}&lt;/Trans&gt;}
+   /&gt;
+&lt;/p&gt;
+</pre></div>
+</div>
+<p><a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component works as if it were the top-most i18n component,
+without any limitation. We can use components, variables, expressions, whatever
+works.</p>
+<p>This gives us enough flexibility for all usecases.</p>
+</div>
+<div class="section" id="custom-message-id">
+<h3>Custom message ID<a class="headerlink" href="#custom-message-id" title="Permalink to this headline">¶</a></h3>
+<p>Let’s finish this with a short example of plurals with custom ID. We can
+pass an <code class="docutils literal"><span class="pre">id</span></code> prop to <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> as we would to <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Plural</span>
+      <span class="na">id</span><span class="o">=</span><span class="s">&quot;Inbox.messagesCount&quot;</span>
+      <span class="na">value</span><span class="o">=</span><span class="s">{messagesCount}</span>
+      <span class="na">one</span><span class="o">=</span><span class="s">&quot;There&#39;s # message in your inbox&quot;</span>
+      <span class="na">other</span><span class="o">=</span><span class="s">&quot;There&#39;re # messages in your inbox&quot;</span>
+   <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="formats">
+<h2>Formats<a class="headerlink" href="#formats" title="Permalink to this headline">¶</a></h2>
+<p>The last message in our component is again a bit specific:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+   <span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">{</span><span class="nx">lastLogin</span><span class="p">}.</span>
+<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">lastLogin</span></code> is a date object and we need to format it properly. Dates are
+formatted differently in different languages, but we don’t have
+to do manually. The heavylifting is done in <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl object</a>,
+we’ll just use &lt;DateTimeFormat&gt; component:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+      <span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">DateTimeFormat</span> <span class="na">value</span><span class="o">=</span><span class="s">{lastLogin}</span> <span class="p">/&gt;.</span>
+   <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>This will format the date using the conventional format for the active language.</p>
+</div>
+<div class="section" id="review">
+<h2>Review<a class="headerlink" href="#review" title="Permalink to this headline">¶</a></h2>
+<p>After all modifications, the final component with i18n looks like this:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Inbox.js</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span><span class="p">,</span> <span class="nx">Plural</span><span class="p">,</span> <span class="nx">DateFormat</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
+
+<span class="kr">const</span> <span class="nx">Inbox</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">messages</span><span class="p">,</span> <span class="nx">markAsRead</span><span class="p">,</span> <span class="nx">user</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">messagesCount</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">.</span><span class="nx">length</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">lastLogin</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">user</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+            <span class="nx">See</span> <span class="nx">all</span> <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span><span class="nx">unread</span> <span class="nx">messages</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;{</span><span class="s2">&quot; or &quot;</span><span class="p">}</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="s">{markAsRead}</span><span class="p">&gt;</span><span class="nx">mark</span> <span class="nx">them</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="nx">as</span> <span class="nx">read</span><span class="p">.</span>
+          <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Plural</span>
+            <span class="na">value</span><span class="o">=</span><span class="s">{messagesCount}</span>
+            <span class="na">one</span><span class="o">=</span><span class="s">&quot;There&#39;s # message in your inbox.&quot;</span>
+            <span class="na">other</span><span class="o">=</span><span class="s">&quot;There&#39;re # messages in your inbox.&quot;</span>
+          <span class="p">/&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+        <span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">DateFormat</span> <span class="na">value</span><span class="o">=</span><span class="s">{lastLogin}</span> <span class="p">/&gt;.&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+        <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="extracting-messages">
+<h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
+<p>Our work here is done and we can start working with message catalogs. First,
+we need to extract all messages from the source code. <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> has a handy CLI
+for this task, so let’s pause here and go to <a class="reference internal" href="cli.html#tutorial-cli"><span class="std std-ref">CLI tutorial</span></a> to
+add locales, extract messages and compile translated message catalogs.</p>
+</div>
+<div class="section" id="loading-translations">
+<h2>Loading translations<a class="headerlink" href="#loading-translations" title="Permalink to this headline">¶</a></h2>
+<p>Take a look into our <code class="docutils literal"><span class="pre">locale</span></code> directory. There should be two files for each
+locale:</p>
+<dl class="docutils">
+<dt><code class="docutils literal"><span class="pre">messages.json</span></code></dt>
+<dd>Readable JSON with all languages and metadata (for translators)</dd>
+<dt><code class="docutils literal"><span class="pre">messages.js</span></code></dt>
+<dd>Minified JS file with compiled messages (for application)</dd>
+</dl>
+<p>We’ll just import a compiled message catalog and pass it to
+<a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
+<div class="highlight-jsx"><div class="highlight"><pre><span></span>// index.js
+import React from &#39;react&#39;
+import { render } from &#39;react-dom&#39;
+import Inbox from &#39;./Inbox.js&#39;
+
+import { I18nProvider } from &#39;@lingui/react&#39;
+
+import catalog from &#39;locale/cs/messages.js&#39;
+
+const App = () =&gt; (
+  &lt;I18nProvider language=&quot;cs&quot; catalogs={{ cs: catalog }}&gt;
+    &lt;Inbox /&gt;
+  &lt;/I18nProvider&gt;
+)
+
+render(&lt;App /&gt;, document.getElementById(&#39;app&#39;))
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">catalogs</span></code> prop expects a dictionary of message catalogs in <em>all</em> languages,
+but we can load them on demand. It depends on your setup and there’s
+an example <a class="reference internal" href="../guides/dynamic-loading-catalogs.html#dynamic-loading-catalogs"><span class="std std-ref">how to do it with webpack</span></a>.</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="../ref/lingui-react.html">&#64;lingui/react reference documentation</a></li>
+<li><a class="reference external" href="../ref/lingui-cli.html">&#64;lingui/cli reference documentation</a></li>
+<li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="javascript.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of JavaScript apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="jsLingui - Seamless i18n in Javascript and React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tomáš Ehrlich.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
