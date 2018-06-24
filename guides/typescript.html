@@ -98,6 +98,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimized-components.html">Optimized components</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Typescript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#webpack-setup">Webpack setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#type-definitions">Type definitions</a></li>
 </ul>
 </li>
@@ -179,10 +180,48 @@
 <h1>Typescript<a class="headerlink" href="#typescript" title="Permalink to this headline">¶</a></h1>
 <p>Typescript support is in progress. Please follow <a class="reference external" href="https://github.com/lingui/js-lingui/issues?q=is%3Aopen+is%3Aissue+label%3A%22env%3A+typescript%22">typescript label</a>
 in GitHub to see latest status.</p>
+<div class="section" id="webpack-setup">
+<h2>Webpack setup<a class="headerlink" href="#webpack-setup" title="Permalink to this headline">¶</a></h2>
+<p>The ability of lingui to support the intuitive syntax comes from the <code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code> Babel transformation. The preset consist of 2 plugins, namely <code class="docutils literal"><span class="pre">&#64;lingui/babel-plugin-transform-js</span></code> and <code class="docutils literal"><span class="pre">&#64;lingui/babel-plugin-transform-react</span></code>. The plugins perform transformation only on the JSX and tagged template literals. Thus, the JSX and tagged template literals <em>must not</em> be transpiled before the 2 plugins get to do their magic to process the intuitive syntax.</p>
+<p>In order to preserve JSX and tagged template literals for the lingui plugins, you must set the following in your <code class="docutils literal"><span class="pre">tsconfig.json</span></code>.</p>
+<div class="code js highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;compilerOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;jsx&quot;</span><span class="p">:</span> <span class="s2">&quot;preserve&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;es2016&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>For lingui 2.0+, install <code class="docutils literal"><span class="pre">babel-loader</span></code>, <code class="docutils literal"><span class="pre">babel-preset-react</span></code>, <code class="docutils literal"><span class="pre">babel-preset-env</span></code>, <code class="docutils literal"><span class="pre">&#64;lingui/babel-preset-react</span></code>. Use the presets by changing your <code class="docutils literal"><span class="pre">.babelrc</span></code> to the following. The order of the preset is important.</p>
+<div class="code js highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;babel-preset-env&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;babel-preset-react&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;@lingui/babel-preset-react&quot;</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In your <code class="docutils literal"><span class="pre">webpack.config.js</span></code>, use both <code class="docutils literal"><span class="pre">babel-loader</span></code> and <code class="docutils literal"><span class="pre">ts-loader</span></code> for Typescript files.</p>
+<div class="code js highlight-default"><div class="highlight"><pre><span></span>{
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [&#39;babel-loader&#39;, &#39;ts-loader&#39;]
+      }
+    ]
+  }
+}
+</pre></div>
+</div>
+</div>
 <div class="section" id="type-definitions">
 <h2>Type definitions<a class="headerlink" href="#type-definitions" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/huan086">Jeow Li Huan</a> wrote type definition for <code class="docutils literal"><span class="pre">&#64;lingui/core</span></code>
 and <code class="docutils literal"><span class="pre">&#64;lingui/react</span></code>:</p>
+<p>The type definitions requires Typescript 2.8 or later.</p>
 <div class="highlight-shell"><div class="highlight"><pre><span></span>npm install --save-dev @types/lingui__core  <span class="c1"># types for @lingui/core</span>
 npm install --save-dev @types/lingui__react  <span class="c1"># types for @lingui/react</span>
 </pre></div>
