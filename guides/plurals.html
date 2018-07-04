@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="jsLingui  documentation" href="../index.html"/>
-        <link rel="next" title="Dynamic loading of message catalogs" href="dynamic-loading-catalogs.html"/>
-        <link rel="prev" title="Working with jsLingui CLI" href="../tutorials/cli.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dynamic loading of message catalogs" href="dynamic-loading-catalogs.html" />
+    <link rel="prev" title="Working with jsLingui CLI" href="../tutorials/cli.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -102,6 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="optimized-components.html">Optimized components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="excluding-build-files.html">Excluding build files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
@@ -124,7 +117,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">jsLingui</a>
@@ -132,9 +125,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -200,28 +194,28 @@ and Arabic.</p>
 <p>Good thing is that <strong>as developers, we have to know only plural forms for
 the source language</strong>.</p>
 <p>If we use English in the source code, then we’ll use only <em>one</em> and <em>other</em>:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
   <span class="nx">value</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>When <code class="docutils literal"><span class="pre">numBooks</span> <span class="pre">==</span> <span class="pre">1</span></code>, this will render as <em>1 book</em> and for <code class="docutils literal"><span class="pre">numBook</span> <span class="pre">==</span> <span class="pre">2</span></code>
+<p>When <code class="docutils literal notranslate"><span class="pre">numBooks</span> <span class="pre">==</span> <span class="pre">1</span></code>, this will render as <em>1 book</em> and for <code class="docutils literal notranslate"><span class="pre">numBook</span> <span class="pre">==</span> <span class="pre">2</span></code>
 it will be <em>2 books</em>.</p>
 <blockquote>
 <div>Funny fact for non-english speakers: In English, 0 uses plural form too,
 <em>0 books</em>.</div></blockquote>
-<p>Under the hood, <code class="docutils literal"><span class="pre">i18n.plural</span></code> is replaced with low-level <code class="docutils literal"><span class="pre">i18n._</span></code>. For production, the above example will become:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;{numBooks, plural, one {# book} other {# books}}&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">numBooks</span> <span class="p">})</span>
+<p>Under the hood, <code class="docutils literal notranslate"><span class="pre">i18n.plural</span></code> is replaced with low-level <code class="docutils literal notranslate"><span class="pre">i18n._</span></code>. For production, the above example will become:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;{numBooks, plural, one {# book} other {# books}}&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">numBooks</span> <span class="p">})</span>
 </pre></div>
 </div>
 <p>When we extract messages from source code using (lingui-cli)[linguiCliTutorial], we get:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">numBooks</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># book} other {# books}}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">numBooks</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># book} other {# books}}</span>
 </pre></div>
 </div>
 <p>Now, we give it to our Czech translator and they’ll translate it as:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">numBooks</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># kniha} few {# knihy} other {# knih}}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">numBooks</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># kniha} few {# knihy} other {# knih}}</span>
 </pre></div>
 </div>
 <p>The important thing is that <em>we don’t need to change our code to support
@@ -229,7 +223,7 @@ languages with different plural rules</em>. Here’s a step-by-step description 
 the process:</p>
 <ol class="arabic">
 <li><p class="first">In source code, we have:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
    <span class="nx">value</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
    <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
    <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
@@ -238,7 +232,7 @@ the process:</p>
 </div>
 </li>
 <li><p class="first">Code is compiled to (using <cite>lingui-js</cite> or <cite>lingui-react</cite> babel preset):</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span>
    <span class="s1">&#39;{numBooks, plural, one {# book} other {# books}}&#39;</span><span class="p">,</span>
    <span class="p">{</span> <span class="nx">numBooks</span> <span class="p">}</span>
 <span class="p">)</span>
@@ -246,7 +240,7 @@ the process:</p>
 </div>
 </li>
 <li><p class="first">Message <cite>{numBooks, plural, one {# book} other {# books}}</cite> is translated to:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">numBooks</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># kniha} few {# knihy} other {# knih}}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">numBooks</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># kniha} few {# knihy} other {# knih}}</span>
 </pre></div>
 </div>
 </li>
@@ -258,7 +252,7 @@ the process:</p>
 <h2>Using other language than English<a class="headerlink" href="#using-other-language-than-english" title="Permalink to this headline">¶</a></h2>
 <p>That works perfectly fine! Just learn what [plural forms][cldrPluralRules] your
 languages has and then you can use them. Here’s the example in Czech:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
   <span class="nx">value</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;# kniha&#39;</span><span class="p">,</span>
   <span class="nx">few</span><span class="o">:</span> <span class="s1">&#39;# knihy&#39;</span><span class="p">,</span>
@@ -274,9 +268,7 @@ every language.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -298,7 +290,7 @@ every language.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -317,6 +309,7 @@ every language.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -329,19 +322,13 @@ every language.</p>
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

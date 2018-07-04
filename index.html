@@ -24,26 +24,18 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="genindex.html"/>
-        <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="jsLingui  documentation" href="#"/>
-        <link rel="next" title="Tutorial - Internationalization of React apps" href="tutorials/react.html"/> 
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorial - Internationalization of React apps" href="tutorials/react.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -97,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guides/optimized-components.html">Optimized components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/excluding-build-files.html">Excluding build files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
@@ -119,7 +112,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="#">jsLingui</a>
@@ -127,9 +120,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -180,6 +174,11 @@ or document content that enables easy <strong>localization</strong> for target a
 vary in culture, region, or language.</p>
 <p class="attribution">&mdash;<a class="reference external" href="https://www.w3.org/International/questions/qa-i18n">W3C Web Internationalization FAQ</a></p>
 </div></blockquote>
+<div class="section" id="support-the-project">
+<h2>Support the project<a class="headerlink" href="#support-the-project" title="Permalink to this headline">¶</a></h2>
+<p>There’s ongoing campaign on <a class="reference external" href="https://igg.me/at/js-lingui/x/4367619">Indiegogo</a> to raise funds for this project. If you want
+to support it, please consider donation or share it with your friend.</p>
+</div>
 <div class="section" id="key-features">
 <h2>Key features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -214,6 +213,7 @@ vary in culture, region, or language.</p>
 <li class="toctree-l1"><a class="reference internal" href="guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guides/optimized-components.html">Optimized components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guides/excluding-build-files.html">Excluding build files</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -243,9 +243,7 @@ vary in culture, region, or language.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -265,7 +263,7 @@ vary in culture, region, or language.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -284,6 +282,7 @@ vary in culture, region, or language.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
             VERSION:'',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -296,19 +295,13 @@ vary in culture, region, or language.</p>
 
   
 
-  
-  
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

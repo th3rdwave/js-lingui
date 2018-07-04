@@ -24,26 +24,18 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="jsLingui  documentation" href="../index.html"/>
-        <link rel="prev" title="Migration guide from 1.x to 2.x" href="migration-2.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Migration guide from 1.x to 2.x" href="migration-2.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -97,6 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
@@ -109,13 +102,13 @@
 <li class="toctree-l1"><a class="reference internal" href="migration-2.html">Migration from 1.x to 2.x</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Migration from 0.x to 1.x</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#newline-normalization-in-babel-plugins">Newline normalization in Babel plugins</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#javascript-api-lingui-i18n">Javascript API (<code class="docutils literal"><span class="pre">lingui-i18n</span></code>)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#javascript-api-lingui-i18n">Javascript API (<code class="docutils literal notranslate"><span class="pre">lingui-i18n</span></code>)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#i18n-constructor-replaced-with-factory-function">I18n constructor replaced with factory function</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#explicit-development-mode">Explicit development mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#messages-replaced-with-catalogs">Messages replaced with catalogs</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#react-api-lingui-react">React API (<code class="docutils literal"><span class="pre">lingui-react</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#react-api-lingui-react">React API (<code class="docutils literal notranslate"><span class="pre">lingui-react</span></code>)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cli-lingui-cli">CLI (lingui-cli)</a></li>
 </ul>
 </li>
@@ -130,7 +123,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">jsLingui</a>
@@ -138,9 +131,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -192,7 +186,7 @@ this guide is to setup a high-quality migration path for future major versions.<
 Both Babel plugins will normalize newlines inside translations.</p>
 <p>In Javascript, multiple spaces before and after newline are replaced with
 single space, while newlines are removed completely:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`</span>
 <span class="sb">   This message is wrapped</span>
 <span class="sb">   on multiple</span>
 <span class="sb">   lines</span>
@@ -208,7 +202,7 @@ single space, while newlines are removed completely:</p>
 <p>Newline normalization in React follows JSX conventions: newlines between text
 are replaced with single space, but newlines between components or between text
 and a component are removed and no space is added:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
   <span class="nx">This</span> <span class="nx">message</span> <span class="nx">is</span> <span class="nx">wrapped</span>
   <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span><span class="nx">multiple</span><span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="nx">lines</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
@@ -222,8 +216,8 @@ and a component are removed and no space is added:</p>
 </pre></div>
 </div>
 <p>As weird as it is, this is consistent with how JSX works. If you need to force
-a space at the end of a line, add <code class="docutils literal"><span class="pre">{&quot;</span> <span class="pre">&quot;}</span></code>:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
+a space at the end of a line, add <code class="docutils literal notranslate"><span class="pre">{&quot;</span> <span class="pre">&quot;}</span></code>:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
   <span class="nx">This</span> <span class="nx">message</span> <span class="nx">is</span> <span class="nx">wrapped</span>
   <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span><span class="nx">multiple</span><span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;{</span><span class="s2">&quot; &quot;</span><span class="p">}</span>
   <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="nx">lines</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span>
@@ -236,11 +230,11 @@ a space at the end of a line, add <code class="docutils literal"><span class="pr
 <p>This change won’t break the code, but it’s necessary to update message catalogs.</p>
 </div>
 <div class="section" id="javascript-api-lingui-i18n">
-<h2>Javascript API (<code class="docutils literal"><span class="pre">lingui-i18n</span></code>)<a class="headerlink" href="#javascript-api-lingui-i18n" title="Permalink to this headline">¶</a></h2>
+<h2>Javascript API (<code class="docutils literal notranslate"><span class="pre">lingui-i18n</span></code>)<a class="headerlink" href="#javascript-api-lingui-i18n" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="i18n-constructor-replaced-with-factory-function">
 <h3>I18n constructor replaced with factory function<a class="headerlink" href="#i18n-constructor-replaced-with-factory-function" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal"><span class="pre">I18n</span></code> constructor has been replaced with the <code class="docutils literal"><span class="pre">setupI18n</span></code> factory function:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-i18n&#39;</span>
+<p><code class="docutils literal notranslate"><span class="pre">I18n</span></code> constructor has been replaced with the <code class="docutils literal notranslate"><span class="pre">setupI18n</span></code> factory function:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-i18n&#39;</span>
 
 <span class="c1">// lingui-i18n 0.x</span>
 <span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">I18n</span><span class="p">(</span>
@@ -260,11 +254,11 @@ a space at the end of a line, add <code class="docutils literal"><span class="pr
 <span class="p">})</span>
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">messages</span></code> were also replaced with <code class="docutils literal"><span class="pre">catalogs</span></code>, more info
+<p><code class="docutils literal notranslate"><span class="pre">messages</span></code> were also replaced with <code class="docutils literal notranslate"><span class="pre">catalogs</span></code>, more info
 <a class="reference internal" href="#migration1-messages-catalogs"><span class="std std-ref">below</span></a>.</p>
-<p><code class="docutils literal"><span class="pre">lingui-i18n</span></code> still exports the default instance of <code class="docutils literal"><span class="pre">I18n</span></code> class, but as
+<p><code class="docutils literal notranslate"><span class="pre">lingui-i18n</span></code> still exports the default instance of <code class="docutils literal notranslate"><span class="pre">I18n</span></code> class, but as
 a named export:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// lingui-i18n 0.x</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// lingui-i18n 0.x</span>
 <span class="c1">// also works in lingui-i18n 1.x, but deprecated</span>
 <span class="kr">import</span> <span class="nx">i18n</span> <span class="nx">from</span> <span class="s1">&#39;lingui-i18n&#39;</span>
 
@@ -279,7 +273,7 @@ a named export:</p>
 catalogs. Most i18n libraries parse and compile messages on the fly,
 which makes them heavy and slow. The compiler is still useful in
 development, but now it has to be enabled manually:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-i18n&#39;</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-i18n&#39;</span>
 
 <span class="kr">const</span> <span class="nx">dev</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">!==</span> <span class="s1">&#39;production&#39;</span>
   <span class="c1">// this import is required in development only</span>
@@ -293,16 +287,16 @@ development, but now it has to be enabled manually:</p>
 </pre></div>
 </div>
 <p>Development data includes compiler and plural rules for all languages. Both
-are very large and unnecessary in production, because <code class="docutils literal"><span class="pre">lingui-i18n</span></code>
+are very large and unnecessary in production, because <code class="docutils literal notranslate"><span class="pre">lingui-i18n</span></code>
 supports loading of compiled message catalogs.</p>
 </div>
 <div class="section" id="messages-replaced-with-catalogs">
 <span id="migration1-messages-catalogs"></span><h3>Messages replaced with catalogs<a class="headerlink" href="#messages-replaced-with-catalogs" title="Permalink to this headline">¶</a></h3>
 <p>Plural rules are removed from library completely, because compiled message
-catalogs contain language-specific data, including plural rules. <code class="docutils literal"><span class="pre">messages</span></code>
-were replaced with <code class="docutils literal"><span class="pre">catalogs</span></code> to simplify loading all required data:</p>
-<p>In previous version, loading of messages looked like this (<code class="docutils literal"><span class="pre">lingui-i18n</span> <span class="pre">1.x</span></code>):</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// lingui-i18n 0.x</span>
+catalogs contain language-specific data, including plural rules. <code class="docutils literal notranslate"><span class="pre">messages</span></code>
+were replaced with <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> to simplify loading all required data:</p>
+<p>In previous version, loading of messages looked like this (<code class="docutils literal notranslate"><span class="pre">lingui-i18n</span> <span class="pre">1.x</span></code>):</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// lingui-i18n 0.x</span>
 <span class="nx">type</span> <span class="nx">Messages</span> <span class="o">=</span> <span class="p">{</span>
   <span class="p">[</span><span class="nx">messageId</span><span class="o">:</span> <span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">string</span>
 <span class="p">}</span>
@@ -328,8 +322,8 @@ were replaced with <code class="docutils literal"><span class="pre">catalogs</sp
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>Now it looks like this (<code class="docutils literal"><span class="pre">lingui-i18n</span> <span class="pre">1.x</span></code>):</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">Messages</span> <span class="o">=</span> <span class="p">{</span>
+<p>Now it looks like this (<code class="docutils literal notranslate"><span class="pre">lingui-i18n</span> <span class="pre">1.x</span></code>):</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">Messages</span> <span class="o">=</span> <span class="p">{</span>
   <span class="c1">// support both static and compiled messages</span>
   <span class="p">[</span><span class="nx">messageId</span><span class="o">:</span> <span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">string</span> <span class="o">|</span> <span class="nb">Function</span>
 <span class="p">}</span>
@@ -371,14 +365,14 @@ were replaced with <code class="docutils literal"><span class="pre">catalogs</sp
 </div>
 </div>
 <div class="section" id="react-api-lingui-react">
-<h2>React API (<code class="docutils literal"><span class="pre">lingui-react</span></code>)<a class="headerlink" href="#react-api-lingui-react" title="Permalink to this headline">¶</a></h2>
-<p>Changes in React API reflect changes in underlying core <code class="docutils literal"><span class="pre">lingui-i18n</span></code>.</p>
-<p><code class="docutils literal"><span class="pre">InjectI18n</span></code> was removed and replaced with <code class="docutils literal"><span class="pre">withI18n</span></code> decorator. Loading
-<code class="docutils literal"><span class="pre">InjectI18n</span></code> in recent versions of <code class="docutils literal"><span class="pre">lingui-react&#64;&lt;1.0.0</span></code> would raise a
+<h2>React API (<code class="docutils literal notranslate"><span class="pre">lingui-react</span></code>)<a class="headerlink" href="#react-api-lingui-react" title="Permalink to this headline">¶</a></h2>
+<p>Changes in React API reflect changes in underlying core <code class="docutils literal notranslate"><span class="pre">lingui-i18n</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">InjectI18n</span></code> was removed and replaced with <code class="docutils literal notranslate"><span class="pre">withI18n</span></code> decorator. Loading
+<code class="docutils literal notranslate"><span class="pre">InjectI18n</span></code> in recent versions of <code class="docutils literal notranslate"><span class="pre">lingui-react&#64;&lt;1.0.0</span></code> would raise a
 deprecation warning in console.</p>
 <p>Development data must be loaded explicitly. It works in the same way as in
-<code class="docutils literal"><span class="pre">lingui-i18n</span></code>:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
+<code class="docutils literal notranslate"><span class="pre">lingui-i18n</span></code>:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
 
 <span class="kr">const</span> <span class="nx">dev</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">!==</span> <span class="s1">&#39;production&#39;</span>
   <span class="c1">// this import is required in development only</span>
@@ -386,40 +380,40 @@ deprecation warning in console.</p>
   <span class="o">:</span> <span class="kc">null</span>
 
 <span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
-    <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">development</span><span class="o">=</span><span class="s">{dev}</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">development</span><span class="o">=</span><span class="p">{</span><span class="nx">dev</span><span class="p">}&gt;</span>
         <span class="p">&lt;</span><span class="nt">Content</span> <span class="p">/&gt;</span>
     <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Also, messages were replaced with catalogs:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span>import { I18nProvider } from &#39;lingui-react&#39;
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
 
-const dev = process.env.NODE_ENV !== &#39;production&#39;
-  // this import is required in development only
-  ? require(&#39;lingui-i18n/dev&#39;)
-  : null
+<span class="kr">const</span> <span class="nx">dev</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">!==</span> <span class="s1">&#39;production&#39;</span>
+  <span class="c1">// this import is required in development only</span>
+  <span class="o">?</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;lingui-i18n/dev&#39;</span><span class="p">)</span>
+  <span class="o">:</span> <span class="kc">null</span>
 
-const catalog = {
-    messages: {
-        msg: &quot;Hello&quot;
-    }
-}
+<span class="kr">const</span> <span class="nx">catalog</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">msg</span><span class="o">:</span> <span class="s2">&quot;Hello&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-const App = () =&gt; {
-    &lt;I18nProvider language=&quot;en&quot; catalogs={{ en: catalog }} development={dev}&gt;
-        &lt;Content /&gt;
-    &lt;/I18nProvider&gt;
-}
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span> <span class="na">catalogs</span><span class="o">=</span><span class="p">{{</span> <span class="nx">en</span><span class="o">:</span> <span class="nx">catalog</span> <span class="p">}}</span> <span class="na">development</span><span class="o">=</span><span class="p">{</span><span class="nx">dev</span><span class="p">}&gt;</span>
+        <span class="p">&lt;</span><span class="nt">Content</span> <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="cli-lingui-cli">
 <h2>CLI (lingui-cli)<a class="headerlink" href="#cli-lingui-cli" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal"><span class="pre">lingui</span> <span class="pre">export</span></code> command now creates a more complex message catalog, which contains
+<p><code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">export</span></code> command now creates a more complex message catalog, which contains
 not only translations, but also default messages (if any) and locations from where
 the strings were extracted.</p>
-<p>Running <code class="docutils literal"><span class="pre">lingui</span> <span class="pre">export</span></code> will generate the new-style catalog while merging translations
+<p>Running <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">export</span></code> will generate the new-style catalog while merging translations
 from the old one. This process is completely seamless. However, any external
 tool must be updates to accept the new-style catalogs.</p>
 </div>
@@ -427,9 +421,7 @@ tool must be updates to accept the new-style catalogs.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -449,7 +441,7 @@ tool must be updates to accept the new-style catalogs.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -468,6 +460,7 @@ tool must be updates to accept the new-style catalogs.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -480,19 +473,13 @@ tool must be updates to accept the new-style catalogs.</p>
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

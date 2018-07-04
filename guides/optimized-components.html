@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="jsLingui  documentation" href="../index.html"/>
-        <link rel="next" title="Typescript" href="typescript.html"/>
-        <link rel="prev" title="Dynamic loading of message catalogs" href="dynamic-loading-catalogs.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Typescript" href="typescript.html" />
+    <link rel="prev" title="Dynamic loading of message catalogs" href="dynamic-loading-catalogs.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -98,12 +90,13 @@
 <li class="toctree-l1"><a class="reference internal" href="dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Optimized components</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#translations-inside-optimized-component">Translations inside optimized component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#optimized-component-wrapped-in-withi18n">Optimized component wrapped in <code class="docutils literal"><span class="pre">withI18n()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimized-component-wrapped-in-withi18n">Optimized component wrapped in <code class="docutils literal notranslate"><span class="pre">withI18n()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="excluding-build-files.html">Excluding build files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
@@ -126,7 +119,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">jsLingui</a>
@@ -134,9 +127,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -180,7 +174,7 @@
             
   <div class="section" id="optimized-components">
 <span id="guide-optimized-components"></span><h1>Optimized components<a class="headerlink" href="#optimized-components" title="Permalink to this headline">¶</a></h1>
-<p>Let’s call any component implementing <code class="docutils literal"><span class="pre">shouldComponentUpdate</span></code> an <em>Optimized
+<p>Let’s call any component implementing <code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate</span></code> an <em>Optimized
 component</em>.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
@@ -188,20 +182,20 @@ component</em>.</p>
 Read this document if you want to understand how things work under the hood.</p>
 </div>
 <p>React components can be optimized to skip updates implementing
-<code class="docutils literal"><span class="pre">shouldComponentUpdate</span></code>. Based on change of props and state, component
+<code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate</span></code>. Based on change of props and state, component
 can decide to continue re-rendering or skip the update completely.
 However, jsLingui reads translations from context and there’re two cases
 which must be handled to make i18n related updates reliable.</p>
 <p>The two cases to handle are:</p>
 <ol class="arabic simple">
 <li>Translations inside optimized component.</li>
-<li>Optimized component is wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal"><span class="pre">withI18n()</span></code></a> to translate text attributes.</li>
+<li>Optimized component is wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> to translate text attributes.</li>
 </ol>
 <p>Let’s take a look at both scenarios.</p>
 <div class="section" id="translations-inside-optimized-component">
 <h2>Translations inside optimized component<a class="headerlink" href="#translations-inside-optimized-component" title="Permalink to this headline">¶</a></h2>
 <p>Imagine following React tree:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span>&lt;OptimizedComponent&gt;
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;OptimizedComponent&gt;
    &lt;AnotherComponent&gt;
        &lt;Trans&gt;I am not alone!&lt;/Trans&gt;
    &lt;/AnotherComponent&gt;
@@ -209,29 +203,29 @@ which must be handled to make i18n related updates reliable.</p>
 </pre></div>
 </div>
 <p>When active language is changed or message catalog is updated,
-<code class="docutils literal"><span class="pre">OptimizedComponent</span></code> will probably skip the update, because it’s props
-don’t change. It means that all children of <code class="docutils literal"><span class="pre">OptimizedComponent</span></code> won’t be
+<code class="docutils literal notranslate"><span class="pre">OptimizedComponent</span></code> will probably skip the update, because it’s props
+don’t change. It means that all children of <code class="docutils literal notranslate"><span class="pre">OptimizedComponent</span></code> won’t be
 updated, including <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
 <p>By default, all <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> components listen for language and catalog changes
-and update themselves when it happens. Even if <code class="docutils literal"><span class="pre">OptimizedComponent</span></code>
+and update themselves when it happens. Even if <code class="docutils literal notranslate"><span class="pre">OptimizedComponent</span></code>
 skips update, <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component is updated correctly.</p>
-<p>Also, <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal"><span class="pre">withI18n()</span></code></a> HOC listens for language and catalog changes, but this
-behavior can be disabled by passing <code class="docutils literal"><span class="pre">update</span> <span class="pre">=</span> <span class="pre">false</span></code> option:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Component won&#39;t listen for language/catalog changes</span>
+<p>Also, <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC listens for language and catalog changes, but this
+behavior can be disabled by passing <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">=</span> <span class="pre">false</span></code> option:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// Component won&#39;t listen for language/catalog changes</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">withI18n</span><span class="p">({</span> <span class="nx">update</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">})(</span><span class="nx">Component</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="optimized-component-wrapped-in-withi18n">
-<h2>Optimized component wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal"><span class="pre">withI18n()</span></code></a><a class="headerlink" href="#optimized-component-wrapped-in-withi18n" title="Permalink to this headline">¶</a></h2>
-<p>Component should be wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal"><span class="pre">withI18n()</span></code></a> HOC when it’s required to access
+<h2>Optimized component wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a><a class="headerlink" href="#optimized-component-wrapped-in-withi18n" title="Permalink to this headline">¶</a></h2>
+<p>Component should be wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC when it’s required to access
 low-level i18n API. Common usecase is translation of attributes:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
 
 <span class="kr">class</span> <span class="nx">HeaderLink</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span>
    <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">title</span><span class="o">=</span><span class="s">{i18n.t`Title`}</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Header</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">title</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`Title`</span><span class="p">}&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Header</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
    <span class="p">}</span>
 <span class="p">}</span>
 
@@ -242,12 +236,12 @@ low-level i18n API. Common usecase is translation of attributes:</p>
 However, text attributes aren’t components but only function calls so they can’t
 listen to changes of active language and catalog.</p>
 <p>The trick here is to update whole component, but since it’s a PureComponent,
-it does shallow comparison of props. <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal"><span class="pre">withI18n()</span></code></a> HOC makes things easier by
-passing <code class="docutils literal"><span class="pre">i18nHash</span></code> to wrapped component. This hash is changed after every
+it does shallow comparison of props. <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC makes things easier by
+passing <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> to wrapped component. This hash is changed after every
 change of active language or catalog.</p>
-<p>If you have your own implementation of <code class="docutils literal"><span class="pre">shouldComponentUpdate</span></code>, simply compare
-also <code class="docutils literal"><span class="pre">i18nHash</span></code>:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<p>If you have your own implementation of <code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate</span></code>, simply compare
+also <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code>:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 
 <span class="kr">class</span> <span class="nx">HeaderLink</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
    <span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
@@ -261,8 +255,8 @@ also <code class="docutils literal"><span class="pre">i18nHash</span></code>:</p
 </pre></div>
 </div>
 <p>If you don’t want your component to receive this hash for whatever reason,
-you can disable it by passing <code class="docutils literal"><span class="pre">withHash</span> <span class="pre">=</span> <span class="pre">false</span></code> option to HOC:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="c1">// Component won&#39;t pass i18nHash prop</span>
+you can disable it by passing <code class="docutils literal notranslate"><span class="pre">withHash</span> <span class="pre">=</span> <span class="pre">false</span></code> option to HOC:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// Component won&#39;t pass i18nHash prop</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">withI18n</span><span class="p">({</span> <span class="nx">withHash</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">})(</span><span class="nx">Component</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -270,9 +264,9 @@ you can disable it by passing <code class="docutils literal"><span class="pre">w
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>jsLingui handles updates in and for Optimized components in most cases. If you
-want to disable this behavior, you can pass either <code class="docutils literal"><span class="pre">update</span> <span class="pre">=</span> <span class="pre">false</span></code>
-or <code class="docutils literal"><span class="pre">withHash</span> <span class="pre">=</span> <span class="pre">false</span></code> to <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal"><span class="pre">withI18n()</span></code></a> HOC.</p>
-<p><code class="docutils literal"><span class="pre">update</span></code> fixes updates if component has optimized parents while <code class="docutils literal"><span class="pre">withHash</span></code>
+want to disable this behavior, you can pass either <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">=</span> <span class="pre">false</span></code>
+or <code class="docutils literal notranslate"><span class="pre">withHash</span> <span class="pre">=</span> <span class="pre">false</span></code> to <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC.</p>
+<p><code class="docutils literal notranslate"><span class="pre">update</span></code> fixes updates if component has optimized parents while <code class="docutils literal notranslate"><span class="pre">withHash</span></code>
 fixes updates for intermediate optimized children.</p>
 </div>
 <div class="section" id="further-reading">
@@ -286,9 +280,7 @@ fixes updates for intermediate optimized children.</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -310,7 +302,7 @@ fixes updates for intermediate optimized children.</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -329,6 +321,7 @@ fixes updates for intermediate optimized children.</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -341,19 +334,13 @@ fixes updates for intermediate optimized children.</p>
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>

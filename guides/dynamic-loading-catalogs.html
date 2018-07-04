@@ -24,27 +24,19 @@
 
   
 
-  
-  
-    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  
-
-  
-
-  
-        <link rel="index" title="Index"
-              href="../genindex.html"/>
-        <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="jsLingui  documentation" href="../index.html"/>
-        <link rel="next" title="Optimized components" href="optimized-components.html"/>
-        <link rel="prev" title="Pluralization" href="plurals.html"/> 
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Optimized components" href="optimized-components.html" />
+    <link rel="prev" title="Pluralization" href="plurals.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
 
 </head>
 
-<body class="wy-body-for-nav" role="document">
+<body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
@@ -106,6 +98,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="optimized-components.html">Optimized components</a></li>
 <li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="excluding-build-files.html">Excluding build files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
@@ -128,7 +121,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
       
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+      <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">jsLingui</a>
@@ -136,9 +129,10 @@
       </nav>
 
 
-      
       <div class="wy-nav-content">
+        
         <div class="rst-content">
+        
           
 
 
@@ -183,9 +177,9 @@
   <p id="dynamic-loading-catalogs">Jump to <a class="reference external" href="i18nLoaderComponent">final component</a>.</p>
 <div class="section" id="dynamic-loading-of-message-catalogs">
 <h1>Dynamic loading of message catalogs<a class="headerlink" href="#dynamic-loading-of-message-catalogs" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal"><span class="pre">I18nProvider</span></code> doesn’t assume anything about your app and it’s your
+<p><code class="docutils literal notranslate"><span class="pre">I18nProvider</span></code> doesn’t assume anything about your app and it’s your
 responsibility to load messages based on active language. Here’s an example of
-<code class="docutils literal"><span class="pre">I18nLoader</span></code> component which is connected to Redux store and loads message
+<code class="docutils literal notranslate"><span class="pre">I18nLoader</span></code> component which is connected to Redux store and loads message
 catalogs using <a class="reference external" href="https://webpack.js.org/guides/code-splitting-async/">dynamic import in Webpack</a>.</p>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
@@ -200,16 +194,16 @@ catalogs using <a class="reference external" href="https://webpack.js.org/guides
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <p>We are using the <a class="reference external" href="https://github.com/tc39/proposal-dynamic-import">Dynamic Import() Proposal</a>
-to ECMAScript. We need to install <code class="docutils literal"><span class="pre">babel-plugin-syntax-dynamic-import</span></code> and
-<code class="docutils literal"><span class="pre">babel-plugin-dynamic-import-node</span></code> to make it work. Also, the code examples given here make use of <code class="docutils literal"><span class="pre">babel-plugin-transform-class-properties</span></code></p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn add --dev babel-plugin-syntax-dynamic-import babel-plugin-dynamic-import-node babel-plugin-transform-class-properties
+to ECMAScript. We need to install <code class="docutils literal notranslate"><span class="pre">babel-plugin-syntax-dynamic-import</span></code> and
+<code class="docutils literal notranslate"><span class="pre">babel-plugin-dynamic-import-node</span></code> to make it work. Also, the code examples given here make use of <code class="docutils literal notranslate"><span class="pre">babel-plugin-transform-class-properties</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>yarn add --dev babel-plugin-syntax-dynamic-import babel-plugin-dynamic-import-node babel-plugin-transform-class-properties
 </pre></div>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p class="last"><cite>babel-plugin-dynamic-import-node</cite> is required when running tests in Jest.</p>
 </div>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="c1">// .babelrc</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// .babelrc</span>
 <span class="p">{</span>
   <span class="s2">&quot;plugins&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">&quot;syntax-dynamic-import&quot;</span><span class="p">,</span>
@@ -228,10 +222,10 @@ to ECMAScript. We need to install <code class="docutils literal"><span class="pr
 <div class="section" id="component">
 <h2>Component<a class="headerlink" href="#component" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start with the component. We’re going to wrap <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>
-from <code class="docutils literal"><span class="pre">&#64;lingui/react</span></code>. Active language is loaded from redux store, while
+from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code>. Active language is loaded from redux store, while
 messages are dynamically loaded and stored in local state.</p>
-<p>The <code class="docutils literal"><span class="pre">render()</span></code> method looks like this:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">render()</span></code> method looks like this:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
    <span class="kr">const</span> <span class="p">{</span> <span class="nx">children</span><span class="p">,</span> <span class="nx">language</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">props</span>
    <span class="kr">const</span> <span class="p">{</span> <span class="nx">catalogs</span> <span class="p">}</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">state</span>
 
@@ -239,7 +233,7 @@ messages are dynamically loaded and stored in local state.</p>
    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">catalogs</span><span class="p">[</span><span class="nx">language</span><span class="p">])</span> <span class="k">return</span>
 
    <span class="k">return</span> <span class="p">(</span>
-      <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">{language}</span> <span class="na">catalogs</span><span class="o">=</span><span class="s">{catalogs}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="p">{</span><span class="nx">language</span><span class="p">}</span> <span class="na">catalogs</span><span class="o">=</span><span class="p">{</span><span class="nx">catalogs</span><span class="p">}&gt;</span>
          <span class="p">{</span><span class="nx">children</span><span class="p">}</span>
       <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
    <span class="p">)</span>
@@ -248,8 +242,8 @@ messages are dynamically loaded and stored in local state.</p>
 </div>
 <p>Next, we need to load message catalog when language changes which isn’t done yet. Dynamic import returns a promise and we don’t want to re-render
 our component until the message catalog is loaded. Let’s add a
-<code class="docutils literal"><span class="pre">shouldComponentUpdate()</span></code> method:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
+<code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate()</span></code> method:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">shouldComponentUpdate</span><span class="p">(</span><span class="nx">nextProps</span><span class="p">,</span> <span class="nx">nextState</span><span class="p">)</span> <span class="p">{</span>
    <span class="kr">const</span> <span class="p">{</span> <span class="nx">language</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">nextProps</span>
    <span class="kr">const</span> <span class="p">{</span> <span class="nx">catalogs</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">nextState</span>
 
@@ -263,9 +257,9 @@ our component until the message catalog is loaded. Let’s add a
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal"><span class="pre">shouldComponentUpdate</span></code> isn’t called during the first render, so we need
-trigger loading of catalog manually in <code class="docutils literal"><span class="pre">componentDidMount</span></code>:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+<p><code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate</span></code> isn’t called during the first render, so we need
+trigger loading of catalog manually in <code class="docutils literal notranslate"><span class="pre">componentDidMount</span></code>:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">this</span><span class="p">.</span><span class="nx">loadCatalog</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">props</span><span class="p">.</span><span class="nx">language</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
@@ -273,15 +267,15 @@ trigger loading of catalog manually in <code class="docutils literal"><span clas
 </div>
 <div class="section" id="loading-of-message-catalogs">
 <h2>Loading of message catalogs<a class="headerlink" href="#loading-of-message-catalogs" title="Permalink to this headline">¶</a></h2>
-<p>The most important piece in this story is <code class="docutils literal"><span class="pre">loadCatalog()</span></code> method. It’s
+<p>The most important piece in this story is <code class="docutils literal notranslate"><span class="pre">loadCatalog()</span></code> method. It’s
 necessary to load compiled message catalogs. The recommended way is compile
-messages on-the-fly using <code class="docutils literal"><span class="pre">&#64;lingui/loader</span></code>, but it’s also possible to load
-compiled <code class="docutils literal"><span class="pre">messages.js</span></code> directly.</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>yarn add --dev @lingui/loader
+messages on-the-fly using <code class="docutils literal notranslate"><span class="pre">&#64;lingui/loader</span></code>, but it’s also possible to load
+compiled <code class="docutils literal notranslate"><span class="pre">messages.js</span></code> directly.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>yarn add --dev @lingui/loader
 </pre></div>
 </div>
 <p>Here we use the dynamic import syntax to load the message catalog:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">loadCatalog</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">language</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">loadCatalog</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">language</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="c1">// using @lingui/loader - load raw messages.json</span>
   <span class="kr">const</span> <span class="nx">catalog</span> <span class="o">=</span> <span class="nx">await</span> <span class="kr">import</span><span class="p">(</span>
     <span class="cm">/* webpackMode: &quot;lazy&quot;, webpackChunkName: &quot;i18n-[index]&quot; */</span>
@@ -303,7 +297,7 @@ compiled <code class="docutils literal"><span class="pre">messages.js</span></co
 </div>
 <p>Dynamic import returns a promise, so we can either use async/await keywords or
 good old promises:</p>
-<div class="highlight-js"><div class="highlight"><pre><span></span><span class="nx">loadCatalog</span> <span class="o">=</span> <span class="p">(</span><span class="nx">language</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">loadCatalog</span> <span class="o">=</span> <span class="p">(</span><span class="nx">language</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="kr">import</span><span class="p">(</span>
     <span class="cm">/* webpackMode: &quot;lazy&quot;, webpackChunkName: &quot;i18n-[index]&quot; */</span>
     <span class="sb">`@lingui/loader!locale/</span><span class="si">${</span><span class="nx">language</span><span class="si">}</span><span class="sb">/messages.json`</span><span class="p">)</span>
@@ -319,13 +313,13 @@ good old promises:</p>
 </pre></div>
 </div>
 <p>The comment before message catalog path is webpack’s <em>magic comment</em>.
-<code class="docutils literal"><span class="pre">webpackMode:</span> <span class="pre">lazy</span></code> means, that chunks are loaded as requested.
-<code class="docutils literal"><span class="pre">webpackChunkName:</span> <span class="pre">&quot;i18n-[index]&quot;</span></code> overrides default chunk name for this import.</p>
+<code class="docutils literal notranslate"><span class="pre">webpackMode:</span> <span class="pre">lazy</span></code> means, that chunks are loaded as requested.
+<code class="docutils literal notranslate"><span class="pre">webpackChunkName:</span> <span class="pre">&quot;i18n-[index]&quot;</span></code> overrides default chunk name for this import.</p>
 </div>
 <div class="section" id="i18nloadercomponent">
 <span id="id1"></span><h2>Final component<a class="headerlink" href="#i18nloadercomponent" title="Permalink to this headline">¶</a></h2>
-<p>Here’s the full source of <code class="docutils literal"><span class="pre">I18nLoader</span></code> component:</p>
-<div class="highlight-jsx"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<p>Here’s the full source of <code class="docutils literal notranslate"><span class="pre">I18nLoader</span></code> component:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
 
@@ -371,7 +365,7 @@ good old promises:</p>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">catalogs</span><span class="p">[</span><span class="nx">language</span><span class="p">])</span> <span class="k">return</span>
 
     <span class="k">return</span> <span class="p">(</span>
-      <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">{language}</span> <span class="na">catalogs</span><span class="o">=</span><span class="s">{catalogs}</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="p">{</span><span class="nx">language</span><span class="p">}</span> <span class="na">catalogs</span><span class="o">=</span><span class="p">{</span><span class="nx">catalogs</span><span class="p">}&gt;</span>
         <span class="p">{</span><span class="nx">children</span><span class="p">}</span>
       <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
     <span class="p">)</span>
@@ -390,7 +384,7 @@ good old promises:</p>
 <div class="section" id="conclusion">
 <h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <p>Looking at the content of build dir, we see one chunk per language:</p>
-<div class="highlight-shell"><div class="highlight"><pre><span></span>i18n-0.c433b3bd.chunk.js
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>i18n-0.c433b3bd.chunk.js
 i18n-1.f0cf2e3d.chunk.js
 main.ab4626ef.js
 </pre></div>
@@ -406,9 +400,7 @@ language are loaded:</p>
 
 
            </div>
-           <div class="articleComments">
-            
-           </div>
+           
           </div>
           <footer>
   
@@ -430,7 +422,7 @@ language are loaded:</p>
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -449,6 +441,7 @@ language are loaded:</p>
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
             VERSION:'',
+            LANGUAGE:'None',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  true,
@@ -461,19 +454,13 @@ language are loaded:</p>
 
   
 
-  
-  
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-  
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
   <script type="text/javascript">
       jQuery(function () {
-          SphinxRtdTheme.StickyNav.enable();
+          SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-   
+  </script> 
 
 </body>
 </html>
