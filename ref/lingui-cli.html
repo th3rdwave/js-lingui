@@ -200,7 +200,8 @@ message catalogs and compiles message catalogs for production use.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p>When installed locally, you need to either run it from
-<code class="docutils literal"><span class="pre">node_modules/.bin/lingui</span></code> or add it to your <code class="docutils literal"><span class="pre">package.json</span></code>:</p>
+<code class="docutils literal"><span class="pre">node_modules/.bin/lingui</span></code> or using <a class="reference external" href="https://github.com/zkat/npx">npx</a> (<code class="docutils literal"><span class="pre">npx</span> <span class="pre">lingui</span></code>) add it to your
+<code class="docutils literal"><span class="pre">package.json</span></code>:</p>
 <div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&quot;add-locale&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui add-locale&quot;</span><span class="p">,</span>
@@ -243,7 +244,7 @@ lingui add-locale en fr es
 <h3><code class="docutils literal"><span class="pre">extract</span></code><a class="headerlink" href="#extract" title="Permalink to this headline">¶</a></h3>
 <dl class="lingui-cli">
 <dt id="lingui-cli-extract">
-<code class="descname">lingui extract [--clean] [--format &lt;format&gt;] [--convert-from &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
+<code class="descname">lingui extract [--clean] [--overwrite] [--format &lt;format&gt;] [--convert-from &lt;format&gt;] [--verbose]</code><a class="headerlink" href="#lingui-cli-extract" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p>This command extracts messages from source files and creates a message catalog for
@@ -260,6 +261,12 @@ each language using the following steps:</p>
 
 <p>Remove obsolete messages from catalogs. Message becomes obsolete
 when it’s missing in the source code.</p>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-extract-overwrite">
+<code class="descname">--overwrite</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-extract-overwrite" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Update translations for <a class="reference internal" href="lingui-conf.html#std:config-sourceLocale"><code class="xref std std-conf docutils literal"><span class="pre">sourceLocale</span></code></a> from source.</p>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-extract-format">
 <code class="descname">--format</code><code class="descclassname"> &lt;format&gt;</code><a class="headerlink" href="#cmdoption-extract-format" title="Permalink to this definition">¶</a></dt>
