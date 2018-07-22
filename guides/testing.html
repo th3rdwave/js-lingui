@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Talks about i18n and Javascript &mdash; jsLingui  documentation</title>
+  <title>Testing &mdash; jsLingui  documentation</title>
   
 
   
@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Migration guide from 0.x to 1.x" href="../releases/migration-1.html" /> 
+    <link rel="next" title="Typescript" href="typescript.html" />
+    <link rel="prev" title="Working with jsLingui CLI" href="../tutorials/cli.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -85,13 +86,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Guides</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plurals.html">How plurals work</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
@@ -105,11 +106,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
 </ul>
 <p class="caption"><span class="caption-text">External resources</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Talks about i18n in Javascript</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#react-i18n-you-have-no-excuse-by-eli-schutze">React + i18n - You Have No Excuse! by Eli Schutze</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks about i18n in Javascript</a></li>
 </ul>
 
             
@@ -155,13 +153,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Talks about i18n and Javascript</li>
+      <li>Testing</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/misc/talks-about-i18n.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/guides/testing.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -174,13 +172,27 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="talks-about-i18n-and-javascript">
-<h1>Talks about i18n and Javascript<a class="headerlink" href="#talks-about-i18n-and-javascript" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="react-i18n-you-have-no-excuse-by-eli-schutze">
-<h2>React + i18n - You Have No Excuse! by Eli Schutze<a class="headerlink" href="#react-i18n-you-have-no-excuse-by-eli-schutze" title="Permalink to this headline">¶</a></h2>
-<p><em>Published on 20. 3. 2018 by</em> <a class="reference external" href="https://reactfest.uk/">ReactFest</a></p>
-<iframe src="https://www.youtube.com/embed/6NwgHUcom_8" style="border: 0; height: 345px; width: 560px">
-</iframe></div>
+  <div class="section" id="testing">
+<h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is an incomplete draft of a guide.</p>
+</div>
+<p>Components using <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> or <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> must be wrapped in
+<a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> in tests:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">mount</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;enzyme&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
+<span class="kr">import</span> <span class="nx">Component</span> <span class="nx">from</span> <span class="s1">&#39;./Component&#39;</span>
+
+<span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Component&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="nx">it</span><span class="p">(</span><span class="s1">&#39;should render correctly&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+     <span class="kr">const</span> <span class="nx">tree</span> <span class="o">=</span> <span class="nx">mount</span><span class="p">(&lt;</span><span class="nt">I18nProvider</span><span class="p">&gt;&lt;</span><span class="nt">Component</span> <span class="p">/&gt;&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
+     <span class="nx">expect</span><span class="p">(</span><span class="nx">tree</span><span class="p">).</span><span class="nx">toMatchSnapshot</span><span class="p">()</span>
+  <span class="p">})</span>
+<span class="p">})</span>
+</pre></div>
+</div>
 </div>
 
 
@@ -191,8 +203,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="typescript.html" class="btn btn-neutral float-right" title="Typescript" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="../releases/migration-1.html" class="btn btn-neutral" title="Migration guide from 0.x to 1.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="../tutorials/cli.html" class="btn btn-neutral" title="Working with jsLingui CLI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
