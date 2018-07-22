@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Excluding message catalog build files &mdash; jsLingui  documentation</title>
+  <title>Talks about i18n and Javascript &mdash; jsLingui  documentation</title>
   
 
   
@@ -28,8 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="API Reference - React (@lingui/react)" href="../ref/lingui-react.html" />
-    <link rel="prev" title="Typescript" href="typescript.html" /> 
+    <link rel="prev" title="Migration guide from 0.x to 1.x" href="../releases/migration-1.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,16 +85,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Guides</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="plurals.html">How plurals work</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="optimized-components.html">Optimized components</a></li>
-<li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Excluding build files</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#git">Git</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#eslint">ESLint</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
@@ -109,8 +104,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
 </ul>
 <p class="caption"><span class="caption-text">External resources</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks about i18n in Javascript</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Talks about i18n in Javascript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#react-i18n-you-have-no-excuse-by-eli-schutze">React + i18n - You Have No Excuse! by Eli Schutze</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -156,13 +154,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Excluding message catalog build files</li>
+      <li>Talks about i18n and Javascript</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/guides/excluding-build-files.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/misc/talks-about-i18n.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -175,33 +173,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="excluding-message-catalog-build-files">
-<h1>Excluding message catalog build files<a class="headerlink" href="#excluding-message-catalog-build-files" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command creates temporary message catalogs per each source file. Also,
-<a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a> command generates compiled message catalogs from source ones. All these files
-can be safely ignored from VCS and linters.</p>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">locale</span></code> in paths below with your custom <a class="reference internal" href="../ref/lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> from configuration.</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">locale/_build/</span></code></li>
-<li><code class="docutils literal notranslate"><span class="pre">locale/**/*.js</span></code></li>
-</ul>
-<div class="section" id="git">
-<h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
-<p>Add following lines to your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locale</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span>
-<span class="n">locale</span><span class="o">/**/*.</span><span class="n">js</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="eslint">
-<h2>ESLint<a class="headerlink" href="#eslint" title="Permalink to this headline">¶</a></h2>
-<p>Specify which directories to lint explicitely or add following lines to your
-<a class="reference external" href="https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories">.eslintignore</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locale</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span>
-<span class="n">locale</span><span class="o">/**/*.</span><span class="n">js</span>
-</pre></div>
-</div>
-</div>
+  <div class="section" id="talks-about-i18n-and-javascript">
+<h1>Talks about i18n and Javascript<a class="headerlink" href="#talks-about-i18n-and-javascript" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="react-i18n-you-have-no-excuse-by-eli-schutze">
+<h2>React + i18n - You Have No Excuse! by Eli Schutze<a class="headerlink" href="#react-i18n-you-have-no-excuse-by-eli-schutze" title="Permalink to this headline">¶</a></h2>
+<p><em>Published on 20. 3. 2018 by</em> <a class="reference external" href="https://reactfest.uk/">ReactFest</a></p>
+<iframe src="https://www.youtube.com/embed/6NwgHUcom_8" style="border: 0; height: 345px; width: 560px">
+</iframe></div>
 </div>
 
 
@@ -212,10 +190,8 @@ can be safely ignored from VCS and linters.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../ref/lingui-react.html" class="btn btn-neutral float-right" title="API Reference - React (@lingui/react)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="typescript.html" class="btn btn-neutral" title="Typescript" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../releases/migration-1.html" class="btn btn-neutral" title="Migration guide from 0.x to 1.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
