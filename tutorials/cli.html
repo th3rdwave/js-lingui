@@ -181,7 +181,17 @@
 <h1>Working with jsLingui CLI<a class="headerlink" href="#working-with-jslingui-cli" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> provides the <code class="docutils literal notranslate"><span class="pre">lingui</span></code> command for extracting, merging and
 compiling message catalogs:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --global @lingui/cli
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>  npm install --global @lingui/cli
+
+Install also <span class="sb">``</span>babel-core<span class="sb">`</span> package depending on Babel version you use:
+
+  .. code-block:: shell
+
+     <span class="c1"># babel 6.x</span>
+     npm install --global babel-core
+
+     <span class="c1"># babel 7.x</span>
+     npm install --global babel-core@^7.0.0-0 @babel/core
 </pre></div>
 </div>
 <div class="section" id="add-a-new-locale">

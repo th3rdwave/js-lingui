@@ -275,6 +275,17 @@ npm install --save-dev @lingui/babel-preset-react
 </div>
 </li>
 </ol>
+<p>3. If you receive a warning about missing peer dependency <code class="docutils literal notranslate"><span class="pre">babel-core</span></code>, you need
+to install it manually. Target version depends on whether you’re using babel 6 or 7:</p>
+<blockquote>
+<div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># babel 6.x</span>
+npm install -g babel-core
+
+<span class="c1"># babel 7.x</span>
+npm install -g babel-core@^7.0.0-0 @babel/core
+</pre></div>
+</div>
+</div></blockquote>
 <p>Now we have the environment up and running and we can start internationalizing our app!</p>
 </div>
 <div class="section" id="setup">
