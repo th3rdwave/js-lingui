@@ -627,13 +627,17 @@ top-level application component. However, if the <code class="docutils literal n
 <p><a class="reference internal" href="#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> is a higher-order component which injects <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object to
 wrapped component. <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object is needed when you have to access plain JS
 API for translation of JSX props:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>import React from &#39;react&#39;;
-import { Trans, withI18n } from &#39;@lingui/react&#39;;
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>import React from &quot;react&quot;
+import { withI18n } from &quot;@lingui/react&quot;
 
-const LogoutIcon = withI18n()(
-    ({ i18n }) =&gt; &lt;Icon name=&quot;turn-off&quot; aria-label={i18n.t`Log out`}/&gt;
-);
+const LogoutIcon = withI18n()(({ i18n }) =&gt; (
+  &lt;Icon name=&quot;turn-off&quot; aria-label={i18n.t`Log out`} /&gt;
+))
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><a class="reference internal" href="#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> automatically hoists static properties from wrapped component.</p>
 </div>
 <dl class="function">
 <dt id="i18nMark">
