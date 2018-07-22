@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tutorial - Internationalization of JavaScript apps" href="javascript.html" />
+    <link rel="next" title="Tutorial - Internationalization of React Native apps" href="react-native.html" />
     <link rel="prev" title="jsLingui - Seamless i18n in Javascript and React" href="../index.html" /> 
 
   
@@ -102,6 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="react-native.html">React Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 </ul>
@@ -188,7 +189,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="tutorial-internationalization-of-react-apps">
-<h1>Tutorial - Internationalization of React apps<a class="headerlink" href="#tutorial-internationalization-of-react-apps" title="Permalink to this headline">¶</a></h1>
+<span id="react-tutorial-label"></span><h1>Tutorial - Internationalization of React apps<a class="headerlink" href="#tutorial-internationalization-of-react-apps" title="Permalink to this headline">¶</a></h1>
 <p>Through this tutorial, we’ll learn how to add internationalization
 to an existing application in React JS.</p>
 <div class="section" id="let-s-start">
@@ -329,7 +330,9 @@ Just some text:</p>
 </div>
 <p>All we need to make this heading translatable is wrap it in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>
 component:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span><span class="p">;</span>
+
+<span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>Yes, that’s it. Let’s move on to another paragraph. This paragraph has some
@@ -852,7 +855,7 @@ an example <a class="reference internal" href="../guides/dynamic-loading-catalog
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="javascript.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of JavaScript apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="react-native.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of React Native apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="jsLingui - Seamless i18n in Javascript and React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
