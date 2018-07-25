@@ -87,7 +87,10 @@
 </ul>
 <p class="caption"><span class="caption-text">Guides</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Testing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#snapshot-testing">Snapshot testing</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="excluding-build-files.html">Excluding build files</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
@@ -192,6 +195,75 @@
   <span class="p">})</span>
 <span class="p">})</span>
 </pre></div>
+</div>
+<div class="section" id="snapshot-testing">
+<h2>Snapshot testing<a class="headerlink" href="#snapshot-testing" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://jestjs.io/docs/en/snapshot-testing">Snapshot testing</a> is fast and convenient way to ensure you app doesn’t change
+unexpectedly. However, components are serialized with all props, so even simple
+translation:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Today</span> <span class="nx">is</span> <span class="p">&lt;</span><span class="nt">DateFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">now</span><span class="p">}</span> <span class="p">/&gt;&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>has a very long and hard to read snapshot:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Trans
+ i18n={
+   I18n {
+     _activeLanguageData: Object {
+       plurals: [Function],
+     },
+     _activeMessages: Object {},
+     _catalogs: Object {
+       en: Object {
+         languageData: Object {},
+         messages: Object {},
+       },
+     },
+     _dev: Object {
+       compile: [Function],
+       loadLanguageData: [Function],
+     },
+     _language: en,
+     _locales: undefined,
+     plural: [Function],
+     select: [Function],
+     selectOrdinal: [Function],
+     t: [Function],
+   }
+ }
+ i18nHash={null}
+ id=Today is {now,date}
+ values={
+   Object {
+     now: 2017-04-05T11:14:00.000Z,
+   }
+ }
+&gt;
+ &lt;Render
+   value=Today is 4/5/2017
+ &gt;
+   Today is 4/5/2017
+ &lt;/Render&gt;
+&lt;/Trans&gt;
+</pre></div>
+</div>
+<p>In such case we might want to test just an HTML output. <a class="reference external" href="https://github.com/rayrutjes/jest-serializer-html">jest-serializer-html</a>
+indents and formats HTML in snapshot making it easier to diff. Add it to Jest config:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;snapshotSerializers&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;jest-serializer-html&quot;</span>
+   <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Instead of serializing element wrapper, serialize HTMl instead:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">expect</span><span class="p">(</span><span class="nx">mount</span><span class="p">(&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Today</span> <span class="nx">is</span> <span class="p">&lt;</span><span class="nt">DateFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">now</span><span class="p">}</span> <span class="p">/&gt;&lt;/</span><span class="nt">Trans</span><span class="p">&gt;).</span><span class="nx">html</span><span class="p">())</span>
+   <span class="p">.</span><span class="nx">toMatchSnapshot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The final snapshot is shorter and easy to review:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>Today is 4/5/2017<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 </div>
 </div>
 
