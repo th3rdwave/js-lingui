@@ -95,7 +95,9 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ref/lingui-react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/react.macro.html">React Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/js.macro.html">JS Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/lingui-cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/lingui-conf.html">Configuration</a></li>
 </ul>
@@ -180,7 +182,9 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -268,6 +272,8 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#Catalogs">Catalogs (global variable or constant)</a>
+</li>
       <li>
     compile
 
@@ -286,23 +292,25 @@
         <li><a href="ref/lingui-cli.html#cmdoption-compile-verbose">--verbose</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     component
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-DateFormat">DateFormat</a>
+        <li><a href="ref/react.html#component-DateFormat">DateFormat</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-I18nProvider">I18nProvider</a>
+        <li><a href="ref/react.html#component-I18nProvider">I18nProvider</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-NumberFormat">NumberFormat</a>
+        <li><a href="ref/react.html#component-NumberFormat">NumberFormat</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-Plural">Plural</a>
+        <li><a href="ref/react.html#component-Plural">Plural</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-Select">Select</a>
+        <li><a href="ref/react.html#component-Select">Select</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-SelectOrdinal">SelectOrdinal</a>
+        <li><a href="ref/react.html#component-SelectOrdinal">SelectOrdinal</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-Trans">Trans</a>
+        <li><a href="ref/react.html#component-Trans">Trans</a>
 </li>
       </ul></li>
   </ul></td>
@@ -312,10 +320,19 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    date
+
+      <ul>
+        <li><a href="ref/js.macro.html#macro-date">macro</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     DateFormat
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-DateFormat">component</a>
+        <li><a href="ref/react.html#component-DateFormat">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -352,7 +369,9 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ref/lingui-react.html#i18nMark">i18nMark() (built-in function)</a>
+      <li><a href="ref/core.html#I18n">I18n() (class)</a>
+</li>
+      <li><a href="ref/react.html#i18nMark">i18nMark() (built-in function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -360,7 +379,7 @@
     I18nProvider
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-I18nProvider">component</a>
+        <li><a href="ref/react.html#component-I18nProvider">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -383,16 +402,62 @@
   </ul></td>
 </tr></table>
 
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    macro
+
+      <ul>
+        <li><a href="ref/js.macro.html#macro-date">date</a>
+</li>
+        <li><a href="ref/js.macro.html#macro-number">number</a>
+</li>
+        <li><a href="ref/js.macro.html#macro-plural">plural</a>
+</li>
+        <li><a href="ref/js.macro.html#macro-t">t</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#Messages">Messages (global variable or constant)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    number
+
+      <ul>
+        <li><a href="ref/js.macro.html#macro-number">macro</a>
+</li>
+      </ul></li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     NumberFormat
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-NumberFormat">component</a>
+        <li><a href="ref/react.html#component-NumberFormat">component</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#options.catalogs">options.catalogs (options attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#options.language">options.language (options attribute)</a>
+</li>
+      <li><a href="ref/core.html#options.locales">options.locales (options attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -403,7 +468,16 @@
     Plural
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-Plural">component</a>
+        <li><a href="ref/react.html#component-Plural">component</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    plural
+
+      <ul>
+        <li><a href="ref/js.macro.html#macro-plural">macro</a>
 </li>
       </ul></li>
   </ul></td>
@@ -416,7 +490,7 @@
     Select
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-Select">component</a>
+        <li><a href="ref/react.html#component-Select">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -425,9 +499,11 @@
     SelectOrdinal
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-SelectOrdinal">component</a>
+        <li><a href="ref/react.html#component-SelectOrdinal">component</a>
 </li>
       </ul></li>
+      <li><a href="ref/core.html#setupI18n">setupI18n() (built-in function)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -435,10 +511,19 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li>
+    t
+
+      <ul>
+        <li><a href="ref/js.macro.html#macro-t">macro</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
     Trans
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-Trans">component</a>
+        <li><a href="ref/react.html#component-Trans">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -447,7 +532,7 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ref/lingui-react.html#withI18n">withI18n() (built-in function)</a>
+      <li><a href="ref/react.html#withI18n">withI18n() (built-in function)</a>
 </li>
   </ul></td>
 </tr></table>

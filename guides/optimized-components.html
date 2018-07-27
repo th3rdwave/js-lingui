@@ -102,7 +102,9 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.macro.html">React Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/js.macro.html">JS Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
 </ul>
@@ -195,7 +197,7 @@ which must be handled to make i18n related updates reliable.</p>
 <p>The two cases to handle are:</p>
 <ol class="arabic simple">
 <li>Translations inside optimized component.</li>
-<li>Optimized component is wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> to translate text attributes.</li>
+<li>Optimized component is wrapped in <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> to translate text attributes.</li>
 </ol>
 <p>Let’s take a look at both scenarios.</p>
 <div class="section" id="translations-inside-optimized-component">
@@ -211,11 +213,11 @@ which must be handled to make i18n related updates reliable.</p>
 <p>When active language is changed or message catalog is updated,
 <code class="docutils literal notranslate"><span class="pre">OptimizedComponent</span></code> will probably skip the update, because it’s props
 don’t change. It means that all children of <code class="docutils literal notranslate"><span class="pre">OptimizedComponent</span></code> won’t be
-updated, including <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
-<p>By default, all <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> components listen for language and catalog changes
+updated, including <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
+<p>By default, all <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> components listen for language and catalog changes
 and update themselves when it happens. Even if <code class="docutils literal notranslate"><span class="pre">OptimizedComponent</span></code>
-skips update, <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component is updated correctly.</p>
-<p>Also, <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC listens for language and catalog changes, but this
+skips update, <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component is updated correctly.</p>
+<p>Also, <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC listens for language and catalog changes, but this
 behavior can be disabled by passing <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">=</span> <span class="pre">false</span></code> option:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// Component won&#39;t listen for language/catalog changes</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">withI18n</span><span class="p">({</span> <span class="nx">update</span> <span class="o">=</span> <span class="kc">false</span> <span class="p">})(</span><span class="nx">Component</span><span class="p">)</span>
@@ -223,8 +225,8 @@ behavior can be disabled by passing <code class="docutils literal notranslate"><
 </div>
 </div>
 <div class="section" id="optimized-component-wrapped-in-withi18n">
-<h2>Optimized component wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a><a class="headerlink" href="#optimized-component-wrapped-in-withi18n" title="Permalink to this headline">¶</a></h2>
-<p>Component should be wrapped in <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC when it’s required to access
+<h2>Optimized component wrapped in <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a><a class="headerlink" href="#optimized-component-wrapped-in-withi18n" title="Permalink to this headline">¶</a></h2>
+<p>Component should be wrapped in <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC when it’s required to access
 low-level i18n API. Common usecase is translation of attributes:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
@@ -242,7 +244,7 @@ low-level i18n API. Common usecase is translation of attributes:</p>
 However, text attributes aren’t components but only function calls so they can’t
 listen to changes of active language and catalog.</p>
 <p>The trick here is to update whole component, but since it’s a PureComponent,
-it does shallow comparison of props. <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC makes things easier by
+it does shallow comparison of props. <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC makes things easier by
 passing <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> to wrapped component. This hash is changed after every
 change of active language or catalog.</p>
 <p>If you have your own implementation of <code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate</span></code>, simply compare
@@ -271,7 +273,7 @@ you can disable it by passing <code class="docutils literal notranslate"><span c
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>jsLingui handles updates in and for Optimized components in most cases. If you
 want to disable this behavior, you can pass either <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">=</span> <span class="pre">false</span></code>
-or <code class="docutils literal notranslate"><span class="pre">withHash</span> <span class="pre">=</span> <span class="pre">false</span></code> to <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC.</p>
+or <code class="docutils literal notranslate"><span class="pre">withHash</span> <span class="pre">=</span> <span class="pre">false</span></code> to <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC.</p>
 <p><code class="docutils literal notranslate"><span class="pre">update</span></code> fixes updates if component has optimized parents while <code class="docutils literal notranslate"><span class="pre">withHash</span></code>
 fixes updates for intermediate optimized children.</p>
 </div>
