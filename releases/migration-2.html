@@ -96,9 +96,7 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/react.macro.html">React Macros</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/js.macro.html">JS Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
 </ul>
@@ -264,7 +262,7 @@ from lingui configuration.</li>
 <h3><code class="docutils literal notranslate"><span class="pre">unpackCatalog</span></code> is deprecated<a class="headerlink" href="#unpackcatalog-is-deprecated" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">unpackCatalog</span></code> was a useless optimization, which probably saved less bytes
 that was a size of <code class="docutils literal notranslate"><span class="pre">unpackCatalog</span></code> function. <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">compile</span></code> now produce
-<em>unpacked</em> file, which can be used directly in <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
+<em>unpacked</em> file, which can be used directly in <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
 <span class="kr">import</span> <span class="nx">catalogEn</span> <span class="nx">from</span> <span class="s1">&#39;./locale/en/messages.js&#39;</span>
 
@@ -294,14 +292,14 @@ build your app with <code class="docutils literal notranslate"><span class="pre"
 <div class="section" id="default-wrapping-components-removed">
 <h3>Default wrapping components removed<a class="headerlink" href="#default-wrapping-components-removed" title="Permalink to this headline">¶</a></h3>
 <p>In React &lt; 16.2, components had to return single children which had to be either
-React Element or null. For this reason, <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> wrapped
-children in <code class="docutils literal notranslate"><span class="pre">div</span></code> and <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> wrapped translations in <code class="docutils literal notranslate"><span class="pre">span</span></code>.</p>
+React Element or null. For this reason, <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> wrapped
+children in <code class="docutils literal notranslate"><span class="pre">div</span></code> and <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> wrapped translations in <code class="docutils literal notranslate"><span class="pre">span</span></code>.</p>
 <p>React 16.2 allows multiple children and text children, so default wrapping
 components are removed.</p>
 <p>If you’re using React &lt; 16.2 or you want to keep the previous behavior:</p>
 <ol class="arabic simple">
-<li>Set <code class="docutils literal notranslate"><span class="pre">defaultRender</span></code> prop of <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> to <code class="docutils literal notranslate"><span class="pre">span</span></code>.</li>
-<li>Wrap children of <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> into <code class="docutils literal notranslate"><span class="pre">div</span></code> explicitly.</li>
+<li>Set <code class="docutils literal notranslate"><span class="pre">defaultRender</span></code> prop of <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> to <code class="docutils literal notranslate"><span class="pre">span</span></code>.</li>
+<li>Wrap children of <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> into <code class="docutils literal notranslate"><span class="pre">div</span></code> explicitly.</li>
 </ol>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>

@@ -1,0 +1,14 @@
+**********
+Typescript
+**********
+
+Type definitions
+================
+
+_`Jeow Li Huan wrote <https://github.com/huan086>` type definition for `@lingui/core`
+and `@lingui/react`:
+
+.. code-block:: shell
+
+   npm install --save-dev @types/lingui__core  # types for @lingui/core
+   npm install --save-dev @types/lingui__react  # types for @lingui/react

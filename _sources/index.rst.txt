@@ -58,10 +58,7 @@ Key features
    :maxdepth: 1
    :caption: API References
 
-   Core (JavaScript) <ref/core>
    React <ref/lingui-react>
-   React Macros <ref/react.macro>
-   JS Macros <ref/js.macro>
    CLI <ref/lingui-cli>
    Configuration <ref/lingui-conf>
 

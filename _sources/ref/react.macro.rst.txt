@@ -1,13 +1,40 @@
-react.macro - API Reference
-========================
+****************************************************
+@lingui/react.macro - Babel macros for @lingui/react
+****************************************************
 
 ``react.macro`` is a `babel macro <babel-plugin-macros>`_ which transforms React
-components into messages in ICU MessageFormat.
+components into messages in ICU MessageFormat. This package is completely optional,
+but it's convenient way to write MessageFormat syntax using React components.
+
+Overview
+========
+
+All macros are transformed to :component:`Trans` component from
+:doc:`@lingui/react <react>`. Here are some examples of `message format syntax <message-format>`_:
+
++-------------------------------------------------------------+--------------------------------------------------------------------+
+| Macro                                                       | Result                                                             |
++=============================================================+====================================================================+
+| ``<Trans>Refresh inbox</Trans>``                            | ``<Trans id="Refresh inbox" />``                                   |
++-------------------------------------------------------------+--------------------------------------------------------------------+
+| ``<Trans id="msg.refresh">Refresh inbox</Trans>``           | ``<Trans id="msg.refresh" defaults="Refresh inbox" />``            |
++-------------------------------------------------------------+--------------------------------------------------------------------+
+| ``<Trans>Attachment {name} saved</Trans>``                  | ``<Trans id="Attachment {name} saved" />``                         |
++-------------------------------------------------------------+--------------------------------------------------------------------+
+| ``<Plural value={count} one="Message" other="Messages" />`` | ``<Trans id="{value, plural, one {Message} other {Messages}}" />`` |
++-------------------------------------------------------------+--------------------------------------------------------------------+
+| ``<Trans>Today is <DateFormat value={today} /></Trans>``    | ``<Trans id="Today is {today, date}" />``                          |
++-------------------------------------------------------------+--------------------------------------------------------------------+
+
+In short, MessageFormat syntax is generated from children of :reactmacro:`Trans` macro
+and props of :reactmacro:`Plural`, :reactmacro:`Select` and :reactmacro:`SelectOrdinal`.
+This message is used as a message ID in catalog, but can be overriden by custom ID.
+Generated message is guaranteed to be syntactically valid.
 
 Installation
-------------
+============
 
-Babel macros require babel-plugin-macros_ to work:
+``react.macro`` requires babel-plugin-macros_ to work:
 
 1. Install ``babel-plugin-macros`` as a development dependency::
 
@@ -28,6 +55,239 @@ Babel macros require babel-plugin-macros_ to work:
 
       yarn add --dev @lingui/react.macro
       # npm install --save-dev @lingui/react.macro
+
+Reference
+=========
+
+Common props
+------------
+
+All macros share following props:
+
+id
+^^
+
+Each message in catalog is identified by **message ID**.
+While all macros use generated message as the ID, it's possible to override it.
+Generated message is then used as a default translation.
+
+.. code-block:: jsx
+
+   import { Trans } from "@lingui/react.macro"
+
+   <Trans id="message.attachment_saved">Attachment {name} saved.</Trans>
+
+   // This is transformed to:
+   // <Trans id="message.attachment_saved" defaults="Attachment {name} saved." />
+
+render
+^^^^^^
+
+Custom component to render translation into. This prop is directly passed to
+:component:`Trans` component from :doc:`@lingui/react <react>`. See
+`rendering of translations <rendering-translations>`_ for more info.
+
+Trans
+-----
+
+.. reactmacro:: Trans
+
+Plural
+------
+
+.. reactmacro:: Plural
+
+   :prop number value: Value is mapped to plural form below
+   :prop string|Object format:  Number format passed as options to `Intl.NumberFormat`_
+   :prop number offset: Offset of value for plural forms
+   :prop string zero: Form for empty ``value``
+   :prop string one: *Singular* form
+   :prop string two: *Dual* form
+   :prop string few: *Paucal* form
+   :prop string many: *Plural* form
+   :prop string other: (required) general *plural* form
+   :prop string _<number>: Exact match form, correspond to ``=N`` rule
+
+:reactmacro:`Plural` is transformed into :icu:`pluralization <plural>` format. This
+format is used to choose output based on the pluralization rules of the active language.
+
+
+.. code-block:: jsx
+
+   import { Plural } from "@lingui/react.macro"
+
+   <Plural value={numBooks} one="Book" other="Books" />
+
+As a developer you only need to know plural rules for the language
+used in source code. For example for English it's only ``one`` and ``other``.
+Plural forms for all other languages can be found at `CLDR Plural Rules`_ page.
+
+``other`` plural form is also used when a specific plural form isn't defined.
+
+.. warning::
+
+   Not all languages use ``zero`` plural form! English, for example, uses
+   ``other`` form when ``value == 0`` (e.g: 1 book, but 0 books). Use ``_<number>``
+   form if you want to match zero (e.g: ``_0``):
+
+   .. code-block:: jsx
+
+      import { Plural } from "@lingui/react.macro"
+
+      <Plural
+         value={numBooks}
+         _0="No books"
+         one="# book"
+         other="# books"
+      />
+
+``#`` character inside message is used as a placeholder for ``value``. When ``offset``
+is used, the ``#`` is replaced with ``value - offset``.
+
+``#`` is always formatted as a number using :component:`NumberFormat`. You can pass
+extra options to formatter using ``format`` prop.
+
+Exact matches in MessageFormat syntax are expressed as ``=<number>`` (e.g. ``=0``),
+but in React this isn't a valid prop name. Therefore, exact matches are expressed as
+``_<number>`` prop (e.g. ``_0). This is commonly used in combination with
+``offset`` prop. ``offset`` affects only plural forms, not exact matches.
+
+.. code-block:: jsx
+
+   import { Plural } from "@lingui/react.macro"
+
+   const count = 42;
+   <Plural
+       value={count}
+       offset={1}
+       // when value == 0
+       _0="Nobody arrived"
+
+       // when value == 1
+       _1="Only you arrived"
+
+       // when value == 2
+       // value - offset = 1 -> `one` plural form
+       one="You and # other guest arrived"
+
+       // when value >= 3
+       other="You and # other guests arrived"
+   />;
+
+Select
+------
+
+.. reactmacro:: Select
+
+   :prop number value: Override auto-generated message ID
+   :prop number other: (required) Default, catch-all form
+
+This component selects the form based on content of ``value`` prop. It
+works like a ``switch`` statement. ``other`` prop is used when no prop
+matches ``value``:
+
+.. code-block:: jsx
+
+   // gender == "female"      -> Her book
+   // gender == "male"        -> His book
+   // gender == "unspecified" -> Their book
+   <Select
+       value={gender}
+       male="His book"
+       female="Her book"
+       other="Their book"
+   />;
+
+SelectOrdinal
+-------------
+
+.. reactmacro:: SelectOrdinal
+
+   :prop number value: Override auto-generated message ID
+   :prop number offset: Offset of value for plural forms
+   :prop string zero: Form for empty `value`
+   :prop string one: *Singular* form
+   :prop string two: *Dual* form
+   :prop string few: *Paucal* form
+   :prop string many: *Plural* form
+   :prop string other: (required) general *plural* form
+   :prop string _<number>: Exact match form, correspond to ``=N`` rule. (e.g: ``_0``, ``_1``)
+   :prop string|Object format:  Number format passed as options to `Intl.NumberFormat`_
+
+   MessageFormat: ``{arg, selectordinal, ...forms}``
+
+This macro is equivalent to :reactmacro:`Plural`. The only difference is that
+it uses **ordinal** plural forms, instead of **cardinal** ones:
+
+.. code-block:: jsx
+
+   // count == 1 -> 1st
+   // count == 2 -> 2nd
+   // count == 3 -> 3rd
+   // count == 4 -> 4th
+   <SelectOrdinal
+       value={count}
+       one="1st"
+       two="2nd"
+       few="3rd"
+       other="#th"
+   />
+
+DateFormat
+----------
+
+.. reactmacro:: DateFormat
+
+   :prop string|Date value: Date to be formatted
+   :prop string|Object format: Date format passed as options to `Intl.DateTimeFormat`_.
+
+:reactmacro:`DateFormat` macro is a wrapper around `Intl.DateTimeFormat`_.
+It takes a date object or a date string as a ``value`` prop and formats it using
+``format`` options. ``format`` prop supports the same options as `Intl.DateTimeFormat`_:
+
+.. code-block:: jsx
+
+   // date as a string
+   <DateFormat value="2018-07-23" />;
+
+   const now = new Date();
+   // default language format
+   <DateFormat value={now} />;
+
+   const now = new Date();
+   // custom format
+   <DateFormat value={now} format={{
+       year: "numeric",
+       month: "long",
+       day: "numeric"
+   }} />;
+
+NumberFormat
+------------
+
+.. reactmacro:: NumberFormat
+
+   :prop number value: Number to be formatted
+   :prop string|Object format: Number format passed as options to `Intl.NumberFormat`_
+
+:reactmacro:`NumberFormat` macro is a wrapper around
+`Intl.NumberFormat`_. It takes a number as a ``value`` prop
+and formats it using ``format`` options. ``format`` prop supports the same
+options as `Intl.NumberFormat`_:
+
+.. code-block:: jsx
+
+   const num = 0.42;
+   // default language format
+   <NumberFormat value={num} />;
+
+   const amount = 3.14;
+   // custom format
+   <NumberFormat value={amount} format={{
+       style: 'currency',
+       currency: 'EUR',
+       minimumFractionDigits: 2
+   }} />;
 
 
 .. _babel-plugin-macros: https://github.com/kentcdodds/babel-plugin-macros

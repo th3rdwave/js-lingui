@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ICU MessageFormat &mdash; jsLingui  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Migration guide from 1.x to 2.x" href="../releases/migration-2.html" />
+    <link rel="prev" title="Lingui Configuration" href="conf.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> jsLingui
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react.macro.html">React Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="js.macro.html">JS Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lingui-cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conf.html">Configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ICU MessageFormat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+<p class="caption"><span class="caption-text">External resources</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">jsLingui</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>ICU MessageFormat</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/ref/message-format.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="icu-messageformat">
+<span id="message-format"></span><h1>ICU MessageFormat<a class="headerlink" href="#icu-messageformat" title="Permalink to this headline">¶</a></h1>
+<p>ICU MessageFormat is a flexible yet powerful syntax to express all nuances of grammar
+for each language.</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" rowspan="2">Format</th>
+<th class="head" rowspan="2">Example</th>
+</tr>
+<tr class="row-even"></tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>Simple text</td>
+<td><code class="docutils literal notranslate"><span class="pre">Refresh</span> <span class="pre">inbox</span></code></td>
+</tr>
+<tr class="row-even"><td>Variables</td>
+<td><code class="docutils literal notranslate"><span class="pre">Attachment</span> <span class="pre">{name}</span> <span class="pre">saved</span></code></td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="std:icu-plural">Plurals</p>
+</td>
+<td><ul class="first last">
+<li><p class="first">Using language specific plural forms (<code class="docutils literal notranslate"><span class="pre">one</span></code>, <code class="docutils literal notranslate"><span class="pre">other</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">count</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="n">Message</span><span class="p">}</span> <span class="n">other</span> <span class="p">{</span><span class="n">Messages</span><span class="p">}}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Using exact matches (<code class="docutils literal notranslate"><span class="pre">=0</span></code>):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, =0 {No messages}
+                one {# message}
+                other {# messages}}
+</pre></div>
+</div>
+</li>
+<li><p class="first">Offseting plural form:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, offset:1
+                =0 {Nobody read this message}
+                =1 {Only you read this message}
+                one {You and # friend read this message}
+                other {You and # friends read this message}
+</pre></div>
+</div>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="std:icu-select">Select</p>
+</td>
+<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{gender, select, male {He replied to your message}
+                 female {She replied to your message}
+                 other {They replied to your message}}
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="std:icu-ordinal">Ordinals</p>
+</td>
+<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{count, selectOrdinal, one {1st message}
+                       two {2nd message}
+                       few {3rd message}
+                       other {#th message}}
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last" id="std:icu-number">Numbers</p>
+</td>
+<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>You&#39;re using {size, number, percent} of you quota
+</pre></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last" id="std:icu-date">Dates</p>
+</td>
+<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>Today is {today, date}
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../releases/migration-2.html" class="btn btn-neutral float-right" title="Migration guide from 1.x to 2.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="conf.html" class="btn btn-neutral" title="Lingui Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tomáš Ehrlich.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
