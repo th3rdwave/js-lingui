@@ -1,0 +1,530 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Comparison with react-intl &mdash; jsLingui  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Talks and articles about i18n in JavaScript" href="talks-about-i18n.html" />
+    <link rel="prev" title="Migration guide from 0.x to 1.x" href="../releases/migration-1.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> jsLingui
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Comparison with react-intl</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#translations-with-rich-text-markup">Translations with rich-text markup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugin-for-component-based-message-syntax">Plugin for component-based message syntax</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plurals">Plurals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#text-attributes">Text attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-message-catalog">External message catalog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compiling-messages">Compiling messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#disadvatages-of-jslingui">Disadvatages of jsLingui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">jsLingui</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Comparison with react-intl</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/misc/react-intl.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="comparison-with-react-intl">
+<h1>Comparison with react-intl<a class="headerlink" href="#comparison-with-react-intl" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> is definitely the most popural and widely-used i18n library for React.
+<a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> is in many ways very similar: both libraries use the same syntax for
+(messages ICU MessageFormat) and they also have very similar API.</p>
+<p>Here’s an example from <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> docs:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">FormattedMessage</span>
+   <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span>
+   <span class="na">defaultMessage</span><span class="o">=</span><span class="p">{</span><span class="sb">`Hello {name}, you have {unreadCount, number} {unreadCount, plural,</span>
+<span class="sb">     one {message}</span>
+<span class="sb">     other {messages}</span>
+<span class="sb">   }`</span><span class="p">}</span>
+   <span class="na">values</span><span class="o">=</span><span class="p">{{</span><span class="nx">name</span><span class="o">:</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">unreadCount</span><span class="p">}}</span>
+ <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>Looking at the low-level API of <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a>, there isn’t much difference:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span>
+   <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span>
+   <span class="na">defaults</span><span class="o">=</span><span class="p">{</span><span class="sb">`Hello {name}, you have {unreadCount, number} {unreadCount, plural,</span>
+<span class="sb">     one {message}</span>
+<span class="sb">     other {messages}</span>
+<span class="sb">   }`</span><span class="p">}</span>
+   <span class="na">values</span><span class="o">=</span><span class="p">{{</span><span class="nx">name</span><span class="o">:</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">unreadCount</span><span class="p">}}</span>
+ <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>There’s really no reason to reinvent the wheel when both libs are build on top of the
+same message syntax. The story doesn’t end here, though.</p>
+<div class="section" id="translations-with-rich-text-markup">
+<h2>Translations with rich-text markup<a class="headerlink" href="#translations-with-rich-text-markup" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have a following text:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Read the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs</span><span class="p">&gt;</span>documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>In <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a>, this would be translated as:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">FormattedMessage</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&#39;msg.docs&#39;</span>
+    <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&#39;Read the {link}.&#39;</span>
+    <span class="na">values</span><span class="o">=</span><span class="p">{{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs&quot;</span><span class="p">&gt;</span><span class="nx">documentation</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+    <span class="p">}}</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>which isn’t enough, because word <code class="docutils literal notranslate"><span class="pre">documentation</span></code> is still left untranslated.
+Correct solution would be:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">FormattedMessage</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&#39;msg.docs&#39;</span>
+    <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&#39;Read the {link}.&#39;</span>
+    <span class="na">values</span><span class="o">=</span><span class="p">{{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="p">(</span>
+         <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs&quot;</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">FormattedMessage</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.docs.link&quot;</span> <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&quot;documentation&quot;</span> <span class="p">/&gt;</span>
+         <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="p">)</span>
+    <span class="p">}}</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>but even this solution is sub-optimal, because translator gets two messages to translate:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;msg.docs&quot;</span><span class="p">:</span> <span class="s2">&quot;Read the {link}.&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;msg.docs.link&quot;</span><span class="p">:</span> <span class="s2">&quot;documentation&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is very fragile and error prone because phrases can’t be translated word by word
+in general.</p>
+<p><a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> extends ICU MessageFormat with tags. The example above would be:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span>
+    <span class="na">id</span><span class="o">=</span><span class="s">&#39;msg.docs&#39;</span>
+    <span class="na">defaults</span><span class="o">=</span><span class="s">&#39;Read the &lt;0&gt;documentation&lt;/0&gt;.&#39;</span>
+    <span class="na">components</span><span class="o">=</span><span class="p">{[</span>
+        <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs&quot;</span> <span class="p">/&gt;</span>
+    <span class="p">]}</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>and translator gets the message in one piece: <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">the</span> <span class="pre">&lt;0&gt;documentation&lt;/0&gt;</span></code>.</p>
+<p>However, we still go one level deeper.</p>
+</div>
+<div class="section" id="plugin-for-component-based-message-syntax">
+<h2>Plugin for component-based message syntax<a class="headerlink" href="#plugin-for-component-based-message-syntax" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> provides <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-react</span></code> which generates message syntax
+automatically.</p>
+<p>Let’s go back to the previous example:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   Read the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs</span><span class="p">&gt;</span>documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>When using babel plugin, all we need to do is wrap the message in
+<a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.docs&quot;</span><span class="p">&gt;</span>Read the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs</span><span class="p">&gt;</span>documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Babel plugin then parses children of <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component and generates
+<code class="docutils literal notranslate"><span class="pre">defaults</span></code> and <code class="docutils literal notranslate"><span class="pre">components</span></code> props automaticaly in a form we saw in previous section.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Upcoming <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> 3.0 will be even easier to use, because instead of plugins
+it uses babel macros. They are much easier to use and  work with Create React App
+without ejecting.</p>
+</div>
+<p>This is extremly useful when adding i18n to existing project. All we need to do is wrap
+all messages in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
+<p>Let’s compare it with <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> solution to see the difference:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">FormattedMessage</span>
+       <span class="na">id</span><span class="o">=</span><span class="s">&#39;msg.docs&#39;</span>
+       <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&#39;Read the {link}.&#39;</span>
+       <span class="na">values</span><span class="o">=</span><span class="p">{{</span>
+           <span class="nx">name</span><span class="o">:</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs&quot;</span><span class="p">&gt;</span>
+               <span class="p">&lt;</span><span class="nt">FormattedMessage</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.docs.link&quot;</span> <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&quot;documentation&quot;</span> <span class="p">/&gt;</span>
+            <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+           <span class="p">)</span>
+       <span class="p">}}</span>
+   <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>It’ also worth mentioning that the message IDs are completely optional.
+<a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> is unopinionated in this way and perfectly works with messages as IDs as
+well:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>Read the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs</span><span class="p">&gt;</span>documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p class="last">Message ID is <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">the</span> <span class="pre">&lt;0&gt;documentation&lt;/0&gt;.</span></code> instead of <code class="docutils literal notranslate"><span class="pre">msg.id</span></code>. Both
+solutions has pros and cons and library let you choose the one which works for you.</p>
+</div>
+</div>
+<div class="section" id="plurals">
+<h2>Plurals<a class="headerlink" href="#plurals" title="Permalink to this headline">¶</a></h2>
+<p>Another very common linguistic feature is pluralization.</p>
+<p>Let’s take a look at original example from <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> docs:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">FormattedMessage</span>
+   <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span>
+   <span class="na">defaultMessage</span><span class="o">=</span><span class="p">{</span><span class="sb">`Hello {name}, you have {unreadCount, number} {unreadCount, plural,</span>
+<span class="sb">     one {message}</span>
+<span class="sb">     other {messages}</span>
+<span class="sb">   }`</span><span class="p">}</span>
+   <span class="na">values</span><span class="o">=</span><span class="p">{{</span><span class="nx">name</span><span class="o">:</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">unreadCount</span><span class="p">}}</span>
+ <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>Using <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> plugins, we could combine <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>, <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> and
+<a class="reference internal" href="../ref/lingui-react.html#component-NumberFormat">&lt;NumberFormat&gt;</a> components:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span><span class="p">&gt;</span>
+   <span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="p">/&gt;</span> <span class="p">&lt;</span><span class="nt">Plural</span>
+      <span class="na">one</span><span class="o">=</span><span class="s">&quot;message&quot;</span>
+      <span class="na">other</span><span class="o">=</span><span class="s">&quot;messages&quot;</span>
+   <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>and the final message would be very similar:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span>
+   <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span>
+   <span class="na">defaults</span><span class="o">=</span><span class="p">{</span><span class="sb">`Hello &lt;0&gt;{name}&lt;/0&gt;, you have {unreadCount, number} {unreadCount, plural,</span>
+<span class="sb">     one {message}</span>
+<span class="sb">     other {messages}</span>
+<span class="sb">   }`</span><span class="p">}</span>
+   <span class="na">values</span><span class="o">=</span><span class="p">{{</span><span class="nx">name</span><span class="p">,</span> <span class="nx">unreadCount</span><span class="p">}}</span>
+ <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>The only difference is <cite>&lt;0&gt;</cite> tag included in message, because <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> handles
+both components in variables and message itself.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>It’s good to mention here that this isn’t the best example of using plurals.
+Make your translators happy and move plurals to the top of the message:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Plural</span>
+   <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span>
+   <span class="na">one</span><span class="o">=</span><span class="p">{</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="na">message.</span><span class="p">}</span>
+   <span class="na">other</span><span class="o">=</span><span class="p">{</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="na">messages.</span><span class="p">}</span>
+<span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p class="last">Even though both variants are syntactically valid in ICU MessageFormat, the second
+one is easier for translating, because (again) translator gets the phrase in one
+piece.</p>
+</div>
+</div>
+<div class="section" id="text-attributes">
+<h2>Text attributes<a class="headerlink" href="#text-attributes" title="Permalink to this headline">¶</a></h2>
+<p>Components can’t be used in some contexts, e.g: for translation of text attributes.
+As <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> provides JS methods (e.g: <code class="docutils literal notranslate"><span class="pre">formatMessage</span></code>) which return plain
+strings, <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> uses core library for such translations. And it also provides
+plugins for these usecases!</p>
+<p>Few short examples:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">title</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`The title of </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">}&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;flags&quot;</span> <span class="p">})}</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>These examples are transformed into low-level API calls:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">title</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s2">&quot;The title of {name}&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">})</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s2">&quot;{count, plural, one {flag} other {flags}}&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">count</span> <span class="p">}</span> <span class="p">)}</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>Custom IDs are supported as well:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">a</span> <span class="na">title</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="p">(</span><span class="s2">&quot;link.title&quot;</span><span class="p">)</span><span class="sb">`The title of </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">}&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">img</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span> <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;img.alt&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="nx">count</span><span class="p">,</span> <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;flag&quot;</span><span class="p">,</span> <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;flags&quot;</span> <span class="p">})}</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">To inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object into props, you need to use HOC <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a>. It’s
+very similar to <code class="docutils literal notranslate"><span class="pre">injectIntl</span></code> from <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a>.</p>
+</div>
+</div>
+<div class="section" id="external-message-catalog">
+<h2>External message catalog<a class="headerlink" href="#external-message-catalog" title="Permalink to this headline">¶</a></h2>
+<p>We have our app internationalized and now we want to send messages to translator.</p>
+<p><a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> comes with babel plugin which extracts messages from individual files,
+but it’s up to you to merge them into one file which you can send to translators.</p>
+<p><a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> provides handy <a class="reference external" href="../tutorials/cli">CLI</a> which extracts messages and merges
+them with any existing translations. Again, the story doesn’t end here.</p>
+</div>
+<div class="section" id="compiling-messages">
+<h2>Compiling messages<a class="headerlink" href="#compiling-messages" title="Permalink to this headline">¶</a></h2>
+<p>The biggest and slowest part of i18n libraries are message parsers and formatters.
+<a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> compiles messages from MessageFormat syntax into JS functions which only
+accept values for interpolation (e.g. components, variables, ets). This makes
+final bundle smaller and library faster. Compiled catalogs are also bundled with locale
+data like plurals, so it’s not necessary to load them manually.</p>
+</div>
+<div class="section" id="disadvatages-of-jslingui">
+<h2>Disadvatages of jsLingui<a class="headerlink" href="#disadvatages-of-jslingui" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> has been around for some time and it’s definitely more popular, more used
+and lot of production sites are running it. The community is larger and it’s much
+easier to get a help of StackOverflow or other sites.</p>
+<p><a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> is very new library and the community is very small at the moment. It’s
+not tested on many production sites. On the other hand, the testing suit of <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a>
+is very large and all examples are part of integration testing suit to make sure
+everything is working fine.</p>
+<p>Also, <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> is actively maintained. Bug fixes are fixed regularly and new
+features are constantly coming in. At the moment there’s work on progress on
+code splitting in webpack, so only messages related to code in chunk are loaded.</p>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>both libraries use the same MessageFormat syntax</li>
+<li>similar API (easy to port from one to another)</li>
+</ul>
+<p>On top of that, <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a>:</p>
+<ul class="simple">
+<li>supports rich-text messages</li>
+<li>provides plugins to simlify writing messages using MessageFormat syntax</li>
+<li>provides CLI for extracting and compiling messages</li>
+<li>is very small (&lt;5kb gzipped) and fast</li>
+<li>works also in vanilla JS (without React)</li>
+<li>is actively maintained</li>
+</ul>
+<p>On the other hand, <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a>:</p>
+<ul class="simple">
+<li>is the most popular and used i18n lib in React</li>
+<li>is used in many production websites (stability)</li>
+<li>has lot of resources available online</li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>Do you have any comments or questions? Join discussion at
+<a class="reference external" href="https://gitter.im/lingui/js-lingui">gitter</a> or raise an
+<a class="reference external" href="https://github.com/lingui/js-lingui/issues/new">issue</a>. Any feedback welcome!</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="talks-about-i18n.html" class="btn btn-neutral float-right" title="Talks and articles about i18n in JavaScript" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../releases/migration-1.html" class="btn btn-neutral" title="Migration guide from 0.x to 1.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tomáš Ehrlich.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
