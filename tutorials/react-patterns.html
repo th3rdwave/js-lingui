@@ -110,9 +110,11 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -191,23 +193,23 @@
 <h1>Common i18n patterns in React<a class="headerlink" href="#common-i18n-patterns-in-react" title="Permalink to this headline">¶</a></h1>
 <p>Following page describes the most common i18n patterns in React. It’s a followup
 to <a class="reference external" href="react">tutorial</a> with practical examples. See the
-<a class="reference external" href="../ref/lingui-react">API reference</a> for detailed information about all components.</p>
+<a class="reference external" href="../ref/react">API reference</a> for detailed information about all components.</p>
 <div class="section" id="components">
 <h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
 <p>Using i18n components is the most straightforward way how to translate your React
 components.</p>
-<p><a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> handles translations of messages including variables and other
+<p><a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> handles translations of messages including variables and other
 React components:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">jsLingui</span> <span class="nx">example</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/profile&quot;</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">a</span><span class="p">&gt;.&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>You don’t need anything special to use <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> inside out app (except
-of wrapping your app in <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>).</p>
+<p>You don’t need anything special to use <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> inside out app (except
+of wrapping your app in <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>).</p>
 <div class="section" id="using-generated-message-as-id">
 <h3>Using generated message as ID<a class="headerlink" href="#using-generated-message-as-id" title="Permalink to this headline">¶</a></h3>
-<p>In the examples above, the content of <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> is transformed into
+<p>In the examples above, the content of <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> is transformed into
 message in MessageFormat syntax. By default, this message is used as a message ID.
 In the example above, messages <code class="docutils literal notranslate"><span class="pre">jsLingui</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">&lt;0&gt;{name}&lt;/0&gt;.</span></code>
 are extracted.</p>
@@ -226,17 +228,17 @@ are extracted.</p>
 </div>
 <div class="section" id="element-attributes-and-string-only-translations">
 <h2>Element attributes and string only translations<a class="headerlink" href="#element-attributes-and-string-only-translations" title="Permalink to this headline">¶</a></h2>
-<p>Sometimes you can’t use <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component, for example when translating element
+<p>Sometimes you can’t use <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component, for example when translating element
 attributes:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Image caption&quot;</span> <span class="p">/&gt;</span>
 </pre></div>
 </div>
 <p>In such case you need to inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> props into your component and use core API.</p>
 <ol class="arabic simple">
-<li>Use <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code>, to inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object into
+<li>Use <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code>, to inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object into
 props.</li>
-<li>Call core methods: <code class="docutils literal notranslate"><span class="pre">i18n.t</span></code> is equivalent for <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>, <code class="docutils literal notranslate"><span class="pre">i18n.plural</span></code>
-is equivalent for <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a></li>
+<li>Call core methods: <code class="docutils literal notranslate"><span class="pre">i18n.t</span></code> is equivalent for <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a>, <code class="docutils literal notranslate"><span class="pre">i18n.plural</span></code>
+is equivalent for <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a></li>
 </ol>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">withI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
 
@@ -249,7 +251,7 @@ is equivalent for <a class="reference internal" href="../ref/lingui-react.html#c
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Mind the extra parenthesis after <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a>! HOC optionally takes
+<p>Mind the extra parenthesis after <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a>! HOC optionally takes
 parameters, so this example is wrong:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">export</span> <span class="k">default</span> <span class="nx">withI18n</span><span class="p">(</span><span class="nx">ImageCaption</span><span class="p">)</span>
 </pre></div>
@@ -259,7 +261,7 @@ parameters, so this example is wrong:</p>
 <span class="c1">//                     ^^ extra parenthesis here</span>
 </pre></div>
 </div>
-<p class="last">See the reference documentation for <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a> for possible options.</p>
+<p class="last">See the reference documentation for <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a> for possible options.</p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
@@ -332,8 +334,8 @@ a bit more setup:</p>
 <ol class="arabic">
 <li><p class="first">Create your own instance of <code class="docutils literal notranslate"><span class="pre">i18n</span></code> using <code class="docutils literal notranslate"><span class="pre">setupI18n</span></code> form <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code></p>
 </li>
-<li><p class="first">Pass this instance as <code class="docutils literal notranslate"><span class="pre">i18n</span></code> prop to <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>. This will replace
-default <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object initialized inside <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>.</p>
+<li><p class="first">Pass this instance as <code class="docutils literal notranslate"><span class="pre">i18n</span></code> prop to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>. This will replace
+default <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object initialized inside <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>.</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// App.js</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>

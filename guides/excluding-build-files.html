@@ -81,6 +81,7 @@
               <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
@@ -100,9 +101,11 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -179,10 +182,10 @@
             
   <div class="section" id="excluding-message-catalog-build-files">
 <h1>Excluding message catalog build files<a class="headerlink" href="#excluding-message-catalog-build-files" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command creates temporary message catalogs per each source file. Also,
-<a class="reference internal" href="../ref/lingui-cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a> command generates compiled message catalogs from source ones. All these files
+<p><a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command creates temporary message catalogs per each source file. Also,
+<a class="reference internal" href="../ref/cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a> command generates compiled message catalogs from source ones. All these files
 can be safely ignored from VCS and linters.</p>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">locale</span></code> in paths below with your custom <a class="reference internal" href="../ref/lingui-conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> from configuration.</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">locale</span></code> in paths below with your custom <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> from configuration.</p>
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">locale/_build/</span></code></li>
 <li><code class="docutils literal notranslate"><span class="pre">locale/**/*.js</span></code></li>

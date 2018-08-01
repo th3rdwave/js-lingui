@@ -81,6 +81,7 @@
               <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
@@ -96,9 +97,11 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -277,13 +280,13 @@ automatically.</p>
 </pre></div>
 </div>
 <p>When using babel plugin, all we need to do is wrap the message in
-<a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component:</p>
+<a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.docs&quot;</span><span class="p">&gt;</span>Read the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs</span><span class="p">&gt;</span>documentation<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.<span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Babel plugin then parses children of <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component and generates
+<p>Babel plugin then parses children of <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component and generates
 <code class="docutils literal notranslate"><span class="pre">defaults</span></code> and <code class="docutils literal notranslate"><span class="pre">components</span></code> props automaticaly in a form we saw in previous section.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -292,7 +295,7 @@ it uses babel macros. They are much easier to use and  work with Create React Ap
 without ejecting.</p>
 </div>
 <p>This is extremly useful when adding i18n to existing project. All we need to do is wrap
-all messages in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
+all messages in <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
 <p>Let’s compare it with <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> solution to see the difference:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">FormattedMessage</span>
@@ -337,8 +340,8 @@ solutions has pros and cons and library let you choose the one which works for y
  <span class="p">/&gt;</span>
 </pre></div>
 </div>
-<p>Using <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> plugins, we could combine <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>, <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> and
-<a class="reference internal" href="../ref/lingui-react.html#component-NumberFormat">&lt;NumberFormat&gt;</a> components:</p>
+<p>Using <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> plugins, we could combine <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a>, <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a> and
+<a class="reference internal" href="../ref/react.html#component-NumberFormat">&lt;NumberFormat&gt;</a> components:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span><span class="p">&gt;</span>
    <span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="p">/&gt;</span> <span class="p">&lt;</span><span class="nt">Plural</span>
       <span class="na">one</span><span class="o">=</span><span class="s">&quot;message&quot;</span>
@@ -399,7 +402,7 @@ plugins for these usecases!</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">To inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object into props, you need to use HOC <a class="reference internal" href="../ref/lingui-react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a>. It’s
+<p class="last">To inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object into props, you need to use HOC <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a>. It’s
 very similar to <code class="docutils literal notranslate"><span class="pre">injectIntl</span></code> from <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a>.</p>
 </div>
 </div>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Lingui Configuration &mdash; jsLingui  documentation</title>
+  <title>Page has been moved to new location &mdash; jsLingui  documentation</title>
   
 
   
@@ -27,9 +27,7 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Migration guide from 1.x to 2.x" href="../releases/migration-2.html" />
-    <link rel="prev" title="API Reference - CLI (@lingui/cli)" href="lingui-cli.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -81,6 +79,7 @@
               <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
@@ -95,22 +94,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lingui-react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lingui-cli.html">CLI</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#fallbacklocale">fallbackLocale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#format">format</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#lingui">lingui</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#minimal">minimal</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#sourcelocale">sourceLocale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#srcpathdirs">srcPathDirs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#srcpathignorepatterns">srcPathIgnorePatterns</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#localedir">localeDir</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -166,7 +155,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Lingui Configuration</li>
+      <li>Page has been moved to new location</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -185,96 +174,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="lingui-configuration">
-<h1>Lingui Configuration<a class="headerlink" href="#lingui-configuration" title="Permalink to this headline">¶</a></h1>
-<p>Configuration is read from 3 different sources (the first found wins):</p>
-<ul class="simple">
-<li>from <code class="docutils literal notranslate"><span class="pre">lingui</span></code> section in <code class="docutils literal notranslate"><span class="pre">package.json</span></code></li>
-<li>from <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code></li>
-<li>from <code class="docutils literal notranslate"><span class="pre">lingui.config.js</span></code></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">&lt;rootDir&gt;</span></code> is replaced with base directory of the configuration file.</p>
-<p>Default config:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;fallbackLocale&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;sourceLocale&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;rootDir&gt;/locale&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;srcPathDirs&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;&lt;rootDir&gt;&quot;</span>
-    <span class="p">],</span>
-    <span class="nt">&quot;srcPathIgnorePatterns&quot;</span><span class="p">:</span> <span class="p">[</span>
-        <span class="s2">&quot;/node_modules/&quot;</span>
-    <span class="p">],</span>
-    <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="section" id="fallbacklocale">
-<span id="std:config-fallbackLocale"></span><h2>fallbackLocale<a class="headerlink" href="#fallbacklocale" title="Permalink to this headline">¶</a></h2>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
-<p>Translation from <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> is used when translation for given locale is missing.</p>
-<p>If <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> isn’t defined or translation in <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> is
-missing too, either message default or message ID is used instead.</p>
-</div>
-<div class="section" id="format">
-<span id="std:config-format"></span><h2>format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h2>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">lingui</span></code></p>
-<p>Format of message catalogs. Possible values are:</p>
-<div class="section" id="lingui">
-<h3>lingui<a class="headerlink" href="#lingui" title="Permalink to this headline">¶</a></h3>
-<p>Each message is an object composed in the following format:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;MessageID&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Translated Message&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;defaults&quot;</span><span class="p">:</span> <span class="s2">&quot;Default string (from source code)&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[</span>
-      <span class="p">[</span><span class="s2">&quot;path/to/src.js&quot;</span><span class="p">,</span> <span class="mi">42</span><span class="p">]</span>
-    <span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Origin is filename and line number from where the message was extracted.</p>
-</div>
-<div class="section" id="minimal">
-<h3>minimal<a class="headerlink" href="#minimal" title="Permalink to this headline">¶</a></h3>
-<p>Simple source -&gt; translation mapping:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;MessageID&quot;</span><span class="p">:</span> <span class="s2">&quot;Translated Message&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="sourcelocale">
-<span id="std:config-sourceLocale"></span><h2>sourceLocale<a class="headerlink" href="#sourcelocale" title="Permalink to this headline">¶</a></h2>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
-<p>Locale of message IDs, which is used in source files.
-Catalog for <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">sourceLocale</span></code></a> doesn’t require translated messages, because message
-IDs are used by default. However, it’s still possible to override message ID by
-providing custom translation.</p>
-<p>The difference between <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> and <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">sourceLocale</span></code></a> is that
-<a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> is used in translation, while <a class="reference internal" href="#std:config-sourceLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">sourceLocale</span></code></a> is
-used for the message ID.</p>
-</div>
-<div class="section" id="srcpathdirs">
-<span id="std:config-srcPathDirs"></span><h2>srcPathDirs<a class="headerlink" href="#srcpathdirs" title="Permalink to this headline">¶</a></h2>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">[&lt;rootDir&gt;]</span></code></p>
-<p>List of directories with source files from which messages are extracted. Ignored
-directories are defined in <a class="reference internal" href="#std:config-srcPathIgnorePatterns"><code class="xref std std-conf docutils literal notranslate"><span class="pre">srcPathIgnorePatterns</span></code></a>.</p>
-</div>
-<div class="section" id="srcpathignorepatterns">
-<span id="std:config-srcPathIgnorePatterns"></span><h2>srcPathIgnorePatterns<a class="headerlink" href="#srcpathignorepatterns" title="Permalink to this headline">¶</a></h2>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">[&quot;/node_modules/&quot;]</span></code></p>
-<p>Ignored paths when looking for source files to extract messages from.</p>
-</div>
-<div class="section" id="localedir">
-<span id="std:config-localeDir"></span><h2>localeDir<a class="headerlink" href="#localedir" title="Permalink to this headline">¶</a></h2>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">&lt;rootDir&gt;/locale</span></code></p>
-<p>Directory where message catalogs should be saved.</p>
-</div>
+  <div class="section" id="page-has-been-moved-to-new-location">
+<h1>Page has been moved to new location<a class="headerlink" href="#page-has-been-moved-to-new-location" title="Permalink to this headline">¶</a></h1>
+<p>Please go to <a class="reference external" href="conf">new location</a> and update your bookmarks.</p>
 </div>
 
 
@@ -282,15 +184,6 @@ directories are defined in <a class="reference internal" href="#std:config-srcPa
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../releases/migration-2.html" class="btn btn-neutral float-right" title="Migration guide from 1.x to 2.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="lingui-cli.html" class="btn btn-neutral" title="API Reference - CLI (@lingui/cli)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

@@ -96,9 +96,11 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ref/lingui-react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref/lingui-cli.html">CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ref/lingui-conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -182,7 +184,9 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
  | <a href="#P"><strong>P</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -196,25 +200,25 @@
     --clean
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-clean">extract command line option</a>
+        <li><a href="ref/cli.html#cmdoption-extract-clean">extract command line option</a>
 </li>
       </ul></li>
       <li>
     --convert-from &lt;format&gt;
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-convert-from">extract command line option</a>
+        <li><a href="ref/cli.html#cmdoption-extract-convert-from">extract command line option</a>
 </li>
       </ul></li>
       <li>
     --format &lt;format&gt;
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-add-locale-format">add-locale command line option</a>
+        <li><a href="ref/cli.html#cmdoption-add-locale-format">add-locale command line option</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-compile-format">compile command line option</a>
+        <li><a href="ref/cli.html#cmdoption-compile-format">compile command line option</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-format">extract command line option</a>
+        <li><a href="ref/cli.html#cmdoption-extract-format">extract command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -223,23 +227,23 @@
     --overwrite
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-overwrite">extract command line option</a>
+        <li><a href="ref/cli.html#cmdoption-extract-overwrite">extract command line option</a>
 </li>
       </ul></li>
       <li>
     --strict
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-compile-strict">compile command line option</a>
+        <li><a href="ref/cli.html#cmdoption-compile-strict">compile command line option</a>
 </li>
       </ul></li>
       <li>
     --verbose
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-compile-verbose">compile command line option</a>
+        <li><a href="ref/cli.html#cmdoption-compile-verbose">compile command line option</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-verbose">extract command line option</a>
+        <li><a href="ref/cli.html#cmdoption-extract-verbose">extract command line option</a>
 </li>
       </ul></li>
   </ul></td>
@@ -252,7 +256,7 @@
     add-locale
 
       <ul>
-        <li><a href="ref/lingui-cli.html#lingui-cli-add-locale">lingui-cli command</a>
+        <li><a href="ref/cli.html#lingui-cli-add-locale">lingui-cli command</a>
 </li>
       </ul></li>
   </ul></td>
@@ -261,7 +265,7 @@
     add-locale command line option
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-add-locale-format">--format &lt;format&gt;</a>
+        <li><a href="ref/cli.html#cmdoption-add-locale-format">--format &lt;format&gt;</a>
 </li>
       </ul></li>
   </ul></td>
@@ -270,41 +274,45 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#Catalogs">Catalogs (global variable or constant)</a>
+</li>
       <li>
     compile
 
       <ul>
-        <li><a href="ref/lingui-cli.html#lingui-cli-compile">lingui-cli command</a>
+        <li><a href="ref/cli.html#lingui-cli-compile">lingui-cli command</a>
 </li>
       </ul></li>
       <li>
     compile command line option
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-compile-format">--format &lt;format&gt;</a>
+        <li><a href="ref/cli.html#cmdoption-compile-format">--format &lt;format&gt;</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-compile-strict">--strict</a>
+        <li><a href="ref/cli.html#cmdoption-compile-strict">--strict</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-compile-verbose">--verbose</a>
+        <li><a href="ref/cli.html#cmdoption-compile-verbose">--verbose</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     component
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-DateFormat">DateFormat</a>
+        <li><a href="ref/react.html#component-DateFormat">DateFormat</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-I18nProvider">I18nProvider</a>
+        <li><a href="ref/react.html#component-I18nProvider">I18nProvider</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-NumberFormat">NumberFormat</a>
+        <li><a href="ref/react.html#component-NumberFormat">NumberFormat</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-Plural">Plural</a>
+        <li><a href="ref/react.html#component-Plural">Plural</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-Select">Select</a>
+        <li><a href="ref/react.html#component-Select">Select</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-SelectOrdinal">SelectOrdinal</a>
+        <li><a href="ref/react.html#component-SelectOrdinal">SelectOrdinal</a>
 </li>
-        <li><a href="ref/lingui-react.html#component-Trans">Trans</a>
+        <li><a href="ref/react.html#component-Trans">Trans</a>
 </li>
       </ul></li>
   </ul></td>
@@ -317,7 +325,7 @@
     DateFormat
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-DateFormat">component</a>
+        <li><a href="ref/react.html#component-DateFormat">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -330,22 +338,22 @@
     extract
 
       <ul>
-        <li><a href="ref/lingui-cli.html#lingui-cli-extract">lingui-cli command</a>
+        <li><a href="ref/cli.html#lingui-cli-extract">lingui-cli command</a>
 </li>
       </ul></li>
       <li>
     extract command line option
 
       <ul>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-clean">--clean</a>
+        <li><a href="ref/cli.html#cmdoption-extract-clean">--clean</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-convert-from">--convert-from &lt;format&gt;</a>
+        <li><a href="ref/cli.html#cmdoption-extract-convert-from">--convert-from &lt;format&gt;</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-format">--format &lt;format&gt;</a>
+        <li><a href="ref/cli.html#cmdoption-extract-format">--format &lt;format&gt;</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-overwrite">--overwrite</a>
+        <li><a href="ref/cli.html#cmdoption-extract-overwrite">--overwrite</a>
 </li>
-        <li><a href="ref/lingui-cli.html#cmdoption-extract-verbose">--verbose</a>
+        <li><a href="ref/cli.html#cmdoption-extract-verbose">--verbose</a>
 </li>
       </ul></li>
   </ul></td>
@@ -354,7 +362,9 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ref/lingui-react.html#i18nMark">i18nMark() (built-in function)</a>
+      <li><a href="ref/core.html#I18n">I18n() (class)</a>
+</li>
+      <li><a href="ref/react.html#i18nMark">i18nMark() (built-in function)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -362,7 +372,7 @@
     I18nProvider
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-I18nProvider">component</a>
+        <li><a href="ref/react.html#component-I18nProvider">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -375,13 +385,21 @@
     lingui-cli command
 
       <ul>
-        <li><a href="ref/lingui-cli.html#lingui-cli-add-locale">add-locale</a>
+        <li><a href="ref/cli.html#lingui-cli-add-locale">add-locale</a>
 </li>
-        <li><a href="ref/lingui-cli.html#lingui-cli-compile">compile</a>
+        <li><a href="ref/cli.html#lingui-cli-compile">compile</a>
 </li>
-        <li><a href="ref/lingui-cli.html#lingui-cli-extract">extract</a>
+        <li><a href="ref/cli.html#lingui-cli-extract">extract</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#Messages">Messages (global variable or constant)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -392,9 +410,23 @@
     NumberFormat
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-NumberFormat">component</a>
+        <li><a href="ref/react.html#component-NumberFormat">component</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#options.catalogs">options.catalogs (options attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="ref/core.html#options.language">options.language (options attribute)</a>
+</li>
+      <li><a href="ref/core.html#options.locales">options.locales (options attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -405,7 +437,7 @@
     Plural
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-Plural">component</a>
+        <li><a href="ref/react.html#component-Plural">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -418,7 +450,7 @@
     Select
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-Select">component</a>
+        <li><a href="ref/react.html#component-Select">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -427,9 +459,11 @@
     SelectOrdinal
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-SelectOrdinal">component</a>
+        <li><a href="ref/react.html#component-SelectOrdinal">component</a>
 </li>
       </ul></li>
+      <li><a href="ref/core.html#setupI18n">setupI18n() (built-in function)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -440,7 +474,7 @@
     Trans
 
       <ul>
-        <li><a href="ref/lingui-react.html#component-Trans">component</a>
+        <li><a href="ref/react.html#component-Trans">component</a>
 </li>
       </ul></li>
   </ul></td>
@@ -449,7 +483,7 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ref/lingui-react.html#withI18n">withI18n() (built-in function)</a>
+      <li><a href="ref/react.html#withI18n">withI18n() (built-in function)</a>
 </li>
   </ul></td>
 </tr></table>

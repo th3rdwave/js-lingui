@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="ICU MessageFormat" href="message-format.html" />
-    <link rel="prev" title="API Reference - CLI (@lingui/cli)" href="lingui-cli.html" /> 
+    <link rel="prev" title="API Reference - CLI (@lingui/cli)" href="cli.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -81,6 +81,7 @@
               <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
@@ -98,9 +99,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="react.macro.html">React Macros</a></li>
-<li class="toctree-l1"><a class="reference internal" href="js.macro.html">JS Macros</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lingui-cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#fallbacklocale">fallbackLocale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#format">format</a><ul>
@@ -121,8 +120,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
 </ul>
-<p class="caption"><span class="caption-text">External resources</span></p>
+<p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 </ul>
 
@@ -219,7 +219,7 @@
 <p>Default: <code class="docutils literal notranslate"><span class="pre">''</span></code></p>
 <p>Translation from <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> is used when translation for given locale is missing.</p>
 <p>If <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> isn’t defined or translation in <a class="reference internal" href="#std:config-fallbackLocale"><code class="xref std std-conf docutils literal notranslate"><span class="pre">fallbackLocale</span></code></a> is
-missing too, either default message or message ID is used instead.</p>
+missing too, either message default or message ID is used instead.</p>
 </div>
 <div class="section" id="format">
 <span id="std:config-format"></span><h2>format<a class="headerlink" href="#format" title="Permalink to this headline">¶</a></h2>
@@ -291,7 +291,7 @@ directories are defined in <a class="reference internal" href="#std:config-srcPa
         <a href="message-format.html" class="btn btn-neutral float-right" title="ICU MessageFormat" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="lingui-cli.html" class="btn btn-neutral" title="API Reference - CLI (@lingui/cli)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cli.html" class="btn btn-neutral" title="API Reference - CLI (@lingui/cli)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

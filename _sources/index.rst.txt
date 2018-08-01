@@ -59,9 +59,11 @@ Key features
    :maxdepth: 1
    :caption: API References
 
-   React <ref/lingui-react>
-   CLI <ref/lingui-cli>
-   Configuration <ref/lingui-conf>
+   Core (JavaScript) <ref/core>
+   React <ref/react>
+   CLI <ref/cli>
+   Configuration <ref/conf>
+   ICU MessageFormat <ref/message-format>
 
 .. toctree::
    :maxdepth: 1

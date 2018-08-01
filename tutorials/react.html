@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tutorial - Internationalization of React Native apps" href="react-native.html" />
+    <link rel="next" title="Common i18n patterns in React" href="react-patterns.html" />
     <link rel="prev" title="jsLingui - Seamless i18n in Javascript and React" href="../index.html" /> 
 
   
@@ -102,6 +102,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="react-patterns.html">React - common patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react-native.html">React Native</a></li>
 <li class="toctree-l1"><a class="reference internal" href="javascript.html">JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
@@ -117,9 +118,11 @@
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-cli.html">CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/lingui-conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -301,8 +304,8 @@ to complete one more step to setup our application.</p>
 <p>Components needs to be aware of their active language. All <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> components
 read translations and language settings from the context. In order to get this
 information into the React context, we need to wrap our application in
-<a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> component.</p>
-<p>Let’s add all required imports and wrap our app inside <a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
+<a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> component.</p>
+<p>Let’s add all required imports and wrap our app inside <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// index.js</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
@@ -345,7 +348,7 @@ Just some text:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>All we need to make this heading translatable is wrap it in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>
+<p>All we need to make this heading translatable is wrap it in <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a>
 component:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span><span class="p">;</span>
 
@@ -360,18 +363,18 @@ variables, some HTML and components inside:</p>
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Nothing special here. Again, we just need to wrap the content in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>
+<p>Nothing special here. Again, we just need to wrap the content in <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a>
 component:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
-      <span class="nx">See</span> <span class="nx">all</span> <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span><span class="nx">unread</span> <span class="nx">messages</span><span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;{</span><span class="s2">&quot; or &quot;</span><span class="p">}</span>
-      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="p">{</span><span class="nx">markAsRead</span><span class="p">}&gt;</span><span class="nx">mark</span> <span class="nx">them</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> <span class="nx">as</span> <span class="nx">read</span><span class="p">.</span>
+      See all <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span>unread messages<span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>{&quot; or &quot;}
+      <span class="p">&lt;</span><span class="nt">a</span> <span class="na">onClick</span><span class="o">=</span><span class="s">{markAsRead}</span><span class="p">&gt;</span>mark them<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span> as read.
    <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 <p>Spooky, right? Let’s pause for a while.</p>
-<p>All children of <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component are transformed into ICU MessageFormat
+<p>All children of <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component are transformed into ICU MessageFormat
 syntax, which is the standard format for i18n.</p>
 <p>This component:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
@@ -430,12 +433,12 @@ change a <code class="docutils literal notranslate"><span class="pre">className<
 cool is that?</p>
 </div>
 <div class="section" id="trans-component">
-<h2><a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component<a class="headerlink" href="#trans-component" title="Permalink to this headline">¶</a></h2>
+<h2><a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component<a class="headerlink" href="#trans-component" title="Permalink to this headline">¶</a></h2>
 <p>It may look a bit <em>hackish</em> at first sight, but these transformations are
 actually very easy, intuitive and feel very <em>Reactish</em>. We don’t have to think
 about the MessageFormat, because it’s created by the library. We write our
 components in the same way as we’re used to and simply wrap text in
-<a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
+<a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
 <p>Let’s see some examples with MessageFormat equivalents:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// Expressions</span>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -540,7 +543,7 @@ message ID to the translation.</p>
 </table>
 <p>The message ID is <em>what all catalogs have in common</em> – Lundi, Pondělí and Monday
 represent the same message in different languages. It’s also the same as the <code class="docutils literal notranslate"><span class="pre">id</span></code>
-prop in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
+prop in <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component.</p>
 <p>There are two common approaches to message IDs:</p>
 <ol class="arabic simple">
 <li>Use source language (e.g. English as in example above)</li>
@@ -548,7 +551,7 @@ prop in <a class="reference internal" href="../ref/lingui-react.html#component-T
 </ol>
 <p>Both approaches have their pros and cons and it’s not in the scope of this tutorial
 to compare them.</p>
-<p>By default, <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> generates message ID from the content of <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>
+<p>By default, <a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> generates message ID from the content of <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a>
 component, which means it uses source language. However, we can easily override
 it by setting <code class="docutils literal notranslate"><span class="pre">id</span></code> prop manually:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inbox.title&quot;</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
@@ -600,7 +603,7 @@ need just two forms:</p>
 <dt><code class="docutils literal notranslate"><span class="pre">other</span></code></dt>
 <dd>Plural form</dd>
 </dl>
-<p>We don’t need to select these forms manually. We’ll use <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a>
+<p>We don’t need to select these forms manually. We’ll use <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a>
 component, which takes a <code class="docutils literal notranslate"><span class="pre">value</span></code> prop and based on the active language, selects
 the right plural form:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -625,8 +628,8 @@ message looks in MessageFormat syntax?</p>
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>The <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> is gone and replaced with <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> again!
-The purpose of <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> is to generate proper syntax in message.</p>
+<p>The <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a> is gone and replaced with <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> again!
+The purpose of <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a> is to generate proper syntax in message.</p>
 <p>Our translator will work with this message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">messagesCount</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span>
    <span class="n">one</span> <span class="p">{</span><span class="n">There</span><span class="s1">&#39;s # message in your inbox}</span>
@@ -721,9 +724,9 @@ write <code class="docutils literal notranslate"><span class="pre">_N</span></co
 </pre></div>
 </div>
 <p>What if we want to use variables or components inside messages? Easy! Either
-wrap messages in <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component or use template literals
+wrap messages in <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component or use template literals
 (suppose we have an variable <code class="docutils literal notranslate"><span class="pre">name</span></code>):</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>&lt;p&gt;
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;p&gt;
    &lt;Plural
       value={messagesCount}
       one={`There&#39;s # message in your inbox, ${name}`}
@@ -732,7 +735,7 @@ wrap messages in <a class="reference internal" href="../ref/lingui-react.html#co
 &lt;/p&gt;
 </pre></div>
 </div>
-<p><a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a> component works as if it were the top-most i18n component,
+<p><a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component works as if it were the top-most i18n component,
 without any limitation. We can use components, variables, expressions, whatever
 works.</p>
 <p>This gives us enough flexibility for all usecases.</p>
@@ -740,7 +743,7 @@ works.</p>
 <div class="section" id="custom-message-id">
 <h3>Custom message ID<a class="headerlink" href="#custom-message-id" title="Permalink to this headline">¶</a></h3>
 <p>Let’s finish this with a short example of plurals with custom ID. We can
-pass an <code class="docutils literal notranslate"><span class="pre">id</span></code> prop to <a class="reference internal" href="../ref/lingui-react.html#component-Plural">&lt;Plural&gt;</a> as we would to <a class="reference internal" href="../ref/lingui-react.html#component-Trans">&lt;Trans&gt;</a>:</p>
+pass an <code class="docutils literal notranslate"><span class="pre">id</span></code> prop to <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a> as we would to <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a>:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">Plural</span>
       <span class="na">id</span><span class="o">=</span><span class="s">&quot;Inbox.messagesCount&quot;</span>
@@ -831,7 +834,7 @@ locale:</p>
 <dd>Minified JS file with compiled messages (for application)</dd>
 </dl>
 <p>We’ll just import a compiled message catalog and pass it to
-<a class="reference internal" href="../ref/lingui-react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
+<a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// index.js</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
@@ -857,7 +860,7 @@ an example <a class="reference internal" href="../guides/dynamic-loading-catalog
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="../ref/lingui-react.html">&#64;lingui/react reference documentation</a></li>
+<li><a class="reference external" href="../ref/react.html">&#64;lingui/react reference documentation</a></li>
 <li><a class="reference external" href="../ref/lingui-cli.html">&#64;lingui/cli reference documentation</a></li>
 <li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
 </ul>
@@ -872,7 +875,7 @@ an example <a class="reference internal" href="../guides/dynamic-loading-catalog
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="react-native.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of React Native apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="react-patterns.html" class="btn btn-neutral float-right" title="Common i18n patterns in React" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../index.html" class="btn btn-neutral" title="jsLingui - Seamless i18n in Javascript and React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
