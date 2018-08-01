@@ -93,6 +93,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#translations-outside-react-components">Translations outside React components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic-translations">Dynamic translations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="react-native.html">React Native</a></li>
@@ -114,6 +115,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
@@ -123,6 +125,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 </ul>
@@ -364,6 +367,42 @@ default <code class="docutils literal notranslate"><span class="pre">i18n</span>
 </div>
 </li>
 </ol>
+</div>
+<div class="section" id="dynamic-translations">
+<h2>Dynamic translations<a class="headerlink" href="#dynamic-translations" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> can also translate messages from variables. However, it’s necessary
+to wrap translated message in <code class="xref js js-meth docutils literal notranslate"><span class="pre">i18Mark()</span></code> to make it automatically extracted.
+Pass the message to <code class="docutils literal notranslate"><span class="pre">id</span></code> prop of <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">i18Mark</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+
+<span class="kr">const</span> <span class="nx">languages</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="nx">i18nMark</span><span class="p">(</span><span class="s1">&#39;English&#39;</span><span class="p">)</span>
+   <span class="nx">i18nMark</span><span class="p">(</span><span class="s1">&#39;Czech&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="kd">function</span> <span class="nx">LanguageSwitcher</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+         <span class="p">{</span><span class="nx">languages</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">lang</span> <span class="p">=&gt;</span> <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="p">{</span><span class="nx">lang</span><span class="p">}/&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;}</span>
+      <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+   <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This pattern work with string-only translations, but this time instead of <code class="docutils literal notranslate"><span class="pre">i18n.t</span></code>
+you should use core <a class="reference internal" href="../ref/core.html#I18n._" title="I18n._"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n._()</span></code></a> method:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">i18Mark</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+
+<span class="kr">const</span> <span class="nx">languages</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="nx">i18nMark</span><span class="p">(</span><span class="s1">&#39;English&#39;</span><span class="p">)</span>
+   <span class="nx">i18nMark</span><span class="p">(</span><span class="s1">&#39;Czech&#39;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="kr">const</span> <span class="nx">translatedLanguages</span> <span class="o">=</span> <span class="nx">languages</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+   <span class="nx">lang</span> <span class="p">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">lang</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 
