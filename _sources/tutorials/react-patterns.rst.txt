@@ -210,7 +210,7 @@ Dynamic translations
 ====================
 
 :component:`Trans` can also translate messages from variables. However, it's necessary
-to wrap translated message in :js:meth:`i18Mark` to make it automatically extracted.
+to wrap translated message in :js:func:`i18Mark` to make it automatically extracted.
 Pass the message to ``id`` prop of :component:`Trans` component:
 
 .. code-block:: jsx
