@@ -100,6 +100,7 @@
 <li class="toctree-l1"><a class="reference internal" href="ref/react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/loader.html">Webpack Loader</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
@@ -187,17 +188,13 @@ vary in culture, region, or language.</p>
 <div class="section" id="key-features">
 <h2>Key features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Small and fast - about 6kb gzipped</li>
-<li>Babel plugin for convenient, type-checked way of writing ICU MessageFormat (recommended, but not required)</li>
-<li>CLI for extracting and compiling message catalogs</li>
-<li>Built on standard ICU MessageFormat (might replace react-intl completely)</li>
-<li>Variable interpolation</li>
-<li>Components inside translations (e.g: Read &lt;Link to=”…”&gt;documentation&lt;/Link&gt;.)</li>
-<li>Plurals, Ordinals and Categories (i.e. Select)</li>
-<li>Number and Date formats (from Intl)</li>
-<li>Works with manual and generated message IDs</li>
-<li>Works with in any JS environment, while integration packages brings better performance in target environments (e.g: lingui-react for React)</li>
-<li>High quality build (high test coverage, follows semver, deprecation warnings for breaking changes and migration guides for major releases)</li>
+<li>Lightweight - about <cite>5kb gzipped &lt;https://github.com/lingui/js-lingui/blob/master/scripts/build/results.json&gt;</cite>
+(1.9 kB core, 3.1 kB React components)</li>
+<li>Full support of <strong>ICU MessageFormat</strong> with extension to support HTML</li>
+<li>Unopinionated - supports manual and auto-generated message IDs out-of-the-box</li>
+<li>Batteries included - <strong>CLI</strong> for working with message catalogs
+(extracting, validating, compiling, …)</li>
+<li>Easy to migrate from react-intl</li>
 </ul>
 <div class="figure" id="id1">
 <img alt="_images/lingui-pitch.png" src="_images/lingui-pitch.png" />
@@ -231,6 +228,7 @@ vary in culture, region, or language.</p>
 <li class="toctree-l1"><a class="reference internal" href="ref/react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/loader.html">Webpack Loader</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 </div>
