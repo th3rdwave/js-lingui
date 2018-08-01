@@ -352,17 +352,14 @@ default <code class="docutils literal notranslate"><span class="pre">i18n</span>
 </li>
 <li><p class="first">Whenever you are outside React context (i.e. you can’t access props), you can use this
 <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object.</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./App.js&quot;</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">alert</span><span class="p">()</span> <span class="p">{</span>
+   <span class="c1">// use i18n as you were inside React component</span>
+   <span class="nx">alert</span><span class="p">(</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`...`</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>import { i18n } from “./App.js”</p>
-<dl class="docutils">
-<dt>export function alert() {</dt>
-<dd><p class="first last">// use i18n as you were inside React component
-alert(i18n.t`…`)</p>
-</dd>
-</dl>
-<p>}</p>
 </li>
 </ol>
 </div>
