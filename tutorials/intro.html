@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>First steps with internationalization &mdash; jsLingui  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52365043-2');
+</script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> jsLingui
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-patterns.html">React - common patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native.html">React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">jsLingui</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>First steps with internationalization</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorials/intro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="first-steps-with-internationalization">
+<h1>First steps with internationalization<a class="headerlink" href="#first-steps-with-internationalization" title="Permalink to this headline">¶</a></h1>
+<p>Welcome in an tutorial which introduces the basics of internationalization. It is
+aimed on anyone who has never dealt with internationalization before. Examples in this
+tutorial are written in JavaScript, but it explain the basic principles which are shared
+across programming languages.</p>
+<div class="section" id="basic-terminology">
+<h2>Basic terminology<a class="headerlink" href="#basic-terminology" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start with a basic terminology – what’s internationalization.</p>
+<p>I like the definition from world wide web consortion. This definition is very precise,
+but if we simplify it it says:</p>
+<blockquote>
+<div>Internationalization is the design and development of a product that enables easy
+localization for target audiences.</div></blockquote>
+<p>In other words, internationalization is what we do as developers to make our app
+easily localized by translators.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>I18n numeronym</p>
+<p class="last">Internationalization is also very often shortened to i18n, because there’s 18 letters
+between <em>I</em> an <em>n</em>.</p>
+</div>
+</div>
+<div class="section" id="first-translations">
+<h2>First translations<a class="headerlink" href="#first-translations" title="Permalink to this headline">¶</a></h2>
+<p>What would you do if you wanted to translate a word or phrase by yourself? You would
+lookup into <strong>dictionary</strong> (or use an online translator). This almost identical to how
+it works in software.</p>
+<p>Imagine we have a simple app which returns a random motto of the day:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">motds</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="s2">&quot;Action is the foundational key to all success.&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;If you cannot do great things, do small things in a great way.&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;Done is better than perfect.&quot;</span>
+<span class="p">]</span>
+
+<span class="kr">const</span> <span class="nx">motd</span> <span class="o">=</span> <span class="nx">motds</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">motds</span><span class="p">.</span><span class="nx">length</span><span class="p">)]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">motd</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We want to translate our mottos into another language, let’s say Czech. First,
+we need a dictionary where we can lookup the phrase and get a translation:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">en2cs</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;Action is the foundational key to all success.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Akce je základem úpěchu.&quot;</span><span class="p">,</span>
+
+   <span class="s2">&quot;If you cannot do great things, do small things in a great way.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Pokud nemůžeš dělat velké věci, dělej malé věci velkým stylem.&quot;</span><span class="p">,</span>
+
+   <span class="s2">&quot;Done is better than perfect.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Hotové je lepší než dokonalé.&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Next we need a function, which take a message and returns a translation from our
+dictionary:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">translate</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// if we don&#39;t have a translation, return the original message</span>
+   <span class="k">return</span> <span class="nx">en2cs</span><span class="p">[</span><span class="nx">message</span><span class="p">]</span> <span class="o">||</span> <span class="nx">message</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now put all these pieces together:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">en2cs</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;Action is the foundational key to all success.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Akce je základem úpěchu.&quot;</span><span class="p">,</span>
+
+   <span class="s2">&quot;If you cannot do great things, do small things in a great way.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Pokud nemůžeš dělat velké věci, dělej malé věci velkým stylem.&quot;</span><span class="p">,</span>
+
+   <span class="s2">&quot;Done is better than perfect.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Hotové je lepší než dokonalé.&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">translate</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+   <span class="c1">// if we don&#39;t have a translation, return original message</span>
+   <span class="k">return</span> <span class="nx">en2cs</span><span class="p">[</span><span class="nx">message</span><span class="p">]</span> <span class="o">||</span> <span class="nx">message</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">motds</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="nx">translate</span><span class="p">(</span><span class="s2">&quot;Action is the foundational key to all success.&quot;</span><span class="p">),</span>
+   <span class="nx">translate</span><span class="p">(</span><span class="s2">&quot;If you cannot do great things, do small things in a great way.&quot;</span><span class="p">),</span>
+   <span class="nx">translate</span><span class="p">(</span><span class="s2">&quot;Done is better than perfect.&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="kr">const</span> <span class="nx">motd</span> <span class="o">=</span> <span class="nx">motds</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">motds</span><span class="p">.</span><span class="nx">length</span><span class="p">)]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">motd</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And voilà, we have our app localized in Czech. Altough this is not very useful,
+because now the app is always in Czech, this is roughly how it works. And we’re going
+to learn two new terms: <strong>message catalogs</strong> and <strong>message IDs</strong>.</p>
+<div class="section" id="message-id">
+<h3>Message ID<a class="headerlink" href="#message-id" title="Permalink to this headline">¶</a></h3>
+<p>Our <code class="docutils literal notranslate"><span class="pre">translate</span></code> function takes a message as a first parameter and then look it up
+in dictionary. If we swapped English-Czech dictionary <code class="docutils literal notranslate"><span class="pre">en2cs</span></code> to other one, let’s say
+English-Icelandic <code class="docutils literal notranslate"><span class="pre">en2is</span></code>, only the translations would be different. The keys of
+dictionary would be the same.</p>
+<p>In other words, <strong>message ID</strong> is what we use in our code and what identifies the
+message across all languages.</p>
+</div>
+<div class="section" id="message-catalogs">
+<h3>Message catalogs<a class="headerlink" href="#message-catalogs" title="Permalink to this headline">¶</a></h3>
+<p>The dictionary <code class="docutils literal notranslate"><span class="pre">en2cs</span></code> is also called a <strong>message catalog</strong>. It’s simple mapping
+from <strong>message ID</strong> to a translation in given language. In practice, message catalogs
+also contain other language-specific data like date and number formats, but we’ll talk
+about it later.</p>
+</div>
+<div class="section" id="adding-more-languages">
+<h3>Adding more languages<a class="headerlink" href="#adding-more-languages" title="Permalink to this headline">¶</a></h3>
+<p>Let’s add more languages.</p>
+<p>Since our app is originally written in English, let’s enable to switch between
+Czech and English. First, we need to alter the <code class="docutils literal notranslate"><span class="pre">translate</span></code> method to accept extra
+parameter: <code class="docutils literal notranslate"><span class="pre">language</span></code> (also, let’s rename the <code class="docutils literal notranslate"><span class="pre">message</span></code> argument to <code class="docutils literal notranslate"><span class="pre">msgId</span></code> as
+a shortcut for <em>message ID</em>):</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="nx">translate</span><span class="p">(</span><span class="nx">language</span><span class="p">,</span> <span class="nx">msgId</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nx">translation</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="nx">language</span> <span class="o">===</span> <span class="s2">&quot;cs&quot;</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">translation</span> <span class="o">=</span> <span class="nx">en2cs</span><span class="p">[</span><span class="nx">msgId</span><span class="p">]</span>
+   <span class="p">}</span>
+
+   <span class="c1">// if we don&#39;t have a translation, return the original message</span>
+   <span class="k">return</span> <span class="nx">translation</span> <span class="o">||</span> <span class="nx">msgId</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now add another variable <code class="docutils literal notranslate"><span class="pre">lang</span></code> to the top of the file, so we can easily switch
+languages:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// the active language</span>
+<span class="kr">const</span> <span class="nx">lang</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span>
+
+<span class="kr">const</span> <span class="nx">en2cs</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;Action is the foundational key to all success.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Akce je základem úpěchu.&quot;</span><span class="p">,</span>
+
+   <span class="s2">&quot;If you cannot do great things, do small things in a great way.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Pokud nemůžeš dělat velké věci, dělej malé věci velkým stylem.&quot;</span><span class="p">,</span>
+
+   <span class="s2">&quot;Done is better than perfect.&quot;</span><span class="o">:</span>
+      <span class="s2">&quot;Hotové je lepší než dokonalé.&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">translate</span><span class="p">(</span><span class="nx">language</span><span class="p">,</span> <span class="nx">msgId</span><span class="p">)</span> <span class="p">{</span>
+   <span class="kd">let</span> <span class="nx">translation</span>
+
+   <span class="k">if</span> <span class="p">(</span><span class="nx">language</span> <span class="o">===</span> <span class="s2">&quot;cs&quot;</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">translation</span> <span class="o">=</span> <span class="nx">en2cs</span><span class="p">[</span><span class="nx">msgId</span><span class="p">]</span>
+   <span class="p">}</span>
+
+   <span class="c1">// if we don&#39;t have a translation, return the original message</span>
+   <span class="k">return</span> <span class="nx">translation</span> <span class="o">||</span> <span class="nx">msgId</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">motds</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="nx">translate</span><span class="p">(</span><span class="nx">lang</span><span class="p">,</span> <span class="s2">&quot;Action is the foundational key to all success.&quot;</span><span class="p">),</span>
+   <span class="nx">translate</span><span class="p">(</span><span class="nx">lang</span><span class="p">,</span> <span class="s2">&quot;If you cannot do great things, do small things in a great way.&quot;</span><span class="p">),</span>
+   <span class="nx">translate</span><span class="p">(</span><span class="nx">lang</span><span class="p">,</span> <span class="s2">&quot;Done is better than perfect.&quot;</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="kr">const</span> <span class="nx">motd</span> <span class="o">=</span> <span class="nx">motds</span><span class="p">[</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">motds</span><span class="p">.</span><span class="nx">length</span><span class="p">)]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">motd</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Try to play around this code a bit and switch languages from “cs” to “en”. It works,
+right?</p>
+<p>Adding new languages is as easy as creating a new message catalog and adding another
+branch to if conditino inside <code class="docutils literal notranslate"><span class="pre">translate</span></code> method. We could also set the <code class="docutils literal notranslate"><span class="pre">lang</span></code>
+variable through command line or load the system settings, but that’s not the point
+at the moment.</p>
+</div>
+</div>
+<div class="section" id="todo-next">
+<h2>TODO NEXT<a class="headerlink" href="#todo-next" title="Permalink to this headline">¶</a></h2>
+<p>Plurals?
+Variables?</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Tomáš Ehrlich.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

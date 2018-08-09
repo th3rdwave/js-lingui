@@ -112,6 +112,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">CLI</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-locale"><code class="docutils literal notranslate"><span class="pre">add-locale</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extract"><code class="docutils literal notranslate"><span class="pre">extract</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#compile"><code class="docutils literal notranslate"><span class="pre">compile</span></code></a></li>
@@ -254,6 +255,25 @@ npm run compile
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="init">
+<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h3>
+<dl class="lingui-cli">
+<dt id="lingui-cli-init">
+<code class="descname">lingui init [--dry-run]</code><a class="headerlink" href="#lingui-cli-init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Installs all required packages based on project type. Recognized projects are:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a></li>
+<li>General React app</li>
+</ul>
+<dl class="lingui-cli-option">
+<dt id="cmdoption-init-dry-run">
+<code class="descname">--dry-run</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-init-dry-run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Output commands which would run, but don’t execute them.</p>
+</div>
 <div class="section" id="add-locale">
 <h3><code class="docutils literal notranslate"><span class="pre">add-locale</span></code><a class="headerlink" href="#add-locale" title="Permalink to this headline">¶</a></h3>
 <dl class="lingui-cli">

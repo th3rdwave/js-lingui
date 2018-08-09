@@ -115,6 +115,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#format">format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#lingui">lingui</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#minimal">minimal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#po">po</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#sourcelocale">sourceLocale</a></li>
@@ -255,10 +256,19 @@ missing too, either message default or message ID is used instead.</p>
 </div>
 <div class="section" id="minimal">
 <h3>minimal<a class="headerlink" href="#minimal" title="Permalink to this headline">¶</a></h3>
-<p>Simple source -&gt; translation mapping:</p>
+<p>Simple JSON with message ID -&gt; translation mapping:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;MessageID&quot;</span><span class="p">:</span> <span class="s2">&quot;Translated Message&quot;</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="po">
+<h3>po<a class="headerlink" href="#po" title="Permalink to this headline">¶</a></h3>
+<p>Gettext PO file:</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="kd">#: src/App.js:4, src/Component.js:2</span>
+<span class="nv">msgid</span> <span class="s">&quot;MessageID&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Translated Message&quot;</span>
 </pre></div>
 </div>
 </div>

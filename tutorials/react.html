@@ -267,21 +267,35 @@ internationalize. You can pick whichever tool you want to use in your project.
 We’re trying to use most of them to show the full power of jsLingui.</p>
 <p>Let’s start with the three major packages:</p>
 <dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code></dt>
+<dd>CLI for i18n management and working with message catalogs</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code></dt>
 <dd>React components for translation and formatting</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-react</span></code></dt>
 <dd>Transforms messages wrapped in components from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> to ICU
 MessageFormat and validates them</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code></dt>
-<dd>CLI for working with message catalogs</dd>
 </dl>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-react</span></code> as a development dependency,
-<code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> globally:</p>
+<li><p class="first"><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> comes with handy <a class="reference internal" href="../ref/cli.html#lingui-cli-init"><code class="xref std std-cli docutils literal notranslate"><span class="pre">init</span></code></a> command, which detects the
+project type and install all required packages automatically. Feel free to run
+it with <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">init</span> <span class="pre">--dry-run</span></code> option to inspect what commands will be run:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install -g @lingui/cli
-npm install --save @lingui/react
+lingui init
+</pre></div>
+</div>
+<p>Yarn is supported as well:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>yarn global add @lingui/cli
+lingui init
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Under the hood it installs <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-react</span></code> as a development
+dependency and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency (in React projects):</p>
+<div class="last highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save @lingui/react
 npm install --save-dev @lingui/babel-preset-react
 </pre></div>
+</div>
 </div>
 </li>
 <li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-react</span></code> preset to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>

@@ -616,6 +616,7 @@ down to wrapped component and shadows all implementation details.</p>
 <li><strong>locales</strong> (<em>string|string[]</em>) – List of locales used for date/number formatting. Defaults to active language.</li>
 <li><strong>catalogs</strong> (<em>object</em>) – Message catalogs</li>
 <li><strong>defaultRender</strong> (<em>React.Element|React.Class|string</em>) – Default element to render translation</li>
+<li><strong>missing</strong> (<em>string|Function</em>) – Custom message to be returned when translation is missing</li>
 </ul>
 </td>
 </tr>
@@ -630,6 +631,22 @@ at the beginning of this document.</p>
 <code class="docutils literal notranslate"><span class="pre">locales</span></code> are used for date/number formatting for countries or regions which use
 different formats for the same language (e.g. arabic numerals have several
 representations).</p>
+<p><code class="docutils literal notranslate"><span class="pre">missing</span></code> is used as a default translation when translation is missing. It might
+be also a function, which is called with language and message ID. This is useful
+for debugging:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">language</span><span class="p">}</span> <span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="p">(</span>
+         <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="p">{</span><span class="nx">language</span><span class="p">}</span> <span class="na">missing</span><span class="o">=</span><span class="s">&quot;🚨&quot;</span><span class="p">&gt;</span>
+            <span class="p">{</span><span class="cm">/* This will render as 🚨*/</span><span class="p">}</span>
+            <span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;missing translation&quot;</span> <span class="p">/&gt;</span>
+         <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
+     <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p><code class="docutils literal notranslate"><span class="pre">catalogs</span></code> is a type of <code class="docutils literal notranslate"><span class="pre">Catalogs</span></code>:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// One catalog per language</span>
 <span class="nx">type</span> <span class="nx">Catalogs</span> <span class="o">=</span> <span class="p">{</span>
