@@ -198,8 +198,12 @@
             
   <div class="section" id="tutorial-internationalization-of-react-native-apps">
 <h1>Tutorial - Internationalization of React Native apps<a class="headerlink" href="#tutorial-internationalization-of-react-native-apps" title="Permalink to this headline">¶</a></h1>
-<p>Through this tutorial, we’ll learn how to add internationalization
+<p>In this tutorial, we’ll learn how to add internationalization
 to an existing application in React Native. The React Native tutorial is largely similar to the one for <a class="reference internal" href="react.html#react-tutorial-label"><span class="std std-ref">React</span></a>, and we highly recommend you check out that tutorial first because it covers installation, setup and other topics. Here we will cover parts that are relevant for React Native and hopefully answer all questions you may have.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The latest version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> working out-of-the-box for React Native on Android is 2.2. Newer versions depend on the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl object</a> which is not available on the JavaScriptCore that is used on Android by default. See the <a class="reference external" href="https://github.com/react-community/jsc-android-buildscripts">JSC build scripts for Android</a> for possible solution or use the <a class="reference external" href="https://github.com/andyearnshaw/Intl.js/">Intl polyfill</a>.</p>
+</div>
 <p>If you’re looking for a working solution, check out the <a class="reference external" href="https://exp.host/&#64;vonovak/js-lingui-demo">demo on Expo</a>. The source code is <a class="reference external" href="https://github.com/vonovak/js-lingui-demo">available here</a>.</p>
 <div class="section" id="let-s-start">
 <h2>Let’s Start<a class="headerlink" href="#let-s-start" title="Permalink to this headline">¶</a></h2>
