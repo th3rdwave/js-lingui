@@ -1,0 +1,305 @@
+js.macro - API Reference
+========================
+
+``js.macro`` is a `babel macro <babel-plugin-macros>`_ which transforms texts written usign tagged
+template strings and i18n methods into messages in ICU MessageFormat.
+
+Installation
+------------
+
+Babel macros require babel-plugin-macros_ to work:
+
+1. If you don't have it already, install ``babel-plugin-macros`` as a development dependency::
+
+      npm install --save-dev babel-plugin-macros
+      # yarn add --dev babel-plugin-macros
+
+2. Add ``macros`` to the top of plugins section in your Babel config:
+
+   .. code-block:: json
+
+      {
+         "plugins": [
+            "macros"
+         ]
+      }
+
+3. Install ``@lingui/js.macro`` as a development dependency::
+
+      npm install --save-dev @lingui/js.macro
+      # yarn add --dev @lingui/js.macro
+
+Usage
+-----
+
+.. important:: ``i18n`` object must be in the scope.
+
+   In JavaScript you get ``i18n`` object by calling :js:func:`setupI18n` from
+   ``@lingui/core`` package:
+
+   .. code-block:: jsx
+
+      import { setupI18n } from "@lingui/core"
+
+      const i18n = setupI18n()
+      // Allowed to use macros here.
+
+   In React you should use ``i18n`` prop injected by :component:`withI18n` HOC:
+
+   .. code-block:: jsx
+
+      import { withI18n } from "@lingui/react"
+
+      const Component = withI18n()(({ i18n }) => {
+         // i18n is in the scope. Allowed to use macros here.
+         // All macros will be replaced with i18n._
+      })
+
+function _(id: string | Function, values: Object, options: Options)
+
+type Options = {
+  defaults: string,
+  formats: Object
+  ...meta
+}
+
+General translation
+^^^^^^^^^^^^^^^^^^^
+
+.. macro:: t
+
+The basic i18n macro for messages. It transforms tagged template string into message
+in ICU MessageFormat. It's allowed to use other i18n macros as variables:
+
+.. code-block:: jsx
+
+   import { setupI18n } from "@lingui/core"
+   import { t } from "@lingui/js.macro"
+
+   // Reminder: i18n must be in scope
+   const i18n = setupI18n()
+
+   // Static Message
+   const static = t`Static Message`
+
+   // Messag with variables: My name is {name}
+   const vars = t`My name is ${name}`
+
+   // Macros can be nested, date is macro for date formatting
+   const date = t`Today is ${date(name)}`
+
+By default, generated message is used as an ID. To override it, call macro with
+a custom message ID:
+
+.. code-block:: jsx
+
+   // Override auto-generated message ID
+   const id = t('msg.id')`My name is ${name}`
+
+Pluralization
+^^^^^^^^^^^^^^
+
+.. macro:: plural
+
+``plural`` macro is used for pluralization, e.g: messages which has different form
+based on counter. It accepts an object with required key ``value`` which determines
+the plural form. The only required plural form is a catch-all ``other``. Other forms
+depends on source language you're using (e.g: English has ``one`` and ``other`` plural
+forms).
+
+.. code-block:: jsx
+
+   import { setupI18n } from "@lingui/core"
+   import { plural } from "@lingui/js.macro"
+
+   // Reminder: i18n must be in the scope
+   const i18n = setupI18n()
+
+   const msg = plural(id, { description: "Hello World" }, {
+      value: count,
+      one: "# Book",
+      other: "# Books"
+   })
+
+Hash character `#` inside plural form is replaced with counter value formatted as
+number. In the example below, `#` is equivalent to `number(count)`:
+
+.. code-block:: jsx
+
+   // t macro isn't required for template strings inside plural
+   // as they are transformed automatically.
+   const vars = plural({
+      value: count,
+      one: `${name} has # friend`,
+      other: `${name} has # friends`
+   })
+
+   /*
+   The example above is a shortcut for this:
+
+   const vars = plural({
+      value: count,
+      one: `${name} has ${number(count)} friend`,
+      other: `${name} has ${number(count)} friends`
+   })
+   */
+
+It's possible to use numbers for exact matches:
+
+.. code-block:: jsx
+
+   import { setupI18n } from "@lingui/core"
+   import { plural } from "@lingui/js.macro"
+
+   // Reminder: i18n must be in the scope
+   const i18n = setupI18n()
+
+   const msg = plural({
+      value: count,
+      0: "No books",  // English doesn't have `zero` plural form
+      one: "# Book",
+      other: "# Books"
+   })
+
+Exact matches are usually used in combination with ``offset`` parameter. Offset is
+subsctracted from counter before looking up the plural form. Consider this example:
+
+.. code-block:: jsx
+
+   import { setupI18n } from "@lingui/core"
+   import { plural } from "@lingui/js.macro"
+
+   // Reminder: i18n must be in the scope
+   const i18n = setupI18n()
+
+   const msg = plural({
+      value: count,
+      offset: 1,
+      0: "Nobody has arrived",
+      1: "You have arrived",
+      // This will show for count === 2
+      one: "You and 1 friend have arrived",
+      other: "You and # friends have arrived"
+   })
+
+Macros can be nested. Here's an example of pluralization using two counters:
+
+.. code-block:: jsx
+
+   import { setupI18n } from "@lingui/core"
+   import { plural } from "@lingui/js.macro"
+
+   // Reminder: i18n must be in the scope
+   const i18n = setupI18n()
+
+   const double = plural({
+      value: numBooks,
+      one: plural({
+         value: numArticles,
+         one: `1 book and 1 article`,
+         other: `1 book and ${numArticles} articles`,
+      }),
+      other: plural({
+         value: numArticles,
+         one: `${numBooks} books and 1 article`,
+         other: `${numBooks} books and ${numArticles} articles`,
+      }),
+   })
+
+
+Call macro with a string as a first argument to override auto-generated message ID.
+
+.. code-block:: jsx
+
+   // Override auto-generated message ID
+   const id = plural("msg.id", {
+      value: count,
+      one: "# Book",
+      other: "# Books"
+   })
+
+Date formatting
+^^^^^^^^^^^^^^^
+
+.. macro:: date
+
+This macro marks variable as a date which is formatted using `Intl.DateTimeFormat`_.
+
+First parameter is a value to be formatted.
+
+Second argument (optional) specifies date format.
+
+.. code-block:: jsx
+
+   import { setupI18n } from "@lingui/core"
+   import { t, date } from "@lingui/js.macro"
+
+   // Reminder: i18n must be in scope
+   const i18n = setupI18n()
+
+   const today = new Date()
+   const msg = t`Today is ${date(today)}.`
+
+.. note::
+
+   Standalone ``date`` is replaced with ``i18n.date`` call. This is optimization,
+   because in generated message, ``{value, date}``,  there's nothing to translate:
+
+   .. code-block:: jsx
+
+      import { setupI18n } from "@lingui/core"
+      import { date } from "@lingui/js.macro"
+
+      // Reminder: i18n must be in scope
+      const i18n = setupI18n()
+
+      const today = new Date()
+      const msg = date(today)
+
+      // Standalone macro is replaced with i18n.date and no message is extracted.
+      // const msg = i18n.date(today)
+
+Number formatting
+^^^^^^^^^^^^^^^^^
+
+.. macro:: number
+
+This macro marks variable as a number which is formatted using `Intl.NumberFormat`_.
+
+First parameter is a value to be formatted.
+
+Second argument (optional) specifies number format.
+
+.. code-block:: jsx
+
+   import { setupI18n } from "@lingui/core"
+   import { t, number } from "@lingui/js.macro"
+
+   // Reminder: i18n must be in scope
+   const i18n = setupI18n()
+
+   const msg = t`There were ${number(10000)} people.`
+   const percent = t`Interest rate is ${number(0.05, "percent")}.`
+
+.. note::
+
+   Standalone ``number`` is replaced with ``i18n.number`` call. This is optimization,
+   because in generated message, ``{value, number}``,  there's nothing to translate:
+
+   .. code-block:: jsx
+
+      import { setupI18n } from "@lingui/core"
+      import { date } from "@lingui/js.macro"
+
+      // Reminder: i18n must be in scope
+      const i18n = setupI18n()
+
+      const percent = number(0.05, "percent")
+
+      // Standalone macro is replaced with i18n.number and no message is extracted.
+      // const percent = i18n.number(0.05, "percent")
+
+
+.. _babel-plugin-macros: https://github.com/kentcdodds/babel-plugin-macros
+.. _Intl.DateTimeFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat
+.. _Intl.NumberFormat: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat
