@@ -128,6 +128,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#providers">Providers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#i18nprovider">I18nProvider</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i18n">I18n</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#withi18n">withI18n</a></li>
 </ul>
 </li>
@@ -684,6 +685,67 @@ top-level application component. However, if the <code class="docutils literal n
          <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
      <span class="p">);</span>
 <span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="i18n">
+<h3>I18n<a class="headerlink" href="#i18n" title="Permalink to this headline">¶</a></h3>
+<dl class="component">
+<dt id="component-I18n">
+<code class="descname">I18n</code><a class="headerlink" href="#component-I18n" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">Param bool update:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">Subscribe to catalog and activate language updates</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p><a class="reference internal" href="#component-I18n">&lt;I18n&gt;</a> injects <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object and <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> to child component, which
+may be lambda component, regular component or React element. This pattern is
+known as <a class="reference external" href="https://reactjs.org/docs/render-props.html">render prop component</a>.</p>
+<p>If want to use <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object in instance or lifecycle methods, consider using
+<a class="reference internal" href="#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> high-order component.</p>
+<p><code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> is useful when rendering pure components or elements as it contains
+hash of active language and catalogs. Instead of comparing <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object it’s
+enough to compare <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> to decide if component should update.</p>
+<p>Using lambda components:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>import React from &quot;react&quot;
+import { I18n } from &quot;@lingui/react&quot;
+
+function LogoutIcon = () =&gt; (
+   return (
+      &lt;I18n&gt;
+         {({ i18n }) =&gt; &lt;Icon name=&quot;turn-off&quot; aria-label={i18n.t`Log out`} /&gt;}
+      &lt;/I18n&gt;
+   )
+)
+</pre></div>
+</div>
+<p>Using components and elements:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>import React from &quot;react&quot;
+import { I18n } from &quot;@lingui/react&quot;
+
+function TranslatedComponent({ i18n }) {
+   return &lt;Icon name=&quot;turn-off&quot; aria-label={i18n.t`Log out`} /&gt;
+}
+
+function RenderingElements = () =&gt; (
+   return (
+      &lt;I18n&gt;
+         &lt;TranslatedComponent /&gt;
+      &lt;/I18n&gt;
+   )
+)
+
+function RenderingComponents = () =&gt; (
+   return (
+      &lt;I18n&gt;{TranslatedComponent}&lt;/I18n&gt;
+   )
+)
 </pre></div>
 </div>
 </div>

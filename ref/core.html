@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="@lingui/react - React components for i18n" href="react.html" />
+    <link rel="next" title="API Reference - React (@lingui/react)" href="react.html" />
     <link rel="prev" title="Pluralization" href="../guides/plurals.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
@@ -113,8 +113,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="react.macro.html">React Macros</a></li>
-<li class="toctree-l1"><a class="reference internal" href="js.macro.html">JS Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loader.html">Webpack Loader</a></li>
@@ -225,18 +223,37 @@ this package explicitly. Install <a class="reference internal" href="react.html"
 <code class="descname">Catalogs</code><a class="headerlink" href="#Catalogs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> parameters in <a class="reference internal" href="#options.catalogs" title="options.catalogs"><code class="xref js js-func docutils literal notranslate"><span class="pre">setupI18n</span></code></a>
 constructor and <a class="reference internal" href="#I18n.load" title="I18n.load"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n.load()</span></code></a> method:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">Catalogs</span> <span class="o">=</span> <span class="p">{[</span><span class="nx">language</span><span class="o">:</span> <span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">Messages</span><span class="p">}</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">Catalogs</span> <span class="o">=</span> <span class="p">{[</span><span class="nx">language</span><span class="o">:</span> <span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">Catalog</span><span class="p">}</span>
 
 <span class="c1">// Example:</span>
 <span class="kr">const</span> <span class="nx">catalogs</span><span class="o">:</span> <span class="nx">Catalogs</span> <span class="o">=</span>  <span class="p">{</span>
    <span class="nx">en</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;Hello&quot;</span><span class="o">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;Good bye&quot;</span><span class="o">:</span> <span class="s2">&quot;Good bye&quot;</span>
+      <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;Hello&quot;</span><span class="o">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Good bye&quot;</span><span class="o">:</span> <span class="s2">&quot;Good bye&quot;</span>
+      <span class="p">}</span>
    <span class="p">},</span>
    <span class="nx">cs</span><span class="o">:</span> <span class="p">{</span>
-      <span class="s2">&quot;Hello&quot;</span><span class="o">:</span> <span class="s2">&quot;Ahoj&quot;</span><span class="p">,</span>
-      <span class="s2">&quot;Good bye&quot;</span><span class="o">:</span> <span class="s2">&quot;Nashledanou&quot;</span>
+      <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+         <span class="s2">&quot;Hello&quot;</span><span class="o">:</span> <span class="s2">&quot;Ahoj&quot;</span><span class="p">,</span>
+         <span class="s2">&quot;Good bye&quot;</span><span class="o">:</span> <span class="s2">&quot;Nashledanou&quot;</span>
+      <span class="p">}</span>
    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="Catalog">
+<code class="descname">Catalog</code><a class="headerlink" href="#Catalog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Message catalog contains messages and language data (plurals). This object is
+usually generated in CLI:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">Catalog</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">languageData</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">plurals</span><span class="o">:</span> <span class="nb">Function</span>
+   <span class="p">},</span>
+   <span class="nx">messages</span><span class="o">:</span> <span class="nx">Messages</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -496,7 +513,7 @@ application doesn’t use message IDs in natural language (e.g.: <code class="do
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="react.html" class="btn btn-neutral float-right" title="@lingui/react - React components for i18n" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="react.html" class="btn btn-neutral float-right" title="API Reference - React (@lingui/react)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="../guides/plurals.html" class="btn btn-neutral" title="Pluralization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
