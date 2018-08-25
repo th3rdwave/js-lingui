@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ICU MessageFormat &mdash; jsLingui  documentation</title>
+  <title>RFCs and design decisions &mdash; jsLingui  documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Migration guide from 1.x to 2.x" href="../releases/migration-2.html" />
-    <link rel="prev" title="API Reference - Webpack Loader (@lingui/loader)" href="loader.html" />
+    <link rel="next" title="002 - Locale directories" href="002_locale_dirs.html" />
+    <link rel="prev" title="Talks and articles about i18n in JavaScript" href="../misc/talks-about-i18n.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
 <script>
@@ -106,16 +106,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
 </ul>
 <p class="caption"><span class="caption-text">API References</span></p>
-<ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="core.html">Core (JavaScript)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="conf.html">Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="loader.html">Webpack Loader</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ICU MessageFormat</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -123,11 +120,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../rfc/toc.html">RFCs and design decisions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RFCs and design decisions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="002_locale_dirs.html">002 - Locale directories</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -173,14 +173,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>ICU MessageFormat</li>
+      <li>RFCs and design decisions</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/lingui/js-lingui/blob/master/docs/ref/message-format.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/lingui/js-lingui/blob/master/docs/rfc/toc.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -194,92 +194,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="icu-messageformat">
-<span id="message-format"></span><h1>ICU MessageFormat<a class="headerlink" href="#icu-messageformat" title="Permalink to this headline">¶</a></h1>
-<p>ICU MessageFormat is a flexible yet powerful syntax to express all nuances of grammar
-for each language.</p>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<colgroup>
-<col width="21%" />
-<col width="79%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head" rowspan="2">Format</th>
-<th class="head" rowspan="2">Example</th>
-</tr>
-<tr class="row-even"></tr>
-</thead>
-<tbody valign="top">
-<tr class="row-odd"><td>Simple text</td>
-<td><code class="docutils literal notranslate"><span class="pre">Refresh</span> <span class="pre">inbox</span></code></td>
-</tr>
-<tr class="row-even"><td>Variables</td>
-<td><code class="docutils literal notranslate"><span class="pre">Attachment</span> <span class="pre">{name}</span> <span class="pre">saved</span></code></td>
-</tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-plural">Plurals</p>
-</td>
-<td><ul class="first last">
-<li><p class="first">Using language specific plural forms (<code class="docutils literal notranslate"><span class="pre">one</span></code>, <code class="docutils literal notranslate"><span class="pre">other</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">count</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="n">Message</span><span class="p">}</span> <span class="n">other</span> <span class="p">{</span><span class="n">Messages</span><span class="p">}}</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Using exact matches (<code class="docutils literal notranslate"><span class="pre">=0</span></code>):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, =0 {No messages}
-                one {# message}
-                other {# messages}}
-</pre></div>
-</div>
-</li>
-<li><p class="first">Offseting plural form:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, offset:1
-                =0 {Nobody read this message}
-                =1 {Only you read this message}
-                one {You and # friend read this message}
-                other {You and # friends read this message}
-</pre></div>
-</div>
-</li>
+  <div class="section" id="rfcs-and-design-decisions">
+<h1>RFCs and design decisions<a class="headerlink" href="#rfcs-and-design-decisions" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="002_locale_dirs.html">002 - Locale directories</a></li>
 </ul>
-</td>
-</tr>
-<tr class="row-even"><td><p class="first last" id="std:icu-select">Select</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{gender, select, male {He replied to your message}
-                 female {She replied to your message}
-                 other {They replied to your message}}
-</pre></div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-ordinal">Ordinals</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{count, selectOrdinal, one {1st message}
-                       two {2nd message}
-                       few {3rd message}
-                       other {#th message}}
-</pre></div>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><p class="first last" id="std:icu-number">Numbers</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>You&#39;re using {size, number, percent} of you quota
-</pre></div>
-</div>
-</td>
-</tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-date">Dates</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>Today is {today, date}
-</pre></div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 
@@ -291,10 +211,10 @@ for each language.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../releases/migration-2.html" class="btn btn-neutral float-right" title="Migration guide from 1.x to 2.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="002_locale_dirs.html" class="btn btn-neutral float-right" title="002 - Locale directories" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="loader.html" class="btn btn-neutral" title="API Reference - Webpack Loader (@lingui/loader)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../misc/talks-about-i18n.html" class="btn btn-neutral" title="Talks and articles about i18n in JavaScript" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

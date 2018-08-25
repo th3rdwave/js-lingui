@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>002 - Locale directories &mdash; jsLingui  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="RFCs and design decisions" href="toc.html" />
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52365043-2');
+</script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> jsLingui
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="toc.html">RFCs and design decisions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">002 - Locale directories</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#considered-use-cases">Considered use cases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#advantages">Advantages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#disadvantages">Disadvantages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-challenges">Possible challenges</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#other-considered-options">Other considered options</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#configure-splitting-in-lingui-config">Configure splitting in Lingui config</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#create-multiple-lingui-configs">Create multiple lingui configs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">jsLingui</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="toc.html">RFCs and design decisions</a> &raquo;</li>
+        
+      <li>002 - Locale directories</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/lingui/js-lingui/blob/master/docs/rfc/002_locale_dirs.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="locale-directories">
+<h1>002 - Locale directories<a class="headerlink" href="#locale-directories" title="Permalink to this headline">¶</a></h1>
+<p>Message catalogs can quickly grow in size and it’s convenient to split them
+into several files. This proposal is about splitting source catalogs. Compiled
+message catalogs always contain all messages in project for now.</p>
+<div class="section" id="considered-use-cases">
+<h2>Considered use cases<a class="headerlink" href="#considered-use-cases" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Automatic spitting - one locale directory per package in monorepos (Lerna, Yarn workspaces)</li>
+<li>Manually splitting, i.e. define from what source path the messages will be collected
+into what locale directory.</li>
+</ul>
+</div>
+<div class="section" id="solution">
+<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory manually in a directory from which all messages should be
+collected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── locale/
+├── componentA/
+└── componentB/
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">locale</span></code> dir contains messages from <code class="docutils literal notranslate"><span class="pre">componentA</span></code> and <code class="docutils literal notranslate"><span class="pre">componentB</span></code>.</p>
+<p>However, it doesn’t not contain messages which are collected to <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory
+in a subdirectory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── locale/
+├── componentA/
+├── componentB/
+└── largeComponentC/
+    ├── locale/
+    ├── subcomponentA/
+    └── subcomponentB/
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">locale</span></code> contains messages from <code class="docutils literal notranslate"><span class="pre">componentA</span></code> and <code class="docutils literal notranslate"><span class="pre">componentB</span></code>, but not
+from <code class="docutils literal notranslate"><span class="pre">largeComponentC</span></code>, because these messages are collected in
+<code class="docutils literal notranslate"><span class="pre">largeComponentC/locale</span></code>.</p>
+<div class="section" id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h3>
+<p>It’s flexible and doesn’t require additional config in <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code></p>
+</div>
+<div class="section" id="disadvantages">
+<h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Directories must be created manually. In monorepos this might be extra work,
+but for example in Lerna it’s just <code class="docutils literal notranslate"><span class="pre">lerna</span> <span class="pre">exec</span> <span class="pre">--</span> <span class="pre">mkdir</span> <span class="pre">locales</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is always placed near the source files. It’s not possible to
+move it to different location (other than creating symlinks)</li>
+</ul>
+</div>
+<div class="section" id="possible-challenges">
+<h3>Possible challenges<a class="headerlink" href="#possible-challenges" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>User should be warned if messages are collected, but there’s no corresponding
+<code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for them (e.g. the root <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is missing).</li>
+<li>When a new <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is created in subdirectory, all translations
+from parent <code class="docutils literal notranslate"><span class="pre">locale</span></code> should be moved here.</li>
+<li>The other way around, when <code class="docutils literal notranslate"><span class="pre">locale</span></code> in subdirectory isn’t needed anymore, there
+should be a way how to merge tranlation back to parent directory.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="other-considered-options">
+<h2>Other considered options<a class="headerlink" href="#other-considered-options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="configure-splitting-in-lingui-config">
+<h3>Configure splitting in Lingui config<a class="headerlink" href="#configure-splitting-in-lingui-config" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDirs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale&quot;</span><span class="p">:</span> <span class="s2">&quot;./src&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./largeComponentC&quot;</span><span class="p">:</span> <span class="s2">&quot;./src/largeComponentC&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is more difficult with monorepos and it’s also more verbose. On the other hand,
+it’s easier to move <code class="docutils literal notranslate"><span class="pre">locale</span></code> dirs to arbitrary location (<code class="docutils literal notranslate"><span class="pre">locale</span></code> directory doesn’t
+have to be placed in the same directory as source files).</p>
+</div>
+<div class="section" id="create-multiple-lingui-configs">
+<h3>Create multiple lingui configs<a class="headerlink" href="#create-multiple-lingui-configs" title="Permalink to this headline">¶</a></h3>
+<p>Create Lingui config in a directory, which should hold separate <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── .linguirc
+├── locale/
+├── componentA/
+├── componentB/
+└── largeComponentC/
+    ├── .linguirc
+    ├── locale/
+    ├── subcomponentA/
+    └── subcomponentB/
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> is as simple as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This seems to be very repetitive. On the other hand it allows overriding Lingui config
+per directory.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="toc.html" class="btn btn-neutral" title="RFCs and design decisions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tomáš Ehrlich.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
