@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>RFC - Message Definition &mdash; jsLingui  documentation</title>
+  <title>001 - Message Definition &mdash; jsLingui  documentation</title>
   
 
   
@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Migration guide from 0.x to 1.x" href="../releases/migration-1.html" />
+    <link rel="next" title="002 - Locale directories" href="002_locale_dirs.html" />
+    <link rel="prev" title="RFCs and design decisions" href="toc.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
 <script>
@@ -107,51 +108,40 @@
 <p class="caption"><span class="caption-text">API References</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ref/js.macro.html">JS Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Discussion</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
-</ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
 </ul>
-<p class="caption"><span class="caption-text">RFCs</span></p>
+<p class="caption"><span class="caption-text">Discussion</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">001 – Message Definitions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#background">Background</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#new-feature-metadata">New feature - Metadata</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#problem-1-distinguish-metadata-and-id">Problem 1 - distinguish metadata and id</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#problem-2-workflow-with-custom-ids">Problem 2 - workflow with custom IDs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="toc.html">RFCs and design decisions</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">001 - Message Definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#background">Background</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#new-feature-metadata">New feature - Metadata</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#solution">Solution</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#messages-used-as-ids">Messages used as IDs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#plurals-and-other-formatters">plurals and other formatters</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lazy-translations">Lazy translations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#messages-used-as-ids">Messages used as IDs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#messages-with-custom-ids">Messages with custom IDs</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#messages-with-custom-ids">Messages with custom IDs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Lazy translations</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#definition">Definition</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-catalogs">Common catalogs</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#common-catalogs">Common catalogs</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="002_locale_dirs.html">002 - Locale directories</a></li>
 </ul>
 </li>
 </ul>
@@ -199,7 +189,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>RFC - Message Definition</li>
+          <li><a href="toc.html">RFCs and design decisions</a> &raquo;</li>
+        
+      <li>001 - Message Definition</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -220,8 +212,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="rfc-message-definition">
-<h1>RFC - Message Definition<a class="headerlink" href="#rfc-message-definition" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="message-definition">
+<h1>001 - Message Definition<a class="headerlink" href="#message-definition" title="Permalink to this headline">¶</a></h1>
 <p>Proposal for a new <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code> message API using Babel macros released in 3.0.</p>
 <div class="section" id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
@@ -254,43 +246,20 @@ data:</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="problem-1-distinguish-metadata-and-id">
-<h3>Problem 1 - distinguish metadata and id<a class="headerlink" href="#problem-1-distinguish-metadata-and-id" title="Permalink to this headline">¶</a></h3>
-<p>Until now, the first argument of <cite>i18n.t</cite> was a message ID:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i18n.t(&quot;id&quot;)`Default message`
-</pre></div>
-</div>
-<p>After adding an optional metadata, this use case would clash with metadata passed as
-string:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>i18n.t(&quot;id or help text&quot;)`Default message`
-</pre></div>
-</div>
-</div>
-<div class="section" id="problem-2-workflow-with-custom-ids">
-<h3>Problem 2 - workflow with custom IDs<a class="headerlink" href="#problem-2-workflow-with-custom-ids" title="Permalink to this headline">¶</a></h3>
-<p>In projects using custom message IDs, we define default message and help text just once
-and then use an ID everywhere else:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Define
-i18n.t(&quot;message.id&quot;)`Default message with ${param}`
-
-// Use
-i18n._(&quot;message.id&quot;, { param })
-</pre></div>
-</div>
-<p>Common workflow is define all messages in one place either globally or locally on the
-top of the file and then use identifiers instead of strings:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Define</span>
-<span class="n">const</span> <span class="n">message</span> <span class="o">=</span> <span class="n">i18Mark</span><span class="p">(</span><span class="s2">&quot;Default message with </span><span class="si">{param}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="o">//</span>                       <span class="o">^-</span> <span class="ow">not</span> <span class="n">possible</span> <span class="n">to</span> <span class="n">use</span> <span class="n">macros</span> <span class="n">here</span>
-
-<span class="o">//</span> <span class="n">Use</span>
-<span class="n">i18n</span><span class="o">.</span><span class="n">_</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="p">{</span> <span class="n">param</span> <span class="p">})</span>
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="solution">
 <h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>All macros (<code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">plural</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">selectOrdinal</span></code>) are transformed into
+<em>Message Descriptor</em> which is an object of following type:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">MessageDescriptor</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="nx">id</span><span class="o">:</span> <span class="nb">String</span><span class="p">,</span>
+   <span class="nx">defaults</span><span class="o">?:</span> <span class="nb">String</span><span class="p">,</span>
+   <span class="nx">values</span><span class="o">?:</span> <span class="nb">Object</span><span class="p">,</span>
+   <span class="nx">formats</span><span class="o">?:</span> <span class="nb">Object</span><span class="p">,</span>
+   <span class="nx">description</span><span class="o">?:</span> <span class="nb">String</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <div class="section" id="messages-used-as-ids">
 <h3>Messages used as IDs<a class="headerlink" href="#messages-used-as-ids" title="Permalink to this headline">¶</a></h3>
 <p>This use case is trivial as all we need to do is wrap a message in <code class="docutils literal notranslate"><span class="pre">t</span></code> template
@@ -350,8 +319,8 @@ const msg = () =&gt; i18n._(&quot;Default message&quot;)
 // The translation is returned by simply calling the message:
 const translation = msg()
 
-// It&#39;s possible to get the ID of message
-const id = msg.id
+// id attribute of translation function contains the reference to message ID
+msg.id === &quot;Default message&quot; // message ID
 </pre></div>
 </div>
 <p>It also works for other formats: <code class="docutils literal notranslate"><span class="pre">plural.lazy</span></code>, <code class="docutils literal notranslate"><span class="pre">select.lazy</span></code> and <code class="docutils literal notranslate"><span class="pre">selectOrdinal.lazy</span></code>.</p>
@@ -360,7 +329,14 @@ const id = msg.id
    en: `English`,
    cs: `Czech`,
    fr: `French`,
-}
+})
+
+// This is a shortcut for:
+const languages = defineMessages({
+   en: t.lazy`English`,
+   cs: t.lazy`Czech`,
+   fr: t.lazy`French`,
+})
 </pre></div>
 </div>
 <p>Lazy translations are usually defined in different scope than evaluated. Parameters
@@ -376,9 +352,7 @@ include it in ICU MessageSyntax. We can use <code class="docutils literal notran
 <span class="n">const</span> <span class="n">translation</span> <span class="o">=</span> <span class="n">books</span><span class="p">({</span> <span class="n">count</span><span class="p">:</span> <span class="mi">42</span> <span class="p">})</span>
 </pre></div>
 </div>
-<p>The advantage is that function books is type-checked. Missing or extra parameters
-are catched by type system.</p>
-<p>This is very similar to <code class="docutils literal notranslate"><span class="pre">define</span></code> for projects using custom IDs described below.
+<p>This is very similar to <code class="docutils literal notranslate"><span class="pre">id.id.lazy</span></code> for projects using custom IDs described below.
 The only difference is that <code class="docutils literal notranslate"><span class="pre">t.lazy</span></code> doesn’t accept message ID as a first argument
 and should be used only in projects using messages as IDs.</p>
 </div>
@@ -420,7 +394,7 @@ i18n._(&quot;id&quot;, {}, { defaults: &quot;default message&quot;, description:
 </div>
 <div class="section" id="definition">
 <h4>Definition<a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h4>
-<p>Single messages is defined using macro <code class="docutils literal notranslate"><span class="pre">define</span></code>:</p>
+<p>Single messages is defined using macro <code class="docutils literal notranslate"><span class="pre">t.id.lazy</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>const msg = t.id.lazy(&quot;id&quot;)`Default message`
 </pre></div>
 </div>
@@ -428,8 +402,8 @@ i18n._(&quot;id&quot;, {}, { defaults: &quot;default message&quot;, description:
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Object key becomes message ID
 // Macro
 const messages = defineMessages({
-   id: t(&quot;help text&quot;)`Default message`
-}
+   id: t.id(&quot;id&quot;, &quot;help text&quot;)`Default message`,
+})
 
 // In production, it becomes
 const messages = {
@@ -464,9 +438,9 @@ const pluralTranslation = plural({ variable: 42 })
 const translation = msg()
 
 const messages = defineMessages({
-   id: t(&quot;help text&quot;)`Default message`
-}
-messages.id()
+   id: t.id(&quot;help text&quot;)`Default message`
+})
+const translation = messages.id()
 </pre></div>
 </div>
 </div>
@@ -579,8 +553,10 @@ messages.id()
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="002_locale_dirs.html" class="btn btn-neutral float-right" title="002 - Locale directories" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="../releases/migration-1.html" class="btn btn-neutral" title="Migration guide from 0.x to 1.x" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="toc.html" class="btn btn-neutral" title="RFCs and design decisions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
