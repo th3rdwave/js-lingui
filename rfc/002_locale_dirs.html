@@ -127,16 +127,13 @@
 <li class="toctree-l2"><a class="reference internal" href="001_message_definitions.html">001 - Message Definition</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">002 - Locale directories</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#considered-use-cases">Considered use cases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#possible-challenges">Possible challenges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-considered-options">Other considered options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#default-automatic-splitting">Default - automatic splitting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#advantages">Advantages</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#disadvantages">Disadvantages</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#possible-challenges">Possible challenges</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#advanced-configure-splitting-manually">Advanced – configure splitting manually</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#other-considered-options">Other considered options</a></li>
 </ul>
 </li>
 </ul>
@@ -231,6 +228,124 @@ into what locale directory.</li>
 </div>
 <div class="section" id="solution">
 <h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
+<p>Passing an object to <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> option allows more explicit configuration of
+locale directories. Consider following file structure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── locale/
+├── componentA/
+├── componentB/
+└── largeComponentC/
+    ├── locale/
+    ├── subcomponentA/
+    └── subcomponentB/
+</pre></div>
+</div>
+<p>Messages are always collected to the nearest <code class="docutils literal notranslate"><span class="pre">locale</span></code> parent dir. This can be achieved
+using this config:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./largeComponentC/locale&quot;</span><span class="p">:</span> <span class="s2">&quot;./largeComponentC&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Key</strong> of <code class="docutils literal notranslate"><span class="pre">localeDir</span></code> object is a path to message catalogs. <strong>Value</strong> is a path to
+source files from which messages are collected. It can be a single path or an array
+of paths:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{package}/{locale}&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;src/shared&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;src/project&quot;</span>
+         <span class="p">],</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>On top of that, more advanced patterns are supported:</p>
+<p><code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder is replaced with a current locale. This example would create
+<code class="docutils literal notranslate"><span class="pre">en.json</span></code> inside <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for English locale:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">{package}</span></code> placeholder is replaced with a top level directory. This example would
+create <code class="docutils literal notranslate"><span class="pre">locale/en/componentA.json</span></code> and <code class="docutils literal notranslate"><span class="pre">locale/en/componentB.json</span></code> for English
+locale and following directory structure:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/{package}&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+├── componentA/
+└── componentB/
+</pre></div>
+</div>
+<p>Path to message catalog can be a directory ending with <code class="docutils literal notranslate"><span class="pre">/</span></code>. <code class="docutils literal notranslate"><span class="pre">locale/</span></code> is the same
+as <code class="docutils literal notranslate"><span class="pre">locale/{locale}/messages</span></code>.</p>
+<p>If it’s a file, then it <em>must</em> contain <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder. This example is
+<strong>invalid</strong>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/messages&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>By default <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> is <code class="docutils literal notranslate"><span class="pre">./locale</span></code>.</p>
+<p>If <code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir`</span></code> is a string, only single locale directory is used. It can be
+either a directory or a path to message file including <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> pattern:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is the same as:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale/{locale}/messages&quot;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, if <code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir`</span></code> is an object, then keys are locale directories and
+values are path to source directories from which messages are collected.</p>
+<div class="section" id="possible-challenges">
+<h3>Possible challenges<a class="headerlink" href="#possible-challenges" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>User should be warned if messages are collected, but there’s no corresponding
+<code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for them (e.g. the root <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is missing).</li>
+<li>When a new <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is created in subdirectory, all translations
+from parent <code class="docutils literal notranslate"><span class="pre">locale</span></code> should be moved here.</li>
+<li>The other way around, when directory is removed, there should be a way how to merge
+tranlations to parent directory.</li>
+</ul>
+</div>
+<div class="section" id="other-considered-options">
+<h3>Other considered options<a class="headerlink" href="#other-considered-options" title="Permalink to this headline">¶</a></h3>
+</div>
 <div class="section" id="default-automatic-splitting">
 <h3>Default - automatic splitting<a class="headerlink" href="#default-automatic-splitting" title="Permalink to this headline">¶</a></h3>
 <p>Create a <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory manually in a directory from which all messages should be
@@ -269,104 +384,10 @@ from <code class="docutils literal notranslate"><span class="pre">largeComponent
 but for example in Lerna it’s just <code class="docutils literal notranslate"><span class="pre">lerna</span> <span class="pre">exec</span> <span class="pre">--</span> <span class="pre">mkdir</span> <span class="pre">locales</span></code>.</li>
 <li><code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is always placed near the source files. It’s not possible to
 move it to different location (other than creating symlinks)</li>
+<li>It’s not possible to rename catalogs.</li>
+<li>It’s not possible to collect messages from multiple independent sources into single
+locale directory.</li>
 </ul>
-</div>
-<div class="section" id="possible-challenges">
-<h3>Possible challenges<a class="headerlink" href="#possible-challenges" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>User should be warned if messages are collected, but there’s no corresponding
-<code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for them (e.g. the root <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is missing).</li>
-<li>When a new <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is created in subdirectory, all translations
-from parent <code class="docutils literal notranslate"><span class="pre">locale</span></code> should be moved here.</li>
-<li>The other way around, when <code class="docutils literal notranslate"><span class="pre">locale</span></code> in subdirectory isn’t needed anymore, there
-should be a way how to merge tranlation back to parent directory.</li>
-</ul>
-</div>
-<div class="section" id="advanced-configure-splitting-manually">
-<h3>Advanced – configure splitting manually<a class="headerlink" href="#advanced-configure-splitting-manually" title="Permalink to this headline">¶</a></h3>
-<p>Passing an object to <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> option allows more explicit configuration of
-locale directories. This configuration is the same as in example above:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;./largeComponentC/locale&quot;</span><span class="p">:</span> <span class="s2">&quot;./largeComponentC&quot;</span><span class="p">,</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><strong>Key</strong> of <code class="docutils literal notranslate"><span class="pre">localeDir</span></code> object is a path to message catalogs. <strong>Value</strong> is a path to
-source files from which messages are collected.</p>
-<p>On top of that, more advanced patterns are supported:</p>
-<p><code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder is replaced with a current locale. This example would create
-<code class="docutils literal notranslate"><span class="pre">en.json</span></code> inside <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for English locale:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{locale}.json&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">{package}</span></code> placeholder is replaced with a top level directory. This example would
-create <code class="docutils literal notranslate"><span class="pre">locale/en/componentA.json</span></code> and <code class="docutils literal notranslate"><span class="pre">locale/en/componentB.json</span></code> for English
-locale and following directory structure:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{locale}/{package}.json&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
-├── componentA/
-└── componentB/
-</pre></div>
-</div>
-<p>Path to message catalog can be a directory ending with <code class="docutils literal notranslate"><span class="pre">/</span></code>. <code class="docutils literal notranslate"><span class="pre">locale/</span></code> is the same
-as <code class="docutils literal notranslate"><span class="pre">locale/{locale}/{messages}.json</span></code>.</p>
-<p>If it’s a file, then it <em>must</em> contain <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder. This example is
-<strong>invalid</strong>:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/messages.json&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>By default (when <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> isn’t defined), messages are collected to the nearest
-parent <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory.</p>
-<p>If <code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir`</span></code> is a string, only single locale directory is used. It can be
-either a directory or a path to message file including <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> pattern:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale&quot;</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>This is the same as:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale/{locale}/messages.json&quot;</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Finally, if <code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir`</span></code> is an object, then keys are locale directories and
-values are path to source directories from which messages are collected.</p>
-<div class="section" id="other-considered-options">
-<h3>Other considered options<a class="headerlink" href="#other-considered-options" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="create-multiple-lingui-configs">
 <h4>Create multiple lingui configs<a class="headerlink" href="#create-multiple-lingui-configs" title="Permalink to this headline">¶</a></h4>
 <p>Create Lingui config in a directory, which should hold separate <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory:</p>
