@@ -122,6 +122,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#srcpathdirs">srcPathDirs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#srcpathignorepatterns">srcPathIgnorePatterns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#localedir">localeDir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extractbabeloptions">extractBabelOptions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="loader.html">Webpack Loader</a></li>
@@ -225,7 +226,8 @@
     <span class="nt">&quot;srcPathIgnorePatterns&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">&quot;/node_modules/&quot;</span>
     <span class="p">],</span>
-    <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui&quot;</span>
+    <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;extractBabelOptions&quot;</span><span class="p">:</span> <span class="p">{}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -302,6 +304,18 @@ directories are defined in <a class="reference internal" href="#std:config-srcPa
 <span id="std:config-localeDir"></span><h2>localeDir<a class="headerlink" href="#localedir" title="Permalink to this headline">¶</a></h2>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">&lt;rootDir&gt;/locale</span></code></p>
 <p>Directory where message catalogs should be saved.</p>
+</div>
+<div class="section" id="extractbabeloptions">
+<span id="std:config-extractBabelOptions"></span><h2>extractBabelOptions<a class="headerlink" href="#extractbabeloptions" title="Permalink to this headline">¶</a></h2>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{}</span></code></p>
+<p>Specify extra babel options used to parse source files when messages are being extracted. Not required in most cases.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;extractBabelOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;@babel/plugin-syntax-dynamic-import&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 
