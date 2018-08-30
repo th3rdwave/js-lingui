@@ -111,6 +111,13 @@
 <li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#compilenamespace">compileNamespace</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cjs">cjs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#es">es</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#window-global">(window|global).(.*)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extractbabeloptions">extractBabelOptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#fallbacklocale">fallbackLocale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#format">format</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#lingui">lingui</a></li>
@@ -122,7 +129,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#srcpathdirs">srcPathDirs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#srcpathignorepatterns">srcPathIgnorePatterns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#localedir">localeDir</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#extractbabeloptions">extractBabelOptions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="loader.html">Webpack Loader</a></li>
@@ -217,6 +223,8 @@
 <p>Default config:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;compileNamespace&quot;</span><span class="p">:</span> <span class="s2">&quot;cjs&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;extractBabelOptions&quot;</span><span class="p">:</span> <span class="p">{},</span>
     <span class="nt">&quot;fallbackLocale&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="nt">&quot;sourceLocale&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
     <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;rootDir&gt;/locale&quot;</span><span class="p">,</span>
@@ -227,10 +235,50 @@
         <span class="s2">&quot;/node_modules/&quot;</span>
     <span class="p">],</span>
     <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;extractBabelOptions&quot;</span><span class="p">:</span> <span class="p">{}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<div class="section" id="compilenamespace">
+<span id="std:config-compileNamespace"></span><h2>compileNamespace<a class="headerlink" href="#compilenamespace" title="Permalink to this headline">¶</a></h2>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">cjs</span></code></p>
+<p>Specify namespace for exporting compiled messages. See <a class="reference internal" href="cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a> command.</p>
+<div class="section" id="cjs">
+<h3>cjs<a class="headerlink" href="#cjs" title="Permalink to this headline">¶</a></h3>
+<p>Use CommonJS exports:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/* eslint-disable */</span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span><span class="o">=</span><span class="p">{</span><span class="nx">languageData</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;...&quot;</span><span class="p">},</span> <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;...&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="es">
+<h3>es<a class="headerlink" href="#es" title="Permalink to this headline">¶</a></h3>
+<p>Use ES6 default export:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/* eslint-disable */</span><span class="kr">export</span> <span class="k">default</span><span class="p">{</span><span class="nx">languageData</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;...&quot;</span><span class="p">},</span> <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;...&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="window-global">
+<h3>(window|global).(.*)<a class="headerlink" href="#window-global" title="Permalink to this headline">¶</a></h3>
+<p>Assign compiled messages to <code class="docutils literal notranslate"><span class="pre">window</span></code> or <code class="docutils literal notranslate"><span class="pre">global</span></code> object. Specify an identifier after
+<code class="docutils literal notranslate"><span class="pre">window</span></code> or <code class="docutils literal notranslate"><span class="pre">global</span></code> to which the catalog is assigned, e.g. <code class="docutils literal notranslate"><span class="pre">window.i18n</span></code>.</p>
+<p>For example, setting <a class="reference internal" href="#std:config-compileNamespace"><code class="xref std std-conf docutils literal notranslate"><span class="pre">compileNamespace</span></code></a> to <code class="docutils literal notranslate"><span class="pre">window.i18n</span></code> creates file
+similar to this:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/* eslint-disable */</span><span class="nb">window</span><span class="p">.</span><span class="nx">i18n</span><span class="o">=</span><span class="p">{</span><span class="nx">languageData</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;...&quot;</span><span class="p">},</span> <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span><span class="s2">&quot;...&quot;</span><span class="p">}}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="extractbabeloptions">
+<span id="std:config-extractBabelOptions"></span><h2>extractBabelOptions<a class="headerlink" href="#extractbabeloptions" title="Permalink to this headline">¶</a></h2>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{}</span></code></p>
+<p>Specify extra babel options used to parse source files when messages are being extracted. Not required in most cases.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;extractBabelOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;@babel/plugin-syntax-dynamic-import&quot;</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="fallbacklocale">
 <span id="std:config-fallbackLocale"></span><h2>fallbackLocale<a class="headerlink" href="#fallbacklocale" title="Permalink to this headline">¶</a></h2>
@@ -304,18 +352,6 @@ directories are defined in <a class="reference internal" href="#std:config-srcPa
 <span id="std:config-localeDir"></span><h2>localeDir<a class="headerlink" href="#localedir" title="Permalink to this headline">¶</a></h2>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">&lt;rootDir&gt;/locale</span></code></p>
 <p>Directory where message catalogs should be saved.</p>
-</div>
-<div class="section" id="extractbabeloptions">
-<span id="std:config-extractBabelOptions"></span><h2>extractBabelOptions<a class="headerlink" href="#extractbabeloptions" title="Permalink to this headline">¶</a></h2>
-<p>Default: <code class="docutils literal notranslate"><span class="pre">{}</span></code></p>
-<p>Specify extra babel options used to parse source files when messages are being extracted. Not required in most cases.</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;extractBabelOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;@babel/plugin-syntax-dynamic-import&quot;</span><span class="p">]</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 </div>
 </div>
 
