@@ -328,32 +328,36 @@ as <code class="docutils literal notranslate"><span class="pre">locale/{locale}/
 returned messages are added to catalog.</p>
 <p>The type of returned messages should be following:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>type MessageDescriptor = {
-   id: string,
-   defaults?: string,
-   description?: string
+  id: string,
+  defaults?: string,
+  description?: string
 }
 
 type Messages = Array&lt;MessageDescriptor&gt; | Promise&lt;Array&lt;MessageDescriptor&gt;&gt;
 
-type ExtractedDescriptors = {
-   name: string,
-   messages: Messages
-} | Messages
+type ExtractedDescriptors =
+  | {
+      name: string,
+      messages: Messages
+    }
+  | Messages
 
 export default {
-   name: &#39;graphql&#39;,
-   messages: [
-      {
-         id: &#39;Episode.NEWHOPE&#39;,
-         defaults: &#39;New Hope&#39;
-      }, {
-         id: &#39;Episode.EMPIRE&#39;,,
-         defaults: &#39;Empire Strikes Back&#39;
-      }, {
-         id: &#39;Episode.JEDI&#39;,,
-         defaults: &#39;Return of the Jedi&#39;
-      }
-   ]
+  name: &quot;graphql&quot;,
+  messages: [
+    {
+      id: &quot;Episode.NEWHOPE&quot;,
+      defaults: &quot;New Hope&quot;
+    },
+    {
+      id: &quot;Episode.EMPIRE&quot;,
+      defaults: &quot;Empire Strikes Back&quot;
+    },
+    {
+      id: &quot;Episode.JEDI&quot;,
+      defaults: &quot;Return of the Jedi&quot;
+    }
+  ]
 }
 </pre></div>
 </div>

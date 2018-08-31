@@ -142,32 +142,36 @@ The type of returned messages should be following:
 .. code-block:: jsx
 
    type MessageDescriptor = {
-      id: string,
-      defaults?: string,
-      description?: string
+     id: string,
+     defaults?: string,
+     description?: string
    }
 
    type Messages = Array<MessageDescriptor> | Promise<Array<MessageDescriptor>>
 
-   type ExtractedDescriptors = {
-      name: string,
-      messages: Messages
-   } | Messages
+   type ExtractedDescriptors =
+     | {
+         name: string,
+         messages: Messages
+       }
+     | Messages
 
    export default {
-      name: 'graphql',
-      messages: [
-         {
-            id: 'Episode.NEWHOPE',
-            defaults: 'New Hope'
-         }, {
-            id: 'Episode.EMPIRE',,
-            defaults: 'Empire Strikes Back'
-         }, {
-            id: 'Episode.JEDI',,
-            defaults: 'Return of the Jedi'
-         }
-      ]
+     name: "graphql",
+     messages: [
+       {
+         id: "Episode.NEWHOPE",
+         defaults: "New Hope"
+       },
+       {
+         id: "Episode.EMPIRE",
+         defaults: "Empire Strikes Back"
+       },
+       {
+         id: "Episode.JEDI",
+         defaults: "Return of the Jedi"
+       }
+     ]
    }
 
 If returned value is an object with ``name`` attribute then value of this attribute
