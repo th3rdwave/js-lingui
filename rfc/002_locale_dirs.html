@@ -126,8 +126,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="toc.html">RFCs and design decisions</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="001_message_definitions.html">001 - Message Definition</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">002 - Locale directories</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#considered-use-cases">Considered use cases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#loading-messages-from-scripts">Loading messages from scripts</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#possible-challenges">Possible challenges</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#other-considered-options">Other considered options</a></li>
@@ -212,19 +214,12 @@
 <h1>002 - Locale directories<a class="headerlink" href="#locale-directories" title="Permalink to this headline">¶</a></h1>
 <p>Related issue: <a class="reference external" href="https://github.com/lingui/js-lingui/issues/257">#257</a></p>
 <p>Message catalogs can quickly grow in size and it’s convenient to split them
-into several files.</p>
+into several files. Also, not all messages are extracted from source files and it may
+be convenient to fetch message descriptors from API (e.g. GraphQL Enum)</p>
 <div class="admonition important">
 <p class="first admonition-title">Important</p>
 <p class="last">This proposal is about splitting <strong>source catalogs</strong>. Compiled
 message catalogs always contain all messages in project for now.</p>
-</div>
-<div class="section" id="considered-use-cases">
-<h2>Considered use cases<a class="headerlink" href="#considered-use-cases" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Automatic spitting - one locale directory per package in monorepos (Lerna, Yarn workspaces)</li>
-<li>Manually splitting, i.e. define from what source path the messages will be collected
-into what locale directory.</li>
-</ul>
 </div>
 <div class="section" id="solution">
 <h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
@@ -252,16 +247,30 @@ using this config:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Key</strong> of <code class="docutils literal notranslate"><span class="pre">localeDir</span></code> object is a path to message catalogs. <strong>Value</strong> is a path to
-source files from which messages are collected. It can be a single path or an array
-of paths:</p>
+<p><strong>Key</strong> of <code class="docutils literal notranslate"><span class="pre">localeDir</span></code> object is a path to message catalogs. It’s either absolute
+path or relative to <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>.</p>
+<p><strong>Value</strong> specify a source from which messages are extracted. It can be also an array
+of sources. The most common one is a directory, which is traversed recursively and
+messages are collected from source files. Leading <code class="docutils literal notranslate"><span class="pre">!</span></code> excludes files:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{package}/{locale}&quot;</span><span class="p">:</span> <span class="p">[</span>
+         <span class="nt">&quot;./locale/{name}/{locale}&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s2">&quot;src/shared&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;src/project&quot;</span>
+            <span class="s2">&quot;src/project&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;!src/project/excluded&quot;</span>
          <span class="p">],</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>It can also be a script, which is executed and should return an array of message
+descriptors:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/graphql&quot;</span><span class="p">:</span> <span class="s2">&quot;run!scripts/fetch_graphql_enums.js&quot;</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
@@ -279,23 +288,26 @@ of paths:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">{package}</span></code> placeholder is replaced with a top level directory. This example would
-create <code class="docutils literal notranslate"><span class="pre">locale/en/componentA.json</span></code> and <code class="docutils literal notranslate"><span class="pre">locale/en/componentB.json</span></code> for English
-locale and following directory structure:</p>
+<p><code class="docutils literal notranslate"><span class="pre">{name}</span></code> placeholder is replaced with a top-most directory in a path. Consider
+following directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>src/
+├── componentA/
+└── componentB/
+</pre></div>
+</div>
+<p>Using this configuration we would get <code class="docutils literal notranslate"><span class="pre">locale/en/componentA.json</span></code> and
+<code class="docutils literal notranslate"><span class="pre">locale/en/componentB.json</span></code> for English locale:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{locale}/{package}&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./locale/{locale}/{name}&quot;</span><span class="p">:</span> <span class="s2">&quot;./src&quot;</span><span class="p">,</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
-├── componentA/
-└── componentB/
-</pre></div>
-</div>
+<p>Path to message catalog is always without file extension because different serializers
+use different extensions, e.g. <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">po</span></code>.</p>
 <p>Path to message catalog can be a directory ending with <code class="docutils literal notranslate"><span class="pre">/</span></code>. <code class="docutils literal notranslate"><span class="pre">locale/</span></code> is the same
 as <code class="docutils literal notranslate"><span class="pre">locale/{locale}/messages</span></code>.</p>
 <p>If it’s a file, then it <em>must</em> contain <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder. This example is
@@ -308,6 +320,52 @@ as <code class="docutils literal notranslate"><span class="pre">locale/{locale}/
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+</div>
+<div class="section" id="loading-messages-from-scripts">
+<h3>Loading messages from scripts<a class="headerlink" href="#loading-messages-from-scripts" title="Permalink to this headline">¶</a></h3>
+<p>Messages can also be loaded dynamically from a script. If the source path starts with
+<code class="docutils literal notranslate"><span class="pre">run!</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">run!scripts/fetch_graphql_enums.js</span></code>), the script is executed and
+returned messages are added to catalog.</p>
+<p>The type of returned messages should be following:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>type MessageDescriptor = {
+   id: string,
+   defaults?: string,
+   description?: string
+}
+
+type Messages = Array&lt;MessageDescriptor&gt; | Promise&lt;Array&lt;MessageDescriptor&gt;&gt;
+
+type ExtractedDescriptors = {
+   name: string,
+   messages: Messages
+} | Messages
+
+export default {
+   name: &#39;graphql&#39;,
+   messages: [
+      {
+         id: &#39;Episode.NEWHOPE&#39;,
+         defaults: &#39;New Hope&#39;
+      }, {
+         id: &#39;Episode.EMPIRE&#39;,,
+         defaults: &#39;Empire Strikes Back&#39;
+      }, {
+         id: &#39;Episode.JEDI&#39;,,
+         defaults: &#39;Return of the Jedi&#39;
+      }
+   ]
+}
+</pre></div>
+</div>
+<p>If returned value is an object with <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute then value of this attribute
+is used in <code class="docutils literal notranslate"><span class="pre">{name}</span></code> placeholder.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Messages</span></code> might also be a promise:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+   <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;graphql&#39;</span><span class="p">,</span>
+   <span class="nx">messages</span><span class="o">:</span> <span class="nx">fetch_enums</span><span class="p">(</span><span class="s1">&#39;/graphql&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="summary">
