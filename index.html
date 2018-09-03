@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>jsLingui - Seamless i18n in Javascript and React &mdash; jsLingui  documentation</title>
+  <title>LinguiJS - Seamless internationalization in Javascript &mdash; jsLingui  documentation</title>
   
 
   
@@ -169,7 +169,7 @@
     
       <li><a href="#">Docs</a> &raquo;</li>
         
-      <li>jsLingui - Seamless i18n in Javascript and React</li>
+      <li>LinguiJS - Seamless internationalization in Javascript</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -190,9 +190,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="jslingui-seamless-i18n-in-javascript-and-react">
-<h1>jsLingui - Seamless i18n in Javascript and React<a class="headerlink" href="#jslingui-seamless-i18n-in-javascript-and-react" title="Permalink to this headline">¶</a></h1>
-<p>Type-checked and intuitive way to internationalize applications in Javascript and React.</p>
+  <div class="section" id="linguijs-seamless-internationalization-in-javascript">
+<h1>LinguiJS - Seamless internationalization in Javascript<a class="headerlink" href="#linguijs-seamless-internationalization-in-javascript" title="Permalink to this headline">¶</a></h1>
+<p>🌍📖 A readable, automated, and optimized (5 kb) internationalization for JavaScript</p>
 <blockquote>
 <div><p><strong>Internationalization</strong> is the design and development of a product, application
 or document content that enables easy <strong>localization</strong> for target audiences that
@@ -201,15 +201,37 @@ vary in culture, region, or language.</p>
 </div></blockquote>
 <div class="section" id="key-features">
 <h2>Key features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Lightweight - about <a class="reference external" href="https://github.com/lingui/js-lingui/blob/master/scripts/build/results.json">5kb gzipped</a>
-(1.9 kB core, 3.1 kB React components)</li>
-<li>Full support of <strong>ICU MessageFormat</strong> with extension to support HTML</li>
-<li>Unopinionated - supports manual and auto-generated message IDs out-of-the-box</li>
-<li>Batteries included - <strong>CLI</strong> for working with message catalogs
-(extracting, validating, compiling, …)</li>
-<li>Easy to migrate from react-intl</li>
-</ul>
+<p>Lingui is an easy yet powerfull internationalization framework for global projects.</p>
+<dl class="docutils">
+<dt>Clean and readable</dt>
+<dd>Keep your code clean and readable, while the library uses
+battle-tested and powerful <strong>ICU MessageFormat</strong> under the hood.</dd>
+<dt>Universal</dt>
+<dd>Use it everywhere. <a class="reference internal" href="ref/core.html#ref-core"><span class="std std-ref">&#64;lingui/core</span></a> provides the essential intl
+functionality which works in any JavaScript project while <a class="reference internal" href="ref/react.html#ref-react"><span class="std std-ref">&#64;lingui/react</span></a> offers
+components to leverage React rendering.</dd>
+<dt>Full rich-text support</dt>
+<dd>Use React components inside localized messages
+without any limitation. Writing rich-text messages is as easy as writing JSX.</dd>
+<dt>Powerful tooling</dt>
+<dd>Manage the whole intl workflow using Lingui <a class="reference internal" href="ref/cli.html#ref-cli"><span class="std std-ref">CLI</span></a>. It
+extracts messages from source code, validates messages coming from translators and
+checks that all messages are translated before shipping to production.</dd>
+<dt>Unopinionated</dt>
+<dd>Integrate Lingui into your existing workflow. It supports
+message keys as well as auto generated messages. Translations are stored either in
+JSON or standard PO file, which is supported in almost all translation tools.</dd>
+<dt>Lightweight and optimized</dt>
+<dd>Core library is only <a class="reference external" href="https://bundlephobia.com/result?p=&#64;lingui/react">1.9 kB gzipped</a>,
+React components are additional <a class="reference external" href="https://bundlephobia.com/result?p=&#64;lingui/core">3.1 kBs gzipped</a>.
+That’s less than Redux for a full-featured intl library.</dd>
+<dt>Active community</dt>
+<dd>Join us on <a class="reference external" href="https://gitter.im/lingui/js-lingui">Gitter</a> to discuss the latest development.
+At the moment, Lingui is the most active intl project on GitHub.</dd>
+<dt>Compatible with react-intl</dt>
+<dd>Low-level React API is very similar to react-intl
+and the message format is the same. It’s easy to migrate existing project.</dd>
+</dl>
 <div class="figure" id="id1">
 <img alt="_images/pitch_messages.png" src="_images/pitch_messages.png" />
 <p class="caption"><span class="caption-text">Example with React</span></p>
