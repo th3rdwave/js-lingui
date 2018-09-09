@@ -214,7 +214,7 @@ running <a class="reference internal" href="cli.html#lingui-cli-compile"><code c
 import. Here’s an example of dynamic import:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">class</span> <span class="nx">I18nLoader</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">Component</span> <span class="p">{</span>
    <span class="nx">loadMessages</span> <span class="o">=</span> <span class="p">(</span><span class="nx">language</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">await</span> <span class="kr">import</span><span class="p">(</span><span class="sb">`@lingui/loader:./locale/</span><span class="si">${</span><span class="nx">language</span><span class="si">}</span><span class="sb">/messages.js`</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nx">await</span> <span class="kr">import</span><span class="p">(</span><span class="sb">`@lingui/loader!./locale/</span><span class="si">${</span><span class="nx">language</span><span class="si">}</span><span class="sb">/messages.json`</span><span class="p">)</span>
    <span class="p">}</span>
 
    <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>

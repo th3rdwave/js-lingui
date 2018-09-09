@@ -134,6 +134,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#lazy-translations">Lazy translations</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#extracting-messages">Extracting messages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#common-catalogs">Common catalogs</a></li>
 </ul>
@@ -311,13 +312,12 @@ configuration. It’s possible however, that this will be possible in the future
    <span class="nx">defaults</span><span class="o">?:</span> <span class="nb">String</span><span class="p">,</span>
    <span class="nx">values</span><span class="o">?:</span> <span class="nb">Object</span><span class="p">,</span>
    <span class="nx">formats</span><span class="o">?:</span> <span class="nb">Object</span><span class="p">,</span>
-   <span class="nx">description</span><span class="o">?:</span> <span class="nb">String</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">id</span></code> is message ID and the only required parameter. <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">defaults</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">description</span></code> are extracted to message catalog. Only <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">values</span></code>, and <code class="docutils literal notranslate"><span class="pre">formats</span></code>
-are used at runtime, all other attributes ss possible to remove from production code
+<p><code class="docutils literal notranslate"><span class="pre">id</span></code> is message ID and the only required parameter. <code class="docutils literal notranslate"><span class="pre">id</span></code> and <code class="docutils literal notranslate"><span class="pre">defaults</span></code>
+are extracted to message catalog. Only <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">values</span></code>, and <code class="docutils literal notranslate"><span class="pre">formats</span></code>
+are used at runtime, all other attributes are removed from production code
 for size optimization.</p>
 <p>Generated <em>Message Descriptor</em> must be passed to <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object, which is callable,
 to perform the translation and formatting:</p>
@@ -362,7 +362,7 @@ to perform the translation and formatting:</p>
 <span class="nx">t</span><span class="sb">`Default message`</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Default message&#39;</span>
 <span class="p">}</span>
 </pre></div>
@@ -374,7 +374,7 @@ to perform the translation and formatting:</p>
 <span class="nx">t</span><span class="sb">`Default message with </span><span class="si">${</span><span class="nx">param</span><span class="si">}</span><span class="sb">`</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Default message with {param}&#39;</span><span class="p">,</span>
   <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
 <span class="p">}</span>
@@ -391,7 +391,7 @@ forms. Here’s the example of <code class="docutils literal notranslate"><span 
 <span class="nx">plural</span><span class="p">({</span> <span class="nx">value</span><span class="p">,</span> <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span> <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span> <span class="p">})</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;{value, plural, one {# book} other {# books }}&#39;</span><span class="p">,</span>
   <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
 <span class="p">}</span>
@@ -409,7 +409,7 @@ In this case, <code class="docutils literal notranslate"><span class="pre">t</sp
 <span class="nx">t</span><span class="p">(</span><span class="s2">&quot;msg.id&quot;</span><span class="p">)</span><span class="sb">`Default message`</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
   <span class="nx">defaults</span><span class="o">:</span> <span class="s2">&quot;Default message&quot;</span>
 <span class="p">}</span>
@@ -428,7 +428,7 @@ Adding a <code class="docutils literal notranslate"><span class="pre">id</span><
 <span class="p">})</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.plural&quot;</span><span class="p">,</span>
   <span class="nx">defaults</span><span class="o">:</span> <span class="s1">&#39;{value, plural, one {# book} other {# books }}&#39;</span><span class="p">,</span>
   <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
@@ -439,70 +439,51 @@ Adding a <code class="docutils literal notranslate"><span class="pre">id</span><
 <div class="section" id="description">
 <h3>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
 <p>Another addition to API is message description, which is passed to translators and it
-contains additional hints about the message.</p>
-<p>To summarize, <code class="docutils literal notranslate"><span class="pre">t</span></code> macro can be used in two forms:</p>
-<ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">t`Default</span> <span class="pre">Message`</span></code> - to define a message</li>
-<li><code class="docutils literal notranslate"><span class="pre">t(&quot;message.id)`Default</span> <span class="pre">Message`</span></code> - to define a message with custom ID</li>
-</ul>
-<p>Finally, there’s the most verbose form which is used to add description to message:</p>
+contains additional hints about the message. To add a message description, simply
+prepend the message with a comment starting with <code class="docutils literal notranslate"><span class="pre">i18n:</span></code>. Everything after is
+considered as description.</p>
+<p>The comment can be either a line comment:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
-<span class="nx">t</span><span class="p">({</span>
-  <span class="nx">id</span><span class="o">:</span> <span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
-  <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Greetings at homepage&quot;</span>
-<span class="p">})</span>
+<span class="c1">// i18n: Greetings at homepage</span>
+<span class="nx">t</span><span class="sb">`Greetings at homepage`</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n: Greetings at homepage*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Hello {name}&#39;</span><span class="p">,</span>
-  <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Greetings at homepage&quot;</span>
   <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The value of <code class="docutils literal notranslate"><span class="pre">id</span></code> atribute is processed as if it were a standalone <code class="docutils literal notranslate"><span class="pre">t</span></code> macro.</p>
-<p>Definition of message with custom ID is similar:</p>
+<p>Or a block comment:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
-<span class="nx">t</span><span class="p">({</span>
-  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;message.hello&#39;</span><span class="p">,</span>
-  <span class="nx">defaults</span><span class="o">:</span> <span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
-  <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Greetings at homepage&quot;</span>
-<span class="p">})</span>
+<span class="cm">/*i18n: Greetings at homepage */</span><span class="nx">t</span><span class="p">(</span><span class="s1">&#39;message.hello&#39;</span><span class="p">)</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n: Greetings at homepage*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;message.hello&#39;</span><span class="p">,</span>
   <span class="nx">defaults</span><span class="o">:</span> <span class="s1">&#39;Hello {name}&#39;</span><span class="p">,</span>
-  <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Greetings at homepage&quot;</span>
   <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">plural</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code> and <code class="docutils literal notranslate"><span class="pre">selectOrdinal</span></code> supports <code class="docutils literal notranslate"><span class="pre">description</span></code> as well:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
+<p>Description for plurals and other formatters is the same:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plurals</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
-<span class="c1">// Macro</span>
+<span class="c1">// i18n: Number of books</span>
 <span class="nx">plural</span><span class="p">({</span>
-  <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Number of books&quot;</span><span class="p">,</span>
   <span class="nx">value</span><span class="p">,</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
 <span class="p">})</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="p">{</span>
+<span class="cm">/*i18n: Number of books*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;{value, plural, one {# book} other {# books }}&#39;</span><span class="p">,</span>
-  <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Number of books&quot;</span><span class="p">,</span>
   <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Description is removed completely when macros run under <code class="docutils literal notranslate"><span class="pre">BABEL_ENV=production</span></code>
-to reduce production bundle size.</p>
 </div>
 </div>
 <div class="section" id="lazy-translations">
@@ -606,6 +587,30 @@ in MessageFormat. <code class="docutils literal notranslate"><span class="pre">a
 <span class="kr">const</span> <span class="nx">translation</span> <span class="o">=</span> <span class="nx">books</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">42</span> <span class="p">})</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="extracting-messages">
+<h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
+<p>Messages are extracted from code already transformed by macros. This makes macros
+completely optional and extraction will work also with message descriptors created
+manually.</p>
+<p>Extract script will look for  a <code class="docutils literal notranslate"><span class="pre">i18n</span></code> comments:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/*i18n*/</span><span class="p">{</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Message&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>An object after such comment is considered as message descriptor and extracted.</p>
+<p>Description of message can be optionally added in this comment:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/*i18n: Description*/</span><span class="p">{</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Message&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Macros generate these comments automatically. It’s necessary to write them manually
+only if we don’t use macros at all or in case we want to add a message description.</p>
 </div>
 </div>
 <div class="section" id="summary">
