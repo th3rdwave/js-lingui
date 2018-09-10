@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference - React (@lingui/react) &mdash; jsLingui  documentation</title>
+  <title>API Reference - React (@lingui/react) &mdash; LinguiJS  documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="API Reference - CLI (@lingui/cli)" href="cli.html" />
+    <link rel="next" title="@lingui/macro - Reference" href="macro.html" />
     <link rel="prev" title="@lingui/core - The core i18n functionality" href="core.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
@@ -58,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> jsLingui
+            <a href="../index.html" class="icon icon-home"> LinguiJS
           
 
           
@@ -138,6 +138,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loader.html">Webpack Loader</a></li>
@@ -150,7 +151,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rfc/toc.html">RFCs and design decisions</a></li>
@@ -168,7 +169,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">jsLingui</a>
+          <a href="../index.html">LinguiJS</a>
         
       </nav>
 
@@ -322,7 +323,7 @@ custom <code class="docutils literal notranslate"><span class="pre">defaultRende
 
 <p>This is the main and most-used component for translation. It supports
 variables and components inside messages. Usage of this component depends on
-whether or not you’re using jsLingui Babel plugins.</p>
+whether or not you’re using LinguiJS Babel plugins.</p>
 <p>Each message is identified by <strong>message ID</strong>.
 <code class="docutils literal notranslate"><span class="pre">babel-plugin-lingui-transform-react</span></code> automatically generates message ID from
 contents of <a class="reference internal" href="#component-Trans">&lt;Trans&gt;</a> component, but it’s possible to provide custom
@@ -719,11 +720,12 @@ enough to compare <code class="docutils literal notranslate"><span class="pre">i
 <p>Using lambda components:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
 <span class="kd">function</span> <span class="nx">LogoutIcon</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">return</span> <span class="p">(</span>
       <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
-         <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">&lt;</span><span class="nt">Icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;turn-off&quot;</span> <span class="na">ariaLabel</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`Log out`</span><span class="p">}</span> <span class="p">/&gt;}</span>
+         <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">&lt;</span><span class="nt">Icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;turn-off&quot;</span> <span class="na">ariaLabel</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Log out`</span><span class="p">)}</span> <span class="p">/&gt;}</span>
       <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
    <span class="p">)</span>
 <span class="p">}</span>
@@ -732,9 +734,10 @@ enough to compare <code class="docutils literal notranslate"><span class="pre">i
 <p>Using components and elements:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
 <span class="kd">function</span> <span class="nx">TranslatedComponent</span><span class="p">({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">Icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;turn-off&quot;</span> <span class="na">ariaLabel</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`Log out`</span><span class="p">}</span> <span class="p">/&gt;</span>
+   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">Icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;turn-off&quot;</span> <span class="na">ariaLabel</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Log out`</span><span class="p">)}</span> <span class="p">/&gt;</span>
 <span class="p">}</span>
 
 <span class="kd">function</span> <span class="nx">RenderingElements</span><span class="p">()</span> <span class="p">{</span>
@@ -743,10 +746,6 @@ enough to compare <code class="docutils literal notranslate"><span class="pre">i
          <span class="p">&lt;</span><span class="nt">TranslatedComponent</span> <span class="p">/&gt;</span>
       <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
    <span class="p">)</span>
-<span class="p">}</span>
-
-<span class="kd">function</span> <span class="nx">RenderingComponents</span><span class="p">()</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;{</span><span class="nx">TranslatedComponent</span><span class="p">}&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -777,9 +776,10 @@ wrapped component. <code class="docutils literal notranslate"><span class="pre">
 API for translation of JSX props:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">withI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
 <span class="kr">const</span> <span class="nx">LogoutIcon</span> <span class="o">=</span> <span class="nx">withI18n</span><span class="p">()(({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
-  <span class="p">&lt;</span><span class="nt">Icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;turn-off&quot;</span> <span class="na">ariaLabel</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`Log out`</span><span class="p">}</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;</span><span class="nt">Icon</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;turn-off&quot;</span> <span class="na">ariaLabel</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Log out`</span><span class="p">)}</span> <span class="p">/&gt;</span>
 <span class="p">))</span>
 </pre></div>
 </div>
@@ -837,7 +837,7 @@ components:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cli.html" class="btn btn-neutral float-right" title="API Reference - CLI (@lingui/cli)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="macro.html" class="btn btn-neutral float-right" title="@lingui/macro - Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="core.html" class="btn btn-neutral" title="@lingui/core - The core i18n functionality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

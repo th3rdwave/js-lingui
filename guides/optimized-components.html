@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Optimized components &mdash; jsLingui  documentation</title>
+  <title>Optimized components &mdash; LinguiJS  documentation</title>
   
 
   
@@ -58,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> jsLingui
+            <a href="../index.html" class="icon icon-home"> LinguiJS
           
 
           
@@ -115,6 +115,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
@@ -127,7 +128,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rfc/toc.html">RFCs and design decisions</a></li>
@@ -145,7 +146,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">jsLingui</a>
+          <a href="../index.html">LinguiJS</a>
         
       </nav>
 
@@ -203,13 +204,13 @@
 component</em>.</p>
 <div class="admonition hint">
 <p class="first admonition-title">Hint</p>
-<p class="last"><strong>TL;DR:</strong> Optimized components are handled correctly in jsLingui by default.
+<p class="last"><strong>TL;DR:</strong> Optimized components are handled correctly in LinguiJS by default.
 Read this document if you want to understand how things work under the hood.</p>
 </div>
 <p>React components can be optimized to skip updates implementing
 <code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate</span></code>. Based on change of props and state, component
 can decide to continue re-rendering or skip the update completely.
-However, jsLingui reads translations from context and there’re two cases
+However, LinguiJS reads translations from context and there’re two cases
 which must be handled to make i18n related updates reliable.</p>
 <p>The two cases to handle are:</p>
 <ol class="arabic simple">
@@ -246,11 +247,11 @@ behavior can be disabled by passing <code class="docutils literal notranslate"><
 <p>Component should be wrapped in <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC when it’s required to access
 low-level i18n API. Common usecase is translation of attributes:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
 <span class="kr">class</span> <span class="nx">HeaderLink</span> <span class="kr">extends</span> <span class="nx">React</span><span class="p">.</span><span class="nx">PureComponent</span> <span class="p">{</span>
    <span class="nx">render</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">title</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`Title`</span><span class="p">}&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Header</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+      <span class="k">return</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">title</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Title`</span><span class="p">)}&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Header</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
    <span class="p">}</span>
 <span class="p">}</span>
 
@@ -288,7 +289,7 @@ you can disable it by passing <code class="docutils literal notranslate"><span c
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>jsLingui handles updates in and for Optimized components in most cases. If you
+<p>LinguiJS handles updates in and for Optimized components in most cases. If you
 want to disable this behavior, you can pass either <code class="docutils literal notranslate"><span class="pre">update</span> <span class="pre">=</span> <span class="pre">false</span></code>
 or <code class="docutils literal notranslate"><span class="pre">withHash</span> <span class="pre">=</span> <span class="pre">false</span></code> to <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC.</p>
 <p><code class="docutils literal notranslate"><span class="pre">update</span></code> fixes updates if component has optimized parents while <code class="docutils literal notranslate"><span class="pre">withHash</span></code>

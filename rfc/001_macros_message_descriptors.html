@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>001 - Macros for message descriptors &mdash; jsLingui  documentation</title>
+  <title>001 - Macros for message descriptors &mdash; LinguiJS  documentation</title>
   
 
   
@@ -58,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> jsLingui
+            <a href="../index.html" class="icon icon-home"> LinguiJS
           
 
           
@@ -109,6 +109,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
@@ -121,7 +122,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="toc.html">RFCs and design decisions</a><ul class="current">
@@ -158,7 +159,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">jsLingui</a>
+          <a href="../index.html">LinguiJS</a>
         
       </nav>
 
@@ -376,7 +377,7 @@ to perform the translation and formatting:</p>
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
 <span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Default message with {param}&#39;</span><span class="p">,</span>
-  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
+  <span class="nx">values</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -393,7 +394,7 @@ forms. Here’s the example of <code class="docutils literal notranslate"><span 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
 <span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;{value, plural, one {# book} other {# books }}&#39;</span><span class="p">,</span>
-  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
+  <span class="nx">values</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -415,13 +416,12 @@ In this case, <code class="docutils literal notranslate"><span class="pre">t</sp
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">plural</span></code> and other formatters are easier, because they’re called with an object.
-Adding a <code class="docutils literal notranslate"><span class="pre">id</span></code> atribute override auto-generated one:</p>
+<p><code class="docutils literal notranslate"><span class="pre">plural</span></code> and other formatters are called with a custom ID as a first argument, while
+second argument is formatter parameters - value and message variants:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
 <span class="c1">// Macro</span>
-<span class="nx">plural</span><span class="p">({</span>
-  <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.plural&quot;</span><span class="p">,</span>
+<span class="nx">plural</span><span class="p">(</span><span class="s2">&quot;msg.plural&quot;</span><span class="p">,</span> <span class="p">{</span>
   <span class="nx">value</span><span class="p">,</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
@@ -431,7 +431,7 @@ Adding a <code class="docutils literal notranslate"><span class="pre">id</span><
 <span class="cm">/*i18n*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.plural&quot;</span><span class="p">,</span>
   <span class="nx">defaults</span><span class="o">:</span> <span class="s1">&#39;{value, plural, one {# book} other {# books }}&#39;</span><span class="p">,</span>
-  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
+  <span class="nx">values</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -451,7 +451,7 @@ considered as description.</p>
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
 <span class="cm">/*i18n: Greetings at homepage*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Hello {name}&#39;</span><span class="p">,</span>
-  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">}</span>
+  <span class="nx">values</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -464,7 +464,7 @@ considered as description.</p>
 <span class="cm">/*i18n: Greetings at homepage*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;message.hello&#39;</span><span class="p">,</span>
   <span class="nx">defaults</span><span class="o">:</span> <span class="s1">&#39;Hello {name}&#39;</span><span class="p">,</span>
-  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">}</span>
+  <span class="nx">values</span><span class="o">:</span> <span class="p">{</span> <span class="nx">name</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -481,7 +481,7 @@ considered as description.</p>
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
 <span class="cm">/*i18n: Number of books*/</span><span class="p">{</span>
   <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;{value, plural, one {# book} other {# books }}&#39;</span><span class="p">,</span>
-  <span class="nx">value</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
+  <span class="nx">values</span><span class="o">:</span> <span class="p">{</span> <span class="nx">param</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -626,11 +626,11 @@ only if we don’t use macros at all or in case we want to add a message descrip
 <p>Feature request from #258, implemented using <code class="docutils literal notranslate"><span class="pre">i18n.defineMessages</span></code>:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineMessages</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
-<span class="kr">export</span> <span class="k">default</span> <span class="nx">defineMessages</span><span class="p">({</span>
-   <span class="nx">yes</span><span class="o">:</span> <span class="sb">`Yes`</span><span class="p">,</span>
-   <span class="nx">no</span><span class="o">:</span> <span class="sb">`No`</span><span class="p">,</span>
-   <span class="nx">cancel</span><span class="o">:</span> <span class="sb">`Cancel`</span><span class="p">,</span>
-   <span class="nx">confirmDelete</span><span class="o">:</span> <span class="sb">`Do you really want to delete </span><span class="si">${</span><span class="nx">arg</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">)</span><span class="si">}</span><span class="sb">?`</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">defineMessages</span><span class="p">({</span>
+   <span class="nx">yes</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Yes`</span><span class="p">,</span>
+   <span class="nx">no</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`No`</span><span class="p">,</span>
+   <span class="nx">cancel</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Cancel`</span><span class="p">,</span>
+   <span class="nx">confirmDelete</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Do you really want to delete </span><span class="si">${</span><span class="nx">arg</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">)</span><span class="si">}</span><span class="sb">?`</span>
 <span class="p">})</span>
 </pre></div>
 </div>

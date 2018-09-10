@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Working with jsLingui CLI &mdash; jsLingui  documentation</title>
+  <title>Working with LinguiJS CLI &mdash; LinguiJS  documentation</title>
   
 
   
@@ -58,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> jsLingui
+            <a href="../index.html" class="icon icon-home"> LinguiJS
           
 
           
@@ -101,7 +101,10 @@
 <li class="toctree-l2"><a class="reference internal" href="#cleaning-up-obsolete-messages">Cleaning up obsolete messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#validation-of-message-catalogs">Validation of message catalogs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configuring-source-locale">Configuring source locale</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#pseudolocalization">Pseudolocalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pseudolocalization">Pseudolocalization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-to-switch-your-browser-into-specified-pseudolocale">How to switch your browser into specified pseudoLocale</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#catalogs-in-vcs-and-ci">Catalogs in VCS and CI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
 </ul>
@@ -120,6 +123,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
@@ -132,7 +136,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rfc/toc.html">RFCs and design decisions</a></li>
@@ -150,7 +154,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">jsLingui</a>
+          <a href="../index.html">LinguiJS</a>
         
       </nav>
 
@@ -181,7 +185,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Working with jsLingui CLI</li>
+      <li>Working with LinguiJS CLI</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -202,28 +206,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="working-with-jslingui-cli">
-<h1>Working with jsLingui CLI<a class="headerlink" href="#working-with-jslingui-cli" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="working-with-linguijs-cli">
+<h1>Working with LinguiJS CLI<a class="headerlink" href="#working-with-linguijs-cli" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> provides the <code class="docutils literal notranslate"><span class="pre">lingui</span></code> command for extracting, merging and
 compiling message catalogs:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>  npm install --global @lingui/cli
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --global @lingui/cli
+</pre></div>
+</div>
+<p>Install also <code class="docutils literal notranslate"><span class="pre">babel-core</span></code> package depending on Babel version you use:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Babel 6.x</span>
+npm install --save-dev babel-core@6
 
-Install also <span class="sb">``</span>babel-core<span class="sb">`</span> package depending on Babel version you use:
-
-  .. code-block:: shell
-
-     <span class="c1"># Babel 6.x</span>
-     npm install --save-dev babel-core@6
-
-     <span class="c1"># Babel 7.x</span>
-     npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
+<span class="c1"># Babel 7.x</span>
+npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
 </pre></div>
 </div>
 <div class="section" id="add-a-new-locale">
 <h2>Add a new locale<a class="headerlink" href="#add-a-new-locale" title="Permalink to this headline">¶</a></h2>
 <p>First, we need to add all the locales we want to translate our application into.
-<a class="reference internal" href="../ref/cli.html#lingui-cli-add-locale"><code class="xref std std-cli docutils literal notranslate"><span class="pre">add-locale</span></code></a> command creates a new directory in the <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory
-and also checks if ‘locale’ exists:</p>
+<a class="reference internal" href="../ref/cli.html#lingui-cli-add-locale"><code class="xref std std-cli docutils literal notranslate"><span class="pre">add-locale</span></code></a> command checks if such locale exists and creates a new directory in
+the <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>lingui add-locale en cs
 </pre></div>
 </div>
@@ -237,7 +239,7 @@ Added locale cs.
 </div>
 <div class="section" id="extracting-messages">
 <h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
-<p>We’re going to use an app we built in a previous tutorial. The <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a>
+<p>We’re going to use an app we built in a <a class="reference external" href="./react">React tutorial</a>. The <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a>
 command looks for messages in the source files and extracts them:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>lingui extract
 </pre></div>
@@ -314,7 +316,7 @@ plural rules to a production ready catalog:</p>
   Done!
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">locale</span></code> dir now contains the source catalogs (<code class="docutils literal notranslate"><span class="pre">messages.json</span></code>) and
+<p>The <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory now contains the source catalogs (<code class="docutils literal notranslate"><span class="pre">messages.json</span></code>) and
 the compiled ones (<code class="docutils literal notranslate"><span class="pre">messages.js</span></code>).</p>
 </div>
 <div class="section" id="cleaning-up-obsolete-messages">
@@ -402,8 +404,9 @@ examples: <code class="xref std std-conf docutils literal notranslate"><span cla
 <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">extract</span></code> command. Pseudolocalized text is created on  <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">compile</span></code> command.
 The pseudolocalization is automatically created from default messages.
 It can also be changed by setting translation in <code class="xref std std-conf docutils literal notranslate"><span class="pre">message.json</span></code> into non-pseudolocalized text.</p>
-<p>How to switch your browser into specified pseudoLocale
-We can use browsers settings or extensions. Extensions allow to use any locale.
+<div class="section" id="how-to-switch-your-browser-into-specified-pseudolocale">
+<h3>How to switch your browser into specified pseudoLocale<a class="headerlink" href="#how-to-switch-your-browser-into-specified-pseudolocale" title="Permalink to this headline">¶</a></h3>
+<p>We can use browsers settings or extensions. Extensions allow to use any locale.
 Browsers are usually limited into valid language tags (BCP 47).
 In that case, the locale for pseudolocalization has to be standard locale,
 which is not used in your application for example <code class="xref std std-conf docutils literal notranslate"><span class="pre">zu_ZA</span></code> Zulu - SOUTH AFRICA</p>
@@ -413,6 +416,7 @@ b) Without extension - chrome://settings/?search=languages</p>
 <p>Firefox:
 a) With extension (any string) - <a class="reference external" href="https://addons.mozilla.org/en-GB/firefox/addon/quick-accept-language-switc/?src=search">https://addons.mozilla.org/en-GB/firefox/addon/quick-accept-language-switc/?src=search</a>
 b) Without extension - <a class="reference external" href="about:preferences#general">about:preferences#general</a> &gt; Language</p>
+</div>
 </div>
 <div class="section" id="catalogs-in-vcs-and-ci">
 <h2>Catalogs in VCS and CI<a class="headerlink" href="#catalogs-in-vcs-and-ci" title="Permalink to this headline">¶</a></h2>
@@ -426,8 +430,8 @@ commands to your build process.</p>
 </div>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
-<p>That’s it! Checkout <a class="reference external" href="../ref/lingui-cli">CLI reference</a> documentation for more
-info about <code class="docutils literal notranslate"><span class="pre">lingui</span></code> commands or <a class="reference external" href="../ref/lingui-conf">configuration reference</a>
+<p>That’s it! Checkout <a class="reference external" href="../ref/cli">CLI reference</a> documentation for more
+info about <code class="docutils literal notranslate"><span class="pre">lingui</span></code> commands or <a class="reference external" href="../ref/conf">configuration reference</a>
 for info about configuration parameters.</p>
 </div>
 </div>

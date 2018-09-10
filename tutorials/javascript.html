@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutorial - Internationalization of JavaScript apps &mdash; jsLingui  documentation</title>
+  <title>Tutorial - Internationalization of JavaScript apps &mdash; LinguiJS  documentation</title>
   
 
   
@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Working with jsLingui CLI" href="cli.html" />
+    <link rel="next" title="Working with LinguiJS CLI" href="cli.html" />
     <link rel="prev" title="Tutorial - Internationalization of React Native apps" href="react-native.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
@@ -58,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> jsLingui
+            <a href="../index.html" class="icon icon-home"> LinguiJS
           
 
           
@@ -94,7 +94,7 @@
 <li class="toctree-l1"><a class="reference internal" href="react-patterns.html">React - common patterns</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react-native.html">React Native</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">JavaScript</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#installing-jslingui">Installing jsLingui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-linguijs">Installing LinguiJS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setting-up-i18n">Setting up i18n</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#localizing-your-app">Localizing your app</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
@@ -115,6 +115,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
@@ -127,7 +128,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rfc/toc.html">RFCs and design decisions</a></li>
@@ -145,7 +146,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">jsLingui</a>
+          <a href="../index.html">LinguiJS</a>
         
       </nav>
 
@@ -203,23 +204,23 @@
 <p class="first admonition-title">Warning</p>
 <p class="last">This is a draft of tutorial. Feel free to send a PR if you want to contribute.</p>
 </div>
-<p>In this tutorial, we’ll learn how to use jsLingui’s internationalization features that
+<p>In this tutorial, we’ll learn how to use LinguiJS’s internationalization features that
 do not depend on React. We’ll take a minimalist approach and cover the main functions
 from the <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code> package.</p>
-<div class="section" id="installing-jslingui">
-<h2>Installing jsLingui<a class="headerlink" href="#installing-jslingui" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/lingui/js-lingui">jsLingui</a> isn’t just a package. It’s a set of tools which helps you to
+<div class="section" id="installing-linguijs">
+<h2>Installing LinguiJS<a class="headerlink" href="#installing-linguijs" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a> isn’t just a package. It’s a set of tools which helps you to
 internationalize. You can pick whichever tool you want to use in your project.
-We’re trying to use most of them to show the full power of jsLingui.</p>
+We’re trying to use most of them to show the full power of LinguiJS.</p>
 <p>Let’s start with the three major packages:</p>
 <dl class="docutils">
 <dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code></dt>
 <dd>CLI for i18n management and working with message catalogs</dd>
 <dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code></dt>
 <dd>The core library responsible for translation and handling of message catalogs</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-js</span></code></dt>
-<dd>Transforms messages wrapped in tagged template literals from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code> to ICU
-MessageFormat and validates them</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code></dt>
+<dd>Transforms messages wrapped in tagged template literals to ICU
+MessageFormat and validates them.</dd>
 </dl>
 <ol class="arabic">
 <li><p class="first"><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> comes with handy <a class="reference internal" href="../ref/cli.html#lingui-cli-init"><code class="xref std std-cli docutils literal notranslate"><span class="pre">init</span></code></a> command, which detects the
@@ -236,19 +237,22 @@ lingui init
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Under the hood it installs <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-js</span></code> as a development
-dependency and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code> as a runtime dependency:</p>
+<p>Under the hood it installs <code class="docutils literal notranslate"><span class="pre">babel-plugin-macros</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code> as
+a development dependency and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code> as a runtime dependency:</p>
 <div class="last highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save @lingui/core
-npm install --save-dev @lingui/babel-preset-js
+npm install --save-dev babel-plugin-macros @lingui/macro
 </pre></div>
 </div>
 </div>
 </li>
-<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-js</span></code> preset to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
+<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">macro</span></code> plugin to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;env&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;@lingui/babel-preset-js&quot;</span>
+    <span class="s2">&quot;react&quot;</span><span class="p">,</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;macro&quot;</span>
   <span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
@@ -289,36 +293,40 @@ npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
 </div>
 <div class="section" id="localizing-your-app">
 <h2>Localizing your app<a class="headerlink" href="#localizing-your-app" title="Permalink to this headline">¶</a></h2>
-<p>Once that is done, we can go ahead and use it! Wrap you text in i18n.t template literal tag so it’s translated into active language:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`Hello World!`</span>
+<p>Once that is done, we can go ahead and use it! Wrap you text in <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> macro
+and pass it to <code class="xref js js-meth docutils literal notranslate"><span class="pre">i18n._()</span></code> method:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Hello World!`</span><span class="p">)</span>
 <span class="c1">// becomes &quot;Salut le monde!&quot;</span>
 
 <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Fred&quot;</span>
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">t</span><span class="sb">`My name is </span><span class="si">${</span> <span class="nx">name</span> <span class="si">}</span><span class="sb">`</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`My name is </span><span class="si">${</span> <span class="nx">name</span> <span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 <span class="c1">// becomes &quot;Je m&#39;appelle Fred&quot;</span>
 </pre></div>
 </div>
 <p>Plurals and selections are possible using plural and select methods:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">42</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
+<span class="kr">const</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">42</span>
+
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">plural</span><span class="p">({</span>
   <span class="nx">value</span><span class="o">:</span> <span class="nx">count</span><span class="p">,</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
-<span class="p">})</span>
+<span class="p">}))</span>
 <span class="c1">// becomes &quot;42 livres&quot;</span>
 </pre></div>
 </div>
 <p>It’s also possible to nest message formats. Each message format method in i18n has a standalone companion, which only returns message without performing the translation:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="c1">// use i18n.select here, to translate message format</span>
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">select</span><span class="p">({</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">select</span><span class="p">,</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">select</span><span class="p">({</span>
   <span class="nx">value</span><span class="o">:</span> <span class="nx">gender</span><span class="p">,</span>
   <span class="nx">offset</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-  <span class="c1">// plural, instead of i18n.plural</span>
   <span class="nx">female</span><span class="o">:</span> <span class="nx">plural</span><span class="p">({</span>
     <span class="nx">value</span><span class="o">:</span> <span class="nx">numOfGuests</span><span class="p">,</span>
     <span class="nx">offset</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
-    <span class="c1">// t, instead of i18n.t</span>
     <span class="mi">0</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`</span><span class="si">${</span><span class="nx">host</span><span class="si">}</span><span class="sb"> does not give a party.`</span><span class="p">,</span>
     <span class="mi">1</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`</span><span class="si">${</span><span class="nx">host</span><span class="si">}</span><span class="sb"> invites </span><span class="si">${</span><span class="nx">guest</span><span class="si">}</span><span class="sb"> to her party.`</span><span class="p">,</span>
     <span class="mi">2</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`</span><span class="si">${</span><span class="nx">host</span><span class="si">}</span><span class="sb"> invites </span><span class="si">${</span><span class="nx">guest</span><span class="si">}</span><span class="sb"> and one other person to her party.`</span><span class="p">,</span>
@@ -326,14 +334,14 @@ npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
   <span class="p">}),</span>
   <span class="nx">male</span><span class="o">:</span> <span class="nx">plural</span><span class="p">({...}),</span>
   <span class="nx">other</span><span class="o">:</span> <span class="nx">plural</span><span class="p">({...}),</span>
-<span class="p">})</span>
+<span class="p">}))</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="../ref/lingui-cli.html">&#64;lingui/cli reference documentation</a></li>
+<li><a class="reference external" href="../ref/cli.html">&#64;lingui/cli reference documentation</a></li>
 <li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
 </ul>
 </div>
@@ -347,7 +355,7 @@ npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cli.html" class="btn btn-neutral float-right" title="Working with jsLingui CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="cli.html" class="btn btn-neutral float-right" title="Working with LinguiJS CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="react-native.html" class="btn btn-neutral" title="Tutorial - Internationalization of React Native apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

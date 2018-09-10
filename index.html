@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>LinguiJS - Seamless internationalization in Javascript &mdash; jsLingui  documentation</title>
+  <title>LinguiJS - Seamless internationalization in Javascript &mdash; LinguiJS  documentation</title>
   
 
   
@@ -57,7 +57,7 @@
           
 
           
-            <a href="#" class="icon icon-home"> jsLingui
+            <a href="#" class="icon icon-home"> LinguiJS
           
 
           
@@ -108,6 +108,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ref/core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/loader.html">Webpack Loader</a></li>
@@ -120,7 +121,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rfc/toc.html">RFCs and design decisions</a></li>
@@ -138,7 +139,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="#">jsLingui</a>
+          <a href="#">LinguiJS</a>
         
       </nav>
 
@@ -234,14 +235,74 @@ At the moment, Lingui is the most active intl project on GitHub.</dd>
 <dd>Low-level React API is very similar to react-intl
 and the message format is the same. It’s easy to migrate existing project.</dd>
 </dl>
-<div class="figure" id="id1">
-<img alt="_images/pitch_messages.png" src="_images/pitch_messages.png" />
-<p class="caption"><span class="caption-text">Example with React</span></p>
 </div>
-<div class="figure" id="id2">
-<img alt="_images/pitch_keys.png" src="_images/pitch_keys.png" />
-<p class="caption"><span class="caption-text">Example with React using message IDs</span></p>
+<div class="section" id="quick-overview">
+<h2>Quick overview<a class="headerlink" href="#quick-overview" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">Trans</span><span class="p">,</span> <span class="nx">Plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">Lingui</span><span class="p">({</span> <span class="nx">numUsers</span><span class="p">,</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;You&quot;</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="cm">/* Localized messages are simply wrapped in &lt;Trans&gt; */</span><span class="p">}</span>
+        <span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.header&quot;</span><span class="p">&gt;</span><span class="nx">Internationalization</span> <span class="k">in</span> <span class="nx">React</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+
+      <span class="p">{</span><span class="cm">/* Element attributes are translated using i18n core object */</span><span class="p">}</span>
+      <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
+        <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
+          <span class="p">&lt;</span><span class="nt">img</span>
+            <span class="na">src</span><span class="o">=</span><span class="s">&quot;./logo.png&quot;</span>
+            <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="p">(</span><span class="s2">&quot;image.title&quot;</span><span class="p">)</span><span class="sb">`Logo of Lingui Project`</span><span class="p">)}</span>
+          <span class="p">/&gt;</span>
+        <span class="p">)}</span>
+      <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
+
+      <span class="p">&lt;</span><span class="nt">p</span> <span class="na">className</span><span class="o">=</span><span class="s">&quot;lead&quot;</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="cm">/* Variables are passed to messages in the same way as in JSX */</span><span class="p">}</span>
+        <span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.lead&quot;</span><span class="p">&gt;</span>
+          <span class="nx">Hello</span> <span class="p">{</span><span class="nx">name</span><span class="p">},</span> <span class="nx">LinguiJS</span> <span class="nx">is</span> <span class="nx">a</span> <span class="nx">readable</span><span class="p">,</span> <span class="nx">automated</span><span class="p">,</span> <span class="nx">and</span> <span class="nx">optimized</span> <span class="p">(</span><span class="mi">5</span> <span class="nx">kb</span><span class="p">)</span>
+          <span class="nx">internationalization</span> <span class="k">for</span> <span class="nx">JavaScript</span><span class="p">.</span>
+        <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+      <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+      <span class="p">{</span><span class="cm">/* Rendering of translation is customizable. Here it renders inside &lt;p&gt; */</span><span class="p">}</span>
+      <span class="p">&lt;</span><span class="nt">Trans</span> <span class="na">render</span><span class="o">=</span><span class="s">&quot;p&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.docs&quot;</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="cm">/* Also React Elements inside messages works in the same way as in JSX */</span><span class="p">}</span>
+        <span class="nx">Read</span> <span class="nx">the</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://lingui.js.org&quot;</span><span class="p">&gt;</span><span class="nx">documentation</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="k">for</span> <span class="nx">more</span> <span class="nx">info</span><span class="p">.</span>
+      <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+
+      <span class="p">{</span><span class="cm">/*</span>
+<span class="cm">        Plurals are managed using ICU plural rules.</span>
+<span class="cm">        Content of one/other slots is localized using &lt;Trans&gt;.</span>
+<span class="cm">        Nesting of i18n components is allowed.</span>
+<span class="cm">        Syntactically valid message in ICU MessageFormat is guaranteed.</span>
+<span class="cm">      */</span><span class="p">}</span>
+      <span class="p">&lt;</span><span class="nt">Plural</span>
+        <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.plurals&quot;</span>
+        <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">numUsers</span><span class="p">}</span>
+        <span class="na">one</span><span class="o">=</span><span class="p">{</span>
+          <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="nx">Only</span> <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span><span class="nx">one</span><span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> <span class="nx">user</span> <span class="nx">is</span> <span class="nx">using</span> <span class="k">this</span> <span class="nx">library</span><span class="o">!</span>
+          <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="p">}</span>
+        <span class="na">other</span><span class="o">=</span><span class="p">{</span>
+          <span class="p">&lt;</span><span class="nt">span</span><span class="p">&gt;</span>
+            <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;{</span><span class="nx">numUsers</span><span class="p">}&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> <span class="nx">users</span> <span class="nx">are</span> <span class="nx">using</span> <span class="k">this</span> <span class="nx">library</span><span class="o">!</span>
+          <span class="p">&lt;/</span><span class="nt">span</span><span class="p">&gt;</span>
+        <span class="p">}</span>
+      <span class="p">/&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+</div>
+<div class="section" id="documentation-contents">
+<h2>Documentation contents<a class="headerlink" href="#documentation-contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -268,6 +329,7 @@ and the message format is the same. It’s easy to migrate existing project.</dd
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="ref/core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ref/macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ref/loader.html">Webpack Loader</a></li>
@@ -284,19 +346,19 @@ and the message format is the same. It’s easy to migrate existing project.</dd
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="rfc/toc.html">RFCs and design decisions</a></li>
 </ul>
 </div>
-</div>
 <div class="section" id="indices">
-<h2>Indices<a class="headerlink" href="#indices" title="Permalink to this headline">¶</a></h2>
+<h3>Indices<a class="headerlink" href="#indices" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
 <li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
 </ul>
+</div>
 </div>
 </div>
 

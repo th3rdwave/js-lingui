@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Migration guide from 1.x to 2.x &mdash; jsLingui  documentation</title>
+  <title>Migration guide from 1.x to 2.x &mdash; LinguiJS  documentation</title>
   
 
   
@@ -58,7 +58,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> jsLingui
+            <a href="../index.html" class="icon icon-home"> LinguiJS
           
 
           
@@ -109,6 +109,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
@@ -137,7 +138,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Discussion</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using jsLingui</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../rfc/toc.html">RFCs and design decisions</a></li>
@@ -155,7 +156,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">jsLingui</a>
+          <a href="../index.html">LinguiJS</a>
         
       </nav>
 
@@ -264,7 +265,7 @@ were renamed:</p>
 </div>
 <div class="section" id="default-message-catalog-format">
 <h3>Default message catalog format<a class="headerlink" href="#default-message-catalog-format" title="Permalink to this headline">¶</a></h3>
-<p>jsLingui used comprehensive <code class="docutils literal notranslate"><span class="pre">lingui</span></code> format which contains additional info
+<p>LinguiJS used comprehensive <code class="docutils literal notranslate"><span class="pre">lingui</span></code> format which contains additional info
 like location of message in source and default translation (if any). Since most
 3rd party tools work with simple JSON only, the default format will be
 <code class="docutils literal notranslate"><span class="pre">minimal</span></code>.</p>
@@ -297,7 +298,7 @@ that was a size of <code class="docutils literal notranslate"><span class="pre">
 </div>
 <div class="section" id="development-prop-of-i18nprovider-is-deprecated">
 <h3><code class="docutils literal notranslate"><span class="pre">development</span></code> prop of <code class="docutils literal notranslate"><span class="pre">I18nProvider</span></code> is deprecated<a class="headerlink" href="#development-prop-of-i18nprovider-is-deprecated" title="Permalink to this headline">¶</a></h3>
-<p>jsLingui doesn’t include message parser in production bundle, because messages
+<p>LinguiJS doesn’t include message parser in production bundle, because messages
 are compiled to functions during build. However, in development it’s convenient
 to see parsed and formatted messages right away without need to run
 <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">extract</span></code> and <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">compile</span></code> everytime we add new text to an app.</p>
