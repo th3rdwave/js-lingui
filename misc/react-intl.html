@@ -243,7 +243,7 @@ same message syntax. The story doesn’t end here, though.</p>
     <span class="na">id</span><span class="o">=</span><span class="s">&#39;msg.docs&#39;</span>
     <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&#39;Read the {link}.&#39;</span>
     <span class="na">values</span><span class="o">=</span><span class="p">{{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs&quot;</span><span class="p">&gt;</span><span class="nx">documentation</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+        <span class="nx">link</span><span class="o">:</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs&quot;</span><span class="p">&gt;</span><span class="nx">documentation</span><span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
     <span class="p">}}</span>
 <span class="p">/&gt;</span>
 </pre></div>
@@ -254,7 +254,7 @@ The correct solution would be:</p>
     <span class="na">id</span><span class="o">=</span><span class="s">&#39;msg.docs&#39;</span>
     <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&#39;Read the {link}.&#39;</span>
     <span class="na">values</span><span class="o">=</span><span class="p">{{</span>
-        <span class="nx">name</span><span class="o">:</span> <span class="p">(</span>
+        <span class="nx">link</span><span class="o">:</span> <span class="p">(</span>
          <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/docs&quot;</span><span class="p">&gt;</span>
             <span class="p">&lt;</span><span class="nt">FormattedMessage</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;msg.docs.link&quot;</span> <span class="na">defaultMessage</span><span class="o">=</span><span class="s">&quot;documentation&quot;</span> <span class="p">/&gt;</span>
          <span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
