@@ -132,7 +132,7 @@ are extracted to message catalog. Only ``id``, ``values``, and ``formats``
 are used at runtime, all other attributes are removed from production code
 for size optimization.
 
-Decsription
+Description
 ^^^^^^^^^^^
 
 All JS macros can have a description. Description is added using ``i18n`` comment in

@@ -114,7 +114,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#js-macros">JS macros</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#decsription">Decsription</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#description">Description</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#t">t</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#plural">plural</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#date">date</a></li>
@@ -124,7 +124,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#jsx-macros">JSX Macros</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#common-props">Common props</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#trans">Trans</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Plural</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Plural</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#select">Select</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#selectordinal">SelectOrdinal</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#dateformat">DateFormat</a></li>
@@ -386,8 +386,8 @@ accepts message descriptors and performs translation and formatting:</p>
 are extracted to message catalog. Only <code class="docutils literal notranslate"><span class="pre">id</span></code>, <code class="docutils literal notranslate"><span class="pre">values</span></code>, and <code class="docutils literal notranslate"><span class="pre">formats</span></code>
 are used at runtime, all other attributes are removed from production code
 for size optimization.</p>
-<div class="section" id="decsription">
-<h4>Decsription<a class="headerlink" href="#decsription" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="description">
+<h4>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h4>
 <p>All JS macros can have a description. Description is added using <code class="docutils literal notranslate"><span class="pre">i18n</span></code> comment in
 front of the macro:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="cm">/*i18n: Description*/</span><span class="nx">t</span><span class="sb">`Message`</span>
@@ -550,8 +550,8 @@ In such case, generated message is used as a default translation.</p>
 </pre></div>
 </div>
 </div>
-<div class="section" id="description">
-<h5>description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="id2">
+<h5>description<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
 <p>Description of the message which is extracted to message catalogs as a help text for
 translators. It’s removed from production code.</p>
 </div>
@@ -610,8 +610,8 @@ has several advatanges:</p>
 i18n libs simply split message into pieces by tags and translate them separately)</li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h4>Plural<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id3">
+<h4>Plural<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <dl class="jsxmacro">
 <dt id="jsxmacro-Plural">
 <code class="descname">Plural</code><a class="headerlink" href="#jsxmacro-Plural" title="Permalink to this definition">¶</a></dt>
