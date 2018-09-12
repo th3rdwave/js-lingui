@@ -130,6 +130,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#proposal">Proposal</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#how-catalogs-work">How <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> work</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#loading-messages-from-scripts">Loading messages from scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#message-files-and-translation-files">Message files and translation files</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
@@ -346,6 +347,19 @@ is used in <code class="docutils literal notranslate"><span class="pre">{name}</
 <span class="p">}</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="message-files-and-translation-files">
+<h3>Message files and translation files<a class="headerlink" href="#message-files-and-translation-files" title="Permalink to this headline">¶</a></h3>
+<p>Until now, babel plugin extracted messages into <code class="docutils literal notranslate"><span class="pre">_build</span></code> directory. Files from
+this directory were merged into single catalog which was used to create locale files.</p>
+<p><code class="docutils literal notranslate"><span class="pre">_build</span></code> directory will be removed right after messages are extracted and collected
+messages (without translations) will be stored in message file (<code class="docutils literal notranslate"><span class="pre">POT</span></code> or <code class="docutils literal notranslate"><span class="pre">JSON</span></code>
+extension). This file is language agnostic and contains only message definitions.</p>
+<p>In next step, message file is used to create locale specific catalog by merging
+translation from previous locale files.</p>
+<p>This allows to check if message source have changed, access message definitions
+in other tools and optionally, create/edit message files manually (if automatic
+extracting isn’t possible).</p>
 </div>
 </div>
 <div class="section" id="summary">

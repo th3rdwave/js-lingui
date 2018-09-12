@@ -159,6 +159,23 @@ is used in ``{name}`` placeholder.
       messages: fetch_enums('/graphql')
    }
 
+Message files and translation files
+-----------------------------------
+
+Until now, babel plugin extracted messages into ``_build`` directory. Files from
+this directory were merged into single catalog which was used to create locale files.
+
+``_build`` directory will be removed right after messages are extracted and collected
+messages (without translations) will be stored in message file (``POT`` or ``JSON``
+extension). This file is language agnostic and contains only message definitions.
+
+In next step, message file is used to create locale specific catalog by merging
+translation from previous locale files.
+
+This allows to check if message source have changed, access message definitions
+in other tools and optionally, create/edit message files manually (if automatic
+extracting isn't possible).
+
 Summary
 =======
 
