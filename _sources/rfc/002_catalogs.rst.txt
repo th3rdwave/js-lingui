@@ -1,6 +1,6 @@
-************************
-002 - Locale directories
-************************
+**************
+002 - Catalogs
+**************
 
 Related issue: `#257 <https://github.com/lingui/js-lingui/issues/257>`_
 
@@ -13,122 +13,95 @@ be convenient to fetch message descriptors from API (e.g. GraphQL Enum)
    This proposal is about splitting **source catalogs**. Compiled
    message catalogs always contain all messages in project for now.
 
-Solution
+
+Proposal
 ========
 
-Passing an object to :conf:`localeDir` option allows more explicit configuration of
-locale directories. Consider following file structure::
+Deprecate :conf:`localeDir`, :conf:`srcPathDirs` and :conf:`srcPathIgnorePatterns`.
+These will be replaced with ``catalogs``, described below.
 
-   .
-   ├── locale/
-   ├── componentA/
-   ├── componentB/
-   └── largeComponentC/
-       ├── locale/
-       ├── subcomponentA/
-       └── subcomponentB/
+Deprecate :cli:`add-locale` command and replace it with ``locales`` configuration.
 
-Messages are always collected to the nearest ``locale`` parent dir. This can be achieved
-using this config:
+Allow override default :conf:`rootDir`. All relative paths inside ``catalogs``
+configuration will be relative to :conf:`rootDir`.
+
+How ``catalogs`` work
+---------------------
+
+Instead of single :conf:`localeDir` directory, ``catalogs`` accepts an object with
+configuration for each catalog:
 
 .. code-block:: json
 
    {
       "lingui": {
-         "localeDir": {
-            "./locale/": ".",
-            "./largeComponentC/locale/": "./largeComponentC",
+         "catalogs": {
+            "./locale/{locale}/shared": ".",
+            "./locale/{locale}/graphql": "run!scripts/fetch_graphql_enums.js",
+            "./components/{name}/locale/{locale}": "./components/{name}/",
          }
       }
    }
 
-**Key** of ``localeDir`` object is a path to message catalogs. It's either absolute
-path or relative to :conf:`rootDir`.
+**Key** is a path to catalog or catalogs. It's either absolute or relative path
+to :conf:`rootDir`.
+
+``{locale}`` placeholder is replaced with catalog's locale.
+
+``{name}`` placeholder is replaced with a catalog name. Source path must include ``{name}``
+pattern as well and it matches directory name.
+
+.. code-block:: json
+
+   {
+      "lingui": {
+         "catalogs": {
+            "./components/{name}/locale/{locale}": "./components/{name}/",
+         }
+      }
+   }
 
 **Value** specify a source from which messages are extracted. It can be also an array
 of sources. The most common one is a directory, which is traversed recursively and
-messages are collected from source files. Leading ``!`` excludes files:
+messages are collected from source files.
 
 .. code-block:: json
 
    {
       "lingui": {
-         "localeDir": {
-            "./locale/{name}/{locale}": [
-               "src/shared",
-               "src/project",
-               "!src/project/excluded"
-            ],
+         "catalogs": {
+            "./locale/{locale}/all": "./src/",
+            "./locale/{locale}/shared": [
+               "./src/shared/",
+               "./vendor/",
+            ]
          }
       }
    }
 
-It can also be a script, which is executed and should return an array of message
-descriptors:
+If the path starts with ``!`` then it's excluded:
 
 .. code-block:: json
 
    {
       "lingui": {
-         "localeDir": {
-            "./locale/{locale}/graphql": "run!scripts/fetch_graphql_enums.js"
+         "catalogs": {
+            "./locale/{locale}/messages": [
+               ".",
+               "!./node_modules/",
+            ]
          }
       }
    }
 
-On top of that, more advanced patterns are supported:
+If the path starts with ``run!`` then messages are loaded from executable script.
+See *loading messages from* scripts below.
 
-``{locale}`` placeholder is replaced with a current locale. This example would create
-``en.json`` inside ``locale`` directory for English locale:
+.. important::
 
-.. code-block:: json
+   Catalog names are always **without extension** because that depends on serializer,
+   e.g. ``json`` and ``po``.
 
-   {
-      "lingui": {
-         "localeDir": {
-            "./locale/{locale}": ".",
-         }
-      }
-   }
-
-``{name}`` placeholder is replaced with a top-most directory in a path. Consider
-following directory::
-
-   src/
-   ├── componentA/
-   └── componentB/
-
-Using this configuration we would get ``locale/en/componentA.json`` and
-``locale/en/componentB.json`` for English locale:
-
-.. code-block:: json
-
-   {
-      "lingui": {
-         "localeDir": {
-            "./locale/{locale}/{name}": "./src",
-         }
-      }
-   }
-
-Path to message catalog is always without file extension because different serializers
-use different extensions, e.g. ``json`` and ``po``.
-
-Path to message catalog can be a directory ending with ``/``. ``locale/`` is the same
-as ``locale/{locale}/messages``.
-
-If it's a file, then it *must* contain ``{locale}`` placeholder. This example is
-**invalid**:
-
-.. code-block:: json
-
-   {
-      "lingui": {
-         "localeDir": {
-            "./locale/messages": ".",
-         }
-      }
-   }
 
 Loading messages from scripts
 -----------------------------
@@ -189,31 +162,110 @@ is used in ``{name}`` placeholder.
 Summary
 =======
 
-By default :conf:`localeDir` is ``./locale/``.
-
-If :conf:`localeDir`` is a string, only single locale directory is used. It can be
-either a directory or a path to message file including ``{locale}`` pattern:
+Default ``catalogs`` settings is:
 
 .. code-block:: json
 
    {
       "lingui": {
-         "localeDir": "./locale/"
+         "catalogs": {
+            "<rootDir>/locale/{locale}/messages": [
+               "<rootDir>",
+               "!<rootDir>/node_modules/",
+            ]
+         }
       }
    }
 
-This is the same as:
+Example configurations
+----------------------
+
+Separate catalogs per component, placed inside component dir
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: none
+
+   .
+   ├── ComponentA/
+   │   ├── locale/
+   │   │  ├── en.po
+   │   │  └── cs.po
+   │   ├── ComponentA.test.js
+   │   └── ComponentA.js
+   └── ComponentB/
+       ├── locale/
+       │  ├── en.po
+       │  └── cs.po
+       ├── ComponentB.test.js
+       └── ComponentB.js
 
 .. code-block:: json
 
    {
       "lingui": {
-         "localeDir": "./locale/{locale}/messages"
+         "catalogs": {
+            "./{name}/locale/{locale}": "./{name}"
+         }
       }
    }
 
-Finally, if :conf:`localeDir`` is an object, then keys are locale directories and
-values are path to source directories from which messages are collected.
+Separate catalogs per component, placed inside shared directory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: none
+
+   .
+   ├── locale/
+   │   ├── en/
+   │   │   ├── ComponentA.po
+   │   │   └── ComponentB.po
+   │   └── cs/
+   │       ├── ComponentA.po
+   │       └── ComponentB.po
+   ├── ComponentA/
+   │   ├── ComponentA.test.js
+   │   └── ComponentA.js
+   └── ComponentB/
+       ├── ComponentB.test.js
+       └── ComponentB.js
+
+.. code-block:: json
+
+   {
+      "lingui": {
+         "catalogs": {
+            "./locale/{locale}/{name}": "./{name}"
+         }
+      }
+   }
+
+Loading message descriptors from API (e.g. GraphQL enums)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: none
+
+    .
+    └── locale/
+       ├── en/
+       │   ├── graphql.po  // messages from remote GraphQL server
+       │   └── app.po      // messages from local JS files
+       └── cs/
+           ├── graphql.po
+           └── app.po
+
+.. code-block:: json
+
+   {
+      "lingui": {
+         "catalogs": {
+            "./locale/{locale}/graphql": "run!./scripts/fetch_graphql_enums.js",
+            "./locale/{locale}/app": [
+               ".",
+               "!./node_modules"
+            ]
+         }
+      }
+   }
 
 Possible challenges
 -------------------

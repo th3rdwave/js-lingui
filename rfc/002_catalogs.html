@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>002 - Locale directories &mdash; LinguiJS  documentation</title>
+  <title>002 - Catalogs &mdash; LinguiJS  documentation</title>
   
 
   
@@ -126,12 +126,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="toc.html">RFCs and design decisions</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="001_macros_message_descriptors.html">001 - Macros for message descriptors</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">002 - Locale directories</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#solution">Solution</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">002 - Catalogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#proposal">Proposal</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-catalogs-work">How <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> work</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#loading-messages-from-scripts">Loading messages from scripts</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-configurations">Example configurations</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#possible-challenges">Possible challenges</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#other-considered-options">Other considered options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#default-automatic-splitting">Default - automatic splitting</a></li>
@@ -190,14 +192,14 @@
         
           <li><a href="toc.html">RFCs and design decisions</a> &raquo;</li>
         
-      <li>002 - Locale directories</li>
+      <li>002 - Catalogs</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/lingui/js-lingui/blob/master/docs/rfc/002_locale_dirs.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/lingui/js-lingui/blob/master/docs/rfc/002_catalogs.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -211,8 +213,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="locale-directories">
-<h1>002 - Locale directories<a class="headerlink" href="#locale-directories" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="catalogs">
+<h1>002 - Catalogs<a class="headerlink" href="#catalogs" title="Permalink to this headline">¶</a></h1>
 <p>Related issue: <a class="reference external" href="https://github.com/lingui/js-lingui/issues/257">#257</a></p>
 <p>Message catalogs can quickly grow in size and it’s convenient to split them
 into several files. Also, not all messages are extracted from source files and it may
@@ -222,105 +224,78 @@ be convenient to fetch message descriptors from API (e.g. GraphQL Enum)</p>
 <p class="last">This proposal is about splitting <strong>source catalogs</strong>. Compiled
 message catalogs always contain all messages in project for now.</p>
 </div>
-<div class="section" id="solution">
-<h2>Solution<a class="headerlink" href="#solution" title="Permalink to this headline">¶</a></h2>
-<p>Passing an object to <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> option allows more explicit configuration of
-locale directories. Consider following file structure:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
-├── locale/
-├── componentA/
-├── componentB/
-└── largeComponentC/
-    ├── locale/
-    ├── subcomponentA/
-    └── subcomponentB/
-</pre></div>
-</div>
-<p>Messages are always collected to the nearest <code class="docutils literal notranslate"><span class="pre">locale</span></code> parent dir. This can be achieved
-using this config:</p>
+<div class="section" id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this headline">¶</a></h2>
+<p>Deprecate <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a>, <a class="reference internal" href="../ref/conf.html#std:config-srcPathDirs"><code class="xref std std-conf docutils literal notranslate"><span class="pre">srcPathDirs</span></code></a> and <a class="reference internal" href="../ref/conf.html#std:config-srcPathIgnorePatterns"><code class="xref std std-conf docutils literal notranslate"><span class="pre">srcPathIgnorePatterns</span></code></a>.
+These will be replaced with <code class="docutils literal notranslate"><span class="pre">catalogs</span></code>, described below.</p>
+<p>Deprecate <a class="reference internal" href="../ref/cli.html#lingui-cli-add-locale"><code class="xref std std-cli docutils literal notranslate"><span class="pre">add-locale</span></code></a> command and replace it with <code class="docutils literal notranslate"><span class="pre">locales</span></code> configuration.</p>
+<p>Allow override default <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>. All relative paths inside <code class="docutils literal notranslate"><span class="pre">catalogs</span></code>
+configuration will be relative to <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>.</p>
+<div class="section" id="how-catalogs-work">
+<h3>How <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> work<a class="headerlink" href="#how-catalogs-work" title="Permalink to this headline">¶</a></h3>
+<p>Instead of single <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> directory, <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> accepts an object with
+configuration for each catalog:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-         <span class="nt">&quot;./largeComponentC/locale/&quot;</span><span class="p">:</span> <span class="s2">&quot;./largeComponentC&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/shared&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./locale/{locale}/graphql&quot;</span><span class="p">:</span> <span class="s2">&quot;run!scripts/fetch_graphql_enums.js&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./components/{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./components/{name}/&quot;</span><span class="p">,</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Key</strong> of <code class="docutils literal notranslate"><span class="pre">localeDir</span></code> object is a path to message catalogs. It’s either absolute
-path or relative to <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>.</p>
+<p><strong>Key</strong> is a path to catalog or catalogs. It’s either absolute or relative path
+to <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder is replaced with catalog’s locale.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{name}</span></code> placeholder is replaced with a catalog name. Source path must include <code class="docutils literal notranslate"><span class="pre">{name}</span></code>
+pattern as well and it matches directory name.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./components/{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./components/{name}/&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p><strong>Value</strong> specify a source from which messages are extracted. It can be also an array
 of sources. The most common one is a directory, which is traversed recursively and
-messages are collected from source files. Leading <code class="docutils literal notranslate"><span class="pre">!</span></code> excludes files:</p>
+messages are collected from source files.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{name}/{locale}&quot;</span><span class="p">:</span> <span class="p">[</span>
-            <span class="s2">&quot;src/shared&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;src/project&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;!src/project/excluded&quot;</span>
-         <span class="p">],</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/all&quot;</span><span class="p">:</span> <span class="s2">&quot;./src/&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./locale/{locale}/shared&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;./src/shared/&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;./vendor/&quot;</span><span class="p">,</span>
+         <span class="p">]</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>It can also be a script, which is executed and should return an array of message
-descriptors:</p>
+<p>If the path starts with <code class="docutils literal notranslate"><span class="pre">!</span></code> then it’s excluded:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{locale}/graphql&quot;</span><span class="p">:</span> <span class="s2">&quot;run!scripts/fetch_graphql_enums.js&quot;</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;!./node_modules/&quot;</span><span class="p">,</span>
+         <span class="p">]</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>On top of that, more advanced patterns are supported:</p>
-<p><code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder is replaced with a current locale. This example would create
-<code class="docutils literal notranslate"><span class="pre">en.json</span></code> inside <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for English locale:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
+<p>If the path starts with <code class="docutils literal notranslate"><span class="pre">run!</span></code> then messages are loaded from executable script.
+See <em>loading messages from</em> scripts below.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Catalog names are always <strong>without extension</strong> because that depends on serializer,
+e.g. <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">po</span></code>.</p>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">{name}</span></code> placeholder is replaced with a top-most directory in a path. Consider
-following directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>src/
-├── componentA/
-└── componentB/
-</pre></div>
-</div>
-<p>Using this configuration we would get <code class="docutils literal notranslate"><span class="pre">locale/en/componentA.json</span></code> and
-<code class="docutils literal notranslate"><span class="pre">locale/en/componentB.json</span></code> for English locale:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{locale}/{name}&quot;</span><span class="p">:</span> <span class="s2">&quot;./src&quot;</span><span class="p">,</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Path to message catalog is always without file extension because different serializers
-use different extensions, e.g. <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">po</span></code>.</p>
-<p>Path to message catalog can be a directory ending with <code class="docutils literal notranslate"><span class="pre">/</span></code>. <code class="docutils literal notranslate"><span class="pre">locale/</span></code> is the same
-as <code class="docutils literal notranslate"><span class="pre">locale/{locale}/messages</span></code>.</p>
-<p>If it’s a file, then it <em>must</em> contain <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder. This example is
-<strong>invalid</strong>:</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/messages&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-      <span class="p">}</span>
-   <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
 </div>
 <div class="section" id="loading-messages-from-scripts">
 <h3>Loading messages from scripts<a class="headerlink" href="#loading-messages-from-scripts" title="Permalink to this headline">¶</a></h3>
@@ -375,26 +350,103 @@ is used in <code class="docutils literal notranslate"><span class="pre">{name}</
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
-<p>By default <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> is <code class="docutils literal notranslate"><span class="pre">./locale/</span></code>.</p>
-<p>If <code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir`</span></code> is a string, only single locale directory is used. It can be
-either a directory or a path to message file including <code class="docutils literal notranslate"><span class="pre">{locale}</span></code> pattern:</p>
+<p>Default <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> settings is:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale/&quot;</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;&lt;rootDir&gt;/locale/{locale}/messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;&lt;rootDir&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;!&lt;rootDir&gt;/node_modules/&quot;</span><span class="p">,</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This is the same as:</p>
+<div class="section" id="example-configurations">
+<h3>Example configurations<a class="headerlink" href="#example-configurations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="separate-catalogs-per-component-placed-inside-component-dir">
+<h4>Separate catalogs per component, placed inside component dir<a class="headerlink" href="#separate-catalogs-per-component-placed-inside-component-dir" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+├── ComponentA/
+│   ├── locale/
+│   │  ├── en.po
+│   │  └── cs.po
+│   ├── ComponentA.test.js
+│   └── ComponentA.js
+└── ComponentB/
+    ├── locale/
+    │  ├── en.po
+    │  └── cs.po
+    ├── ComponentB.test.js
+    └── ComponentB.js
+</pre></div>
+</div>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale/{locale}/messages&quot;</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}&quot;</span>
+      <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Finally, if <code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir`</span></code> is an object, then keys are locale directories and
-values are path to source directories from which messages are collected.</p>
+</div>
+<div class="section" id="separate-catalogs-per-component-placed-inside-shared-directory">
+<h4>Separate catalogs per component, placed inside shared directory<a class="headerlink" href="#separate-catalogs-per-component-placed-inside-shared-directory" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+├── locale/
+│   ├── en/
+│   │   ├── ComponentA.po
+│   │   └── ComponentB.po
+│   └── cs/
+│       ├── ComponentA.po
+│       └── ComponentB.po
+├── ComponentA/
+│   ├── ComponentA.test.js
+│   └── ComponentA.js
+└── ComponentB/
+    ├── ComponentB.test.js
+    └── ComponentB.js
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/{name}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}&quot;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-message-descriptors-from-api-e-g-graphql-enums">
+<h4>Loading message descriptors from API (e.g. GraphQL enums)<a class="headerlink" href="#loading-message-descriptors-from-api-e-g-graphql-enums" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+└── locale/
+   ├── en/
+   │   ├── graphql.po  // messages from remote GraphQL server
+   │   └── app.po      // messages from local JS files
+   └── cs/
+       ├── graphql.po
+       └── app.po
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/graphql&quot;</span><span class="p">:</span> <span class="s2">&quot;run!./scripts/fetch_graphql_enums.js&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./locale/{locale}/app&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;!./node_modules&quot;</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="section" id="possible-challenges">
 <h3>Possible challenges<a class="headerlink" href="#possible-challenges" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
