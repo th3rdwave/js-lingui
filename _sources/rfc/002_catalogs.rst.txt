@@ -49,7 +49,7 @@ to :conf:`rootDir`.
 ``{locale}`` placeholder is replaced with catalog's locale.
 
 ``{name}`` placeholder is replaced with a catalog name. Source path must include ``{name}``
-pattern as well and it matches directory name.
+pattern as well and it works as a ``*`` glob pattern:
 
 .. code-block:: json
 
@@ -204,7 +204,7 @@ Separate catalogs per component, placed inside component dir
    {
       "lingui": {
          "catalogs": {
-            "./{name}/locale/{locale}": "./{name}"
+            "./{name}/locale/{locale}": "./{name}/"
          }
       }
    }
@@ -234,7 +234,7 @@ Separate catalogs per component, placed inside shared directory
    {
       "lingui": {
          "catalogs": {
-            "./locale/{locale}/{name}": "./{name}"
+            "./locale/{locale}/{name}": "./{name}/"
          }
       }
    }
@@ -261,7 +261,7 @@ Loading message descriptors from API (e.g. GraphQL enums)
             "./locale/{locale}/graphql": "run!./scripts/fetch_graphql_enums.js",
             "./locale/{locale}/app": [
                ".",
-               "!./node_modules"
+               "!./node_modules/"
             ]
          }
       }

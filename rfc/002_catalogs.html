@@ -250,7 +250,7 @@ configuration for each catalog:</p>
 to <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder is replaced with catalog’s locale.</p>
 <p><code class="docutils literal notranslate"><span class="pre">{name}</span></code> placeholder is replaced with a catalog name. Source path must include <code class="docutils literal notranslate"><span class="pre">{name}</span></code>
-pattern as well and it matches directory name.</p>
+pattern as well and it works as a <code class="docutils literal notranslate"><span class="pre">*</span></code> glob pattern:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -385,7 +385,7 @@ is used in <code class="docutils literal notranslate"><span class="pre">{name}</
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}&quot;</span>
+         <span class="nt">&quot;./{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}/&quot;</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
@@ -413,7 +413,7 @@ is used in <code class="docutils literal notranslate"><span class="pre">{name}</
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
-         <span class="nt">&quot;./locale/{locale}/{name}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}&quot;</span>
+         <span class="nt">&quot;./locale/{locale}/{name}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}/&quot;</span>
       <span class="p">}</span>
    <span class="p">}</span>
 <span class="p">}</span>
@@ -438,7 +438,7 @@ is used in <code class="docutils literal notranslate"><span class="pre">{name}</
          <span class="nt">&quot;./locale/{locale}/graphql&quot;</span><span class="p">:</span> <span class="s2">&quot;run!./scripts/fetch_graphql_enums.js&quot;</span><span class="p">,</span>
          <span class="nt">&quot;./locale/{locale}/app&quot;</span><span class="p">:</span> <span class="p">[</span>
             <span class="s2">&quot;.&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;!./node_modules&quot;</span>
+            <span class="s2">&quot;!./node_modules/&quot;</span>
          <span class="p">]</span>
       <span class="p">}</span>
    <span class="p">}</span>
