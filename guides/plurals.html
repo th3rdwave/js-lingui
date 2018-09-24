@@ -236,7 +236,7 @@ it will be <em>2 books</em>.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;{numBooks, plural, one {# book} other {# books}}&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">numBooks</span> <span class="p">})</span>
 </pre></div>
 </div>
-<p>When we extract messages from source code using (lingui-cli)[linguiCliTutorial], we get:</p>
+<p>When we extract messages from source code using <a class="reference internal" href="../tutorials/cli.html"><span class="doc">lingui-cli</span></a>, we get:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">numBooks</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="c1"># book} other {# books}}</span>
 </pre></div>
 </div>
@@ -276,7 +276,7 @@ the process:</p>
 </div>
 <div class="section" id="using-other-language-than-english">
 <h2>Using other language than English<a class="headerlink" href="#using-other-language-than-english" title="Permalink to this headline">¶</a></h2>
-<p>That works perfectly fine! Just learn what [plural forms][cldrPluralRules] your
+<p>That works perfectly fine! Just learn what <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">plural forms</a> your
 languages has and then you can use them. Here’s the example in Czech:</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18n</span><span class="p">.</span><span class="nx">plural</span><span class="p">({</span>
   <span class="nx">value</span><span class="o">:</span> <span class="nx">numBooks</span><span class="p">,</span>
