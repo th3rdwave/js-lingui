@@ -1,0 +1,611 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>002 - Catalogs &mdash; LinguiJS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="001 - Macros for message descriptors" href="001_macros_message_descriptors.html" />
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52365043-2');
+</script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinguiJS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="toc.html">RFCs and design decisions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="001_macros_message_descriptors.html">001 - Macros for message descriptors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">002 - Catalogs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#proposal">Proposal</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-catalogs-work">How <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> work</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#loading-messages-from-scripts">Loading messages from scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#message-files-and-translation-files">Message files and translation files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-configurations">Example configurations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#possible-challenges">Possible challenges</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-considered-options">Other considered options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#default-automatic-splitting">Default - automatic splitting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#advantages">Advantages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#disadvantages">Disadvantages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinguiJS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="toc.html">RFCs and design decisions</a> &raquo;</li>
+        
+      <li>002 - Catalogs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/lingui/js-lingui/blob/master/docs/rfc/002_catalogs.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="catalogs">
+<h1>002 - Catalogs<a class="headerlink" href="#catalogs" title="Permalink to this headline">¶</a></h1>
+<p>Related issue: <a class="reference external" href="https://github.com/lingui/js-lingui/issues/257">#257</a></p>
+<p>Message catalogs can quickly grow in size and it’s convenient to split them
+into several files. Also, not all messages are extracted from source files and it may
+be convenient to fetch message descriptors from API (e.g. GraphQL Enum)</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This proposal is about splitting <strong>source catalogs</strong>. Compiled
+message catalogs always contain all messages in project for now.</p>
+</div>
+<div class="section" id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this headline">¶</a></h2>
+<p>Deprecate <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a>, <a class="reference internal" href="../ref/conf.html#std:config-srcPathDirs"><code class="xref std std-conf docutils literal notranslate"><span class="pre">srcPathDirs</span></code></a> and <a class="reference internal" href="../ref/conf.html#std:config-srcPathIgnorePatterns"><code class="xref std std-conf docutils literal notranslate"><span class="pre">srcPathIgnorePatterns</span></code></a>.
+These will be replaced with <code class="docutils literal notranslate"><span class="pre">catalogs</span></code>, described below.</p>
+<p>Deprecate <a class="reference internal" href="../ref/cli.html#lingui-cli-add-locale"><code class="xref std std-cli docutils literal notranslate"><span class="pre">add-locale</span></code></a> command and replace it with <code class="docutils literal notranslate"><span class="pre">locales</span></code> configuration.</p>
+<p>Allow override default <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>. All relative paths inside <code class="docutils literal notranslate"><span class="pre">catalogs</span></code>
+configuration will be relative to <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>.</p>
+<div class="section" id="how-catalogs-work">
+<h3>How <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> work<a class="headerlink" href="#how-catalogs-work" title="Permalink to this headline">¶</a></h3>
+<p>Instead of single <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> directory, <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> accepts an object with
+configuration for each catalog:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/shared&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./locale/{locale}/graphql&quot;</span><span class="p">:</span> <span class="s2">&quot;run!scripts/fetch_graphql_enums.js&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./components/{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./components/{name}/&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Key</strong> is a path to catalog or catalogs. It’s either absolute or relative path
+to <code class="xref std std-conf docutils literal notranslate"><span class="pre">rootDir</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{locale}</span></code> placeholder is replaced with catalog’s locale.</p>
+<p><code class="docutils literal notranslate"><span class="pre">{name}</span></code> placeholder is replaced with a catalog name. Source path must include <code class="docutils literal notranslate"><span class="pre">{name}</span></code>
+pattern as well and it works as a <code class="docutils literal notranslate"><span class="pre">*</span></code> glob pattern:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./components/{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./components/{name}/&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Value</strong> specify a source from which messages are extracted. It can be also an array
+of sources. The most common one is a directory, which is traversed recursively and
+messages are collected from source files.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/all&quot;</span><span class="p">:</span> <span class="s2">&quot;./src/&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./locale/{locale}/shared&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;./src/shared/&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;./vendor/&quot;</span><span class="p">,</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the path starts with <code class="docutils literal notranslate"><span class="pre">!</span></code> then it’s excluded:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;!./node_modules/&quot;</span><span class="p">,</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the path starts with <code class="docutils literal notranslate"><span class="pre">run!</span></code> then messages are loaded from executable script.
+See <em>loading messages from</em> scripts below.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Catalog names are always <strong>without extension</strong> because that depends on serializer,
+e.g. <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">po</span></code>.</p>
+</div>
+</div>
+<div class="section" id="loading-messages-from-scripts">
+<h3>Loading messages from scripts<a class="headerlink" href="#loading-messages-from-scripts" title="Permalink to this headline">¶</a></h3>
+<p>Messages can also be loaded dynamically from a script. If the source path starts with
+<code class="docutils literal notranslate"><span class="pre">run!</span></code> (e.g. <code class="docutils literal notranslate"><span class="pre">run!scripts/fetch_graphql_enums.js</span></code>), the script is executed and
+returned messages are added to catalog.</p>
+<p>The type of returned messages should be following:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>type MessageDescriptor = {
+  id: string,
+  defaults?: string,
+  description?: string
+}
+
+type Messages = Array&lt;MessageDescriptor&gt; | Promise&lt;Array&lt;MessageDescriptor&gt;&gt;
+
+type ExtractedDescriptors =
+  | {
+      name: string,
+      messages: Messages
+    }
+  | Messages
+
+export default {
+  name: &quot;graphql&quot;,
+  messages: [
+    {
+      id: &quot;Episode.NEWHOPE&quot;,
+      defaults: &quot;New Hope&quot;
+    },
+    {
+      id: &quot;Episode.EMPIRE&quot;,
+      defaults: &quot;Empire Strikes Back&quot;
+    },
+    {
+      id: &quot;Episode.JEDI&quot;,
+      defaults: &quot;Return of the Jedi&quot;
+    }
+  ]
+}
+</pre></div>
+</div>
+<p>If returned value is an object with <code class="docutils literal notranslate"><span class="pre">name</span></code> attribute then value of this attribute
+is used in <code class="docutils literal notranslate"><span class="pre">{name}</span></code> placeholder.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Messages</span></code> might also be a promise:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+   <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;graphql&#39;</span><span class="p">,</span>
+   <span class="nx">messages</span><span class="o">:</span> <span class="nx">fetch_enums</span><span class="p">(</span><span class="s1">&#39;/graphql&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="message-files-and-translation-files">
+<h3>Message files and translation files<a class="headerlink" href="#message-files-and-translation-files" title="Permalink to this headline">¶</a></h3>
+<p>Until now, babel plugin extracted messages into <code class="docutils literal notranslate"><span class="pre">_build</span></code> directory. Files from
+this directory were merged into single catalog which was used to create locale files.</p>
+<p><code class="docutils literal notranslate"><span class="pre">_build</span></code> directory will be removed right after messages are extracted and collected
+messages (without translations) will be stored in message file (<code class="docutils literal notranslate"><span class="pre">POT</span></code> or <code class="docutils literal notranslate"><span class="pre">JSON</span></code>
+extension). This file is language agnostic and contains only message definitions.</p>
+<p>In next step, message file is used to create locale specific catalog by merging
+translation from previous locale files.</p>
+<p>This allows to check if message source have changed, access message definitions
+in other tools and optionally, create/edit message files manually (if automatic
+extracting isn’t possible).</p>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>Default <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> settings is:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;&lt;rootDir&gt;/locale/{locale}/messages&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;&lt;rootDir&gt;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;!&lt;rootDir&gt;/node_modules/&quot;</span><span class="p">,</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="example-configurations">
+<h3>Example configurations<a class="headerlink" href="#example-configurations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="separate-catalogs-per-component-placed-inside-component-dir">
+<h4>Separate catalogs per component, placed inside component dir<a class="headerlink" href="#separate-catalogs-per-component-placed-inside-component-dir" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+├── ComponentA/
+│   ├── locale/
+│   │  ├── en.po
+│   │  └── cs.po
+│   ├── ComponentA.test.js
+│   └── ComponentA.js
+└── ComponentB/
+    ├── locale/
+    │  ├── en.po
+    │  └── cs.po
+    ├── ComponentB.test.js
+    └── ComponentB.js
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./{name}/locale/{locale}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}/&quot;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="separate-catalogs-per-component-placed-inside-shared-directory">
+<h4>Separate catalogs per component, placed inside shared directory<a class="headerlink" href="#separate-catalogs-per-component-placed-inside-shared-directory" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+├── locale/
+│   ├── en/
+│   │   ├── ComponentA.po
+│   │   └── ComponentB.po
+│   └── cs/
+│       ├── ComponentA.po
+│       └── ComponentB.po
+├── ComponentA/
+│   ├── ComponentA.test.js
+│   └── ComponentA.js
+└── ComponentB/
+    ├── ComponentB.test.js
+    └── ComponentB.js
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/{name}&quot;</span><span class="p">:</span> <span class="s2">&quot;./{name}/&quot;</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-message-descriptors-from-api-e-g-graphql-enums">
+<h4>Loading message descriptors from API (e.g. GraphQL enums)<a class="headerlink" href="#loading-message-descriptors-from-api-e-g-graphql-enums" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
+└── locale/
+   ├── en/
+   │   ├── graphql.po  // messages from remote GraphQL server
+   │   └── app.po      // messages from local JS files
+   └── cs/
+       ├── graphql.po
+       └── app.po
+</pre></div>
+</div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;lingui&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;catalogs&quot;</span><span class="p">:</span> <span class="p">{</span>
+         <span class="nt">&quot;./locale/{locale}/graphql&quot;</span><span class="p">:</span> <span class="s2">&quot;run!./scripts/fetch_graphql_enums.js&quot;</span><span class="p">,</span>
+         <span class="nt">&quot;./locale/{locale}/app&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;.&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;!./node_modules/&quot;</span>
+         <span class="p">]</span>
+      <span class="p">}</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="possible-challenges">
+<h3>Possible challenges<a class="headerlink" href="#possible-challenges" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>User should be warned if messages are collected, but there’s no corresponding
+<code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for them (e.g. the root <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is missing).</li>
+<li>When a new <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is created in subdirectory, all translations
+from parent <code class="docutils literal notranslate"><span class="pre">locale</span></code> should be moved here.</li>
+<li>The other way around, when directory is removed, there should be a way how to merge
+tranlations to parent directory.</li>
+</ul>
+</div>
+<div class="section" id="other-considered-options">
+<h3>Other considered options<a class="headerlink" href="#other-considered-options" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="default-automatic-splitting">
+<h3>Default - automatic splitting<a class="headerlink" href="#default-automatic-splitting" title="Permalink to this headline">¶</a></h3>
+<p>Create a <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory manually in a directory from which all messages should be
+collected:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── locale/
+├── componentA/
+└── componentB/
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">locale</span></code> directory contains messages from <code class="docutils literal notranslate"><span class="pre">componentA</span></code> and <code class="docutils literal notranslate"><span class="pre">componentB</span></code>.</p>
+<p>However, it doesn’t not contain messages which are collected to <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory
+in a subdirectory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── locale/
+├── componentA/
+├── componentB/
+└── largeComponentC/
+    ├── locale/
+    ├── subcomponentA/
+    └── subcomponentB/
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">locale</span></code> contains messages from <code class="docutils literal notranslate"><span class="pre">componentA</span></code> and <code class="docutils literal notranslate"><span class="pre">componentB</span></code>, but not
+from <code class="docutils literal notranslate"><span class="pre">largeComponentC</span></code>, because these messages are collected in
+<code class="docutils literal notranslate"><span class="pre">largeComponentC/locale</span></code>.</p>
+</div>
+<div class="section" id="advantages">
+<h3>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h3>
+<p>It’s flexible and doesn’t require additional config in <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code></p>
+</div>
+<div class="section" id="disadvantages">
+<h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Directories must be created manually. In monorepos this might be extra work,
+but for example in Lerna it’s just <code class="docutils literal notranslate"><span class="pre">lerna</span> <span class="pre">exec</span> <span class="pre">--</span> <span class="pre">mkdir</span> <span class="pre">locales</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is always placed near the source files. It’s not possible to
+move it to different location (other than creating symlinks)</li>
+<li>It’s not possible to rename catalogs.</li>
+<li>It’s not possible to collect messages from multiple independent sources into single
+locale directory.</li>
+</ul>
+<div class="section" id="create-multiple-lingui-configs">
+<h4>Create multiple lingui configs<a class="headerlink" href="#create-multiple-lingui-configs" title="Permalink to this headline">¶</a></h4>
+<p>Create Lingui config in a directory, which should hold separate <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
+├── .linguirc
+├── locale/
+├── componentA/
+├── componentB/
+└── largeComponentC/
+    ├── .linguirc
+    ├── locale/
+    ├── subcomponentA/
+    └── subcomponentB/
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> is as simple as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="s2">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;./locale&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This seems to be very repetitive. On the other hand it allows overriding Lingui config
+per directory.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="001_macros_message_descriptors.html" class="btn btn-neutral" title="001 - Macros for message descriptors" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tomáš Ehrlich.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

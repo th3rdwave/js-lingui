@@ -1,0 +1,33 @@
+*************************************
+Migrating from Babel plugin to macros
+*************************************
+
+Replace plugins
+===============
+
+1. Remove LinguiJS plugins or presets::
+
+   npm uninstall @lingui/babel-plugin-transform-js
+   npm uninstall @lingui/babel-plugin-transform-react
+   npm uninstall @lingui/babel-preset-js
+   npm uninstall @lingui/babel-preset-react
+
+2. Install `babel-plugin-macros <https://github.com/kentcdodds/babel-plugin-macros#installation>`_::
+
+   npm install --save-dev babel-plugin-macros
+
+3. Remove LinguiJS plugins/presets from babel config and add ``macros`` plugin:
+
+   .. code-block:: json
+
+      {
+         "plugins": [
+            "macros"
+         ]
+      }
+
+React
+=====
+
+Migrating from React components to JSX macros is easy: just change imports
+from ``@lingui/react`` to ``@lingui/macro``.
