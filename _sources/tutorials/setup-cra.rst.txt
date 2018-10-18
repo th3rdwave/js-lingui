@@ -25,15 +25,21 @@ This guide suppose you use Create React App 2.0 (the default version).
       yarn add --dev @lingui/cli @lingui/macro @babel/core babel-core@bridge
       yarn add @lingui/react
 
-3. Create ``.linguirc`` file with LinguiJS configuration
+3. Create ``.linguirc`` file with LinguiJS configuration in root of your project (next to ``package.json``)
    (see :doc:`Configuration reference </ref/conf>` for more info about configuring LinguiJS):
 
    .. code-block:: json
 
       {
          "localeDir": "src/locales/",
-         "srcPathDirs": ["src/"]
+         "srcPathDirs": ["src/"],
+         "format": "po"
       }
+
+   This configuration will extract messages from source files inside ``src`` directory
+   and write them into message catalogs in ``src/locales`` (English catalog would be
+   in e.g: ``src/locales/en/messages.po``). Finally, PO format is recommended. See
+   :conf:`format` documentation for other available formats.
 
 4. Add following scripts to your ``package.json``:
 

@@ -222,14 +222,19 @@ yarn add @lingui/react
 </pre></div>
 </div>
 </li>
-<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> file with LinguiJS configuration
+<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> file with LinguiJS configuration in root of your project (next to <code class="docutils literal notranslate"><span class="pre">package.json</span></code>)
 (see <a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a> for more info about configuring LinguiJS):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;src/locales/&quot;</span><span class="p">,</span>
-   <span class="nt">&quot;srcPathDirs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;src/&quot;</span><span class="p">]</span>
+   <span class="nt">&quot;srcPathDirs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;src/&quot;</span><span class="p">],</span>
+   <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;po&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>This configuration will extract messages from source files inside <code class="docutils literal notranslate"><span class="pre">src</span></code> directory
+and write them into message catalogs in <code class="docutils literal notranslate"><span class="pre">src/locales</span></code> (English catalog would be
+in e.g: <code class="docutils literal notranslate"><span class="pre">src/locales/en/messages.po</span></code>). Finally, PO format is recommended. See
+<a class="reference internal" href="../ref/conf.html#std:config-format"><code class="xref std std-conf docutils literal notranslate"><span class="pre">format</span></code></a> documentation for other available formats.</p>
 </li>
 <li><p class="first">Add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
