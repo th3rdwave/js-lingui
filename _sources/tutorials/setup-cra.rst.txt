@@ -17,19 +17,24 @@ Install
       cd my-app
 
 2. Install ``@lingui/cli``, ``@lingui/macro`` and Babel core packages as a development
-   dependencies and ``@lingui/react`` as a runtime dependency:
+   dependencies and ``@lingui/react`` as a runtime dependency.
 
    .. code-block:: shell
 
-      npm install --save-dev @lingui/cli @lingui/macro
+      npm install --save-dev @lingui/cli @lingui/macro @babel/core babel-core@bridge
       npm install --save @lingui/react
 
       # or using Yarn
       yarn add --dev @lingui/cli @lingui/macro @babel/core babel-core@bridge
       yarn add @lingui/react
 
-3. Create ``.linguirc`` file with LinguiJS configuration in root of your project (next to ``package.json``)
-   (see :doc:`Configuration reference </ref/conf>` for more info about configuring LinguiJS):
+   .. important::
+
+      Don't forget Babel packages (``@babel/core``, ``babel-core@bridge``) which are
+      required for backward compatibility with projects using Babel 6.
+
+3. Create ``.linguirc`` file with LinguiJS configuration in root of your project (next
+   to ``package.json``):
 
    .. code-block:: json
 

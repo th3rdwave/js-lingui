@@ -216,8 +216,8 @@ following commands:</p>
 </div>
 </li>
 <li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code> and Babel core packages as a development
-dependencies and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @lingui/macro
+dependencies and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @lingui/macro @babel/core babel-core@bridge
 npm install --save @lingui/react
 
 <span class="c1"># or using Yarn</span>
@@ -225,9 +225,14 @@ yarn add --dev @lingui/cli @lingui/macro @babel/core babel-core@bridge
 yarn add @lingui/react
 </pre></div>
 </div>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Don’t forget Babel packages (<code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code>) which are
+required for backward compatibility with projects using Babel 6.</p>
+</div>
 </li>
-<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> file with LinguiJS configuration in root of your project (next to <code class="docutils literal notranslate"><span class="pre">package.json</span></code>)
-(see <a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a> for more info about configuring LinguiJS):</p>
+<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> file with LinguiJS configuration in root of your project (next
+to <code class="docutils literal notranslate"><span class="pre">package.json</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;src/locales/&quot;</span><span class="p">,</span>
    <span class="nt">&quot;srcPathDirs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;src/&quot;</span><span class="p">],</span>
