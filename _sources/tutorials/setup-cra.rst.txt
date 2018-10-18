@@ -119,7 +119,9 @@ Checkout these reference guides for full documentation:
 Troubleshooting
 ===============
 
-**Cannot find module 'babel-core'**
+Cannot find module 'babel-core'
+-------------------------------
+
    1. Check that you installed ``babel-core@bridge`` and ``@babel/core`` (step 2)
    2. Check that you use local version of ``@lingui/cli``. Installing ``@lingui/cli``
       globally may clash with other packages which use Babel 6. You should run

@@ -93,7 +93,10 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create React App</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#cannot-find-module-babel-core">Cannot find module ‘babel-core’</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -310,16 +313,17 @@ is used in messages.</p>
 </div>
 <div class="section" id="troubleshooting">
 <h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-<dl class="docutils">
-<dt><strong>Cannot find module ‘babel-core’</strong></dt>
-<dd><ol class="first last arabic simple">
+<div class="section" id="cannot-find-module-babel-core">
+<h3>Cannot find module ‘babel-core’<a class="headerlink" href="#cannot-find-module-babel-core" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple">
 <li>Check that you installed <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code> (step 2)</li>
 <li>Check that you use local version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>. Installing <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>
 globally may clash with other packages which use Babel 6. You should run
 either <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">extract</span></code> (step 5).</li>
 </ol>
-</dd>
-</dl>
+</div></blockquote>
+</div>
 </div>
 </div>
 
