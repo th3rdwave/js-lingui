@@ -91,7 +91,9 @@
               <p class="caption"><span class="caption-text">Installation</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Create React App</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -203,6 +205,8 @@
 <h1>Setup with Create React App<a class="headerlink" href="#setup-with-create-react-app" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a> is a framework for writing React apps with no build configuration.
 This guide suppose you use Create React App 2.0 (the default version).</p>
+<div class="section" id="install">
+<h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p class="first">Follow <a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a> documentation for more info. Boostrap your project with
 following commands:</p>
@@ -287,6 +291,7 @@ Catalog statistics:
 Now it’s good time to follow <a class="reference internal" href="react.html"><span class="doc">React tutorial</span></a>
 or read about <a class="reference internal" href="../ref/message-format.html"><span class="doc">ICU Message Format</span></a> which
 is used in messages.</p>
+</div>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <p>Checkout these reference guides for full documentation:</p>
@@ -297,6 +302,19 @@ is used in messages.</p>
 <li><a class="reference internal" href="../ref/cli.html"><span class="doc">CLI reference</span></a></li>
 <li><a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a></li>
 </ul>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>Cannot find module ‘babel-core’</strong></dt>
+<dd><ol class="first last arabic simple">
+<li>Check that you installed <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code> (step 2)</li>
+<li>Check that you use local version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>. Installing <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>
+globally may clash with other packages which use Babel 6. You should run
+either <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">extract</span></code> (step 5).</li>
+</ol>
+</dd>
+</dl>
 </div>
 </div>
 

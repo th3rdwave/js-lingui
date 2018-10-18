@@ -5,6 +5,9 @@ Setup with Create React App
 `Create React App`_ is a framework for writing React apps with no build configuration.
 This guide suppose you use Create React App 2.0 (the default version).
 
+Install
+=======
+
 1. Follow `Create React App`_ documentation for more info. Boostrap your project with
    following commands:
 
@@ -107,5 +110,14 @@ Checkout these reference guides for full documentation:
 - :doc:`Macro reference </ref/react>`
 - :doc:`CLI reference </ref/cli>`
 - :doc:`Configuration reference </ref/conf>`
+
+Troubleshooting
+===============
+
+**Cannot find module 'babel-core'**
+   1. Check that you installed ``babel-core@bridge`` and ``@babel/core`` (step 2)
+   2. Check that you use local version of ``@lingui/cli``. Installing ``@lingui/cli``
+      globally may clash with other packages which use Babel 6. You should run
+      either ``npm run extract`` or ``yarn extract`` (step 5).
 
 .. _Create React App: https://github.com/facebook/create-react-app
