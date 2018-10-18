@@ -88,7 +88,11 @@
               
             
             
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/setup-cra.html">Create React App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
@@ -375,11 +379,12 @@ components in both variables and the message itself.</p>
 <p class="first admonition-title">Note</p>
 <p>It’s good to mention here that this isn’t the best example of using plurals.
 Make your translators happy and move plurals to the top of the message:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Plural</span>
-   <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span>
-   <span class="na">one</span><span class="o">=</span><span class="p">{</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="na">message.</span><span class="p">}</span>
-   <span class="na">other</span><span class="o">=</span><span class="p">{</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="na">messages.</span><span class="p">}</span>
-<span class="p">/&gt;</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>&lt;Plural
+   id=&quot;welcome&quot;
+   value={number}
+   one={&lt;&gt;Hello &lt;b&gt;{name}&lt;/b&gt;, you have &lt;NumberFormat value={number} /&gt; message.&lt;/&gt;}
+   other={&lt;&gt;Hello &lt;b&gt;{name}&lt;/b&gt;, you have &lt;NumberFormat value={number} /&gt; messages.&lt;/&gt;}
+/&gt;
 </pre></div>
 </div>
 <p class="last">Even though both variants are syntactically valid in ICU MessageFormat, the second

@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Setup with Create React App &mdash; LinguiJS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorial - Internationalization of React apps" href="react.html" />
+    <link rel="prev" title="LinguiJS - Seamless internationalization in Javascript" href="../index.html" />
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52365043-2');
+</script>
+
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinguiJS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Create React App</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-patterns.html">React - common patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="react-native.html">React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rfc/toc.html">RFCs and design decisions</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinguiJS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Setup with Create React App</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/lingui/js-lingui/blob/master/docs/tutorials/setup-cra.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="setup-with-create-react-app">
+<h1>Setup with Create React App<a class="headerlink" href="#setup-with-create-react-app" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a> is a framework for writing React apps with no build configuration.
+This guide suppose you use Create React App 2.0 (the default version).</p>
+<ol class="arabic">
+<li><p class="first">Follow <a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a> documentation for more info. Boostrap your project with
+following commands:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npx create-react-app my-app
+<span class="nb">cd</span> my-app
+</pre></div>
+</div>
+</li>
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code> and Babel core packages as a development
+dependencies and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @lingui/macro
+npm install --save @lingui/react
+
+<span class="c1"># or using Yarn</span>
+yarn add --dev @lingui/cli @lingui/macro @babel/core babel-core@bridge
+yarn add @lingui/react
+</pre></div>
+</div>
+</li>
+<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> file with LinguiJS configuration
+(see <a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a> for more info about configuring LinguiJS):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;src/locales/&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;srcPathDirs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;src/&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you use <code class="docutils literal notranslate"><span class="pre">npm</span></code> add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;add-locale&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui add-locale&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;extract&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui extract&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;compile&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui compile&quot;</span><span class="p">,</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">add-locale</span></code> (or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">lingui</span> <span class="pre">add-locale</span></code>) with
+<a class="reference external" href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">locale codes</a>
+you would like to use in your app:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm run add-locale en es fr  <span class="c1"># Add English, Spanish and French locale</span>
+
+<span class="c1"># or using Yarn</span>
+yarn lingui add-locale en es fr
+</pre></div>
+</div>
+</li>
+<li><p class="first">Check the installation by running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> (or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">lingui</span> <span class="pre">extract</span></code>):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm run extract
+
+<span class="c1"># or using Yarn</span>
+yarn lingui extract
+</pre></div>
+</div>
+<p>There should be no error and you should see output similar following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&gt; npm run extract
+
+Catalog statistics:
+┌──────────┬─────────────┬─────────┐
+│ Language │ Total count │ Missing │
+├──────────┼─────────────┼─────────┤
+│ cs       │     0       │   0     │
+│ en       │     0       │   0     │
+│ fr       │     0       │   0     │
+└──────────┴─────────────┴─────────┘
+
+(use &quot;lingui add-locale &lt;language&gt;&quot; to add more locales)
+(use &quot;lingui extract&quot; to update catalogs with new messages)
+(use &quot;lingui compile&quot; to compile catalogs for production)
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Congratulations! You’ve sucessfully set up project with LinguiJS.
+Now it’s good time to follow <a class="reference internal" href="react.html"><span class="doc">React tutorial</span></a>
+or read about <a class="reference internal" href="../ref/message-format.html"><span class="doc">ICU Message Format</span></a> which
+is used in messages.</p>
+<div class="section" id="further-reading">
+<h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<p>Checkout these reference guides for full documentation:</p>
+<ul class="simple">
+<li><a class="reference internal" href="../ref/message-format.html"><span class="doc">ICU Message Format</span></a></li>
+<li><a class="reference internal" href="../ref/macro.html"><span class="doc">React reference</span></a></li>
+<li><a class="reference internal" href="../ref/react.html"><span class="doc">Macro reference</span></a></li>
+<li><a class="reference internal" href="../ref/cli.html"><span class="doc">CLI reference</span></a></li>
+<li><a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="react.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of React apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral" title="LinguiJS - Seamless internationalization in Javascript" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tomáš Ehrlich.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

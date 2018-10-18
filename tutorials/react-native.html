@@ -88,7 +88,11 @@
               
             
             
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup-cra.html">Create React App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="react-patterns.html">React - common patterns</a></li>
@@ -303,7 +307,7 @@ example:</p>
   <span class="p">&lt;</span><span class="nt">YourRootComponent</span> <span class="na">someProp</span><span class="o">=</span><span class="s">&quot;someValue&quot;</span> <span class="p">/&gt;</span>
 <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
 
-<span class="kr">const</span> <span class="nx">Inbox</span> <span class="o">=</span> <span class="p">(({</span> <span class="nx">markAsRead</span><span class="p">,</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+<span class="kr">const</span> <span class="nx">Inbox</span> <span class="o">=</span> <span class="p">(({</span> <span class="nx">markAsRead</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span>
     <span class="p">&lt;</span><span class="nt">View</span><span class="p">&gt;</span>
       <span class="p">&lt;</span><span class="nt">View</span><span class="p">&gt;</span>
@@ -311,6 +315,7 @@ example:</p>
           <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
         <span class="p">&lt;/</span><span class="nt">Text</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">See</span> <span class="nx">all</span> <span class="nx">unread</span> <span class="nx">messages</span> <span class="nx">or</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="cm">/* you can also use the withI18n HOC */</span><span class="p">}</span>
         <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
           <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
             <span class="p">&lt;</span><span class="nt">Button</span> <span class="na">onPress</span><span class="o">=</span><span class="p">{</span><span class="nx">markAsRead</span><span class="p">}</span> <span class="na">title</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`mark messages as read`</span><span class="p">)}</span> <span class="p">/&gt;</span>
@@ -326,11 +331,7 @@ example:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The important thing about both the <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> (and the other provided components)
-and <code class="docutils literal notranslate"><span class="pre">withI18n</span></code> HOC is that when you change the active language (through the
-<code class="docutils literal notranslate"><span class="pre">language</span></code> prop passed to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>), all the components that show
-translated text will re-render, making sure the UI shows the correct translations. The
-two approaches are equivalent in their result.</p>
+<p class="last">There are several ways to render translations: You may use the the <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component, the <code class="docutils literal notranslate"><span class="pre">withI18n</span></code> HOC or the <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> component that provides a render prop. The important thing about all of these approaches is that when you change the active language (through the <code class="docutils literal notranslate"><span class="pre">language</span></code> prop passed to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>), all the components that show translated text will re-render, making sure the UI shows the correct translations. All of these approaches are equivalent in their result.</p>
 </div>
 </div>
 <div class="section" id="internationalization-outside-of-react-components">

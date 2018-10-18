@@ -88,7 +88,11 @@
               
             
             
-              <p class="caption"><span class="caption-text">Tutorials</span></p>
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/setup-cra.html">Create React App</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
@@ -282,7 +286,7 @@ a message in <a class="reference external" href="message-format">MessageFormat s
 </div>
 </td>
 <td><div class="first last highlight-js notranslate"><div class="highlight"><pre><span></span><span class="cm">/*i18n*/</span><span class="p">{</span>
-  <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;{value, plural, one {Message} other {Messages}}&quot;</span><span class="p">,</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;{count, plural, one {Message} other {Messages}}&quot;</span><span class="p">,</span>
   <span class="nx">values</span><span class="o">:</span> <span class="p">{</span> <span class="nx">count</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -327,7 +331,7 @@ the result in <a class="reference internal" href="react.html#component-Trans">&l
 <td><code class="docutils literal notranslate"><span class="pre">&lt;Trans</span> <span class="pre">id=&quot;Attachment</span> <span class="pre">{name}</span> <span class="pre">saved&quot;</span> <span class="pre">/&gt;</span></code></td>
 </tr>
 <tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">&lt;Plural</span> <span class="pre">value={count}</span> <span class="pre">one=&quot;Message&quot;</span> <span class="pre">other=&quot;Messages&quot;</span> <span class="pre">/&gt;</span></code></td>
-<td><code class="docutils literal notranslate"><span class="pre">&lt;Trans</span> <span class="pre">id=&quot;{value,</span> <span class="pre">plural,</span> <span class="pre">one</span> <span class="pre">{Message}</span> <span class="pre">other</span> <span class="pre">{Messages}}&quot;</span> <span class="pre">/&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">&lt;Trans</span> <span class="pre">id=&quot;{count,</span> <span class="pre">plural,</span> <span class="pre">one</span> <span class="pre">{Message}</span> <span class="pre">other</span> <span class="pre">{Messages}}&quot;</span> <span class="pre">/&gt;</span></code></td>
 </tr>
 <tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">&lt;Trans&gt;Today</span> <span class="pre">is</span> <span class="pre">&lt;DateFormat</span> <span class="pre">value={today}</span> <span class="pre">/&gt;&lt;/Trans&gt;</span></code></td>
 <td><code class="docutils literal notranslate"><span class="pre">&lt;Trans</span> <span class="pre">id=&quot;Today</span> <span class="pre">is</span> <span class="pre">{today,</span> <span class="pre">date}&quot;</span> <span class="pre">/&gt;</span></code></td>
@@ -398,7 +402,7 @@ front of the macro:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Desctiption is extracted to message catalog as a help text for translators.</p>
+<p>Description is extracted to message catalog as a help text for translators.</p>
 </div>
 <div class="section" id="t">
 <h4>t<a class="headerlink" href="#t" title="Permalink to this headline">¶</a></h4>

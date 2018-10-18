@@ -70,6 +70,12 @@ Documentation contents
 
 .. toctree::
    :maxdepth: 1
+   :caption: Installation
+
+   Create React App <tutorials/setup-cra>
+
+.. toctree::
+   :maxdepth: 1
    :caption: Tutorials
 
    React <tutorials/react>
