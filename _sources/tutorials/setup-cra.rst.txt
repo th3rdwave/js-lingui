@@ -35,7 +35,7 @@ This guide suppose you use Create React App 2.0 (the default version).
          "srcPathDirs": ["src/"]
       }
 
-4. If you use ``npm`` add following scripts to your ``package.json``:
+4. Add following scripts to your ``package.json``:
 
    .. code-block:: json
 
@@ -47,7 +47,7 @@ This guide suppose you use Create React App 2.0 (the default version).
          }
       }
 
-5. Run ``npm run add-locale`` (or ``yarn lingui add-locale``) with
+5. Run ``npm run add-locale`` (or ``yarn add-locale``) with
    `locale codes <https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry>`_
    you would like to use in your app:
 
@@ -56,16 +56,16 @@ This guide suppose you use Create React App 2.0 (the default version).
       npm run add-locale en es fr  # Add English, Spanish and French locale
 
       # or using Yarn
-      yarn lingui add-locale en es fr
+      yarn add-locale en es fr
 
-6. Check the installation by running ``npm run extract`` (or ``yarn lingui extract``):
+6. Check the installation by running ``npm run extract`` (or ``yarn extract``):
 
    .. code-block:: shell
 
       npm run extract
 
       # or using Yarn
-      yarn lingui extract
+      yarn extract
 
    There should be no error and you should see output similar following:
 
