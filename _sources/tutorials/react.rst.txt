@@ -61,58 +61,8 @@ As you can see, it's a simple mailbox application with only one page.
 Installing LinguiJS
 ===================
 
-LinguiJS_ isn't just one package. It's a set of tools which helps you to
-internationalize your project.
-
-Let's start with a three major packages:
-
-``@lingui/cli``
-   CLI for internationalization workflow and management of message catalogs
-
-``@lingui/react``
-   React components for translation and formatting
-
-``@lingui/macro``
-   Macros for easier writing messages in ICU MessageFormat
-
-1. Install ``@lingui/cli``, ``@lingui/macro``, ``babel-plugin-macros`` and Babel core
-   packages as a development dependencies and ``@lingui/react`` as a runtime dependency:
-
-   .. code-block:: shell
-
-      npm install --save-dev @lingui/cli @lingui/macro babel-plugin-macros
-      npm install --save @lingui/react
-
-      # If you use Babel 7:
-      npm install --save-dev babel-core@bridge @babel/core
-
-      # If you use Babel 6:
-      npm install --save-dev babel-core
-
-   If you use Yarn, add following:
-
-   .. code-block:: shell
-
-      yarn add --dev @lingui/cli @lingui/macro babel-plugin-macros
-      yarn add @lingui/react
-
-      # If you use Babel 7:
-      yarn add --dev babel-core@bridge @babel/core
-
-      # If you use Babel 6:
-      yarn add --dev babel-core
-
-2. Add ``macro`` plugin to Babel config (e.g: ``.babelrc``):
-
-   .. code-block:: json
-
-      {
-        "plugins": [
-          "macros"
-        ]
-      }
-
-Now we have the environment up and running and we can start internationalizing our app!
+Follow setup guide either for projects using :doc:`LinguiJS with Create React App </tutorials/setup-cra>`
+or for general :doc:`React projects </tutorials/setup-react>`.
 
 Setup
 =====

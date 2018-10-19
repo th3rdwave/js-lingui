@@ -91,6 +91,7 @@
               <p class="caption"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/setup-cra.html">Create React App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/setup-react.html">React project</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul>
@@ -106,7 +107,6 @@
 <li class="toctree-l1"><a class="reference internal" href="typescript.html">Typescript</a></li>
 <li class="toctree-l1"><a class="reference internal" href="excluding-build-files.html">Excluding build files</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Dynamic loading of translations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#component">Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#loading-of-message-catalogs">Loading of message catalogs</a></li>
@@ -211,16 +211,6 @@
 responsibility to load messages based on active language. Here’s an example of
 <code class="docutils literal notranslate"><span class="pre">I18nLoader</span></code> component which is connected to Redux store and loads message
 catalogs using <a class="reference external" href="https://webpack.js.org/guides/code-splitting-async/">dynamic import in Webpack</a>.</p>
-<div class="section" id="requirements">
-<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>babel</li>
-<li>webpack 2.x</li>
-<li>redux</li>
-<li>&#64;lingui/react</li>
-<li>&#64;lingui/loader</li>
-</ul>
-</div>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">

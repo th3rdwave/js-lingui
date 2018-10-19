@@ -73,6 +73,7 @@ Documentation contents
    :caption: Installation
 
    Create React App <tutorials/setup-cra>
+   React project <tutorials/setup-react>
 
 .. toctree::
    :maxdepth: 1

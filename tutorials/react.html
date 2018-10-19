@@ -29,7 +29,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Common i18n patterns in React" href="react-patterns.html" />
-    <link rel="prev" title="Setup with Create React App" href="setup-cra.html" />
+    <link rel="prev" title="Setup with React project" href="setup-react.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
 <script>
@@ -91,6 +91,7 @@
               <p class="caption"><span class="caption-text">Installation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="setup-cra.html">Create React App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup-react.html">React project</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Tutorials</span></p>
 <ul class="current">
@@ -276,53 +277,8 @@ to an existing application in React JS.</p>
 </div>
 <div class="section" id="installing-linguijs">
 <h2>Installing LinguiJS<a class="headerlink" href="#installing-linguijs" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a> isn’t just one package. It’s a set of tools which helps you to
-internationalize your project.</p>
-<p>Let’s start with a three major packages:</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code></dt>
-<dd>CLI for internationalization workflow and management of message catalogs</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code></dt>
-<dd>React components for translation and formatting</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code></dt>
-<dd>Macros for easier writing messages in ICU MessageFormat</dd>
-</dl>
-<ol class="arabic">
-<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-plugin-macros</span></code> and Babel core
-packages as a development dependencies and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @lingui/macro babel-plugin-macros
-npm install --save @lingui/react
-
-<span class="c1"># If you use Babel 7:</span>
-npm install --save-dev babel-core@bridge @babel/core
-
-<span class="c1"># If you use Babel 6:</span>
-npm install --save-dev babel-core
-</pre></div>
-</div>
-<p>If you use Yarn, add following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>yarn add --dev @lingui/cli @lingui/macro babel-plugin-macros
-yarn add @lingui/react
-
-<span class="c1"># If you use Babel 7:</span>
-yarn add --dev babel-core@bridge @babel/core
-
-<span class="c1"># If you use Babel 6:</span>
-yarn add --dev babel-core
-</pre></div>
-</div>
-</li>
-<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">macro</span></code> plugin to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
-<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="s2">&quot;macros&quot;</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</li>
-</ol>
-<p>Now we have the environment up and running and we can start internationalizing our app!</p>
+<p>Follow setup guide either for projects using <a class="reference internal" href="setup-cra.html"><span class="doc">LinguiJS with Create React App</span></a>
+or for general <a class="reference internal" href="setup-react.html"><span class="doc">React projects</span></a>.</p>
 </div>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
@@ -961,7 +917,7 @@ in the documentation for more info and happy internationalizing!</p>
         <a href="react-patterns.html" class="btn btn-neutral float-right" title="Common i18n patterns in React" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="setup-cra.html" class="btn btn-neutral" title="Setup with Create React App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="setup-react.html" class="btn btn-neutral" title="Setup with React project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
