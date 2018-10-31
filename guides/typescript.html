@@ -246,6 +246,13 @@ in GitHub to see latest status.</p>
 <p class="last">If you are not using <cite>.babelrc</cite> file, keep in mind that by running <cite>lingui extract</cite>, the Webpack config is not used.
 To supply babel options for the extraction process use <a class="reference internal" href="../ref/conf.html#std:config-extractBabelOptions"><code class="xref std std-conf docutils literal notranslate"><span class="pre">extractBabelOptions</span></code></a> configuration option.</p>
 </div>
+<p><a class="reference internal" href="../ref/conf.html#std:config-compileNamespace"><code class="xref std std-conf docutils literal notranslate"><span class="pre">compileNamespace</span></code></a> must be set to <code class="docutils literal notranslate"><span class="pre">es</span></code> (ES6 default export) in the Lingui config
+otherwise compiled catalogs can’t be imported using ES <code class="docutils literal notranslate"><span class="pre">import</span></code>, but rather CommonJS <code class="docutils literal notranslate"><span class="pre">require</span></code>:</p>
+<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;compileNamespace&quot;</span><span class="p">:</span> <span class="s2">&quot;es&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="type-definitions">
 <h2>Type definitions<a class="headerlink" href="#type-definitions" title="Permalink to this headline">¶</a></h2>
@@ -254,6 +261,7 @@ and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/rea
 <p>The type definitions requires Typescript 2.8 or later.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @types/lingui__core  <span class="c1"># types for @lingui/core</span>
 npm install --save-dev @types/lingui__react  <span class="c1"># types for @lingui/react</span>
+npm install --save-dev @types/lingui__macro  <span class="c1"># types for @lingui/macro</span>
 </pre></div>
 </div>
 <p>Please report any issues in <a class="reference external" href="https://github.com/huan086/lingui-typings">maintainers repo</a>.</p>
@@ -280,7 +288,7 @@ npm install --save-dev @types/lingui__react  <span class="c1"># types for @lingu
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tomáš Ehrlich.
+        &copy; Copyright 2018, Tomáš Ehrlich
 
     </p>
   </div>
@@ -299,20 +307,14 @@ npm install --save-dev @types/lingui__react  <span class="c1"># types for @lingu
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 

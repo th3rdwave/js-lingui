@@ -456,9 +456,10 @@ but also any locale specific data like plurals.</p>
 </span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
 
-<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
-<span class="hll">  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;cs&quot;</span> <span class="na">catalogs</span><span class="o">=</span><span class="p">{{</span> <span class="nx">cs</span><span class="o">:</span> <span class="nx">catalogCs</span> <span class="p">}}&gt;</span>
-</span>    <span class="p">&lt;</span><span class="nt">Inbox</span> <span class="p">/&gt;</span>
+<span class="kr">const</span> <span class="nx">catalogs</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">cs</span><span class="o">:</span> <span class="nx">catalogCs</span> <span class="p">};</span>
+<span class="hll"><span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
+</span>  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;cs&quot;</span> <span class="na">catalogs</span><span class="o">=</span><span class="p">{</span><span class="nx">catalogs</span><span class="p">}&gt;</span>
+    <span class="p">&lt;</span><span class="nt">Inbox</span> <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
 <span class="p">)</span>
 
@@ -926,7 +927,7 @@ in the documentation for more info and happy internationalizing!</p>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2018, Tomáš Ehrlich.
+        &copy; Copyright 2018, Tomáš Ehrlich
 
     </p>
   </div>
@@ -945,20 +946,14 @@ in the documentation for more info and happy internationalizing!</p>
 
   
 
-    <script type="text/javascript">
-        var DOCUMENTATION_OPTIONS = {
-            URL_ROOT:'../',
-            VERSION:'',
-            LANGUAGE:'None',
-            COLLAPSE_INDEX:false,
-            FILE_SUFFIX:'.html',
-            HAS_SOURCE:  true,
-            SOURCELINK_SUFFIX: '.txt'
-        };
-    </script>
-      <script type="text/javascript" src="../_static/jquery.js"></script>
-      <script type="text/javascript" src="../_static/underscore.js"></script>
-      <script type="text/javascript" src="../_static/doctools.js"></script>
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
 
   
 
