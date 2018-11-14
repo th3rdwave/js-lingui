@@ -213,20 +213,16 @@
 message catalogs and compiles message catalogs for production use.</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> requires you to install <code class="docutils literal notranslate"><span class="pre">babel-core</span></code> depending on Babel version you
-use. Both packages can be installed either globally:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --global @lingui/cli
-<span class="c1"># yarn global add @lingui/cli</span>
-</pre></div>
-</div>
-<p>or locally:</p>
+<ol class="arabic">
+<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> as a development dependency:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli
 <span class="c1"># yarn add --dev @lingui/cli</span>
 </pre></div>
 </div>
-<p>It’s also necessary to install <code class="docutils literal notranslate"><span class="pre">babel-core</span></code> package. It depends on Babel version,
-you’re using:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Babel 6.x</span>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Install also Babel core packages (<code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code>):</p>
+<div class="last highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Babel 6.x</span>
 npm install --save-dev babel-core@6
 <span class="c1"># yarn add --dev babel-core@6</span>
 
@@ -235,27 +231,20 @@ npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
 <span class="c1"># yarn add --dev babel-core@^7.0.0-bridge.0 @babel/core</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>When installed locally, you need to either run it from
-<code class="docutils literal notranslate"><span class="pre">node_modules/.bin/lingui</span></code> or using <a class="reference external" href="https://github.com/zkat/npx">npx</a> (<code class="docutils literal notranslate"><span class="pre">npx</span> <span class="pre">lingui</span></code>) or add it to your
-<code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
+</div>
+</li>
+<li><p class="first">Add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;add-locale&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui add-locale&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;extract&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui extract&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;compile&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui compile&quot;</span>
-  <span class="p">}</span>
+   <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;add-locale&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui add-locale&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;extract&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui extract&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;compile&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui compile&quot;</span><span class="p">,</span>
+   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Then you can use:</p>
-<div class="last highlight-shell notranslate"><div class="highlight"><pre><span></span>npm run add-locale -- en cs
-npm run extract
-npm run compile
-</pre></div>
-</div>
-</div>
+</li>
+</ol>
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
