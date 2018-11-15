@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>ICU MessageFormat &mdash; LinguiJS  documentation</title>
+  <title>Catalog formats &mdash; LinguiJS  documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Migration guide from 1.x to 2.x" href="../releases/migration-2.html" />
-    <link rel="prev" title="Catalog formats" href="catalog-formats.html" />
+    <link rel="next" title="ICU MessageFormat" href="message-format.html" />
+    <link rel="prev" title="API Reference - Webpack Loader (@lingui/loader)" href="loader.html" />
  
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
 <script>
@@ -118,11 +118,13 @@
 <li class="toctree-l1"><a class="reference internal" href="cli.html">CLI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="conf.html">Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="loader.html">Webpack Loader</a></li>
-<li class="toctree-l1"><a class="reference internal" href="catalog-formats.html">Catalog Formats</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">ICU MessageFormat</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Catalog Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#po-file-recommended">PO File (recommended)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#json">JSON</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lingui-raw">Lingui (raw)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="message-format.html">ICU MessageFormat</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
@@ -180,14 +182,14 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>ICU MessageFormat</li>
+      <li>Catalog formats</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
             
-              <a href="https://github.com/lingui/js-lingui/blob/master/docs/ref/message-format.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/lingui/js-lingui/blob/master/docs/ref/catalog-formats.rst" class="fa fa-github"> Edit on GitHub</a>
             
           
         
@@ -201,92 +203,71 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="icu-messageformat">
-<span id="message-format"></span><h1>ICU MessageFormat<a class="headerlink" href="#icu-messageformat" title="Permalink to this headline">¶</a></h1>
-<p>ICU MessageFormat is a flexible yet powerful syntax to express all nuances of grammar
-for each language.</p>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<colgroup>
-<col width="21%" />
-<col width="79%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head" rowspan="2">Format</th>
-<th class="head" rowspan="2">Example</th>
-</tr>
-<tr class="row-even"></tr>
-</thead>
-<tbody valign="top">
-<tr class="row-odd"><td>Simple text</td>
-<td><code class="docutils literal notranslate"><span class="pre">Refresh</span> <span class="pre">inbox</span></code></td>
-</tr>
-<tr class="row-even"><td>Variables</td>
-<td><code class="docutils literal notranslate"><span class="pre">Attachment</span> <span class="pre">{name}</span> <span class="pre">saved</span></code></td>
-</tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-plural">Plurals</p>
-</td>
-<td><ul class="first last">
-<li><p class="first">Using language specific plural forms (<code class="docutils literal notranslate"><span class="pre">one</span></code>, <code class="docutils literal notranslate"><span class="pre">other</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">count</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="n">Message</span><span class="p">}</span> <span class="n">other</span> <span class="p">{</span><span class="n">Messages</span><span class="p">}}</span>
-</pre></div>
-</div>
-</li>
-<li><p class="first">Using exact matches (<code class="docutils literal notranslate"><span class="pre">=0</span></code>):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, =0 {No messages}
-                one {# message}
-                other {# messages}}
-</pre></div>
-</div>
-</li>
-<li><p class="first">Offseting plural form:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, offset:1
-                =0 {Nobody read this message}
-                =1 {Only you read this message}
-                one {You and # friend read this message}
-                other {You and # friends read this message}
-</pre></div>
-</div>
-</li>
+  <div class="section" id="catalog-formats">
+<h1>Catalog formats<a class="headerlink" href="#catalog-formats" title="Permalink to this headline">¶</a></h1>
+<p>Catalog format (configured by <a class="reference internal" href="conf.html#std:config-format"><code class="xref std std-conf docutils literal notranslate"><span class="pre">format</span></code></a> option) refers to file format of
+offline catalog. This format is never used in production, because it’s compiled
+into JS module. The reason behind this build step is that choice of catalog
+format depends on individual internationalization workflow. On the other hand
+runtime catalog should be as simple as possible so it parsed quickly without
+additional overhead.</p>
+<div class="section" id="po-file-recommended">
+<h2>PO File (recommended)<a class="headerlink" href="#po-file-recommended" title="Permalink to this headline">¶</a></h2>
+<p>PO files are translation files used by <a class="reference external" href="https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html">gettext</a> internationalization system.
+This format is recommended and in LinguiJS v3 it’ll be the default catalog format.</p>
+<p>The advantages of this format are:</p>
+<ul class="simple">
+<li>readable even for large messages</li>
+<li>supports comments for translators</li>
+<li>supports metadata (origin, flags)</li>
+<li>standard format supported by many localization tools</li>
 </ul>
-</td>
-</tr>
-<tr class="row-even"><td><p class="first last" id="std:icu-select">Select</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{gender, select, male {He replied to your message}
-                 female {She replied to your message}
-                 other {They replied to your message}}
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="kd">#: src/App.js:3</span>
+<span class="c1">#  Comment for translators</span>
+<span class="nv">msgid</span> <span class="s">&quot;messageId&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Translated Message&quot;</span>
+
+<span class="kd">#: src/App.js:3</span>
+<span class="kt">#, obsolete</span>
+<span class="nv">msgid</span> <span class="s">&quot;obsoleteId&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Obsolete Message&quot;</span>
 </pre></div>
 </div>
-</td>
-</tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-ordinal">Ordinals</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{count, selectOrdinal, one {1st message}
-                       two {2nd message}
-                       few {3rd message}
-                       other {#th message}}
+</div>
+<div class="section" id="json">
+<h2>JSON<a class="headerlink" href="#json" title="Permalink to this headline">¶</a></h2>
+<p>Simple JSON file where each key is message ID and value is translation. The JSON
+is flat and there’s no reason to use nested keys. The usual motivation behind nested
+JSON is to save filespace, but this file format is used offline only.</p>
+<p>The drawback of this format is that all metadata about message are lost. That includes
+default message, origin of message and any message flags (obsolete, fuzzy, etc).</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;messageId&quot;</span><span class="p">:</span> <span class="s2">&quot;translation&quot;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</td>
-</tr>
-<tr class="row-even"><td><p class="first last" id="std:icu-number">Numbers</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>You&#39;re using {size, number, percent} of you quota
+</div>
+<div class="section" id="lingui-raw">
+<h2>Lingui (raw)<a class="headerlink" href="#lingui-raw" title="Permalink to this headline">¶</a></h2>
+<p>This file format simply outputs all internal data in JSON format. It’s the original
+file format used by LinguiJS library before support for other catalog formats were added.
+It might be useful for tools build on top of Lingui CLI which needs to further
+process catalog data.</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+   <span class="nt">&quot;messageId&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Translated message&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;defaults&quot;</span><span class="p">:</span> <span class="s2">&quot;Default message&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;Comment for translators&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&quot;src/App.js&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+   <span class="p">},</span>
+   <span class="nt">&quot;obsoleteId&quot;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&quot;translation&quot;</span><span class="p">:</span> <span class="s2">&quot;Obsolete message&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;origin&quot;</span><span class="p">:</span> <span class="p">[[</span><span class="s2">&quot;src/App.js&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span>
+      <span class="nt">&quot;obsolete&quot;</span><span class="p">:</span> <span class="kc">true</span>
+   <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-</td>
-</tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-date">Dates</p>
-</td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>Today is {today, date}
-</pre></div>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 
@@ -298,10 +279,10 @@ for each language.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../releases/migration-2.html" class="btn btn-neutral float-right" title="Migration guide from 1.x to 2.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="message-format.html" class="btn btn-neutral float-right" title="ICU MessageFormat" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="catalog-formats.html" class="btn btn-neutral" title="Catalog formats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="loader.html" class="btn btn-neutral" title="API Reference - Webpack Loader (@lingui/loader)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
