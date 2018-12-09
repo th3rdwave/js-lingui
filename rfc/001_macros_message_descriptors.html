@@ -145,7 +145,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#lazy-translations">Lazy translations</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#extracting-messages">Extracting messages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#common-catalogs">Common catalogs</a></li>
 </ul>
@@ -377,14 +376,22 @@ It’s possible to override message ID or add comments for translators by adding
 
 <span class="c1">// Message is used as an ID</span>
 <span class="nx">t</span><span class="p">({</span>
+   <span class="nx">message</span><span class="o">:</span> <span class="sb">`Default message`</span><span class="p">,</span>
    <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
-<span class="p">})</span><span class="sb">`Default message`</span>
+<span class="p">})</span>
 
 <span class="c1">// Custom ID</span>
 <span class="nx">t</span><span class="p">({</span>
    <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
+   <span class="nx">message</span><span class="o">:</span> <span class="sb">`Default message`</span><span class="p">,</span>
    <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
-<span class="p">})</span><span class="sb">`Default message`</span>
+<span class="p">})</span>
+
+<span class="c1">// Custom ID, without default message</span>
+<span class="nx">t</span><span class="p">({</span>
+   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
+   <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">plural</span></code> and other formatters are already called with object as a first parameter.
@@ -406,14 +413,15 @@ It’s possible to override message ID or add comments for translators by adding
 </div>
 <div class="section" id="transformation">
 <h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h2>
-<p>Each <code class="docutils literal notranslate"><span class="pre">t</span></code> macro variant is transformed into a message descriptor
+<p>Each macro is transformed into a message descriptor
 wrapped into <code class="docutils literal notranslate"><span class="pre">i18n._</span></code> function:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
 <span class="nx">t</span><span class="p">({</span>
    <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
+   <span class="nx">message</span><span class="o">:</span> <span class="sb">`Default message`</span>
    <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
-<span class="p">})</span><span class="sb">`Default message`</span>
+<span class="p">})</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓</span>
 
@@ -429,15 +437,14 @@ wrapped into <code class="docutils literal notranslate"><span class="pre">i18n._
 <div class="section" id="lazy-translations">
 <h3>Lazy translations<a class="headerlink" href="#lazy-translations" title="Permalink to this headline">¶</a></h3>
 <p>Lazy translations are useful when we need to define a message, but translate it later.
-This was previously achieved using <code class="docutils literal notranslate"><span class="pre">i18Mark</span></code>. Now we can use the same macros.
-Instead of importing the default import, import <code class="docutils literal notranslate"><span class="pre">lazy</span></code> instead:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lazy</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
+This was previously achieved using <code class="docutils literal notranslate"><span class="pre">i18Mark</span></code>. Now we can use <cite>.lazy</cite> variant of macros:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
 <span class="c1">// define the message</span>
-<span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">lazy</span><span class="sb">`Default message`</span>
+<span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">lazy</span><span class="sb">`Default message`</span>
 
 <span class="c1">// translate it</span>
-<span class="kr">const</span> <span class="nx">translation</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">()</span><span class="sb">`</span>
+<span class="kr">const</span> <span class="nx">translation</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Lazy translations are usually defined in different scope than evaluated. Parameters
@@ -445,28 +452,16 @@ are therefore unknown, but we still need to know their names, so we can create p
 in MessageFormat. <code class="docutils literal notranslate"><span class="pre">arg</span></code> macro is used exactly for that:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">arg</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
-<span class="c1">// Macro</span>
-<span class="kr">const</span> <span class="nx">books</span> <span class="o">=</span> <span class="nx">plural</span><span class="p">({</span>
+<span class="kr">const</span> <span class="nx">books</span> <span class="o">=</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">lazy</span><span class="p">({</span>
    <span class="nx">value</span><span class="o">:</span> <span class="nx">arg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">),</span>
    <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;# book&#39;</span><span class="p">,</span>
    <span class="nx">other</span><span class="o">:</span> <span class="s1">&#39;# books&#39;</span>
 <span class="p">})</span>
+
+<span class="kr">const</span> <span class="nx">translation</span> <span class="o">=</span> <span class="nx">books</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">42</span> <span class="p">})</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="extracting-messages">
-<h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
-<p>Messages are extracted from code already transformed by macros. This makes macros
-completely optional and extraction will work also with message descriptors created
-manually.</p>
-<p>Extract script will look for  a <code class="docutils literal notranslate"><span class="pre">i18nMark</span></code> function calls:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">i18nMark</span><span class="p">({</span>
-  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Message&#39;</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-<p>An object after such comment is considered as message descriptor and extracted.</p>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
