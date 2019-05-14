@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -225,46 +227,46 @@ while providing escape hatch to be used also in older React versions.</p>
 <h3>New scope of NPM packages<a class="headerlink" href="#new-scope-of-npm-packages" title="Permalink to this headline">¶</a></h3>
 <p>Packages are now released under <code class="docutils literal notranslate"><span class="pre">&#64;lingui</span></code> organization. Some package names
 were renamed:</p>
-<table border="1" class="docutils">
+<table class="docutils align-center">
 <colgroup>
-<col width="50%" />
-<col width="50%" />
+<col style="width: 50%" />
+<col style="width: 50%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">New package name</th>
-<th class="head">Previous package name</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>New package name</p></th>
+<th class="head"><p>Previous package name</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>&#64;lingui/babel-preset-js</td>
-<td>babel-preset-lingui-js</td>
+<tbody>
+<tr class="row-even"><td><p>&#64;lingui/babel-preset-js</p></td>
+<td><p>babel-preset-lingui-js</p></td>
 </tr>
-<tr class="row-odd"><td>&#64;lingui/babel-preset-react</td>
-<td>babel-preset-lingui-react</td>
+<tr class="row-odd"><td><p>&#64;lingui/babel-preset-react</p></td>
+<td><p>babel-preset-lingui-react</p></td>
 </tr>
-<tr class="row-even"><td>&#64;lingui/babel-plugin-transform-js</td>
-<td>babel-plugin-lingui-transform-js</td>
+<tr class="row-even"><td><p>&#64;lingui/babel-plugin-transform-js</p></td>
+<td><p>babel-plugin-lingui-transform-js</p></td>
 </tr>
-<tr class="row-odd"><td>&#64;lingui/babel-plugin-transform-react</td>
-<td>babel-plugin-lingui-transform-react</td>
+<tr class="row-odd"><td><p>&#64;lingui/babel-plugin-transform-react</p></td>
+<td><p>babel-plugin-lingui-transform-react</p></td>
 </tr>
-<tr class="row-even"><td>&#64;lingui/babel-plugin-extract-messages</td>
-<td>babel-plugin-lingui-extract-messages</td>
+<tr class="row-even"><td><p>&#64;lingui/babel-plugin-extract-messages</p></td>
+<td><p>babel-plugin-lingui-extract-messages</p></td>
 </tr>
-<tr class="row-odd"><td>&#64;lingui/react</td>
-<td>lingui-react</td>
+<tr class="row-odd"><td><p>&#64;lingui/react</p></td>
+<td><p>lingui-react</p></td>
 </tr>
-<tr class="row-even"><td>&#64;lingui/core</td>
-<td>lingui-i18n</td>
+<tr class="row-even"><td><p>&#64;lingui/core</p></td>
+<td><p>lingui-i18n</p></td>
 </tr>
-<tr class="row-odd"><td>&#64;lingui/cli</td>
-<td>lingui-cli</td>
+<tr class="row-odd"><td><p>&#64;lingui/cli</p></td>
+<td><p>lingui-cli</p></td>
 </tr>
-<tr class="row-even"><td>&#64;lingui/loader</td>
-<td>lingui-loader</td>
+<tr class="row-even"><td><p>&#64;lingui/loader</p></td>
+<td><p>lingui-loader</p></td>
 </tr>
-<tr class="row-odd"><td>&#64;lingui/conf</td>
-<td>lingui-conf</td>
+<tr class="row-odd"><td><p>&#64;lingui/conf</p></td>
+<td><p>lingui-conf</p></td>
 </tr>
 </tbody>
 </table>
@@ -276,12 +278,12 @@ like location of message in source and default translation (if any). Since most
 3rd party tools work with simple JSON only, the default format will be
 <code class="docutils literal notranslate"><span class="pre">minimal</span></code>.</p>
 <ul class="simple">
-<li>If you want to <strong>keep</strong> <code class="docutils literal notranslate"><span class="pre">lingui</span></code> format, add <code class="docutils literal notranslate"><span class="pre">&quot;format&quot;:</span> <span class="pre">&quot;lingui&quot;</span></code> to your
-lingui config in package.json.</li>
-<li>If you want to <strong>migrate</strong> <code class="docutils literal notranslate"><span class="pre">lingui</span></code> format to <code class="docutils literal notranslate"><span class="pre">minimal</span></code>, remove <code class="docutils literal notranslate"><span class="pre">format</span></code>
-from configuration (if any) and run <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">extract</span> <span class="pre">--convert-from</span> <span class="pre">lingui</span></code>.</li>
-<li>If you used <code class="docutils literal notranslate"><span class="pre">minimal</span></code> format before, simply remove <code class="docutils literal notranslate"><span class="pre">&quot;format&quot;:</span> <span class="pre">&quot;minimal&quot;</span></code>
-from lingui configuration.</li>
+<li><p>If you want to <strong>keep</strong> <code class="docutils literal notranslate"><span class="pre">lingui</span></code> format, add <code class="docutils literal notranslate"><span class="pre">&quot;format&quot;:</span> <span class="pre">&quot;lingui&quot;</span></code> to your
+lingui config in package.json.</p></li>
+<li><p>If you want to <strong>migrate</strong> <code class="docutils literal notranslate"><span class="pre">lingui</span></code> format to <code class="docutils literal notranslate"><span class="pre">minimal</span></code>, remove <code class="docutils literal notranslate"><span class="pre">format</span></code>
+from configuration (if any) and run <code class="docutils literal notranslate"><span class="pre">lingui</span> <span class="pre">extract</span> <span class="pre">--convert-from</span> <span class="pre">lingui</span></code>.</p></li>
+<li><p>If you used <code class="docutils literal notranslate"><span class="pre">minimal</span></code> format before, simply remove <code class="docutils literal notranslate"><span class="pre">&quot;format&quot;:</span> <span class="pre">&quot;minimal&quot;</span></code>
+from lingui configuration.</p></li>
 </ul>
 </div>
 <div class="section" id="unpackcatalog-is-deprecated">
@@ -324,8 +326,8 @@ children in <code class="docutils literal notranslate"><span class="pre">div</sp
 components are removed.</p>
 <p>If you’re using React &lt; 16.2 or you want to keep the previous behavior:</p>
 <ol class="arabic simple">
-<li>Set <code class="docutils literal notranslate"><span class="pre">defaultRender</span></code> prop of <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> to <code class="docutils literal notranslate"><span class="pre">span</span></code>.</li>
-<li>Wrap children of <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> into <code class="docutils literal notranslate"><span class="pre">div</span></code> explicitly.</li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">defaultRender</span></code> prop of <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> to <code class="docutils literal notranslate"><span class="pre">span</span></code>.</p></li>
+<li><p>Wrap children of <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> into <code class="docutils literal notranslate"><span class="pre">div</span></code> explicitly.</p></li>
 </ol>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;lingui-react&#39;</span>
@@ -415,7 +417,7 @@ as a default one:</p>
         <a href="migration-1.html" class="btn btn-neutral float-right" title="Migration guide from 0.x to 1.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../ref/message-format.html" class="btn btn-neutral" title="ICU MessageFormat" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../ref/message-format.html" class="btn btn-neutral float-left" title="ICU MessageFormat" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -441,26 +443,16 @@ as a default one:</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

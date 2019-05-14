@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -215,15 +217,15 @@ message catalogs and compiles message catalogs for production use.</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> as a development dependency:</p>
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> as a development dependency:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli
 <span class="c1"># yarn add --dev @lingui/cli</span>
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="admonition-title">Important</p>
 <p>Install also Babel core packages (<code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code>):</p>
-<div class="last highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Babel 6.x</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Babel 6.x</span>
 npm install --save-dev babel-core@6
 <span class="c1"># yarn add --dev babel-core@6</span>
 
@@ -234,7 +236,7 @@ npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
 </div>
 </div>
 </li>
-<li><p class="first">Add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
+<li><p>Add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;add-locale&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui add-locale&quot;</span><span class="p">,</span>
@@ -258,8 +260,8 @@ npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
 
 <p>Installs all required packages based on project type. Recognized projects are:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a></li>
-<li>General React app</li>
+<li><p><a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a></p></li>
+<li><p>General React app</p></li>
 </ul>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-init-dry-run">
@@ -297,9 +299,9 @@ lingui add-locale en fr es
 <p>This command extracts messages from source files and creates a message catalog for
 each language using the following steps:</p>
 <ol class="arabic simple">
-<li>Extract messages from all <code class="docutils literal notranslate"><span class="pre">*.jsx?</span></code> files inside <a class="reference internal" href="conf.html#std:config-srcPathDirs"><code class="xref std std-conf docutils literal notranslate"><span class="pre">srcPathDirs</span></code></a></li>
-<li>Merge them with existing catalogs in <a class="reference internal" href="conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> (if any)</li>
-<li>Write updated message catalogs to <a class="reference internal" href="conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a></li>
+<li><p>Extract messages from all <code class="docutils literal notranslate"><span class="pre">*.jsx?</span></code> files inside <a class="reference internal" href="conf.html#std:config-srcPathDirs"><code class="xref std std-conf docutils literal notranslate"><span class="pre">srcPathDirs</span></code></a></p></li>
+<li><p>Merge them with existing catalogs in <a class="reference internal" href="conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> (if any)</p></li>
+<li><p>Write updated message catalogs to <a class="reference internal" href="conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a></p></li>
 </ol>
 <dl class="lingui-cli-option">
 <dt id="cmdoption-extract-clean">
@@ -384,7 +386,7 @@ global configuration).</p>
         <a href="conf.html" class="btn btn-neutral float-right" title="Lingui Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="macro.html" class="btn btn-neutral" title="@lingui/macro - Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="macro.html" class="btn btn-neutral float-left" title="@lingui/macro - Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -410,26 +412,16 @@ global configuration).</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

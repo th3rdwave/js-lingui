@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -109,7 +111,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Optimized components</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#translations-inside-optimized-component">Translations inside optimized component</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#optimized-component-wrapped-in-withi18n">Optimized component wrapped in <code class="docutils literal notranslate"><span class="pre">withI18n()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optimized-component-wrapped-in-withi18n">Optimized component wrapped in <code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
 </ul>
@@ -209,8 +211,8 @@
 <p>Let’s call any component implementing <code class="docutils literal notranslate"><span class="pre">shouldComponentUpdate</span></code> an <em>Optimized
 component</em>.</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last"><strong>TL;DR:</strong> Optimized components are handled correctly in LinguiJS by default.
+<p class="admonition-title">Hint</p>
+<p><strong>TL;DR:</strong> Optimized components are handled correctly in LinguiJS by default.
 Read this document if you want to understand how things work under the hood.</p>
 </div>
 <p>React components can be optimized to skip updates implementing
@@ -220,8 +222,8 @@ However, LinguiJS reads translations from context and there’re two cases
 which must be handled to make i18n related updates reliable.</p>
 <p>The two cases to handle are:</p>
 <ol class="arabic simple">
-<li>Translations inside optimized component.</li>
-<li>Optimized component is wrapped in <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> to translate text attributes.</li>
+<li><p>Translations inside optimized component.</p></li>
+<li><p>Optimized component is wrapped in <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> to translate text attributes.</p></li>
 </ol>
 <p>Let’s take a look at both scenarios.</p>
 <div class="section" id="translations-inside-optimized-component">
@@ -304,8 +306,8 @@ fixes updates for intermediate optimized children.</p>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation">React docs: Optimizing Performance</a></li>
-<li><a class="reference external" href="https://medium.com/react-ecosystem/how-to-handle-react-context-a7592dfdcbc">How to handle React context in a reliable way</a></li>
+<li><p><a class="reference external" href="https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation">React docs: Optimizing Performance</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/react-ecosystem/how-to-handle-react-context-a7592dfdcbc">How to handle React context in a reliable way</a></p></li>
 </ul>
 </div>
 </div>
@@ -321,7 +323,7 @@ fixes updates for intermediate optimized children.</p>
         <a href="plurals.html" class="btn btn-neutral float-right" title="Pluralization" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="dynamic-loading-catalogs.html" class="btn btn-neutral" title="Dynamic loading of message catalogs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="dynamic-loading-catalogs.html" class="btn btn-neutral float-left" title="Dynamic loading of message catalogs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -347,26 +349,16 @@ fixes updates for intermediate optimized children.</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

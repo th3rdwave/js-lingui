@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -211,7 +213,7 @@
             
   <div class="section" id="comparison-with-react-intl">
 <h1>Comparison with react-intl<a class="headerlink" href="#comparison-with-react-intl" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> is definitely the most popural and widely-used i18n library for React.
+<p><a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> is definitely the most popular and widely-used i18n library for React.
 <a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a> is in many ways very similar: both libraries use the same syntax for
 (messages ICU MessageFormat) and they also have very similar API.</p>
 <p>Here’s an example from <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a> docs:</p>
@@ -327,7 +329,7 @@ all messages in <a class="reference internal" href="../ref/macro.html#jsxmacro-T
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>It’ also worth mentioning that the message IDs are completely optional.
 <a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a> is unopinionated in this way and perfectly works with messages as IDs as
 well:</p>
@@ -336,7 +338,7 @@ well:</p>
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p class="last">The message ID is <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">the</span> <span class="pre">&lt;0&gt;documentation&lt;/0&gt;.</span></code> instead of <code class="docutils literal notranslate"><span class="pre">msg.id</span></code>. Both
+<p>The message ID is <code class="docutils literal notranslate"><span class="pre">Read</span> <span class="pre">the</span> <span class="pre">&lt;0&gt;documentation&lt;/0&gt;.</span></code> instead of <code class="docutils literal notranslate"><span class="pre">msg.id</span></code>. Both
 solutions have pros and cons and the library lets you choose the one which works best for you.</p>
 </div>
 </div>
@@ -378,18 +380,18 @@ solutions have pros and cons and the library lets you choose the one which works
 <p>The only difference is the <cite>&lt;0&gt;</cite> tag included in the message, as <a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a> can handle
 components in both variables and the message itself.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>It’s good to mention here that this isn’t the best example of using plurals.
 Make your translators happy and move plurals to the top of the message:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>&lt;Plural
-   id=&quot;welcome&quot;
-   value={number}
-   one={&lt;&gt;Hello &lt;b&gt;{name}&lt;/b&gt;, you have &lt;NumberFormat value={number} /&gt; message.&lt;/&gt;}
-   other={&lt;&gt;Hello &lt;b&gt;{name}&lt;/b&gt;, you have &lt;NumberFormat value={number} /&gt; messages.&lt;/&gt;}
-/&gt;
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">Plural</span>
+   <span class="na">id</span><span class="o">=</span><span class="s">&quot;welcome&quot;</span>
+   <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span>
+   <span class="na">one</span><span class="o">=</span><span class="p">{&lt;&gt;</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="p">/&gt;</span> <span class="nx">message</span><span class="p">.&lt;/&gt;}</span>
+   <span class="na">other</span><span class="o">=</span><span class="p">{&lt;&gt;</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">b</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">b</span><span class="p">&gt;,</span> <span class="nx">you</span> <span class="nx">have</span> <span class="p">&lt;</span><span class="nt">NumberFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">number</span><span class="p">}</span> <span class="p">/&gt;</span> <span class="nx">messages</span><span class="p">.&lt;/&gt;}</span>
+<span class="p">/&gt;</span>
 </pre></div>
 </div>
-<p class="last">Even though both variants are syntactically valid in ICU MessageFormat, the second
+<p>Even though both variants are syntactically valid in ICU MessageFormat, the second
 one is easier for translating, because (again) the translator gets the phrase in one
 piece.</p>
 </div>
@@ -411,8 +413,8 @@ macros for these usecases!</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">To inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object into props, you need to use HOC <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a>. It’s
+<p class="admonition-title">Note</p>
+<p>To inject <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object into props, you need to use HOC <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-meth docutils literal notranslate"><span class="pre">withI18n()</span></code></a>. It’s
 very similar to <code class="docutils literal notranslate"><span class="pre">injectIntl</span></code> from <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a>. Alternatively, you can also use
 <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> render prop component.</p>
 </div>
@@ -450,23 +452,23 @@ webpack code splitting, so that only messages related to the code in the chunk a
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>both libraries use the same MessageFormat syntax</li>
-<li>similar API (easy to port from one to the other)</li>
+<li><p>both libraries use the same MessageFormat syntax</p></li>
+<li><p>similar API (easy to port from one to the other)</p></li>
 </ul>
 <p>On top of that, <a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a>:</p>
 <ul class="simple">
-<li>supports rich-text messages</li>
-<li>provides macros to simplify writing messages using MessageFormat syntax</li>
-<li>provides a CLI for extracting and compiling messages</li>
-<li>is very small (&lt;5kb gzipped) and fast</li>
-<li>works also in vanilla JS (without React)</li>
-<li>is actively maintained</li>
+<li><p>supports rich-text messages</p></li>
+<li><p>provides macros to simplify writing messages using MessageFormat syntax</p></li>
+<li><p>provides a CLI for extracting and compiling messages</p></li>
+<li><p>is very small (&lt;5kb gzipped) and fast</p></li>
+<li><p>works also in vanilla JS (without React)</p></li>
+<li><p>is actively maintained</p></li>
 </ul>
 <p>On the other hand, <a class="reference external" href="https://github.com/yahoo/react-intl">react-intl</a>:</p>
 <ul class="simple">
-<li>is the most popular and used i18n lib in React</li>
-<li>is used in many production websites (stability)</li>
-<li>has lots of resources available online</li>
+<li><p>is the most popular and used i18n lib in React</p></li>
+<li><p>is used in many production websites (stability)</p></li>
+<li><p>has lots of resources available online</p></li>
 </ul>
 </div>
 <div class="section" id="discussion">
@@ -488,7 +490,7 @@ webpack code splitting, so that only messages related to the code in the chunk a
         <a href="talks-about-i18n.html" class="btn btn-neutral float-right" title="Talks and articles about i18n in JavaScript" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="showroom.html" class="btn btn-neutral" title="Projects using LinguiJS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="showroom.html" class="btn btn-neutral float-left" title="Projects using LinguiJS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -514,26 +516,16 @@ webpack code splitting, so that only messages related to the code in the chunk a
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -230,7 +232,7 @@
 <p>Macros are used for generating messages in MessageFormat syntax. The advantages over
 writing format by hand are following:</p>
 <ul>
-<li><p class="first">API of macros is much simpler than API of core i18n method:</p>
+<li><p>API of macros is much simpler than API of core i18n method:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">date</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
 <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Joe&quot;</span>
@@ -250,7 +252,7 @@ writing format by hand are following:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Messages are validated and type-checked. Generated message is always syntactically
+<li><p>Messages are validated and type-checked. Generated message is always syntactically
 valid. This is especially important for nested formatters:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
@@ -272,7 +274,7 @@ valid. This is especially important for nested formatters:</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Using abstraction over message syntax allow easy replacement of message syntax.
+<li><p>Using abstraction over message syntax allow easy replacement of message syntax.
 For example, without rewriting code it’s possible to switch from ICU MessageFormat
 to <a class="reference external" href="https://projectfluent.org/">Fluent</a>:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">date</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
@@ -298,8 +300,8 @@ to <a class="reference external" href="https://projectfluent.org/">Fluent</a>:</
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last"><a class="reference external" href="https://projectfluent.org/">Fluent</a> format isn’t supported at the moment, nor the <code class="docutils literal notranslate"><span class="pre">messageFormat</span></code>
+<p class="admonition-title">Warning</p>
+<p><a class="reference external" href="https://projectfluent.org/">Fluent</a> format isn’t supported at the moment, nor the <code class="docutils literal notranslate"><span class="pre">messageFormat</span></code>
 configuration. Both will be added in the future.</p>
 </div>
 </li>
@@ -467,8 +469,8 @@ in MessageFormat. <code class="docutils literal notranslate"><span class="pre">a
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 <p>The API solves following issues:</p>
 <ul class="simple">
-<li><a class="reference external" href="https://github.com/lingui/js-lingui/issues/197">#197</a> - Add metadata to messages</li>
-<li><a class="reference external" href="https://github.com/lingui/js-lingui/issues/197">#258</a> - i18Mark should accept default value</li>
+<li><p><a class="reference external" href="https://github.com/lingui/js-lingui/issues/197">#197</a> - Add metadata to messages</p></li>
+<li><p><a class="reference external" href="https://github.com/lingui/js-lingui/issues/197">#258</a> - i18Mark should accept default value</p></li>
 </ul>
 <div class="section" id="common-catalogs">
 <h3>Common catalogs<a class="headerlink" href="#common-catalogs" title="Permalink to this headline">¶</a></h3>
@@ -498,7 +500,7 @@ in MessageFormat. <code class="docutils literal notranslate"><span class="pre">a
         <a href="002_catalogs.html" class="btn btn-neutral float-right" title="002 - Catalogs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="toc.html" class="btn btn-neutral" title="RFCs and design decisions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="toc.html" class="btn btn-neutral float-left" title="RFCs and design decisions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -524,26 +526,16 @@ in MessageFormat. <code class="docutils literal notranslate"><span class="pre">a
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

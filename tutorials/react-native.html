@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -211,8 +213,8 @@
 <p>In this tutorial, we’ll learn how to add internationalization
 to an existing application in React Native. The React Native tutorial is largely similar to the one for <a class="reference internal" href="react.html#react-tutorial-label"><span class="std std-ref">React</span></a>, and we highly recommend you check out that tutorial first because it covers installation, setup and other topics. Here we will cover parts that are relevant for React Native and hopefully answer all questions you may have.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The latest version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> working out-of-the-box for React Native on Android is 2.2. Newer versions depend on the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl object</a> which is not available on the JavaScriptCore that is used on Android by default. See the <a class="reference external" href="https://github.com/react-community/jsc-android-buildscripts">JSC build scripts for Android</a> for possible solution or use the <a class="reference external" href="https://github.com/andyearnshaw/Intl.js/">Intl polyfill</a>.</p>
+<p class="admonition-title">Note</p>
+<p>The latest version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> working out-of-the-box for React Native on Android is 2.2. Newer versions depend on the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl object</a> which is not available on the JavaScriptCore that is used on Android by default. See the <a class="reference external" href="https://github.com/react-community/jsc-android-buildscripts">JSC build scripts for Android</a> for possible solution or use the <a class="reference external" href="https://github.com/andyearnshaw/Intl.js/">Intl polyfill</a>.</p>
 </div>
 <p>If you’re looking for a working solution, check out the <a class="reference external" href="https://exp.host/&#64;vonovak/js-lingui-demo">demo on Expo</a>. The source code is <a class="reference external" href="https://github.com/vonovak/js-lingui-demo">available here</a>.</p>
 <div class="section" id="let-s-start">
@@ -291,8 +293,8 @@ call requires a string as well.</p>
 which gives us an <code class="docutils literal notranslate"><span class="pre">i18n</span></code> prop that we can use like this: <code class="docutils literal notranslate"><span class="pre">i18n._(t`this</span> <span class="pre">will</span> <span class="pre">be</span> <span class="pre">translated`)</span></code>
 and the result of such a call is a string. Let’s see how to do this!</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object is covered in greater detail in the <a class="reference internal" href="javascript.html#js-tutorial-label"><span class="std std-ref">JavaScript tutorial</span></a>.</p>
+<p class="admonition-title">Hint</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object is covered in greater detail in the <a class="reference internal" href="javascript.html#js-tutorial-label"><span class="std std-ref">JavaScript tutorial</span></a>.</p>
 </div>
 <p>Under the hood, <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> creates an instance of the <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object
 automatically and passes it to <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> components through React Context.
@@ -332,8 +334,8 @@ example:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">There are several ways to render translations: You may use the the <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component, the <code class="docutils literal notranslate"><span class="pre">withI18n</span></code> HOC or the <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> component that provides a render prop. The important thing about all of these approaches is that when you change the active language (through the <code class="docutils literal notranslate"><span class="pre">language</span></code> prop passed to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>), all the components that show translated text will re-render, making sure the UI shows the correct translations. All of these approaches are equivalent in their result.</p>
+<p class="admonition-title">Note</p>
+<p>There are several ways to render translations: You may use the the <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> component, the <code class="docutils literal notranslate"><span class="pre">withI18n</span></code> HOC or the <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> component that provides a render prop. The important thing about all of these approaches is that when you change the active language (through the <code class="docutils literal notranslate"><span class="pre">language</span></code> prop passed to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>), all the components that show translated text will re-render, making sure the UI shows the correct translations. All of these approaches are equivalent in their result.</p>
 </div>
 </div>
 <div class="section" id="internationalization-outside-of-react-components">
@@ -414,9 +416,9 @@ how React Native <a class="reference external" href="https://facebook.github.io/
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="../ref/react.html">&#64;lingui/react reference documentation</a></li>
-<li><a class="reference external" href="../ref/cli.html">&#64;lingui/cli reference documentation</a></li>
-<li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
+<li><p><a class="reference external" href="../ref/react.html">&#64;lingui/react reference documentation</a></p></li>
+<li><p><a class="reference external" href="../ref/cli.html">&#64;lingui/cli reference documentation</a></p></li>
+<li><p><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></p></li>
 </ul>
 </div>
 </div>
@@ -432,7 +434,7 @@ how React Native <a class="reference external" href="https://facebook.github.io/
         <a href="javascript.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of JavaScript apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="react-patterns.html" class="btn btn-neutral" title="Common i18n patterns in React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="react-patterns.html" class="btn btn-neutral float-left" title="Common i18n patterns in React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -458,26 +460,16 @@ how React Native <a class="reference external" href="https://facebook.github.io/
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

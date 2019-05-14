@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -207,40 +209,40 @@
 for each language.</p>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
+<table class="docutils align-center">
 <colgroup>
-<col width="21%" />
-<col width="79%" />
+<col style="width: 21%" />
+<col style="width: 79%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head" rowspan="2">Format</th>
-<th class="head" rowspan="2">Example</th>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>Format</p></th>
+<th class="head" rowspan="2"><p>Example</p></th>
 </tr>
 <tr class="row-even"></tr>
 </thead>
-<tbody valign="top">
-<tr class="row-odd"><td>Simple text</td>
-<td><code class="docutils literal notranslate"><span class="pre">Refresh</span> <span class="pre">inbox</span></code></td>
+<tbody>
+<tr class="row-odd"><td><p>Simple text</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Refresh</span> <span class="pre">inbox</span></code></p></td>
 </tr>
-<tr class="row-even"><td>Variables</td>
-<td><code class="docutils literal notranslate"><span class="pre">Attachment</span> <span class="pre">{name}</span> <span class="pre">saved</span></code></td>
+<tr class="row-even"><td><p>Variables</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Attachment</span> <span class="pre">{name}</span> <span class="pre">saved</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-plural">Plurals</p>
+<tr class="row-odd"><td><p id="std:icu-plural">Plurals</p>
 </td>
-<td><ul class="first last">
-<li><p class="first">Using language specific plural forms (<code class="docutils literal notranslate"><span class="pre">one</span></code>, <code class="docutils literal notranslate"><span class="pre">other</span></code>):</p>
+<td><ul>
+<li><p>Using language specific plural forms (<code class="docutils literal notranslate"><span class="pre">one</span></code>, <code class="docutils literal notranslate"><span class="pre">other</span></code>):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">count</span><span class="p">,</span> <span class="n">plural</span><span class="p">,</span> <span class="n">one</span> <span class="p">{</span><span class="n">Message</span><span class="p">}</span> <span class="n">other</span> <span class="p">{</span><span class="n">Messages</span><span class="p">}}</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Using exact matches (<code class="docutils literal notranslate"><span class="pre">=0</span></code>):</p>
+<li><p>Using exact matches (<code class="docutils literal notranslate"><span class="pre">=0</span></code>):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, =0 {No messages}
                 one {# message}
                 other {# messages}}
 </pre></div>
 </div>
 </li>
-<li><p class="first">Offseting plural form:</p>
+<li><p>Offseting plural form:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, plural, offset:1
                 =0 {Nobody read this message}
                 =1 {Only you read this message}
@@ -252,18 +254,18 @@ for each language.</p>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><p class="first last" id="std:icu-select">Select</p>
+<tr class="row-even"><td><p id="std:icu-select">Select</p>
 </td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{gender, select, male {He replied to your message}
+<td><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{gender, select, male {He replied to your message}
                  female {She replied to your message}
                  other {They replied to your message}}
 </pre></div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-ordinal">Ordinals</p>
+<tr class="row-odd"><td><p id="std:icu-ordinal">Ordinals</p>
 </td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>{count, selectOrdinal, one {1st message}
+<td><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{count, selectOrdinal, one {1st message}
                        two {2nd message}
                        few {3rd message}
                        other {#th message}}
@@ -271,16 +273,16 @@ for each language.</p>
 </div>
 </td>
 </tr>
-<tr class="row-even"><td><p class="first last" id="std:icu-number">Numbers</p>
+<tr class="row-even"><td><p id="std:icu-number">Numbers</p>
 </td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>You&#39;re using {size, number, percent} of you quota
+<td><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>You&#39;re using {size, number, percent} of you quota
 </pre></div>
 </div>
 </td>
 </tr>
-<tr class="row-odd"><td><p class="first last" id="std:icu-date">Dates</p>
+<tr class="row-odd"><td><p id="std:icu-date">Dates</p>
 </td>
-<td><div class="first last highlight-none notranslate"><div class="highlight"><pre><span></span>Today is {today, date}
+<td><div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Today is {today, date}
 </pre></div>
 </div>
 </td>
@@ -301,7 +303,7 @@ for each language.</p>
         <a href="../releases/migration-2.html" class="btn btn-neutral float-right" title="Migration guide from 1.x to 2.x" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="catalog-formats.html" class="btn btn-neutral" title="Catalog formats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="catalog-formats.html" class="btn btn-neutral float-left" title="Catalog formats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -327,26 +329,16 @@ for each language.</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

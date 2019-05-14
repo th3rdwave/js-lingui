@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -307,12 +309,12 @@ information into the context, we need to wrap our application in
 </pre></div>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
+<p class="admonition-title">Hint</p>
 <p>You might be wondering: how are we going to change the active language?
 Yes, that’s a great question, but we need to focus! We’re not going to change
 the language unless we have translated the message catalog. And we won’t have
 translated the catalog before we extract all messages from source.</p>
-<p class="last">Let’s deal with language switching later… but if you’re still curious,
+<p>Let’s deal with language switching later… but if you’re still curious,
 take a look at <a class="reference internal" href="../guides/dynamic-loading-catalogs.html#dynamic-loading-catalogs"><span class="std std-ref">example</span></a> with Redux and Webpack.</p>
 </div>
 </div>
@@ -324,8 +326,8 @@ to <em>translate</em> from one language to another right now. Instead, we’re g
 <em>internationalization</em> and you should practice saying this word aloud until
 you’re able to say it three times very quickly.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">From now on, <em>internationalization</em> will be shortened to a common numeronym <em>i18n</em>.</p>
+<p class="admonition-title">Note</p>
+<p>From now on, <em>internationalization</em> will be shortened to a common numeronym <em>i18n</em>.</p>
 </div>
 <p>Let’s start with the basics - static messages. These messages don’t have any variables,
 HTML or components inside. Just some text:</p>
@@ -473,13 +475,13 @@ but also any locale specific data like plurals.</p>
 <h3>Summary of basic workflow<a class="headerlink" href="#summary-of-basic-workflow" title="Permalink to this headline">¶</a></h3>
 <p>Let’s go through the workflow again:</p>
 <ol class="arabic simple">
-<li>Add an <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>, this component sets the active language and loads catalogs</li>
-<li>Wrap messages in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro</li>
-<li>Run <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command to generate message catalogs</li>
-<li>Translate message catalogs (send them to translators usually)</li>
-<li>Run <a class="reference internal" href="../ref/cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a> to create runtime catalogs</li>
-<li>Load runtime catalog</li>
-<li>Profit</li>
+<li><p>Add an <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>, this component sets the active language and loads catalogs</p></li>
+<li><p>Wrap messages in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro</p></li>
+<li><p>Run <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command to generate message catalogs</p></li>
+<li><p>Translate message catalogs (send them to translators usually)</p></li>
+<li><p>Run <a class="reference internal" href="../ref/cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a> to create runtime catalogs</p></li>
+<li><p>Load runtime catalog</p></li>
+<li><p>Profit</p></li>
 </ol>
 <p>Steps 1 and 7 needs to be done only once per project and locale. Steps 2 to 5 becomes
 the common workflow how to internationalize the app.</p>
@@ -585,48 +587,48 @@ and won’t throw any error, it doesn’t make any sense to write:</p>
 we use (gettext, xliff, json), it’s just mapping of
 message ID to the translation.</p>
 <p>Here’s an example of simple message catalog in <strong>Czech</strong> language:</p>
-<table border="1" class="docutils">
+<table class="docutils align-center">
 <colgroup>
-<col width="58%" />
-<col width="42%" />
+<col style="width: 58%" />
+<col style="width: 42%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Message ID</th>
-<th class="head">Translation</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Message ID</p></th>
+<th class="head"><p>Translation</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Monday</td>
-<td>Pondělí</td>
+<tbody>
+<tr class="row-even"><td><p>Monday</p></td>
+<td><p>Pondělí</p></td>
 </tr>
-<tr class="row-odd"><td>Tuesday</td>
-<td>Úterý</td>
+<tr class="row-odd"><td><p>Tuesday</p></td>
+<td><p>Úterý</p></td>
 </tr>
-<tr class="row-even"><td>Wednesday</td>
-<td>Středa</td>
+<tr class="row-even"><td><p>Wednesday</p></td>
+<td><p>Středa</p></td>
 </tr>
 </tbody>
 </table>
 <p>… and the same catalog in <strong>French</strong> language:</p>
-<table border="1" class="docutils">
+<table class="docutils align-center">
 <colgroup>
-<col width="58%" />
-<col width="42%" />
+<col style="width: 58%" />
+<col style="width: 42%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Message ID</th>
-<th class="head">Translation</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Message ID</p></th>
+<th class="head"><p>Translation</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>Monday</td>
-<td>Lundi</td>
+<tbody>
+<tr class="row-even"><td><p>Monday</p></td>
+<td><p>Lundi</p></td>
 </tr>
-<tr class="row-odd"><td>Tuesday</td>
-<td>Mardi</td>
+<tr class="row-odd"><td><p>Tuesday</p></td>
+<td><p>Mardi</p></td>
 </tr>
-<tr class="row-even"><td>Wednesday</td>
-<td>Mercredi</td>
+<tr class="row-even"><td><p>Wednesday</p></td>
+<td><p>Mercredi</p></td>
 </tr>
 </tbody>
 </table>
@@ -635,8 +637,8 @@ represent the same message in different languages. It’s also the same as the <
 prop in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro.</p>
 <p>There are two common approaches to message IDs:</p>
 <ol class="arabic simple">
-<li>Use source language (e.g. English as in example above)</li>
-<li>Use a custom key (e.g. <code class="docutils literal notranslate"><span class="pre">weekday.monday</span></code>)</li>
+<li><p>Use source language (e.g. English as in example above)</p></li>
+<li><p>Use a custom key (e.g. <code class="docutils literal notranslate"><span class="pre">weekday.monday</span></code>)</p></li>
 </ol>
 <p>Both approaches have their pros and cons and it’s not in the scope of this tutorial
 to compare them.</p>
@@ -676,8 +678,8 @@ For example, English has only two forms - singular and plural - as we can see
 in the example above. However, Czech language has three plural forms. Some
 languages have up to 6 plural forms and some don’t have plurals at all!</p>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
-<p class="last">Plural forms for all languages can be found in the
+<p class="admonition-title">Hint</p>
+<p>Plural forms for all languages can be found in the
 <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR repository</a>.</p>
 </div>
 <div class="section" id="english-plural-rules">
@@ -687,11 +689,11 @@ we, as developers, only need to know plural forms of the language we use in
 our source. Our component is written in English, so looking at
 <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a> we’ll
 need just two forms:</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">one</span></code></dt>
-<dd>Singular form</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">other</span></code></dt>
-<dd>Plural form</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">one</span></code></dt><dd><p>Singular form</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">other</span></code></dt><dd><p>Plural form</p>
+</dd>
 </dl>
 <p>We don’t need to select these forms manually. We’ll use <a class="reference internal" href="../ref/macro.html#jsxmacro-Plural">&lt;Plural&gt;</a>
 component, which takes a <code class="docutils literal notranslate"><span class="pre">value</span></code> prop and based on the active language, selects
@@ -738,25 +740,25 @@ least we don’t have to write this message manually!</p>
 <code class="docutils literal notranslate"><span class="pre">messagesCount</span> <span class="pre">=</span> <span class="pre">0</span></code>. Why so? Because English doesn’t have <code class="docutils literal notranslate"><span class="pre">zero</span></code>
 <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">plural form</a>.</p>
 <p>Looking at <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a>, it’s:</p>
-<table border="1" class="docutils">
+<table class="docutils align-center">
 <colgroup>
-<col width="5%" />
-<col width="95%" />
+<col style="width: 5%" />
+<col style="width: 95%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">N</th>
-<th class="head">Form</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>N</p></th>
+<th class="head"><p>Form</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td>0</td>
-<td>other</td>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>other</p></td>
 </tr>
-<tr class="row-odd"><td>1</td>
-<td>one</td>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>one</p></td>
 </tr>
-<tr class="row-even"><td>n</td>
-<td>other (anything else)</td>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>other (anything else)</p></td>
 </tr>
 </tbody>
 </table>
@@ -901,9 +903,9 @@ in the documentation for more info and happy internationalizing!</p>
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="../ref/react.html">&#64;lingui/react reference documentation</a></li>
-<li><a class="reference external" href="../ref/cli.html">&#64;lingui/cli reference documentation</a></li>
-<li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
+<li><p><a class="reference external" href="../ref/react.html">&#64;lingui/react reference documentation</a></p></li>
+<li><p><a class="reference external" href="../ref/cli.html">&#64;lingui/cli reference documentation</a></p></li>
+<li><p><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></p></li>
 </ul>
 </div>
 </div>
@@ -919,7 +921,7 @@ in the documentation for more info and happy internationalizing!</p>
         <a href="react-patterns.html" class="btn btn-neutral float-right" title="Common i18n patterns in React" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="setup-react.html" class="btn btn-neutral" title="Setup with React project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="setup-react.html" class="btn btn-neutral float-left" title="Setup with React project" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -945,26 +947,16 @@ in the documentation for more info and happy internationalizing!</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

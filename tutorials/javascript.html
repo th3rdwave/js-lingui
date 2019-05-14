@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -207,8 +209,8 @@
   <div class="section" id="tutorial-internationalization-of-javascript-apps">
 <span id="js-tutorial-label"></span><h1>Tutorial - Internationalization of JavaScript apps<a class="headerlink" href="#tutorial-internationalization-of-javascript-apps" title="Permalink to this headline">¶</a></h1>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">This is a draft of tutorial. Feel free to send a PR if you want to contribute.</p>
+<p class="admonition-title">Warning</p>
+<p>This is a draft of tutorial. Feel free to send a PR if you want to contribute.</p>
 </div>
 <p>In this tutorial, we’ll learn how to use LinguiJS’s internationalization features that
 do not depend on React. We’ll take a minimalist approach and cover the main functions
@@ -219,17 +221,17 @@ from the <code class="docutils literal notranslate"><span class="pre">&#64;lingu
 internationalize. You can pick whichever tool you want to use in your project.
 We’re trying to use most of them to show the full power of LinguiJS.</p>
 <p>Let’s start with the three major packages:</p>
-<dl class="docutils">
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code></dt>
-<dd>CLI for i18n management and working with message catalogs</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code></dt>
-<dd>The core library responsible for translation and handling of message catalogs</dd>
-<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code></dt>
-<dd>Transforms messages wrapped in tagged template literals to ICU
-MessageFormat and validates them.</dd>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code></dt><dd><p>CLI for i18n management and working with message catalogs</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code></dt><dd><p>The core library responsible for translation and handling of message catalogs</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code></dt><dd><p>Transforms messages wrapped in tagged template literals to ICU
+MessageFormat and validates them.</p>
+</dd>
 </dl>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-plugin-macros</span></code> and Babel core
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-plugin-macros</span></code> and Babel core
 packages as a development dependencies and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code> as a runtime dependency:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @lingui/macro babel-plugin-macros
 npm install --save @lingui/core
@@ -253,7 +255,7 @@ yarn add --dev babel-core
 </pre></div>
 </div>
 </li>
-<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">macros</span></code> plugin to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">macros</span></code> plugin to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;macros&quot;</span>
@@ -334,8 +336,8 @@ and pass it to <code class="xref js js-meth docutils literal notranslate"><span 
 <div class="section" id="further-reading">
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><a class="reference external" href="../ref/cli.html">&#64;lingui/cli reference documentation</a></li>
-<li><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></li>
+<li><p><a class="reference external" href="../ref/cli.html">&#64;lingui/cli reference documentation</a></p></li>
+<li><p><a class="reference external" href="../guides/plurals.html">Pluralization Guide</a></p></li>
 </ul>
 </div>
 </div>
@@ -351,7 +353,7 @@ and pass it to <code class="xref js js-meth docutils literal notranslate"><span 
         <a href="cli.html" class="btn btn-neutral float-right" title="Working with LinguiJS CLI" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="react-native.html" class="btn btn-neutral" title="Tutorial - Internationalization of React Native apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="react-native.html" class="btn btn-neutral float-left" title="Tutorial - Internationalization of React Native apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -377,26 +379,16 @@ and pass it to <code class="xref js js-meth docutils literal notranslate"><span 
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

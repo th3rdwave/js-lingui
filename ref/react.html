@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -252,26 +254,26 @@ i18n components described below.</p>
 </div>
 <div class="section" id="local-configuration">
 <h4>Local Configuration<a class="headerlink" href="#local-configuration" title="Permalink to this headline">¶</a></h4>
-<table border="1" class="docutils">
+<table class="docutils align-center">
 <colgroup>
-<col width="14%" />
-<col width="39%" />
-<col width="47%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 47%" />
 </colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Prop name</th>
-<th class="head">Type</th>
-<th class="head">Description</th>
+<thead>
+<tr class="row-odd"><th class="head"><p>Prop name</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Description</p></th>
 </tr>
 </thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">className</span></code></td>
-<td>string</td>
-<td>Class name to be added to <code class="docutils literal notranslate"><span class="pre">&lt;span&gt;</span></code> element</td>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">className</span></code></p></td>
+<td><p>string</p></td>
+<td><p>Class name to be added to <code class="docutils literal notranslate"><span class="pre">&lt;span&gt;</span></code> element</p></td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">render</span></code></td>
-<td>Element, Component, string, <code class="docutils literal notranslate"><span class="pre">null</span></code></td>
-<td>Custom wrapper element to render translation</td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">render</span></code></p></td>
+<td><p>Element, Component, string, <code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+<td><p>Custom wrapper element to render translation</p></td>
 </tr>
 </tbody>
 </table>
@@ -314,17 +316,13 @@ custom <code class="docutils literal notranslate"><span class="pre">defaultRende
 <dl class="component">
 <dt id="component-Trans">
 <code class="descname">Trans</code><a class="headerlink" href="#component-Trans" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>string?</strong> (<em>id</em>) – Override auto-generated message ID</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>string?</strong> (<em>id</em>) – Override auto-generated message ID</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p>This is the main and most-used component for translation. It supports
@@ -381,26 +379,22 @@ fact, it’s the only i18n component you’ll need if you decide to go without t
 <dl class="component">
 <dt id="component-Plural">
 <code class="descname">Plural</code><a class="headerlink" href="#component-Plural" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>id</strong> (<em>string</em>) – Override auto-generated message ID</li>
-<li><strong>offset</strong> (<em>number</em>) – Offset of value for plural forms</li>
-<li><strong>zero</strong> (<em>string</em>) – Form for empty <code class="docutils literal notranslate"><span class="pre">value</span></code></li>
-<li><strong>one</strong> (<em>string</em>) – <em>Singular</em> form</li>
-<li><strong>two</strong> (<em>string</em>) – <em>Dual</em> form</li>
-<li><strong>few</strong> (<em>string</em>) – <em>Paucal</em> form</li>
-<li><strong>many</strong> (<em>string</em>) – <em>Plural</em> form</li>
-<li><strong>other</strong> (<em>string</em>) – (required) general <em>plural</em> form</li>
-<li><strong>_&lt;number&gt;</strong> (<em>string</em>) – Exact match form, correspond to <code class="docutils literal notranslate"><span class="pre">=N</span></code> rule</li>
-<li><strong>format</strong> (<em>string|Object</em>) – Number format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a></li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>string</em>) – Override auto-generated message ID</p></li>
+<li><p><strong>offset</strong> (<em>number</em>) – Offset of value for plural forms</p></li>
+<li><p><strong>zero</strong> (<em>string</em>) – Form for empty <code class="docutils literal notranslate"><span class="pre">value</span></code></p></li>
+<li><p><strong>one</strong> (<em>string</em>) – <em>Singular</em> form</p></li>
+<li><p><strong>two</strong> (<em>string</em>) – <em>Dual</em> form</p></li>
+<li><p><strong>few</strong> (<em>string</em>) – <em>Paucal</em> form</p></li>
+<li><p><strong>many</strong> (<em>string</em>) – <em>Plural</em> form</p></li>
+<li><p><strong>other</strong> (<em>string</em>) – (required) general <em>plural</em> form</p></li>
+<li><p><strong>_&lt;number&gt;</strong> (<em>string</em>) – Exact match form, correspond to <code class="docutils literal notranslate"><span class="pre">=N</span></code> rule</p></li>
+<li><p><strong>format</strong> (<em>string|Object</em>) – Number format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a></p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p><a class="reference internal" href="#component-Plural">&lt;Plural&gt;</a> component handles pluralization of words or phrases.
@@ -412,8 +406,8 @@ Selected plural form depends on active language and <code class="docutils litera
 <p>Plural forms for all languages can be found at <a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html">CLDR Plural Rules</a>
 page.</p>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">Not all languages use <code class="docutils literal notranslate"><span class="pre">zero</span></code> plural form! English, for example, uses
+<p class="admonition-title">Warning</p>
+<p>Not all languages use <code class="docutils literal notranslate"><span class="pre">zero</span></code> plural form! English, for example, uses
 <code class="docutils literal notranslate"><span class="pre">other</span></code> form when <code class="docutils literal notranslate"><span class="pre">value</span> <span class="pre">==</span> <span class="pre">0</span></code> (e.g: 1 book, but 0 books).</p>
 </div>
 <p>As a developer, you only need to know plural rules for the language
@@ -458,18 +452,14 @@ used in source code. For example for English it’s only <code class="docutils l
 <dl class="component">
 <dt id="component-Select">
 <code class="descname">Select</code><a class="headerlink" href="#component-Select" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>value</strong> (<em>number</em>) – Override auto-generated message ID</li>
-<li><strong>other</strong> (<em>number</em>) – (required) Default, catch-all form</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>number</em>) – Override auto-generated message ID</p></li>
+<li><p><strong>other</strong> (<em>number</em>) – (required) Default, catch-all form</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p>This component selects the form based on content of <code class="docutils literal notranslate"><span class="pre">value</span></code> prop. It
@@ -492,26 +482,22 @@ matches <code class="docutils literal notranslate"><span class="pre">value</span
 <dl class="component">
 <dt id="component-SelectOrdinal">
 <code class="descname">SelectOrdinal</code><a class="headerlink" href="#component-SelectOrdinal" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>value</strong> (<em>number</em>) – Override auto-generated message ID</li>
-<li><strong>offset</strong> (<em>number</em>) – Offset of value for plural forms</li>
-<li><strong>zero</strong> (<em>string</em>) – Form for empty <cite>value</cite></li>
-<li><strong>one</strong> (<em>string</em>) – <em>Singular</em> form</li>
-<li><strong>two</strong> (<em>string</em>) – <em>Dual</em> form</li>
-<li><strong>few</strong> (<em>string</em>) – <em>Paucal</em> form</li>
-<li><strong>many</strong> (<em>string</em>) – <em>Plural</em> form</li>
-<li><strong>other</strong> (<em>string</em>) – (required) general <em>plural</em> form</li>
-<li><strong>_&lt;number&gt;</strong> (<em>string</em>) – Exact match form, correspond to <code class="docutils literal notranslate"><span class="pre">=N</span></code> rule. (e.g: <code class="docutils literal notranslate"><span class="pre">_0</span></code>, <code class="docutils literal notranslate"><span class="pre">_1</span></code>)</li>
-<li><strong>format</strong> (<em>string|Object</em>) – Number format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a></li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>number</em>) – Override auto-generated message ID</p></li>
+<li><p><strong>offset</strong> (<em>number</em>) – Offset of value for plural forms</p></li>
+<li><p><strong>zero</strong> (<em>string</em>) – Form for empty <cite>value</cite></p></li>
+<li><p><strong>one</strong> (<em>string</em>) – <em>Singular</em> form</p></li>
+<li><p><strong>two</strong> (<em>string</em>) – <em>Dual</em> form</p></li>
+<li><p><strong>few</strong> (<em>string</em>) – <em>Paucal</em> form</p></li>
+<li><p><strong>many</strong> (<em>string</em>) – <em>Plural</em> form</p></li>
+<li><p><strong>other</strong> (<em>string</em>) – (required) general <em>plural</em> form</p></li>
+<li><p><strong>_&lt;number&gt;</strong> (<em>string</em>) – Exact match form, correspond to <code class="docutils literal notranslate"><span class="pre">=N</span></code> rule. (e.g: <code class="docutils literal notranslate"><span class="pre">_0</span></code>, <code class="docutils literal notranslate"><span class="pre">_1</span></code>)</p></li>
+<li><p><strong>format</strong> (<em>string|Object</em>) – Number format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a></p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 <p>MessageFormat: <code class="docutils literal notranslate"><span class="pre">{arg,</span> <span class="pre">selectordinal,</span> <span class="pre">...forms}</span></code></p>
 </dd></dl>
 
@@ -536,18 +522,14 @@ it uses <strong>ordinal</strong> plural forms, instead of <strong>cardinal</stro
 <dl class="component">
 <dt id="component-DateFormat">
 <code class="descname">DateFormat</code><a class="headerlink" href="#component-DateFormat" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>value</strong> (<em>string|Date</em>) – Date to be formatted</li>
-<li><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>.</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>string|Date</em>) – Date to be formatted</p></li>
+<li><p><strong>format</strong> (<em>string|Object</em>) – Date format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>.</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p><a class="reference internal" href="#component-DateFormat">&lt;DateFormat&gt;</a> component is a wrapper around <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>.
@@ -575,18 +557,14 @@ It takes a date object or a date string as a <code class="docutils literal notra
 <dl class="component">
 <dt id="component-NumberFormat">
 <code class="descname">NumberFormat</code><a class="headerlink" href="#component-NumberFormat" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>value</strong> (<em>number</em>) – Number to be formatted</li>
-<li><strong>format</strong> (<em>string|Object</em>) – Number format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a></li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<em>number</em>) – Number to be formatted</p></li>
+<li><p><strong>format</strong> (<em>string|Object</em>) – Number format passed as options to <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a></p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p><a class="reference internal" href="#component-NumberFormat">&lt;NumberFormat&gt;</a> component is a wrapper around
@@ -619,21 +597,17 @@ down to wrapped component and shadows all implementation details.</p>
 <dl class="component">
 <dt id="component-I18nProvider">
 <code class="descname">I18nProvider</code><a class="headerlink" href="#component-I18nProvider" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>language</strong> (<em>string</em>) – Active language</li>
-<li><strong>locales</strong> (<em>string|string[]</em>) – List of locales used for date/number formatting. Defaults to active language.</li>
-<li><strong>catalogs</strong> (<em>object</em>) – Message catalogs</li>
-<li><strong>defaultRender</strong> (<em>React.Element|React.Class|string</em>) – Default element to render translation</li>
-<li><strong>missing</strong> (<em>string|Function</em>) – Custom message to be returned when translation is missing</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>language</strong> (<em>string</em>) – Active language</p></li>
+<li><p><strong>locales</strong> (<em>string|string[]</em>) – List of locales used for date/number formatting. Defaults to active language.</p></li>
+<li><p><strong>catalogs</strong> (<em>object</em>) – Message catalogs</p></li>
+<li><p><strong>defaultRender</strong> (<em>React.Element|React.Class|string</em>) – Default element to render translation</p></li>
+<li><p><strong>missing</strong> (<em>string|Function</em>) – Custom message to be returned when translation is missing</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p><code class="docutils literal notranslate"><span class="pre">defaultRender</span></code> has the same meaning as <code class="docutils literal notranslate"><span class="pre">render</span></code> in other i18n
@@ -702,17 +676,13 @@ top-level application component. However, if the <code class="docutils literal n
 <dl class="component">
 <dt id="component-I18n">
 <code class="descname">I18n</code><a class="headerlink" href="#component-I18n" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Props:</th><td class="field-body"><ul class="first last simple">
-<li><strong>update</strong> (<em>bool</em>) – Subscribe to catalog and activate language updates</li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Props</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>update</strong> (<em>bool</em>) – Subscribe to catalog and activate language updates</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p><a class="reference internal" href="#component-I18n">&lt;I18n&gt;</a> injects <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object and <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> to child component, which
@@ -761,20 +731,16 @@ enough to compare <code class="docutils literal notranslate"><span class="pre">i
 <dl class="function">
 <dt id="withI18n">
 <code class="descname">withI18n</code><span class="sig-paren">(</span><em>options?</em><span class="sig-paren">)</span><a class="headerlink" href="#withI18n" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
-<li><strong>options</strong> (<em>Object</em>) – Configuration for high-order component</li>
-<li><strong>update</strong> (<em>bool</em>) – Subscribe to catalog and activate language updates</li>
-<li><strong>withHash</strong> (<em>bool</em>) – Pass unique <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> prop to force underlying PureComponent re-render on catalog and active language update</li>
-<li><strong>withRef</strong> (<em>bool</em>) – Returns reference to wrapped instance in <code class="docutils literal notranslate"><span class="pre">getWrappedInstance</span></code></li>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Arguments</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>options</strong> (<em>Object</em>) – Configuration for high-order component</p></li>
+<li><p><strong>update</strong> (<em>bool</em>) – Subscribe to catalog and activate language updates</p></li>
+<li><p><strong>withHash</strong> (<em>bool</em>) – Pass unique <code class="docutils literal notranslate"><span class="pre">i18nHash</span></code> prop to force underlying PureComponent re-render on catalog and active language update</p></li>
+<li><p><strong>withRef</strong> (<em>bool</em>) – Returns reference to wrapped instance in <code class="docutils literal notranslate"><span class="pre">getWrappedInstance</span></code></p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
 <p><a class="reference internal" href="#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> is a higher-order component which injects <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object to
@@ -790,8 +756,8 @@ API for translation of JSX props:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><a class="reference internal" href="#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> automatically hoists static properties from wrapped component.</p>
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> automatically hoists static properties from wrapped component.</p>
 </div>
 </div>
 </div>
@@ -827,9 +793,9 @@ components:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>In development, <a class="reference internal" href="#i18nMark" title="i18nMark"><code class="xref js js-func docutils literal notranslate"><span class="pre">i18nMark()</span></code></a> is an identity function, returning <code class="docutils literal notranslate"><span class="pre">msgId</span></code>.</p>
-<p class="last">In production, <a class="reference internal" href="#i18nMark" title="i18nMark"><code class="xref js js-func docutils literal notranslate"><span class="pre">i18nMark()</span></code></a> call is replaced with <code class="docutils literal notranslate"><span class="pre">msgId</span></code> string.</p>
+<p>In production, <a class="reference internal" href="#i18nMark" title="i18nMark"><code class="xref js js-func docutils literal notranslate"><span class="pre">i18nMark()</span></code></a> call is replaced with <code class="docutils literal notranslate"><span class="pre">msgId</span></code> string.</p>
 </div>
 </div>
 </div>
@@ -846,7 +812,7 @@ components:</p>
         <a href="macro.html" class="btn btn-neutral float-right" title="@lingui/macro - Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="core.html" class="btn btn-neutral" title="@lingui/core - The core i18n functionality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="core.html" class="btn btn-neutral float-left" title="@lingui/core - The core i18n functionality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -872,26 +838,16 @@ components:</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

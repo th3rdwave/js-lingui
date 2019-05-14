@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -209,15 +211,15 @@
   <div class="section" id="setup-with-react-project">
 <h1>Setup with React project<a class="headerlink" href="#setup-with-react-project" title="Permalink to this headline">¶</a></h1>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">If you use Create React App, even ejected, follow <a class="reference internal" href="setup-cra.html"><span class="doc">LinguiJS and Create React App</span></a>
+<p class="admonition-title">Important</p>
+<p>If you use Create React App, even ejected, follow <a class="reference internal" href="setup-cra.html"><span class="doc">LinguiJS and Create React App</span></a>
 setup guide.</p>
 </div>
 <p>This setup guide is for any project which uses React.</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
-<li><p class="first">Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code>, <cite>babel-plugin-macros</cite> and Babel core
+<li><p>Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code>, <cite>babel-plugin-macros</cite> and Babel core
 packages as a development dependencies and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @babel/core babel-core@bridge
 npm install --save-dev @lingui/macro babel-plugin-macros  <span class="c1"># required for macros</span>
@@ -230,12 +232,12 @@ yarn add @lingui/react
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Don’t forget Babel packages (<code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code>) which are
+<p class="admonition-title">Important</p>
+<p>Don’t forget Babel packages (<code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code>) which are
 required for backward compatibility with projects using Babel 6.</p>
 </div>
 </li>
-<li><p class="first">Add <code class="docutils literal notranslate"><span class="pre">macros</span></code> plugin to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">macros</span></code> plugin to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
   <span class="nt">&quot;plugins&quot;</span><span class="p">:</span> <span class="p">[</span>
     <span class="s2">&quot;macros&quot;</span>
@@ -244,15 +246,15 @@ required for backward compatibility with projects using Babel 6.</p>
 </pre></div>
 </div>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="admonition-title">Important</p>
 <p>If you use any preset, check first if it contains <code class="docutils literal notranslate"><span class="pre">macros</span></code> plugin.
 These presets already includes <code class="docutils literal notranslate"><span class="pre">macros</span></code> plugin:</p>
-<ul class="last simple">
-<li><code class="docutils literal notranslate"><span class="pre">react-scripts</span></code></li>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">react-scripts</span></code></p></li>
 </ul>
 </div>
 </li>
-<li><p class="first">Create <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> file with LinguiJS configuration in root of your project (next
+<li><p>Create <code class="docutils literal notranslate"><span class="pre">.linguirc</span></code> file with LinguiJS configuration in root of your project (next
 to <code class="docutils literal notranslate"><span class="pre">package.json</span></code>). Replace <code class="docutils literal notranslate"><span class="pre">src</span></code> with a directory name where you have source files:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;localeDir&quot;</span><span class="p">:</span> <span class="s2">&quot;src/locales/&quot;</span><span class="p">,</span>
@@ -264,7 +266,7 @@ to <code class="docutils literal notranslate"><span class="pre">package.json</sp
 <p>PO format is recommended for message catalogs. See <a class="reference internal" href="../ref/conf.html#std:config-format"><code class="xref std std-conf docutils literal notranslate"><span class="pre">format</span></code></a> documentation for other
 available formats.</p>
 </li>
-<li><p class="first">Add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
+<li><p>Add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="nt">&quot;scripts&quot;</span><span class="p">:</span> <span class="p">{</span>
       <span class="nt">&quot;add-locale&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui add-locale&quot;</span><span class="p">,</span>
@@ -275,7 +277,7 @@ available formats.</p>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">add-locale</span></code> (or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add-locale</span></code>) with
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">add-locale</span></code> (or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">add-locale</span></code>) with
 <a class="reference external" href="https://www.iana.org/assignments/language-subtag-registry/language-subtag-registry">locale codes</a>
 you would like to use in your app:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm run add-locale en es fr  <span class="c1"># Add English, Spanish and French locale</span>
@@ -285,7 +287,7 @@ yarn add-locale en es fr
 </pre></div>
 </div>
 </li>
-<li><p class="first">Check the installation by running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> (or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">extract</span></code>):</p>
+<li><p>Check the installation by running <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> (or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">extract</span></code>):</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm run extract
 
 <span class="c1"># or using Yarn</span>
@@ -320,11 +322,11 @@ is used in messages.</p>
 <h2>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
 <p>Checkout these reference guides for full documentation:</p>
 <ul class="simple">
-<li><a class="reference internal" href="../ref/message-format.html"><span class="doc">ICU Message Format</span></a></li>
-<li><a class="reference internal" href="../ref/macro.html"><span class="doc">React reference</span></a></li>
-<li><a class="reference internal" href="../ref/react.html"><span class="doc">Macro reference</span></a></li>
-<li><a class="reference internal" href="../ref/cli.html"><span class="doc">CLI reference</span></a></li>
-<li><a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a></li>
+<li><p><a class="reference internal" href="../ref/message-format.html"><span class="doc">ICU Message Format</span></a></p></li>
+<li><p><a class="reference internal" href="../ref/macro.html"><span class="doc">React reference</span></a></p></li>
+<li><p><a class="reference internal" href="../ref/react.html"><span class="doc">Macro reference</span></a></p></li>
+<li><p><a class="reference internal" href="../ref/cli.html"><span class="doc">CLI reference</span></a></p></li>
+<li><p><a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a></p></li>
 </ul>
 </div>
 <div class="section" id="troubleshooting">
@@ -333,10 +335,10 @@ is used in messages.</p>
 <h3>Cannot find module ‘babel-core’<a class="headerlink" href="#cannot-find-module-babel-core" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Check that you installed <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code> (step 2)</li>
-<li>Check that you use local version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>. Installing <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>
+<li><p>Check that you installed <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code> (step 2)</p></li>
+<li><p>Check that you use local version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>. Installing <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>
 globally may clash with other packages which use Babel 6. You should run
-either <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">extract</span></code> (step 5).</li>
+either <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">extract</span></code> (step 5).</p></li>
 </ol>
 </div></blockquote>
 </div>
@@ -354,7 +356,7 @@ either <code class="docutils literal notranslate"><span class="pre">npm</span> <
         <a href="react.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of React apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="setup-cra.html" class="btn btn-neutral" title="Setup with Create React App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="setup-cra.html" class="btn btn-neutral float-left" title="Setup with Create React App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -380,26 +382,16 @@ either <code class="docutils literal notranslate"><span class="pre">npm</span> <
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

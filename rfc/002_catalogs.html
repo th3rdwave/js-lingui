@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -39,21 +46,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -227,8 +229,8 @@
 into several files. Also, not all messages are extracted from source files and it may
 be convenient to fetch message descriptors from API (e.g. GraphQL Enum)</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">This proposal is about splitting <strong>source catalogs</strong>. Compiled
+<p class="admonition-title">Important</p>
+<p>This proposal is about splitting <strong>source catalogs</strong>. Compiled
 message catalogs always contain all messages in project for now.</p>
 </div>
 <div class="section" id="proposal">
@@ -299,8 +301,8 @@ messages are collected from source files.</p>
 <p>If the path starts with <code class="docutils literal notranslate"><span class="pre">run!</span></code> then messages are loaded from executable script.
 See <em>loading messages from</em> scripts below.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
-<p class="last">Catalog names are always <strong>without extension</strong> because that depends on serializer,
+<p class="admonition-title">Important</p>
+<p>Catalog names are always <strong>without extension</strong> because that depends on serializer,
 e.g. <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">po</span></code>.</p>
 </div>
 </div>
@@ -470,12 +472,12 @@ extracting isn’t possible).</p>
 <div class="section" id="possible-challenges">
 <h3>Possible challenges<a class="headerlink" href="#possible-challenges" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>User should be warned if messages are collected, but there’s no corresponding
-<code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for them (e.g. the root <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is missing).</li>
-<li>When a new <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is created in subdirectory, all translations
-from parent <code class="docutils literal notranslate"><span class="pre">locale</span></code> should be moved here.</li>
-<li>The other way around, when directory is removed, there should be a way how to merge
-tranlations to parent directory.</li>
+<li><p>User should be warned if messages are collected, but there’s no corresponding
+<code class="docutils literal notranslate"><span class="pre">locale</span></code> directory for them (e.g. the root <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is missing).</p></li>
+<li><p>When a new <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is created in subdirectory, all translations
+from parent <code class="docutils literal notranslate"><span class="pre">locale</span></code> should be moved here.</p></li>
+<li><p>The other way around, when directory is removed, there should be a way how to merge
+tranlations to parent directory.</p></li>
 </ul>
 </div>
 <div class="section" id="other-considered-options">
@@ -515,13 +517,13 @@ from <code class="docutils literal notranslate"><span class="pre">largeComponent
 <div class="section" id="disadvantages">
 <h3>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Directories must be created manually. In monorepos this might be extra work,
-but for example in Lerna it’s just <code class="docutils literal notranslate"><span class="pre">lerna</span> <span class="pre">exec</span> <span class="pre">--</span> <span class="pre">mkdir</span> <span class="pre">locales</span></code>.</li>
-<li><code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is always placed near the source files. It’s not possible to
-move it to different location (other than creating symlinks)</li>
-<li>It’s not possible to rename catalogs.</li>
-<li>It’s not possible to collect messages from multiple independent sources into single
-locale directory.</li>
+<li><p>Directories must be created manually. In monorepos this might be extra work,
+but for example in Lerna it’s just <code class="docutils literal notranslate"><span class="pre">lerna</span> <span class="pre">exec</span> <span class="pre">--</span> <span class="pre">mkdir</span> <span class="pre">locales</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">locale</span></code> directory is always placed near the source files. It’s not possible to
+move it to different location (other than creating symlinks)</p></li>
+<li><p>It’s not possible to rename catalogs.</p></li>
+<li><p>It’s not possible to collect messages from multiple independent sources into single
+locale directory.</p></li>
 </ul>
 <div class="section" id="create-multiple-lingui-configs">
 <h4>Create multiple lingui configs<a class="headerlink" href="#create-multiple-lingui-configs" title="Permalink to this headline">¶</a></h4>
@@ -560,7 +562,7 @@ per directory.</p>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="001_macros_message_descriptors.html" class="btn btn-neutral" title="001 - Macros for JavaScript API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="001_macros_message_descriptors.html" class="btn btn-neutral float-left" title="001 - Macros for JavaScript API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -586,26 +588,16 @@ per directory.</p>
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

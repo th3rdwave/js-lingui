@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -263,10 +265,10 @@ attributes:</p>
 <p>In such case you need to use <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> render prop component to access <code class="docutils literal notranslate"><span class="pre">i18n</span></code>
 object and <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> macro to wrap message:</p>
 <ol class="arabic simple">
-<li>Use render prop component <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code>, to access
-<code class="docutils literal notranslate"><span class="pre">i18n</span></code> object.</li>
-<li>Call <code class="xref js js-meth docutils literal notranslate"><span class="pre">i18n._`()</span></code> to translate message wrapped in JS macros. <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> is
-equivalent for <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a>, <a class="reference internal" href="../ref/macro.html#jsmacro-plural">plural</a> is equivalent to <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a>.</li>
+<li><p>Use render prop component <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code>, to access
+<code class="docutils literal notranslate"><span class="pre">i18n</span></code> object.</p></li>
+<li><p>Call <code class="xref js js-meth docutils literal notranslate"><span class="pre">i18n._`()</span></code> to translate message wrapped in JS macros. <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> is
+equivalent for <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a>, <a class="reference internal" href="../ref/macro.html#jsmacro-plural">plural</a> is equivalent to <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a>.</p></li>
 </ol>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
@@ -350,9 +352,8 @@ pass ID as object key:</p>
 outside React components, for example inside <code class="docutils literal notranslate"><span class="pre">redux-saga</span></code>. In such case, you need
 a bit more setup:</p>
 <ol class="arabic">
-<li><p class="first">Create your own instance of <code class="docutils literal notranslate"><span class="pre">i18n</span></code> using <a class="reference internal" href="../ref/core.html#setupI18n" title="setupI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">setupI18n()</span></code></a> form <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code></p>
-</li>
-<li><p class="first">Pass this instance as <code class="docutils literal notranslate"><span class="pre">i18n</span></code> prop to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>. This will replace
+<li><p>Create your own instance of <code class="docutils literal notranslate"><span class="pre">i18n</span></code> using <a class="reference internal" href="../ref/core.html#setupI18n" title="setupI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">setupI18n()</span></code></a> form <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code></p></li>
+<li><p>Pass this instance as <code class="docutils literal notranslate"><span class="pre">i18n</span></code> prop to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>. This will replace
 default <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object initialized inside <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>.</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// App.js</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
@@ -370,7 +371,7 @@ default <code class="docutils literal notranslate"><span class="pre">i18n</span>
 </pre></div>
 </div>
 </li>
-<li><p class="first">Whenever you are outside React context (i.e. you can’t access props), you can use this
+<li><p>Whenever you are outside React context (i.e. you can’t access props), you can use this
 <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object.</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./App.js&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
@@ -433,7 +434,7 @@ to <a class="reference internal" href="../ref/core.html#I18n._" title="I18n._"><
         <a href="react-native.html" class="btn btn-neutral float-right" title="Tutorial - Internationalization of React Native apps" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="react.html" class="btn btn-neutral" title="Tutorial - Internationalization of React apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="react.html" class="btn btn-neutral float-left" title="Tutorial - Internationalization of React apps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -459,26 +460,16 @@ to <a class="reference internal" href="../ref/core.html#I18n._" title="I18n._"><
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>

@@ -17,13 +17,20 @@
   
 
   
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
 
-  
-  
     
 
   
-
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
@@ -40,21 +47,16 @@
   gtag('config', 'UA-52365043-2');
 </script>
 
-
-  
-  <script src="../_static/js/modernizr.min.js"></script>
-
 </head>
 
 <body class="wy-body-for-nav">
 
    
   <div class="wy-grid-for-nav">
-
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search">
+        <div class="wy-side-nav-search" >
           
 
           
@@ -210,17 +212,17 @@ in GitHub to see latest status.</p>
 <h2>Webpack setup<a class="headerlink" href="#webpack-setup" title="Permalink to this headline">¶</a></h2>
 <p>The ability of lingui to support the intuitive syntax comes from the <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-react</span></code> Babel transformation. The preset consist of 2 plugins, namely <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-plugin-transform-js</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-plugin-transform-react</span></code>. The plugins perform transformation only on the JSX and tagged template literals. Thus, the JSX and tagged template literals <em>must not</em> be transpiled before the 2 plugins get to do their magic to process the intuitive syntax.</p>
 <p>In order to preserve JSX and tagged template literals for the lingui plugins, you must set the following in your <code class="docutils literal notranslate"><span class="pre">tsconfig.json</span></code>.</p>
-<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;compilerOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">&quot;jsx&quot;</span><span class="p">:</span> <span class="s2">&quot;preserve&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="s2">&quot;es2016&quot;</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;compilerOptions&quot;</span><span class="o">:</span> <span class="p">{</span>
+    <span class="s2">&quot;jsx&quot;</span><span class="o">:</span> <span class="s2">&quot;preserve&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;target&quot;</span><span class="o">:</span> <span class="s2">&quot;es2016&quot;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>For lingui 2.0+, install <code class="docutils literal notranslate"><span class="pre">babel-loader</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-preset-react</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-preset-env</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/babel-preset-react</span></code>. Use the presets by changing your <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code> to the following. The order of the preset is important.</p>
-<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;presets&quot;</span><span class="p">:</span> <span class="p">[</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;presets&quot;</span><span class="o">:</span> <span class="p">[</span>
     <span class="s2">&quot;babel-preset-env&quot;</span><span class="p">,</span>
     <span class="s2">&quot;babel-preset-react&quot;</span><span class="p">,</span>
     <span class="s2">&quot;@lingui/babel-preset-react&quot;</span>
@@ -229,28 +231,28 @@ in GitHub to see latest status.</p>
 </pre></div>
 </div>
 <p>In your <code class="docutils literal notranslate"><span class="pre">webpack.config.js</span></code>, use both <code class="docutils literal notranslate"><span class="pre">babel-loader</span></code> and <code class="docutils literal notranslate"><span class="pre">ts-loader</span></code> for Typescript files.</p>
-<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span>{
-  module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: [&#39;babel-loader&#39;, &#39;ts-loader&#39;]
-      }
-    ]
-  }
-}
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.tsx?$/</span><span class="p">,</span>
+        <span class="nx">exclude</span><span class="o">:</span> <span class="sr">/node_modules/</span><span class="p">,</span>
+        <span class="nx">use</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span> <span class="s1">&#39;ts-loader&#39;</span><span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">If you are not using <cite>.babelrc</cite> file, keep in mind that by running <cite>lingui extract</cite>, the Webpack config is not used.
+<p class="admonition-title">Note</p>
+<p>If you are not using <cite>.babelrc</cite> file, keep in mind that by running <cite>lingui extract</cite>, the Webpack config is not used.
 To supply babel options for the extraction process use <a class="reference internal" href="../ref/conf.html#std:config-extractBabelOptions"><code class="xref std std-conf docutils literal notranslate"><span class="pre">extractBabelOptions</span></code></a> configuration option.</p>
 </div>
 <p><a class="reference internal" href="../ref/conf.html#std:config-compileNamespace"><code class="xref std std-conf docutils literal notranslate"><span class="pre">compileNamespace</span></code></a> must be set to <code class="docutils literal notranslate"><span class="pre">es</span></code> (ES6 default export) in the Lingui config
 otherwise compiled catalogs can’t be imported using ES <code class="docutils literal notranslate"><span class="pre">import</span></code>, but rather CommonJS <code class="docutils literal notranslate"><span class="pre">require</span></code>:</p>
-<div class="code js highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="s2">&quot;compileNamespace&quot;</span><span class="p">:</span> <span class="s2">&quot;es&quot;</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;compileNamespace&quot;</span><span class="o">:</span> <span class="s2">&quot;es&quot;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -280,7 +282,7 @@ npm install --save-dev @types/lingui__macro  <span class="c1"># types for @lingu
         <a href="excluding-build-files.html" class="btn btn-neutral float-right" title="Excluding message catalog build files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="testing.html" class="btn btn-neutral" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="testing.html" class="btn btn-neutral float-left" title="Testing" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -306,26 +308,16 @@ npm install --save-dev @types/lingui__macro  <span class="c1"># types for @lingu
   
 
 
-  
-
-    
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script type="text/javascript" src="../_static/jquery.js"></script>
-        <script type="text/javascript" src="../_static/underscore.js"></script>
-        <script type="text/javascript" src="../_static/doctools.js"></script>
-        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    
-
-  
-
-  <script type="text/javascript" src="../_static/js/theme.js"></script>
-
   <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
