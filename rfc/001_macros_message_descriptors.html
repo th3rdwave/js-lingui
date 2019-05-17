@@ -125,6 +125,7 @@
 </ul>
 <p class="caption"><span class="caption-text">Releases</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-3.html">Migration from 2.x to 3.x</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
 </ul>
@@ -141,12 +142,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#plural-select-and-selectordinal-formatters">Plural, select and selectOrdinal formatters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#date-and-number-formatters">Date and number formatters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#custom-id-and-comments-for-translators">Custom ID and comments for translators</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#transformation">Transformation</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#lazy-translations">Lazy translations</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#extracting-messages">Extracting messages</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#summary">Summary</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#common-catalogs">Common catalogs</a></li>
 </ul>
@@ -239,15 +238,15 @@ writing format by hand are following:</p>
 <span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
 
 <span class="c1">// With macro</span>
-<span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 
 <span class="c1">// Without macro</span>
-<span class="nx">i18n</span><span class="p">(</span><span class="s1">&#39;Hello {name}, today is {today, date}&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">date</span> <span class="p">})</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;Hello {name}, today is {today, date}&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">today</span> <span class="p">})</span>
 
 <span class="c1">// For the sake of completeness, macro is transformed into this code:</span>
-<span class="c1">// i18n({</span>
+<span class="c1">// i18n._({</span>
 <span class="c1">//   id: &#39;Hello {name}, today is {today, date}&#39;,</span>
-<span class="c1">//   values: { name, date }</span>
+<span class="c1">//   values: { name, today }</span>
 <span class="c1">//  })</span>
 </pre></div>
 </div>
@@ -260,14 +259,13 @@ valid. This is especially important for nested formatters:</p>
 <span class="kr">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">42</span>
 
 <span class="c1">// With macro</span>
-<span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, you have </span><span class="si">${</span><span class="nx">plural</span><span class="p">({</span>
-  <span class="nx">value</span><span class="p">,</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, you have </span><span class="si">${</span><span class="nx">plural</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;# unread message&#39;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s1">&#39;# unread messages&#39;</span>
-<span class="si">}</span><span class="sb">)}`</span>
+<span class="si">}</span><span class="sb">)}`</span><span class="p">)</span>
 
 <span class="c1">// Without macro</span>
-<span class="nx">i18n</span><span class="p">(</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span>
   <span class="s1">&#39;Hello {name}, you have {value, plural, one {# unread message} other {# unread messages}}&#39;</span><span class="p">,</span>
   <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">date</span> <span class="p">}</span>
 <span class="p">)</span>
@@ -282,18 +280,18 @@ to <a class="reference external" href="https://projectfluent.org/">Fluent</a>:</
 <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Joe&quot;</span>
 <span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
 
-<span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
 
 <span class="c1">// Lingui configration { messageFormat: &#39;icu&#39; }</span>
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="c1">// i18n({</span>
+<span class="c1">// i18n._({</span>
 <span class="c1">//   id: &#39;Hello {name}, today is {today, date}&#39;,</span>
 <span class="c1">//   values: { name, date }</span>
 <span class="c1">//  })</span>
 
 <span class="c1">// Lingui configration { messageFormat: &#39;fluent&#39; }</span>
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="c1">// i18n({</span>
+<span class="c1">// i18n._({</span>
 <span class="c1">//   id: &#39;Hello { $name }, today is { DATETIME($today) }&#39;,</span>
 <span class="c1">//   values: { name, date }</span>
 <span class="c1">//  })</span>
@@ -309,10 +307,6 @@ configuration. Both will be added in the future.</p>
 </div>
 <div class="section" id="message-definitions">
 <h2>Message definitions<a class="headerlink" href="#message-definitions" title="Permalink to this headline">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">t</span></code>, <code class="docutils literal notranslate"><span class="pre">plural</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code> and <code class="docutils literal notranslate"><span class="pre">selectOrdinal</span></code> macros are alternatives
-for <code class="docutils literal notranslate"><span class="pre">Trans</span></code>, <code class="docutils literal notranslate"><span class="pre">Plural</span></code>, <code class="docutils literal notranslate"><span class="pre">Select</span></code> and <code class="docutils literal notranslate"><span class="pre">SelectOrdinal</span></code> macros used in JSX.
-The former can be used anywhere where string output is required, while
-the latter are used in JSX context.</p>
 <div class="section" id="tagged-template-literals">
 <h3>Tagged template literals<a class="headerlink" href="#tagged-template-literals" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">t</span></code> macro itself is used as a template literal tag:</p>
@@ -329,26 +323,23 @@ All of them must be called with an object containing <code class="docutils liter
 plural forms (<code class="docutils literal notranslate"><span class="pre">plural</span></code>, <code class="docutils literal notranslate"><span class="pre">selectOrdinal</span></code>) or categories (<code class="docutils literal notranslate"><span class="pre">select</span></code>):</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">select</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
-<span class="nx">plural</span><span class="p">({</span>
-   <span class="nx">value</span><span class="p">,</span>
+<span class="nx">plural</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span>
    <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
    <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
 <span class="p">})</span>
 
-<span class="nx">select</span><span class="p">({</span>
-   <span class="nx">value</span><span class="p">,</span>
+<span class="nx">select</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span>
    <span class="nx">male</span><span class="o">:</span> <span class="s2">&quot;he&quot;</span><span class="p">,</span>
    <span class="nx">female</span><span class="o">:</span> <span class="s2">&quot;she&quot;</span><span class="p">,</span>
    <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;they&quot;</span>
 <span class="p">})</span>
 </pre></div>
 </div>
-<p>It’s possible to arbitrary nest macros. <code class="docutils literal notranslate"><span class="pre">t</span></code> macro isn’t required
+<p>It’s possible to arbitrary nest formatters. <code class="docutils literal notranslate"><span class="pre">t</span></code> macro isn’t required
 for nested template literals:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
-<span class="nx">plural</span><span class="p">({</span>
-   <span class="nx">value</span><span class="p">,</span>
+<span class="nx">plural</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span>
    <span class="nx">one</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> has # book`</span><span class="p">,</span>
    <span class="nx">other</span><span class="o">:</span> <span class="sb">`</span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb"> has # books`</span>
 <span class="p">})</span>
@@ -359,7 +350,7 @@ for nested template literals:</p>
 <h3>Date and number formatters<a class="headerlink" href="#date-and-number-formatters" title="Permalink to this headline">¶</a></h3>
 <p>Finally, <code class="docutils literal notranslate"><span class="pre">date</span></code> and <code class="docutils literal notranslate"><span class="pre">number</span></code> macros are also used as a functions.
 First argument is value to be formatted, the second is optional format:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">date</span><span class="p">,</span> <span class="nx">number</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">date</span><span class="p">,</span> <span class="nx">number</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
 <span class="c1">// default format</span>
 <span class="nx">t</span><span class="sb">`Today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span>
@@ -371,99 +362,70 @@ First argument is value to be formatted, the second is optional format:</p>
 </div>
 <div class="section" id="custom-id-and-comments-for-translators">
 <h3>Custom ID and comments for translators<a class="headerlink" href="#custom-id-and-comments-for-translators" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">t</span></code> macro is used as a function, then it’s called with a message descriptor.
-It’s possible to override message ID or add comments for translators by adding
-<code class="docutils literal notranslate"><span class="pre">id</span></code> or <code class="docutils literal notranslate"><span class="pre">comment</span></code> respectively to this object.</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
+<p>All macros above can be wrapped inside <code class="docutils literal notranslate"><span class="pre">defineMessage</span></code> macro
+to provide <code class="docutils literal notranslate"><span class="pre">comment</span></code> for translators or to override the message <code class="docutils literal notranslate"><span class="pre">id</span></code>:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineMessage</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
 <span class="c1">// Message is used as an ID</span>
-<span class="nx">t</span><span class="p">({</span>
-   <span class="nx">message</span><span class="o">:</span> <span class="sb">`Default message`</span><span class="p">,</span>
+<span class="nx">defineMessage</span><span class="p">({</span>
+   <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Default message&quot;</span><span class="p">,</span>
    <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
 <span class="p">})</span>
 
 <span class="c1">// Custom ID</span>
-<span class="nx">t</span><span class="p">({</span>
+<span class="nx">defineMessage</span><span class="p">({</span>
    <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
-   <span class="nx">message</span><span class="o">:</span> <span class="sb">`Default message`</span><span class="p">,</span>
-   <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
-<span class="p">})</span>
-
-<span class="c1">// Custom ID, without default message</span>
-<span class="nx">t</span><span class="p">({</span>
-   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
-   <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
-<span class="p">})</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">plural</span></code> and other formatters are already called with object as a first parameter.
-<code class="docutils literal notranslate"><span class="pre">id</span></code> and <code class="docutils literal notranslate"><span class="pre">comment</span></code> props can be added there:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
-
-<span class="nx">plural</span><span class="p">({</span>
-   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.plural&quot;</span><span class="p">,</span>
    <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span><span class="p">,</span>
-
-   <span class="nx">value</span><span class="p">,</span>
-   <span class="nx">one</span><span class="o">:</span> <span class="s2">&quot;# book&quot;</span><span class="p">,</span>
-   <span class="nx">other</span><span class="o">:</span> <span class="s2">&quot;# books&quot;</span>
+   <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Default message&quot;</span>
 <span class="p">})</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">date</span></code> and <code class="docutils literal notranslate"><span class="pre">number</span></code> don’t accept <code class="docutils literal notranslate"><span class="pre">id</span></code> nor <code class="docutils literal notranslate"><span class="pre">comment</span></code>.</p>
-</div>
-</div>
-<div class="section" id="transformation">
-<h2>Transformation<a class="headerlink" href="#transformation" title="Permalink to this headline">¶</a></h2>
-<p>Each macro is transformed into a message descriptor
-wrapped into <code class="docutils literal notranslate"><span class="pre">i18n._</span></code> function:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
-
-<span class="nx">t</span><span class="p">({</span>
-   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
-   <span class="nx">message</span><span class="o">:</span> <span class="sb">`Default message`</span>
-   <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
-<span class="p">})</span>
-
-<span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓</span>
-
-<span class="kr">import</span> <span class="nx">i18n</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/core&#39;</span>
-
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">({</span>
-   <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;msg.id&quot;</span><span class="p">,</span>
-   <span class="nx">message</span><span class="o">:</span> <span class="sb">`Default message`</span><span class="p">,</span>
-   <span class="nx">comment</span><span class="o">:</span> <span class="s2">&quot;Comment for translators&quot;</span>
-<span class="p">})</span>
-</pre></div>
 </div>
 <div class="section" id="lazy-translations">
 <h3>Lazy translations<a class="headerlink" href="#lazy-translations" title="Permalink to this headline">¶</a></h3>
 <p>Lazy translations are useful when we need to define a message, but translate it later.
-This was previously achieved using <code class="docutils literal notranslate"><span class="pre">i18Mark</span></code>. Now we can use <cite>.lazy</cite> variant of macros:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
+This was previously achieved using <code class="docutils literal notranslate"><span class="pre">i18Mark</span></code>. Now we can use the same macros:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// The API of `t` and `lazy` are the same.</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
 <span class="c1">// define the message</span>
-<span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">t</span><span class="p">.</span><span class="nx">lazy</span><span class="sb">`Default message`</span>
+<span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">t</span><span class="sb">`Default message`</span>
 
 <span class="c1">// translate it</span>
-<span class="kr">const</span> <span class="nx">translation</span> <span class="o">=</span> <span class="nx">msg</span><span class="p">()</span>
+<span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="sb">`</span>
 </pre></div>
 </div>
 <p>Lazy translations are usually defined in different scope than evaluated. Parameters
 are therefore unknown, but we still need to know their names, so we can create placeholders
 in MessageFormat. <code class="docutils literal notranslate"><span class="pre">arg</span></code> macro is used exactly for that:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">arg</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">arg</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
-<span class="kr">const</span> <span class="nx">books</span> <span class="o">=</span> <span class="nx">plural</span><span class="p">.</span><span class="nx">lazy</span><span class="p">({</span>
-   <span class="nx">value</span><span class="o">:</span> <span class="nx">arg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">),</span>
+<span class="c1">// Macro</span>
+<span class="kr">const</span> <span class="nx">books</span> <span class="o">=</span> <span class="nx">plural</span><span class="p">(</span><span class="nx">arg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">),</span> <span class="p">{</span>
    <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;# book&#39;</span><span class="p">,</span>
    <span class="nx">other</span><span class="o">:</span> <span class="s1">&#39;# books&#39;</span>
 <span class="p">})</span>
 
-<span class="kr">const</span> <span class="nx">translation</span> <span class="o">=</span> <span class="nx">books</span><span class="p">({</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">42</span> <span class="p">})</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="p">{</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">42</span> <span class="p">})</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="extracting-messages">
+<h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
+<p>Messages are extracted from code already transformed by macros. This makes macros
+completely optional and extraction will work also with message descriptors created
+manually.</p>
+<p>Extract script will look for  a <code class="docutils literal notranslate"><span class="pre">i18n</span></code> comments, which are automatically added by macros:</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">t</span><span class="sb">`Message`</span>
+
+<span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
+<span class="cm">/*i18n*/</span><span class="p">{</span>
+  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Message&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>An object after such comment is considered as message descriptor and extracted.</p>
 </div>
 <div class="section" id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
@@ -475,14 +437,14 @@ in MessageFormat. <code class="docutils literal notranslate"><span class="pre">a
 <div class="section" id="common-catalogs">
 <h3>Common catalogs<a class="headerlink" href="#common-catalogs" title="Permalink to this headline">¶</a></h3>
 <p>Feature request from #258:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">lazy</span><span class="p">,</span> <span class="nx">arg</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineMessages</span><span class="p">,</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">arg</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
 
-<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
-   <span class="nx">yes</span><span class="o">:</span> <span class="nx">lazy</span><span class="sb">`Yes`</span><span class="p">,</span>
-   <span class="nx">no</span><span class="o">:</span> <span class="nx">lazy</span><span class="sb">`No`</span><span class="p">,</span>
-   <span class="nx">cancel</span><span class="o">:</span> <span class="nx">lazy</span><span class="sb">`Cancel`</span><span class="p">,</span>
-   <span class="nx">confirmDelete</span><span class="o">:</span> <span class="nx">lazy</span><span class="sb">`Do you really want to delete </span><span class="si">${</span><span class="nx">arg</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">)</span><span class="si">}</span><span class="sb">?`</span>
-<span class="p">}</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">defineMessages</span><span class="p">({</span>
+   <span class="nx">yes</span><span class="o">:</span> <span class="s2">&quot;Yes&quot;</span><span class="p">,</span>
+   <span class="nx">no</span><span class="o">:</span> <span class="s2">&quot;No&quot;</span><span class="p">,</span>
+   <span class="nx">cancel</span><span class="o">:</span> <span class="s2">&quot;Cancel&quot;</span><span class="p">,</span>
+   <span class="nx">confirmDelete</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Do you really want to delete </span><span class="si">${</span><span class="nx">arg</span><span class="p">(</span><span class="s2">&quot;filename&quot;</span><span class="p">)</span><span class="si">}</span><span class="sb">?`</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 </div>
