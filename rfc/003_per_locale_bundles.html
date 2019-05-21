@@ -1,0 +1,518 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>003 - Per-locale bundles &mdash; LinguiJS  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="002 - Catalogs" href="002_catalogs.html" />
+ 
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-52365043-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52365043-2');
+</script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> LinguiJS
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/setup-cra.html">Create React App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/setup-react.html">React project</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-patterns.html">React - common patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/react-native.html">React Native</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/javascript.html">JavaScript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/cli.html">CLI</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../guides/testing.html">Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/typescript.html">Typescript</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/excluding-build-files.html">Excluding build files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/dynamic-loading-catalogs.html">Dynamic loading of translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/optimized-components.html">Optimized components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../guides/plurals.html">How plurals work</a></li>
+</ul>
+<p class="caption"><span class="caption-text">API References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../ref/core.html">Core (JavaScript)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/react.html">React</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/macro.html">Macros</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/cli.html">CLI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/conf.html">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/loader.html">Webpack Loader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/catalog-formats.html">Catalog Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ref/message-format.html">ICU MessageFormat</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Releases</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-3.html">Migration from 2.x to 3.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-2.html">Migration from 1.x to 2.x</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/migration-1.html">Migration from 0.x to 1.x</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Discussion</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../misc/showroom.html">Projects using LinguiJS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/react-intl.html">Comparison with react-intl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/talks-about-i18n.html">Talks and articles about i18n in JavaScript</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="toc.html">RFCs and design decisions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="001_macros_message_descriptors.html">001 - Macros for JavaScript API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="002_catalogs.html">002 - Catalogs</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">003 - Per-locale bundles</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-time-localization">Build time localization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#everything-is-macro">Everything is macro</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#i18n-context">i18n context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#disadvantages">Disadvantages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advantages">Advantages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LinguiJS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="toc.html">RFCs and design decisions</a> &raquo;</li>
+        
+      <li>003 - Per-locale bundles</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/lingui/js-lingui/blob/master/docs/rfc/003_per_locale_bundles.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="per-locale-bundles">
+<h1>003 - Per-locale bundles<a class="headerlink" href="#per-locale-bundles" title="Permalink to this headline">¶</a></h1>
+<p>Per-locale bundles are another build time optimization to reduce size of
+internationalized JavaScript applications.</p>
+<p>Consider this example - we have an internationalized app which loads translation from
+external file:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>// src/Notifications.js
+import * as React from &quot;react&quot;
+import { setupI18n } from &quot;@lingui/core&quot;
+import { I18nProvider } from &quot;@lingui/react&quot;
+import { Trans, Plural, date } from &quot;@lingui/macro&quot;
+
+const i18n = setupI18n()
+i18n.load(&quot;cs&quot;, import(&quot;./locale/cs/messages.json&quot;))
+i18n.activate(&quot;cs&quot;)
+
+const Notifications = ({ now, count }) =&gt; (
+   &lt;I18nProvider i18n={i18n}&gt;
+      &lt;h1&gt;&lt;Trans&gt;Notifications&lt;/Trans&gt;&lt;/h1&gt;
+
+      &lt;p&gt;&lt;Trans&gt;Today is {date(now)}&lt;/Trans&gt;&lt;/p&gt;
+
+      &lt;p&gt;
+         &lt;Plural
+            value={count}
+            one={&lt;&gt;You have &lt;strong&gt;#&lt;/strong&gt; unread notification&lt;/&gt;}
+            other={&lt;&gt;You have &lt;strong&gt;#&lt;/strong&gt; unread notifications&lt;/&gt;}
+         /&gt;
+      &lt;/p&gt;
+   &lt;/I18nProvider&gt;
+)
+</pre></div>
+</div>
+<p>If we generate the production bundle in Engish locale, it will roughly look like this -
+<a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> components are removed and formatting components (<a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a>
+and <code class="xref js js-func docutils literal notranslate"><span class="pre">date()</span></code>) are replaced with runtime versions:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>// build/Notifications.en.js
+import * as React from &quot;react&quot;
+import { Plural, date } from &quot;@lingui/react&quot;
+
+const Notifications = ({ now, count }) =&gt; (
+   &lt;div&gt;
+      &lt;h1&gt;Notifications&lt;/h1&gt;
+
+      &lt;p&gt;Today is {date(now)}&lt;/p&gt;
+
+      &lt;p&gt;
+         &lt;Plural
+            value={count}
+            one={&lt;&gt;You have &lt;strong&gt;#&lt;/strong&gt; unread notification&lt;/&gt;}
+            other={&lt;&gt;You have &lt;strong&gt;#&lt;/strong&gt; unread notifications&lt;/&gt;}
+         /&gt;
+      &lt;/p&gt;
+   &lt;/div&gt;
+)
+</pre></div>
+</div>
+<p>So far the code looks very similar to the original one except the loading of message
+catalogs is removed completely.</p>
+<p>Let’s take a look on other than source locale, for example Czech. The message catalog
+might look similar to this:</p>
+<div class="highlight-po notranslate"><div class="highlight"><pre><span></span><span class="nv">msgid</span> <span class="s">&quot;Notifications&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Upozornění&quot;</span>
+
+<span class="nv">msgid</span> <span class="s">&quot;Today is {now, date}&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;Dnes je {now, date}&quot;</span>
+
+<span class="nv">msgid</span> <span class="s">&quot;&quot;</span>
+<span class="s">&quot;{count, plural, &quot;</span>
+<span class="s">&quot;one {You have &lt;0&gt;#&lt;/0&gt; unread notification} &quot;</span>
+<span class="s">&quot;other {You have &lt;0&gt;#&lt;/0&gt; unread notification}}&quot;</span>
+<span class="nv">msgstr</span> <span class="s">&quot;&quot;</span>
+<span class="s">&quot;{count, plural, &quot;</span>
+<span class="s">&quot;one {Máte &lt;0&gt;#&lt;/0&gt; nepřečtenou zprávu} &quot;</span>
+<span class="s">&quot;few {Máte &lt;0&gt;#&lt;/0&gt; nepřečtené zprávy} &quot;</span>
+<span class="s">&quot;other {Máte &lt;0&gt;#&lt;/0&gt; nepřečtených zpráv}}&quot;</span>
+</pre></div>
+</div>
+<p>If we generate the production bundle for Czech locale, it will look roughly like this -
+translations are applied at build time. Also, <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a> has all locale
+specific plural rules:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>// build/Notifications.cs.js
+import * as React from &quot;react&quot;
+import { Plural, date } from &quot;@lingui/react&quot;
+
+const Notifications = ({ now, count }) =&gt; (
+   &lt;div&gt;
+      &lt;h1&gt;Upozornění&lt;/h1&gt;
+
+      &lt;p&gt;Dnes je {date(now)}&lt;/p&gt;
+
+      &lt;p&gt;
+         &lt;Plural
+            value={count}
+            one={&lt;&gt;Máte &lt;strong&gt;#&lt;/strong&gt; nepřečtenou zprávu&lt;/&gt;}
+            few={&lt;&gt;Máte &lt;strong&gt;#&lt;/strong&gt; nepřečtené zprávy&lt;/&gt;}
+            other={&lt;&gt;Máte &lt;strong&gt;#&lt;/strong&gt; nepřečtené zprávy&lt;/&gt;}
+         /&gt;
+      &lt;/p&gt;
+   &lt;/div&gt;
+)
+</pre></div>
+</div>
+<p>Per-locale bundles has zero footprint of internatinalization library - the code looks
+exactly the same have it would look like when no internationalization was used at all.
+The remaining runtime layer are utilities for formatting like plurals, dates and number
+formatting. There’s also no extra request to fetch locale files and no runtime parsing.</p>
+<div class="section" id="build-time-localization">
+<h2>Build time localization<a class="headerlink" href="#build-time-localization" title="Permalink to this headline">¶</a></h2>
+<p>One important note - it should be easy to switch from build time localization to
+runtime localization, e.g. by simply toggling a switch in configuration.</p>
+<div class="section" id="everything-is-macro">
+<h3>Everything is macro<a class="headerlink" href="#everything-is-macro" title="Permalink to this headline">¶</a></h3>
+<p>The easiest way to transform code at runtime are babel macros:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// src/Notifications.js</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span><span class="p">,</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="kr">const</span> <span class="nx">Example</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
+   <span class="p">&lt;</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Example</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>When we use macros everywhere, instead of React components, we can easily generate
+per-locale bundle:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// build/Notifications.&lt;locale&gt;.js</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span>
+
+<span class="kr">const</span> <span class="nx">Example</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
+   <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span><span class="nx">Example</span><span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>As well as locale agnostic bundle:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// build/Notifications.js</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="nx">as</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span><span class="p">,</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+
+<span class="c1">// import path taken from Lingui configuration</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./i18n.config&quot;</span>
+
+<span class="kr">const</span> <span class="nx">Example</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
+   <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">i18n</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">}&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;Example&quot;</span> <span class="p">/&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>In per-locale bundles, the <cite>i18n.config.js</cite> module will be used only in development.</p>
+</div>
+</div>
+<div class="section" id="i18n-context">
+<h2>i18n context<a class="headerlink" href="#i18n-context" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">i18n</span></code> object loads message catalogs and maintains the active locale. We can
+also use it to translate strings, e.g. for HTML attributes:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>// src/Notifications.js
+import * as React from &quot;react&quot;
+import { t } from &quot;@lingui/macro&quot;
+
+const LinkWithTitle = () =&gt; {
+   const i18n = useLingui()
+
+   return (
+      &lt;a href=&quot;&quot; aria-title={i18n._(t`Link to documentation`)}&gt;
+         &lt;img /&gt;
+      &lt;/a&gt;
+   )
+}
+</pre></div>
+</div>
+<p>However, this approach would be difficult to transform for per-locale bundles. Again,
+we need to use macros everywhere:</p>
+<blockquote>
+<div><div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>// src/LinkWithTitle.js
+import * as React from &quot;react&quot;
+import { i18n } from &quot;@lingui/macro&quot;
+
+const LinkWithTitle = () =&gt; {
+   i18n.useLingui()
+
+   return (
+      &lt;a href=&quot;&quot; aria-title={i18n.t`Link to documentation`}&gt;
+         &lt;img /&gt;
+      &lt;/a&gt;
+   )
+}
+</pre></div>
+</div>
+</div></blockquote>
+<p>Locale agnostic bundle would look as usual - loading i18n from context via useLingui hook
+and then translating message at runtime:</p>
+<blockquote>
+<div><div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>// build/LinkWithTitle.js
+import * as React from &quot;react&quot;
+import { useLingui } from &quot;@lingui/react&quot;
+
+const LinkWithTitle = () =&gt; {
+   const { i18n } = useLingui()
+
+   return (
+      &lt;a href=&quot;&quot; aria-title={i18n._(&quot;Link to documentation&quot;)}&gt;
+         &lt;img /&gt;
+      &lt;/a&gt;
+   )
+}
+</pre></div>
+</div>
+</div></blockquote>
+<p>In per-locale bundle, however, the i18n calls are removed and translations
+are replaced in place:</p>
+<blockquote>
+<div><div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span>// build/LinkWithTitle.&lt;locale&gt;.js
+import * as React from &quot;react&quot;
+
+const LinkWithTitle = () =&gt; {
+   return (
+      &lt;a href=&quot;&quot; aria-title=&quot;Link to documentation&quot;&gt;
+         &lt;img /&gt;
+      &lt;/a&gt;
+   )
+}
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="disadvantages">
+<h2>Disadvantages<a class="headerlink" href="#disadvantages" title="Permalink to this headline">¶</a></h2>
+<p>The biggest problem of per-locale bundle is that change of locale requires page reload.
+Might be annoying, but the right locale can be guessed before the page is rendered. Even
+if the locale isn’t guessed correctly, changing locale is usually one time action for
+visitor.</p>
+</div>
+<div class="section" id="advantages">
+<h2>Advantages<a class="headerlink" href="#advantages" title="Permalink to this headline">¶</a></h2>
+<p>The biggest advantage is the bundle size - it’s the minimal possible size of the app, because
+it completely removes internationalization layer. Remaining runtime formatting would be
+used in monolingual site as well, so there’s no overhead.</p>
+<p>The performance is also superb - there’s no overhead.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>Per-locale bundles are the ultimate solution to minimize the size of internationalized
+apps. If the API will be designed correctly, it’ll allow almost seamless transition from
+per-locale bundles to locale agnostic bundles.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="002_catalogs.html" class="btn btn-neutral float-left" title="002 - Catalogs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Tomáš Ehrlich
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
