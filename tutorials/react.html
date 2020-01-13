@@ -448,7 +448,7 @@ Compiling message catalogs…
 Done!
 </pre></div>
 </div>
-<p>What just happened? If you look inside <code class="docutils literal notranslate"><span class="pre">locale</span></code> directory, you’ll see there’s a
+<p>What just happened? If you look inside <code class="docutils literal notranslate"><span class="pre">locales</span></code> directory, you’ll see there’s a
 new file for each locale: <code class="docutils literal notranslate"><span class="pre">messages.js</span></code>. This file contains compiled message catalogs
 but also any locale specific data like plurals.</p>
 <p>Let’s load this file into our app and set active language to <code class="docutils literal notranslate"><span class="pre">cs</span></code>:</p>
@@ -456,7 +456,7 @@ but also any locale specific data like plurals.</p>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
 <span class="kr">import</span> <span class="nx">Inbox</span> <span class="nx">from</span> <span class="s1">&#39;./Inbox.js&#39;</span>
-<span class="hll"><span class="kr">import</span> <span class="nx">catalogCs</span> <span class="nx">from</span> <span class="s1">&#39;./locale/cs/messages.js&#39;</span>
+<span class="hll"><span class="kr">import</span> <span class="nx">catalogCs</span> <span class="nx">from</span> <span class="s1">&#39;./locales/cs/messages.js&#39;</span>
 </span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
 

@@ -133,10 +133,16 @@
 <li class="toctree-l3"><a class="reference internal" href="#po">po</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#formatoptions">formatOptions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sourcelocale">sourceLocale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#srcpathdirs">srcPathDirs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#srcpathignorepatterns">srcPathIgnorePatterns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#localedir">localeDir</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting">sorting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#messageid">messageId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#origin">origin</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="loader.html">Webpack Loader</a></li>
@@ -316,6 +322,7 @@ missing too, either message default or message ID is used instead.</p>
 </pre></div>
 </div>
 <p>Origin is filename and line number from where the message was extracted.</p>
+<p>Note that origins may produce a large amount of merge conflicts. Origins can be disabled by setting <code class="docutils literal notranslate"><span class="pre">origins:</span> <span class="pre">false</span></code> in <a class="reference internal" href="#std:config-formatOptions"><code class="xref std std-conf docutils literal notranslate"><span class="pre">formatOptions</span></code></a>.</p>
 </div>
 <div class="section" id="minimal">
 <h3>minimal<a class="headerlink" href="#minimal" title="Permalink to this headline">¶</a></h3>
@@ -335,6 +342,11 @@ missing too, either message default or message ID is used instead.</p>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="formatoptions">
+<span id="std:config-formatOptions"></span><h2>formatOptions<a class="headerlink" href="#formatoptions" title="Permalink to this headline">¶</a></h2>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">{</span> <span class="pre">origins:</span> <span class="pre">true</span> <span class="pre">}</span></code></p>
+<p>Object for configuring message catalog output. See individual formats for options.</p>
 </div>
 <div class="section" id="sourcelocale">
 <span id="std:config-sourceLocale"></span><h2>sourceLocale<a class="headerlink" href="#sourcelocale" title="Permalink to this headline">¶</a></h2>
@@ -362,6 +374,19 @@ directories are defined in <a class="reference internal" href="#std:config-srcPa
 <span id="std:config-localeDir"></span><h2>localeDir<a class="headerlink" href="#localedir" title="Permalink to this headline">¶</a></h2>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">&lt;rootDir&gt;/locale</span></code></p>
 <p>Directory where message catalogs should be saved.</p>
+</div>
+<div class="section" id="sorting">
+<h2>sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">messageId</span></code></p>
+<p>Sorting order for catalog files. Possible values are:</p>
+<div class="section" id="messageid">
+<h3>messageId<a class="headerlink" href="#messageid" title="Permalink to this headline">¶</a></h3>
+<p>Sort by the message ID.</p>
+</div>
+<div class="section" id="origin">
+<h3>origin<a class="headerlink" href="#origin" title="Permalink to this headline">¶</a></h3>
+<p>Sort by file origin of the message.</p>
+</div>
 </div>
 </div>
 
