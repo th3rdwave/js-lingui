@@ -110,7 +110,11 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#translations-outside-react-components">Translations outside React components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lazy-translations">Lazy translations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lazy-translations">Lazy translations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#passing-messages-as-props">Passing messages as props</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#picking-a-message-based-on-a-variable">Picking a message based on a variable</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="react-native.html">React Native</a></li>
@@ -388,38 +392,121 @@ default <code class="docutils literal notranslate"><span class="pre">i18n</span>
 </div>
 <div class="section" id="lazy-translations">
 <h2>Lazy translations<a class="headerlink" href="#lazy-translations" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> can also translate messages from variables. We can use <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a>
-macro to create a message descriptor and then pass it to <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro as
-<code class="docutils literal notranslate"><span class="pre">id</span></code> prop:</p>
+<p>Messages don’t have to be declared at the same code location where they’re displayed.
+Tag a string with the <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> macro, and you’ve created a “message descriptor”, which
+can then be passed around as a variable, and can be displayed as a translated string by
+passing it to <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> as its <code class="docutils literal notranslate"><span class="pre">id</span></code> prop:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span><span class="p">,</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
-<span class="kr">const</span> <span class="nx">languages</span> <span class="o">=</span> <span class="p">[</span>
-   <span class="nx">t</span><span class="sb">`English`</span>
-   <span class="nx">t</span><span class="sb">`Czech`</span>
+<span class="kr">const</span> <span class="nx">favoriteColors</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="nx">t</span><span class="sb">`Red`</span><span class="p">,</span>
+   <span class="nx">t</span><span class="sb">`Orange`</span><span class="p">,</span>
+   <span class="nx">t</span><span class="sb">`Yellow`</span><span class="p">,</span>
+   <span class="nx">t</span><span class="sb">`Green`</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="kd">function</span> <span class="nx">LanguageSwitcher</span><span class="p">()</span> <span class="p">{</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">ColorList</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">return</span> <span class="p">(</span>
       <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
-         <span class="p">{</span><span class="nx">languages</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">lang</span> <span class="p">=&gt;</span> <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="p">{</span><span class="nx">lang</span><span class="p">}/&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;}</span>
+         <span class="p">{</span><span class="nx">favoriteColors</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">color</span> <span class="p">=&gt;</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="p">{</span><span class="nx">color</span><span class="p">}/&gt;&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+         <span class="p">}</span>
       <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
    <span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This pattern also work with string-only translations. Just pass the message descriptor
-to <a class="reference internal" href="../ref/core.html#I18n._" title="I18n._"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n._()</span></code></a> method as usual:</p>
+<p>Or to render the message descriptor as a string-only translation, just pass it to
+the <a class="reference internal" href="../ref/core.html#I18n._" title="I18n._"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n._()</span></code></a> method as usual:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
-<span class="kr">const</span> <span class="nx">languages</span> <span class="o">=</span> <span class="p">[</span>
-   <span class="nx">t</span><span class="sb">`English`</span>
-   <span class="nx">t</span><span class="sb">`Czech`</span>
+<span class="kr">const</span> <span class="nx">favoriteColors</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="nx">t</span><span class="sb">`Red`</span><span class="p">,</span>
+   <span class="nx">t</span><span class="sb">`Orange`</span><span class="p">,</span>
+   <span class="nx">t</span><span class="sb">`Yellow`</span><span class="p">,</span>
+   <span class="nx">t</span><span class="sb">`Green`</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="kr">const</span> <span class="nx">translatedLanguages</span> <span class="o">=</span> <span class="nx">languages</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
-   <span class="nx">lang</span> <span class="p">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">lang</span><span class="p">)</span>
+<span class="kr">const</span> <span class="nx">translatedColorNames</span> <span class="o">=</span> <span class="nx">favoriteColors</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span>
+   <span class="nx">color</span> <span class="p">=&gt;</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">color</span><span class="p">)</span>
 <span class="p">)</span>
 </pre></div>
+</div>
+<div class="section" id="passing-messages-as-props">
+<h3>Passing messages as props<a class="headerlink" href="#passing-messages-as-props" title="Permalink to this headline">¶</a></h3>
+<p>It’s often convenient to pass messages around as component props, for example
+as a “label” prop on a button. The easiest way to do this is to pass a <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a>
+element as the prop:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">FancyButton</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;{</span><span class="nx">props</span><span class="p">.</span><span class="nx">label</span><span class="p">}&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">LoginLogoutButtons</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">FancyButton</span> <span class="na">label</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Log</span> <span class="k">in</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;}</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">FancyButton</span> <span class="na">label</span><span class="o">=</span><span class="p">{&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Log</span> <span class="nx">out</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;}</span> <span class="p">/&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you need the prop to be displayed as a string-only translation, you can pass
+a message descriptor (tagged with the <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> macro), and have the component
+render it as a string using lazy translation:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">ImageWithCaption</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
+         <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">props</span><span class="p">.</span><span class="nx">caption</span><span class="p">)}</span> <span class="p">/&gt;</span>
+         <span class="p">)}</span>
+      <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
+   <span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="kd">function</span> <span class="nx">HappySad</span><span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ImageWithCaption</span>
+         <span class="na">hoverText</span><span class="o">=</span><span class="p">{</span><span class="nx">t</span><span class="sb">`I&#39;m so happy!`</span><span class="p">}</span>
+      <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">ImageWithCaption</span>
+         <span class="na">hoverText</span><span class="o">=</span><span class="p">{</span><span class="nx">t</span><span class="sb">`I&#39;m so sad.`</span><span class="p">}</span>
+      <span class="p">/&gt;</span>
+   <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="picking-a-message-based-on-a-variable">
+<h3>Picking a message based on a variable<a class="headerlink" href="#picking-a-message-based-on-a-variable" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you need to pick between different messages to display, depending on the value
+of a variable. For example, imagine you have a numeric “status” code that comes from an
+API, and you need to display a message representing the current status.</p>
+<p>A simple way to do this, is to make an object that maps the possible values of “status”
+to message descriptors (tagged with the <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> macro), and render them as needed
+with lazy translation:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">STATUS_OPEN</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="nx">STATUS_CLOSED</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+      <span class="nx">STATUS_CANCELLED</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="nx">STATUS_COMPLETED</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="kr">const</span> <span class="nx">statusMessages</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="p">[</span><span class="nx">STATUS_OPEN</span><span class="p">]</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Open`</span><span class="p">,</span>
+   <span class="p">[</span><span class="nx">STATUS_CLOSED</span><span class="p">]</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Closed`</span><span class="p">,</span>
+   <span class="p">[</span><span class="nx">STATUS_CANCELLED</span><span class="p">]</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Cancelled`</span><span class="p">,</span>
+   <span class="p">[</span><span class="nx">STATUS_COMPLETED</span><span class="p">]</span><span class="o">:</span> <span class="nx">t</span><span class="sb">`Completed`</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">StatusDisplay</span><span class="p">(</span><span class="nx">statusCode</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="p">{</span><span class="nx">statusMessages</span><span class="p">[</span><span class="nx">statusCode</span><span class="p">]}</span> <span class="p">/&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>

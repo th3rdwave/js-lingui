@@ -210,16 +210,16 @@
 <p><a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command creates temporary message catalogs per each source file. Also,
 <a class="reference internal" href="../ref/cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a> command generates compiled message catalogs from source ones. All these files
 can be safely ignored from VCS and linters.</p>
-<p>Replace <code class="docutils literal notranslate"><span class="pre">locale</span></code> in paths below with your custom <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> from configuration.</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">locales</span></code> in paths below with your custom <a class="reference internal" href="../ref/conf.html#std:config-localeDir"><code class="xref std std-conf docutils literal notranslate"><span class="pre">localeDir</span></code></a> from configuration.</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">locale/_build/</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">locale/**/*.js</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">locales/_build/</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">locales/**/*.js</span></code></p></li>
 </ul>
 <div class="section" id="git">
 <h2>Git<a class="headerlink" href="#git" title="Permalink to this headline">¶</a></h2>
 <p>Add following lines to your <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locale</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span>
-<span class="n">locale</span><span class="o">/**/*.</span><span class="n">js</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locales</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span>
+<span class="n">locales</span><span class="o">/**/*.</span><span class="n">js</span>
 </pre></div>
 </div>
 </div>
@@ -227,8 +227,8 @@ can be safely ignored from VCS and linters.</p>
 <h2>ESLint<a class="headerlink" href="#eslint" title="Permalink to this headline">¶</a></h2>
 <p>Specify which directories to lint explicitely or add following lines to your
 <a class="reference external" href="https://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories">.eslintignore</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locale</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span>
-<span class="n">locale</span><span class="o">/**/*.</span><span class="n">js</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locales</span><span class="o">/</span><span class="n">_build</span><span class="o">/</span>
+<span class="n">locales</span><span class="o">/**/*.</span><span class="n">js</span>
 </pre></div>
 </div>
 </div>
