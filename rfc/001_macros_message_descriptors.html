@@ -142,7 +142,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#plural-select-and-selectordinal-formatters">Plural, select and selectOrdinal formatters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#date-and-number-formatters">Date and number formatters</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#custom-id-and-comments-for-translators">Custom ID and comments for translators</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#lazy-translations">Lazy translations</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#extracting-messages">Extracting messages</a></li>
@@ -239,16 +238,10 @@ writing format by hand are following:</p>
 <span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
 
 <span class="c1">// With macro</span>
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+<span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span>
 
 <span class="c1">// Without macro</span>
 <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;Hello {name}, today is {today, date}&#39;</span><span class="p">,</span> <span class="p">{</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">today</span> <span class="p">})</span>
-
-<span class="c1">// For the sake of completeness, macro is transformed into this code:</span>
-<span class="c1">// i18n._({</span>
-<span class="c1">//   id: &#39;Hello {name}, today is {today, date}&#39;,</span>
-<span class="c1">//   values: { name, today }</span>
-<span class="c1">//  })</span>
 </pre></div>
 </div>
 </li>
@@ -260,10 +253,10 @@ valid. This is especially important for nested formatters:</p>
 <span class="kr">const</span> <span class="nx">value</span> <span class="o">=</span> <span class="mi">42</span>
 
 <span class="c1">// With macro</span>
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, you have </span><span class="si">${</span><span class="nx">plural</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span>
+<span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, you have </span><span class="si">${</span><span class="nx">plural</span><span class="p">(</span><span class="nx">value</span><span class="p">,</span> <span class="p">{</span>
   <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;# unread message&#39;</span><span class="p">,</span>
   <span class="nx">other</span><span class="o">:</span> <span class="s1">&#39;# unread messages&#39;</span>
-<span class="si">}</span><span class="sb">)}`</span><span class="p">)</span>
+<span class="si">}</span><span class="sb">)}`</span>
 
 <span class="c1">// Without macro</span>
 <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span>
@@ -281,21 +274,15 @@ to <a class="reference external" href="https://projectfluent.org/">Fluent</a>:</
 <span class="kr">const</span> <span class="nx">name</span> <span class="o">=</span> <span class="s2">&quot;Joe&quot;</span>
 <span class="kr">const</span> <span class="nx">today</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
 
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+<span class="nx">t</span><span class="sb">`Hello </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">, today is </span><span class="si">${</span><span class="nx">date</span><span class="p">(</span><span class="nx">today</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span>
 
 <span class="c1">// Lingui configration { messageFormat: &#39;icu&#39; }</span>
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="c1">// i18n._({</span>
-<span class="c1">//   id: &#39;Hello {name}, today is {today, date}&#39;,</span>
-<span class="c1">//   values: { name, date }</span>
-<span class="c1">//  })</span>
+<span class="c1">// i18n._(&#39;Hello {name}, today is {today, date}&#39;, { name, date } })</span>
 
 <span class="c1">// Lingui configration { messageFormat: &#39;fluent&#39; }</span>
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="c1">// i18n._({</span>
-<span class="c1">//   id: &#39;Hello { $name }, today is { DATETIME($today) }&#39;,</span>
-<span class="c1">//   values: { name, date }</span>
-<span class="c1">//  })</span>
+<span class="c1">// i18n._(&#39;Hello { $name }, today is { DATETIME($today) }&#39;, { name, date } })</span>
 </pre></div>
 </div>
 <div class="admonition warning">
@@ -382,35 +369,6 @@ to provide <code class="docutils literal notranslate"><span class="pre">comment<
 </pre></div>
 </div>
 </div>
-<div class="section" id="lazy-translations">
-<h3>Lazy translations<a class="headerlink" href="#lazy-translations" title="Permalink to this headline">¶</a></h3>
-<p>Lazy translations are useful when we need to define a message, but translate it later.
-This was previously achieved using <code class="docutils literal notranslate"><span class="pre">i18Mark</span></code>. Now we can use the same macros:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// The API of `t` and `lazy` are the same.</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
-
-<span class="c1">// define the message</span>
-<span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">t</span><span class="sb">`Default message`</span>
-
-<span class="c1">// translate it</span>
-<span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span><span class="sb">`</span>
-</pre></div>
-</div>
-<p>Lazy translations are usually defined in different scope than evaluated. Parameters
-are therefore unknown, but we still need to know their names, so we can create placeholders
-in MessageFormat. <code class="docutils literal notranslate"><span class="pre">arg</span></code> macro is used exactly for that:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span><span class="p">,</span> <span class="nx">arg</span> <span class="p">}</span> <span class="nx">from</span> <span class="sb">`@lingui/macro`</span>
-
-<span class="c1">// Macro</span>
-<span class="kr">const</span> <span class="nx">books</span> <span class="o">=</span> <span class="nx">plural</span><span class="p">(</span><span class="nx">arg</span><span class="p">(</span><span class="s1">&#39;count&#39;</span><span class="p">),</span> <span class="p">{</span>
-   <span class="nx">one</span><span class="o">:</span> <span class="s1">&#39;# book&#39;</span><span class="p">,</span>
-   <span class="nx">other</span><span class="o">:</span> <span class="s1">&#39;# books&#39;</span>
-<span class="p">})</span>
-
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">books</span><span class="p">,</span> <span class="p">{</span> <span class="nx">count</span><span class="o">:</span> <span class="mi">42</span> <span class="p">})</span>
-</pre></div>
-</div>
-</div>
 </div>
 <div class="section" id="extracting-messages">
 <h2>Extracting messages<a class="headerlink" href="#extracting-messages" title="Permalink to this headline">¶</a></h2>
@@ -421,9 +379,8 @@ manually.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">t</span><span class="sb">`Message`</span>
 
 <span class="c1">// ↓ ↓ ↓ ↓ ↓ ↓</span>
-<span class="cm">/*i18n*/</span><span class="p">{</span>
-  <span class="nx">id</span><span class="o">:</span> <span class="s1">&#39;Message&#39;</span>
-<span class="p">}</span>
+<span class="cm">/*i18n*/</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s1">&#39;Message&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>An object after such comment is considered as message descriptor and extracted.</p>

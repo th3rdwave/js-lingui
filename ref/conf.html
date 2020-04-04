@@ -138,9 +138,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#srcpathdirs">srcPathDirs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#srcpathignorepatterns">srcPathIgnorePatterns</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#localedir">localeDir</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sorting">sorting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#orderby">orderBy</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#messageid">messageId</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#origin">origin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#runtimeconfigmodule">runtimeConfigModule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sorting">sorting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">messageId</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">origin</a></li>
 </ul>
 </li>
 </ul>
@@ -250,6 +256,7 @@
     <span class="nt">&quot;srcPathIgnorePatterns&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">&quot;/node_modules/&quot;</span>
     <span class="p">],</span>
+    <span class="nt">&quot;runtimeConfigModule&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;@lingui/core&quot;</span><span class="p">,</span> <span class="s2">&quot;i18n&quot;</span><span class="p">],</span>
     <span class="nt">&quot;format&quot;</span><span class="p">:</span> <span class="s2">&quot;lingui&quot;</span><span class="p">,</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -375,16 +382,47 @@ directories are defined in <a class="reference internal" href="#std:config-srcPa
 <p>Default: <code class="docutils literal notranslate"><span class="pre">&lt;rootDir&gt;/locale</span></code></p>
 <p>Directory where message catalogs should be saved.</p>
 </div>
-<div class="section" id="sorting">
-<h2>sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="orderby">
+<h2>orderBy<a class="headerlink" href="#orderby" title="Permalink to this headline">¶</a></h2>
 <p>Default: <code class="docutils literal notranslate"><span class="pre">messageId</span></code></p>
 <p>Sorting order for catalog files. Possible values are:</p>
 <div class="section" id="messageid">
 <h3>messageId<a class="headerlink" href="#messageid" title="Permalink to this headline">¶</a></h3>
-<p>Sort by the message ID.</p>
+<p>Order by the message ID.</p>
 </div>
 <div class="section" id="origin">
 <h3>origin<a class="headerlink" href="#origin" title="Permalink to this headline">¶</a></h3>
+<p>Order by the file origin of the message.</p>
+</div>
+</div>
+<div class="section" id="runtimeconfigmodule">
+<h2>runtimeConfigModule<a class="headerlink" href="#runtimeconfigmodule" title="Permalink to this headline">¶</a></h2>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">[&quot;&#64;lingui/core&quot;,</span> <span class="pre">&quot;i18n&quot;]</span></code></p>
+<p>Module path with exported i18n object. The first value in array is module path, the second is the import identifier.</p>
+<p>You only need to set this alue if you use custom object created using <a class="reference internal" href="core.html#setupI18n" title="setupI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">setupI18n()</span></code></a>:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// If you import `i18n` object from custom module like this:</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">i18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./custom-i18n-config&quot;</span>
+
+<span class="c1">// ... then add following line to Lingui configuration:</span>
+<span class="c1">// &quot;runtimeConfigModule&quot;: [&quot;./custom-i18n-config&quot;, &quot;i18n&quot;]</span>
+</pre></div>
+</div>
+<p>You may use a different named export:</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">myI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./custom-i18n-config&quot;</span>
+<span class="c1">// &quot;runtimeConfigModule&quot;: [&quot;./custom-i18n-config&quot;, &quot;myI18n&quot;]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="sorting">
+<h2>sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
+<p>Default: <code class="docutils literal notranslate"><span class="pre">messageId</span></code></p>
+<p>Sorting order for catalog files. Possible values are:</p>
+<div class="section" id="id1">
+<h3>messageId<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Sort by the message ID.</p>
+</div>
+<div class="section" id="id2">
+<h3>origin<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>Sort by file origin of the message.</p>
 </div>
 </div>

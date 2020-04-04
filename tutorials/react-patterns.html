@@ -100,15 +100,19 @@
 <li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">React - common patterns</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#macros">Macros</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#using-generated-message-as-id">Using generated message as ID</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-custom-id">Using custom ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-id-generated-from-message">Using ID generated from message</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#with-trans">With &lt;Trans&gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#with-t">With t</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#element-attributes-and-string-only-translations">Element attributes and string only translations</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Using generated message as ID</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Using custom ID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-custom-id">Using custom ID</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">With &lt;Trans&gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">With t</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#element-attributes-and-string-only-translations">Element attributes and string-only translations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#translations-outside-react-components">Translations outside React components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lazy-translations">Lazy translations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#passing-messages-as-props">Passing messages as props</a></li>
@@ -221,7 +225,7 @@
             
   <div class="section" id="common-i18n-patterns-in-react">
 <h1>Common i18n patterns in React<a class="headerlink" href="#common-i18n-patterns-in-react" title="Permalink to this headline">¶</a></h1>
-<p>Following page describes the most common i18n patterns in React. It’s a followup
+<p>Following page describes the most common i18n patterns in React. It’s a follow-up
 to <a class="reference external" href="react">tutorial</a> with practical examples. See the
 <a class="reference external" href="../ref/react">API reference</a> for detailed information about all components.</p>
 <div class="section" id="macros">
@@ -237,17 +241,40 @@ React components:</p>
 <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/profile&quot;</span><span class="p">&gt;{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">a</span><span class="p">&gt;.&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>You don’t need anything special to use <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> inside out app (except
-of wrapping your app in <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>).</p>
-<div class="section" id="using-generated-message-as-id">
-<h3>Using generated message as ID<a class="headerlink" href="#using-generated-message-as-id" title="Permalink to this headline">¶</a></h3>
+<p>You don’t need anything special to use <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> inside your app (except
+of wrapping the root component in <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>).</p>
+<div class="section" id="using-id-generated-from-message">
+<h3>Using ID generated from message<a class="headerlink" href="#using-id-generated-from-message" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="with-trans">
+<h4>With <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a><a class="headerlink" href="#with-trans" title="Permalink to this headline">¶</a></h4>
 <p>In the examples above, the content of <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> is transformed into
-message in MessageFormat syntax. By default, this message is used as a message ID.
-In the example above, messages <code class="docutils literal notranslate"><span class="pre">LinguiJS</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">&lt;0&gt;{name}&lt;/0&gt;.</span></code>
-are extracted.</p>
+message in MessageFormat syntax. By default, this message is used as the message ID.
+Considering the example above, messages <code class="docutils literal notranslate"><span class="pre">LinguiJS</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">&lt;0&gt;{name}&lt;/0&gt;.</span></code>
+are extracted and used as IDs.</p>
+</div>
+<div class="section" id="with-t">
+<h4>With <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a><a class="headerlink" href="#with-t" title="Permalink to this headline">¶</a></h4>
+<p>In the following example, message <code class="docutils literal notranslate"><span class="pre">Image</span> <span class="pre">caption</span></code> will be extracted and used as ID.</p>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">ImageWithCaption</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
+         <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Image caption`</span><span class="p">)}</span> <span class="p">/&gt;</span>
+         <span class="p">)}</span>
+      <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
+   <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="using-custom-id">
 <h3>Using custom ID<a class="headerlink" href="#using-custom-id" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4>With <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>If you’re using custom IDs in your project, add <code class="docutils literal notranslate"><span class="pre">id</span></code> prop to i18n components:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
@@ -259,59 +286,8 @@ are extracted.</p>
 <p>Messages <code class="docutils literal notranslate"><span class="pre">msg.header</span></code> and <code class="docutils literal notranslate"><span class="pre">msg.hello</span></code> will be extracted with default values
 <code class="docutils literal notranslate"><span class="pre">LinguiJS</span> <span class="pre">example</span></code> and <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">&lt;0&gt;{name}&lt;/0&gt;.</span></code>.</p>
 </div>
-</div>
-<div class="section" id="element-attributes-and-string-only-translations">
-<h2>Element attributes and string only translations<a class="headerlink" href="#element-attributes-and-string-only-translations" title="Permalink to this headline">¶</a></h2>
-<p>Sometimes you can’t use <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> component, for example when translating element
-attributes:</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Image caption&quot;</span> <span class="p">/&gt;</span>
-</pre></div>
-</div>
-<p>In such case you need to use <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> render prop component to access <code class="docutils literal notranslate"><span class="pre">i18n</span></code>
-object and <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> macro to wrap message:</p>
-<ol class="arabic simple">
-<li><p>Use render prop component <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code>, to access
-<code class="docutils literal notranslate"><span class="pre">i18n</span></code> object.</p></li>
-<li><p>Call <code class="xref js js-meth docutils literal notranslate"><span class="pre">i18n._`()</span></code> to translate message wrapped in JS macros. <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> is
-equivalent for <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a>, <a class="reference internal" href="../ref/macro.html#jsmacro-plural">plural</a> is equivalent to <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a>.</p></li>
-</ol>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
-
-<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">ImageWithCaption</span><span class="p">()</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="p">(</span>
-      <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
-         <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
-            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Image caption`</span><span class="p">)}</span> <span class="p">/&gt;</span>
-         <span class="p">)}</span>
-      <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
-   <span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<div class="section" id="id1">
-<h3>Using generated message as ID<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>You can either use generated messages as IDs or custom ones. This is the same
-as working for i18n components.</p>
-<p>In this example:</p>
-<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
-
-<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">ImageWithCaption</span><span class="p">()</span> <span class="p">{</span>
-   <span class="k">return</span> <span class="p">(</span>
-      <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
-         <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
-            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Image caption`</span><span class="p">)}</span> <span class="p">/&gt;</span>
-         <span class="p">)}</span>
-      <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
-   <span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Message <code class="docutils literal notranslate"><span class="pre">Image</span> <span class="pre">caption</span></code> will be extracted.</p>
-</div>
 <div class="section" id="id2">
-<h3>Using custom ID<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h4>With <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>If you’re using custom IDs in your project, call <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> with ID as a first
 argument and then use string templates as usual:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
@@ -329,8 +305,8 @@ argument and then use string templates as usual:</p>
 </pre></div>
 </div>
 <p>Message <code class="docutils literal notranslate"><span class="pre">msg.caption</span></code> will be extracted with default value <code class="docutils literal notranslate"><span class="pre">Image</span> <span class="pre">caption</span></code>.</p>
-<p>For all other js macros (<a class="reference internal" href="../ref/macro.html#jsmacro-plural">plural</a>, select`, selectOrdinal`),
-pass ID as object key:</p>
+<p>For all other js macros (<a class="reference internal" href="../ref/macro.html#jsmacro-plural">plural</a>, select, selectOrdinal),
+pass ID as the first param (in this case, <code class="docutils literal notranslate"><span class="pre">'msg.caption'</span></code>):</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">plural</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
@@ -351,15 +327,56 @@ pass ID as object key:</p>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="element-attributes-and-string-only-translations">
+<h2>Element attributes and string-only translations<a class="headerlink" href="#element-attributes-and-string-only-translations" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes you can’t use <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> component, for example when translating element
+attributes:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="s">&quot;Image caption&quot;</span> <span class="p">/&gt;</span>
+</pre></div>
+</div>
+<p>In such case you need to use <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> render prop component to access <code class="docutils literal notranslate"><span class="pre">i18n</span></code>
+object and <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> macro to wrap message:</p>
+<ol class="arabic simple">
+<li><p>Use <a class="reference internal" href="../ref/react.html#withI18n" title="withI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">withI18n()</span></code></a> HOC or <a class="reference internal" href="../ref/react.html#component-I18n">&lt;I18n&gt;</a> render prop component from <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code>, to access
+<code class="docutils literal notranslate"><span class="pre">i18n</span></code> object.</p></li>
+<li><p>Call <code class="xref js js-meth docutils literal notranslate"><span class="pre">i18n._`()</span></code> to translate message wrapped in JS macros. <a class="reference internal" href="../ref/macro.html#jsmacro-t">t</a> is
+equivalent for <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a>, <a class="reference internal" href="../ref/macro.html#jsmacro-plural">plural</a> is equivalent to <a class="reference internal" href="../ref/react.html#component-Plural">&lt;Plural&gt;</a>.</p></li>
+</ol>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// using the withI18n HOC</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">withI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="kd">function</span> <span class="nx">ImageWithCaption</span><span class="p">({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Image caption`</span><span class="p">)}</span> <span class="p">/&gt;</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">withI18n</span><span class="p">(</span><span class="nx">ImageWithCaption</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// using the render prop</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">ImageWithCaption</span><span class="p">()</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">I18n</span><span class="p">&gt;</span>
+         <span class="p">{({</span> <span class="nx">i18n</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">(</span>
+            <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;...&quot;</span> <span class="na">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`Image caption`</span><span class="p">)}</span> <span class="p">/&gt;</span>
+         <span class="p">)}</span>
+      <span class="p">&lt;/</span><span class="nt">I18n</span><span class="p">&gt;</span>
+   <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="translations-outside-react-components">
 <h2>Translations outside React components<a class="headerlink" href="#translations-outside-react-components" title="Permalink to this headline">¶</a></h2>
 <p>Another common pattern is when you need to access translations (<code class="docutils literal notranslate"><span class="pre">i18n</span></code> object)
-outside React components, for example inside <code class="docutils literal notranslate"><span class="pre">redux-saga</span></code>. In such case, you need
-a bit more setup:</p>
+outside React components, for example inside <code class="docutils literal notranslate"><span class="pre">redux-saga</span></code>:</p>
 <ol class="arabic">
 <li><p>Create your own instance of <code class="docutils literal notranslate"><span class="pre">i18n</span></code> using <a class="reference internal" href="../ref/core.html#setupI18n" title="setupI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">setupI18n()</span></code></a> form <code class="docutils literal notranslate"><span class="pre">&#64;lingui/core</span></code></p></li>
-<li><p>Pass this instance as <code class="docutils literal notranslate"><span class="pre">i18n</span></code> prop to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>. This will replace
-default <code class="docutils literal notranslate"><span class="pre">i18n</span></code> object initialized inside <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>.</p>
+<li><p>Pass this instance as <code class="docutils literal notranslate"><span class="pre">i18n</span></code> prop to <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>.</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// App.js</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/react&quot;</span>
@@ -369,7 +386,7 @@ default <code class="docutils literal notranslate"><span class="pre">i18n</span>
 <span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
    <span class="k">return</span> <span class="p">(</span>
       <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">i18n</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">}&gt;</span>
-         <span class="p">{</span><span class="cm">/* Out app */</span><span class="p">}</span>
+         <span class="p">{</span><span class="cm">/* Our app */</span><span class="p">}</span>
       <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
    <span class="p">)</span>
 <span class="p">}</span>
@@ -382,7 +399,7 @@ default <code class="docutils literal notranslate"><span class="pre">i18n</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">t</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/macro&quot;</span>
 
 <span class="kr">export</span> <span class="kd">function</span> <span class="nx">alert</span><span class="p">()</span> <span class="p">{</span>
-   <span class="c1">// use i18n as you were inside React component</span>
+   <span class="c1">// use i18n as if you were inside a React component</span>
    <span class="nx">alert</span><span class="p">(</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="nx">t</span><span class="sb">`...`</span><span class="p">))</span>
 <span class="p">}</span>
 </pre></div>

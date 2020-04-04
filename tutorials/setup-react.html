@@ -96,10 +96,6 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">React project</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#further-reading">Further reading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#cannot-find-module-babel-core">Cannot find module ‘babel-core’</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -222,20 +218,15 @@ setup guide.</p>
 <ol class="arabic">
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>, <code class="docutils literal notranslate"><span class="pre">&#64;lingui/macro</span></code>, <cite>babel-plugin-macros</cite> and Babel core
 packages as a development dependencies and <code class="docutils literal notranslate"><span class="pre">&#64;lingui/react</span></code> as a runtime dependency.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @babel/core babel-core@bridge
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @babel/core
 npm install --save-dev @lingui/macro babel-plugin-macros  <span class="c1"># required for macros</span>
 npm install --save @lingui/react
 
 <span class="c1"># or using Yarn</span>
-yarn add --dev @lingui/cli @babel/core babel-core@bridge
+yarn add --dev @lingui/cli @babel/core
 yarn add --dev @lingui/macro babel-plugin-macros  <span class="c1"># required for macros</span>
 yarn add @lingui/react
 </pre></div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Don’t forget Babel packages (<code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code>) which are
-required for backward compatibility with projects using Babel 6.</p>
 </div>
 </li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">macros</span></code> plugin to Babel config (e.g: <code class="docutils literal notranslate"><span class="pre">.babelrc</span></code>):</p>
@@ -329,20 +320,6 @@ is used in messages.</p>
 <li><p><a class="reference internal" href="../ref/cli.html"><span class="doc">CLI reference</span></a></p></li>
 <li><p><a class="reference internal" href="../ref/conf.html"><span class="doc">Configuration reference</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="cannot-find-module-babel-core">
-<h3>Cannot find module ‘babel-core’<a class="headerlink" href="#cannot-find-module-babel-core" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Check that you installed <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code> and <code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code> (step 2)</p></li>
-<li><p>Check that you use local version of <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>. Installing <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code>
-globally may clash with other packages which use Babel 6. You should run
-either <code class="docutils literal notranslate"><span class="pre">npm</span> <span class="pre">run</span> <span class="pre">extract</span></code> or <code class="docutils literal notranslate"><span class="pre">yarn</span> <span class="pre">extract</span></code> (step 5).</p></li>
-</ol>
-</div></blockquote>
-</div>
 </div>
 </div>
 

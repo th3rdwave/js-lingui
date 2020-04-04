@@ -255,8 +255,8 @@ there were two ways how to switch active locales and manage catalogs in React: e
 using <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a> declarative API or using <cite>setupI18n</cite> imperative API.</p>
 <p>In the same spirit as <code class="docutils literal notranslate"><span class="pre">react-apollo</span></code> and <code class="docutils literal notranslate"><span class="pre">react-redux</span></code>, the <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>
 is simplified and accepts <code class="docutils literal notranslate"><span class="pre">i18n</span></code> manager, which must be created manually:</p>
-<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">- import { I18nProvider } from &#39;@lingui/react&#39;</span>
-<span class="gi">+ import { setupI18n, I18nProvider } from &#39;@lingui/react&#39;</span>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span>  import { I18nProvider } from &#39;@lingui/react&#39;
+<span class="gi">+ import { setupI18n } from &#39;@lingui/core&#39;</span>
   import catalogEn from &#39;./locale/en/messages.js&#39;
 
 <span class="gi">+ const i18n = setupI18n()</span>
@@ -280,6 +280,8 @@ is simplified and accepts <code class="docutils literal notranslate"><span class
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">i18n.t</span></code>, <code class="docutils literal notranslate"><span class="pre">i18n.plural</span></code>, <code class="docutils literal notranslate"><span class="pre">i18n.select</span></code> and <code class="docutils literal notranslate"><span class="pre">i18n.selectOrdinal</span></code> methods were
 removed in favor of macros.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">i18n.use</span></code> was removed. Using two locales at the same time isn’t common usecase
+and can be solved in user land.</p></li>
 <li><p>Signature of <code class="docutils literal notranslate"><span class="pre">i18n._</span></code> method has changed. The third parameter now accepts default
 message in <code class="docutils literal notranslate"><span class="pre">message</span></code> prop, instead of <code class="docutils literal notranslate"><span class="pre">defaults</span></code>:</p>
 <div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">- i18n._(&#39;Welcome / Greetings&#39;, { name: &#39;Joe&#39; }, { defaults: &quot;Hello {name}&quot; })</span>

@@ -298,10 +298,14 @@ information into the context, we need to wrap our application in
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">render</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span>
 <span class="kr">import</span> <span class="nx">Inbox</span> <span class="nx">from</span> <span class="s1">&#39;./Inbox.js&#39;</span>
 
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span><span class="p">,</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
+
+<span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">()</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">,</span> <span class="nx">catalogEn</span><span class="p">)</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">activate</span><span class="p">(</span><span class="s1">&#39;en&#39;</span><span class="p">)</span>
 
 <span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
-  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">i18n</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">}&gt;</span>
     <span class="p">&lt;</span><span class="nt">Inbox</span> <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
 <span class="p">)</span>
@@ -312,9 +316,7 @@ information into the context, we need to wrap our application in
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>You might be wondering: how are we going to change the active language?
-Yes, that’s a great question, but we need to focus! We’re not going to change
-the language unless we have translated the message catalog. And we won’t have
-translated the catalog before we extract all messages from source.</p>
+That’s what the <a class="reference internal" href="../ref/core.html#I18n.load" title="I18n.load"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n.load()</span></code></a> and <a class="reference internal" href="../ref/core.html#I18n.activate" title="I18n.activate"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n.activate()</span></code></a> calls are for! However, we cannot change the language unless we have the translated message catalog. And to get the catalog, we first need to extract all messages from the source code.</p>
 <p>Let’s deal with language switching later… but if you’re still curious,
 take a look at <a class="reference internal" href="../guides/dynamic-loading-catalogs.html#dynamic-loading-catalogs"><span class="std std-ref">example</span></a> with Redux and Webpack.</p>
 </div>
@@ -344,7 +346,7 @@ macro:</p>
 </div>
 <div class="section" id="macros-vs-components">
 <h3>Macros vs. Components<a class="headerlink" href="#macros-vs-components" title="Permalink to this headline">¶</a></h3>
-<p>If you’re wondering what are macros and what’s the difference between macros and
+<p>If you’re wondering what Babel macros are and what’s the difference between macros and
 components, this short paragraph is for you.</p>
 <p>In general, macros are executed at compile time and they transform source code in
 some way. We use this feature in <a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a> to simplify writing messages.</p>
@@ -458,11 +460,15 @@ but also any locale specific data like plurals.</p>
 <span class="kr">import</span> <span class="nx">Inbox</span> <span class="nx">from</span> <span class="s1">&#39;./Inbox.js&#39;</span>
 <span class="hll"><span class="kr">import</span> <span class="nx">catalogCs</span> <span class="nx">from</span> <span class="s1">&#39;./locales/cs/messages.js&#39;</span>
 </span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span><span class="p">,</span> <span class="nx">I18nProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/react&#39;</span>
+
+<span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">()</span>
+<span class="hll"><span class="nx">i18n</span><span class="p">.</span><span class="nx">load</span><span class="p">(</span><span class="s1">&#39;cs&#39;</span><span class="p">,</span> <span class="nx">catalogCs</span><span class="p">)</span>
+</span><span class="nx">i18n</span><span class="p">.</span><span class="nx">activate</span><span class="p">(</span><span class="s1">&#39;cs&#39;</span><span class="p">)</span>
 
 <span class="kr">const</span> <span class="nx">catalogs</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">cs</span><span class="o">:</span> <span class="nx">catalogCs</span> <span class="p">};</span>
-<span class="hll"><span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
-</span>  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">language</span><span class="o">=</span><span class="s">&quot;cs&quot;</span> <span class="na">catalogs</span><span class="o">=</span><span class="p">{</span><span class="nx">catalogs</span><span class="p">}&gt;</span>
+<span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">I18nProvider</span> <span class="na">i18n</span><span class="o">=</span><span class="p">{</span><span class="nx">i18n</span><span class="p">}&gt;</span>
     <span class="p">&lt;</span><span class="nt">Inbox</span> <span class="p">/&gt;</span>
   <span class="p">&lt;/</span><span class="nt">I18nProvider</span><span class="p">&gt;</span>
 <span class="p">)</span>
@@ -470,13 +476,13 @@ but also any locale specific data like plurals.</p>
 <span class="nx">render</span><span class="p">(&lt;</span><span class="nt">App</span> <span class="p">/&gt;,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;app&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>When we run the app, we see the header is translated into Czech.</p>
+<p>When we run the app, we see the inbox header is translated into Czech.</p>
 </div>
 <div class="section" id="summary-of-basic-workflow">
 <h3>Summary of basic workflow<a class="headerlink" href="#summary-of-basic-workflow" title="Permalink to this headline">¶</a></h3>
 <p>Let’s go through the workflow again:</p>
 <ol class="arabic simple">
-<li><p>Add an <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>, this component sets the active language and loads catalogs</p></li>
+<li><p>Add an <a class="reference internal" href="../ref/react.html#component-I18nProvider">&lt;I18nProvider&gt;</a>, this component provides the active language and catalog(s) to other components</p></li>
 <li><p>Wrap messages in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro</p></li>
 <li><p>Run <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command to generate message catalogs</p></li>
 <li><p>Translate message catalogs (send them to translators usually)</p></li>
@@ -484,10 +490,10 @@ but also any locale specific data like plurals.</p>
 <li><p>Load runtime catalog</p></li>
 <li><p>Profit</p></li>
 </ol>
-<p>Steps 1 and 7 needs to be done only once per project and locale. Steps 2 to 5 becomes
-the common workflow how to internationalize the app.</p>
+<p>Steps 1 and 7 needs to be done only once per project and locale. Steps 2 to 5 become
+the common workflow for internationalizing the app.</p>
 <p>It isn’t necessary to extract/translate messages one by one. This usually happens
-in batches. When you finalizing your work or PR, run <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> to generate latest
+in batches. When you finalize your work or PR, run <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> to generate latest
 message catalogs and before building the app for production, run <a class="reference internal" href="../ref/cli.html#lingui-cli-compile"><code class="xref std std-cli docutils literal notranslate"><span class="pre">compile</span></code></a>.</p>
 <p>For more info about CLI, checkout the <a class="reference internal" href="cli.html#tutorial-cli"><span class="std std-ref">CLI tutorial</span></a>.</p>
 </div>
@@ -503,7 +509,7 @@ variables, some HTML and components inside:</p>
 </pre></div>
 </div>
 <p>Although it looks complex, there’s really nothing special here. Just wrap the content
-of paragraph in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> and let the macro do the magic:</p>
+of the paragraph in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> and let the macro do the magic:</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
       See all <span class="p">&lt;</span><span class="nt">Link</span> <span class="na">to</span><span class="o">=</span><span class="s">&quot;/unread&quot;</span><span class="p">&gt;</span>unread messages<span class="p">&lt;/</span><span class="nt">Link</span><span class="p">&gt;</span>{&quot; or &quot;}
@@ -512,7 +518,7 @@ of paragraph in <a class="reference internal" href="../ref/macro.html#jsxmacro-T
 <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Spooky, right? Let’s see how this message actually looks in message catalog.
+<p>Spooky, right? Let’s see how this message actually looks in the message catalog.
 Run <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><code class="xref std std-cli docutils literal notranslate"><span class="pre">extract</span></code></a> command and take a look at the message:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">See</span> <span class="nb">all</span> <span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="n">unread</span> <span class="n">messages</span><span class="o">&lt;/</span><span class="mi">0</span><span class="o">&gt;</span> <span class="ow">or</span> <span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="n">mark</span> <span class="n">them</span><span class="o">&lt;/</span><span class="mi">1</span><span class="o">&gt;</span> <span class="k">as</span> <span class="n">read</span><span class="o">.</span>
 </pre></div>
@@ -520,7 +526,7 @@ Run <a class="reference internal" href="../ref/cli.html#lingui-cli-extract"><cod
 <p>You may notice that components and html tags are replaced with indexed
 tags (<cite>&lt;0&gt;</cite>, <cite>&lt;1&gt;</cite>). This is a little extension to the ICU MessageFormat which
 allows rich-text formatting inside translations. Components and their props
-remains in the source code and don’t scare our translators. Also, in case we
+remain in the source code and don’t scare our translators. The tags in the extracted message won’t scare our translators either: their are used to seeing tags and their tools support them. Also, in case we
 change a <code class="docutils literal notranslate"><span class="pre">className</span></code>, we don’t need to update our message catalogs. How
 cool is that?</p>
 <div class="section" id="jsx-to-messageformat-transformations">
@@ -528,7 +534,7 @@ cool is that?</p>
 <p>It may look a bit <em>hackish</em> at first sight, but these transformations are
 actually very easy, intuitive and feel very <em>Reactish</em>. We don’t have to think
 about the MessageFormat, because it’s created by the library. We write our
-components in the same way as we’re used to and simply wrap text in
+components in the same way as we’re used to and simply wrap text in the
 <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro.</p>
 <p>Let’s see some examples with MessageFormat equivalents:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// Expressions</span>
@@ -537,7 +543,7 @@ components in the same way as we’re used to and simply wrap text in
 </pre></div>
 </div>
 <p>Any expressions are allowed, not just simple variables. The only difference is,
-the variable name won’t be included in the extracted message:</p>
+only the variable name will be included in the extracted message:</p>
 <p>Simple variable -&gt; named argument:</p>
 <blockquote>
 <div><div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Hello</span> <span class="p">{</span><span class="nx">name</span><span class="p">}&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -568,26 +574,26 @@ the variable name won’t be included in the extracted message:</p>
    <span class="nx">Dear</span> <span class="nx">Watson</span><span class="p">,&lt;</span><span class="nt">br</span> <span class="p">/&gt;</span>
    <span class="nx">it</span><span class="s1">&#39;s not exactly what I had in my mind.</span>
 <span class="s1">&lt;/Trans&gt;</span>
-<span class="s1">// Dead Watson,&lt;0/&gt;it&#39;</span><span class="nx">s</span> <span class="nx">not</span> <span class="nx">exactly</span> <span class="nx">what</span> <span class="nx">I</span> <span class="nx">had</span> <span class="k">in</span> <span class="nx">my</span> <span class="nx">mind</span><span class="p">.</span>
+<span class="s1">// Dear Watson,&lt;0/&gt;it&#39;</span><span class="nx">s</span> <span class="nx">not</span> <span class="nx">exactly</span> <span class="nx">what</span> <span class="nx">I</span> <span class="nx">had</span> <span class="k">in</span> <span class="nx">my</span> <span class="nx">mind</span><span class="p">.</span>
 </pre></div>
 </div>
 <p>Obviously, you can also shoot yourself in the foot. Some expressions are <em>valid</em>
-and won’t throw any error, it doesn’t make any sense to write:</p>
+and won’t throw any error, yet it doesn’t make any sense to write:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// Oh, seriously?</span>
 <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
    <span class="p">{</span><span class="nx">isOpen</span> <span class="o">&amp;&amp;</span> <span class="p">&lt;</span><span class="nt">Modal</span> <span class="p">/&gt;}</span>
 <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
 </pre></div>
 </div>
-<p>Everytime you’re in doubt, imagine how the final message should look like.</p>
+<p>If in doubt, imagine how the final message should look like.</p>
 </div>
 <div class="section" id="message-id">
 <h3>Message ID<a class="headerlink" href="#message-id" title="Permalink to this headline">¶</a></h3>
 <p>At this point we’re going to explain what message ID is and how to set it manually.</p>
 <p>Translators work with the <em>message catalogs</em> we saw above. No matter what format
-we use (gettext, xliff, json), it’s just mapping of
-message ID to the translation.</p>
-<p>Here’s an example of simple message catalog in <strong>Czech</strong> language:</p>
+we use (gettext, xliff, json), it’s just a mapping of
+a message ID to the translation.</p>
+<p>Here’s an example of a simple message catalog in <strong>Czech</strong> language:</p>
 <table class="docutils align-center">
 <colgroup>
 <col style="width: 58%" />
@@ -636,16 +642,16 @@ message ID to the translation.</p>
 <p>The message ID is <em>what all catalogs have in common</em> – Lundi and Pondělí
 represent the same message in different languages. It’s also the same as the <code class="docutils literal notranslate"><span class="pre">id</span></code>
 prop in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro.</p>
-<p>There are two common approaches to message IDs:</p>
+<p>There are two approaches to how a message ID can be created:</p>
 <ol class="arabic simple">
-<li><p>Use source language (e.g. English as in example above)</p></li>
-<li><p>Use a custom key (e.g. <code class="docutils literal notranslate"><span class="pre">weekday.monday</span></code>)</p></li>
+<li><p>Using the source language (e.g. <code class="docutils literal notranslate"><span class="pre">Monday</span></code> from English, as in example above)</p></li>
+<li><p>Using a custom id (e.g. <code class="docutils literal notranslate"><span class="pre">weekday.monday</span></code>)</p></li>
 </ol>
 <p>Both approaches have their pros and cons and it’s not in the scope of this tutorial
 to compare them.</p>
 <p>By default, <a class="reference external" href="https://github.com/lingui/js-lingui">LinguiJS</a> generates message ID from the content of <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a>
-macro, which means it uses source language. However, we can easily override
-it by setting <code class="docutils literal notranslate"><span class="pre">id</span></code> prop manually:</p>
+macro, which means it uses the source language. However, we can easily override
+it by setting the <code class="docutils literal notranslate"><span class="pre">id</span></code> prop manually:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;&lt;</span><span class="nt">Trans</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;inbox.title&quot;</span><span class="p">&gt;</span><span class="nx">Message</span> <span class="nx">Inbox</span><span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
 </pre></div>
 </div>
@@ -654,7 +660,7 @@ it by setting <code class="docutils literal notranslate"><span class="pre">id</s
 </pre></div>
 </div>
 <p>In our message catalog, we’ll see <code class="docutils literal notranslate"><span class="pre">inbox.title</span></code> as message ID, but we also
-get <code class="docutils literal notranslate"><span class="pre">Message</span> <span class="pre">Inbox</span></code> as default translation for English language.</p>
+get <code class="docutils literal notranslate"><span class="pre">Message</span> <span class="pre">Inbox</span></code> as default translation for English.</p>
 <p>For the rest of this tutorial, we’ll use auto-generated message IDs to keep
 it simple.</p>
 </div>
@@ -688,8 +694,7 @@ languages have up to 6 plural forms and some don’t have plurals at all!</p>
 <p>How do we know which plural form we should use? It’s very simple:
 we, as developers, only need to know plural forms of the language we use in
 our source. Our component is written in English, so looking at
-<a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a> we’ll
-need just two forms:</p>
+<a class="reference external" href="http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html#en">English plural rules</a> we’ll need just two forms:</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">one</span></code></dt><dd><p>Singular form</p>
 </dd>
@@ -719,7 +724,7 @@ yourself:</p>
    <span class="n">other</span> <span class="p">{</span><span class="n">There</span><span class="s1">&#39;re # messages in your inbox}}</span>
 </pre></div>
 </div>
-<p>In catalog you’ll see the message in one line. Here we wrapped it to make it more readable.</p>
+<p>In the catalog, you’ll see the message in one line. Here we wrapped it to make it more readable.</p>
 <p>The <a class="reference internal" href="../ref/macro.html#jsxmacro-Plural">&lt;Plural&gt;</a> is gone and replaced with <a class="reference internal" href="../ref/react.html#component-Trans">&lt;Trans&gt;</a> again!
 The sole purpose of <a class="reference internal" href="../ref/macro.html#jsxmacro-Plural">&lt;Plural&gt;</a> is to generate proper syntax in message.</p>
 <p>Things are getting a bit more complicated, but i18n is a complex process. At
@@ -810,7 +815,7 @@ write <code class="docutils literal notranslate"><span class="pre">_N</span></co
 </div>
 <p>What if we want to use variables or components inside messages? Easy! Either
 wrap messages in <a class="reference internal" href="../ref/macro.html#jsxmacro-Trans">&lt;Trans&gt;</a> macro or use template literals
-(suppose we have an variable <code class="docutils literal notranslate"><span class="pre">name</span></code>):</p>
+(suppose we have a variable <code class="docutils literal notranslate"><span class="pre">name</span></code>):</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>&lt;p&gt;
    &lt;Plural
       value={messagesCount}
@@ -849,11 +854,10 @@ pass an <code class="docutils literal notranslate"><span class="pre">id</span></
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">lastLogin</span></code> is a date object and we need to format it properly. Dates are
 formatted differently in different languages, but we don’t have
-to do manually. The heavylifting is done in <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl object</a>,
-we’ll just use <a class="reference internal" href="../ref/macro.html#jsxmacro-DateFormat">&lt;DateFormat&gt;</a> macro:</p>
+to do this manually. The heavylifting is done by the <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Intl object</a>, we’ll just use <a class="reference internal" href="../ref/macro.html#jsmacro-date">date</a> macro:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
    <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span>
-      <span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">DateFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">lastLogin</span><span class="p">}</span> <span class="p">/&gt;.</span>
+      <span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">{</span><span class="nx">date</span><span class="p">(</span><span class="nx">lastLogin</span><span class="p">)}</span> <span class="o">/&gt;</span><span class="p">.</span>
    <span class="p">&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
 </pre></div>
@@ -865,7 +869,7 @@ we’ll just use <a class="reference internal" href="../ref/macro.html#jsxmacro-
 <p>After all modifications, the final component with i18n looks like this:</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="c1">// Inbox.js</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span>
-<span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span><span class="p">,</span> <span class="nx">Plural</span><span class="p">,</span> <span class="nx">DateFormat</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Trans</span><span class="p">,</span> <span class="nx">Plural</span><span class="p">,</span> <span class="nx">date</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@lingui/macro&#39;</span>
 
 <span class="kr">const</span> <span class="nx">Inbox</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">messages</span><span class="p">,</span> <span class="nx">markAsRead</span><span class="p">,</span> <span class="nx">user</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
   <span class="kr">const</span> <span class="nx">messagesCount</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">.</span><span class="nx">length</span>
@@ -891,14 +895,14 @@ we’ll just use <a class="reference internal" href="../ref/macro.html#jsxmacro-
         <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 
         <span class="p">&lt;</span><span class="nt">footer</span><span class="p">&gt;</span>
-          <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">&lt;</span><span class="nt">DateFormat</span> <span class="na">value</span><span class="o">=</span><span class="p">{</span><span class="nx">lastLogin</span><span class="p">}</span> <span class="p">/&gt;.&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
+          <span class="p">&lt;</span><span class="nt">Trans</span><span class="p">&gt;</span><span class="nx">Last</span> <span class="nx">login</span> <span class="nx">on</span> <span class="p">{</span><span class="nx">date</span><span class="p">(</span><span class="nx">lastLogin</span><span class="p">)}</span> <span class="o">/&gt;</span><span class="p">.&lt;/</span><span class="nt">Trans</span><span class="p">&gt;</span>
         <span class="p">&lt;/</span><span class="nt">footer</span><span class="p">&gt;</span>
       <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
     <span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>That’s all for this tutorial! Checkout the reference documentation or various guide
+<p>That’s all for this tutorial! Checkout the reference documentation or various guides
 in the documentation for more info and happy internationalizing!</p>
 </div>
 <div class="section" id="further-reading">

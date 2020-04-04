@@ -121,7 +121,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#install">Install</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#global-options">Global options</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#commands">Commands</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#init"><code class="docutils literal notranslate"><span class="pre">init</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#add-locale"><code class="docutils literal notranslate"><span class="pre">add-locale</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extract"><code class="docutils literal notranslate"><span class="pre">extract</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#compile"><code class="docutils literal notranslate"><span class="pre">compile</span></code></a></li>
@@ -220,22 +219,9 @@ message catalogs and compiles message catalogs for production use.</p>
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Install <code class="docutils literal notranslate"><span class="pre">&#64;lingui/cli</span></code> as a development dependency:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli
-<span class="c1"># yarn add --dev @lingui/cli</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm install --save-dev @lingui/cli @babel/core
+<span class="c1"># yarn add --dev @lingui/cli @babel/core</span>
 </pre></div>
-</div>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Install also Babel core packages (<code class="docutils literal notranslate"><span class="pre">&#64;babel/core</span></code>, <code class="docutils literal notranslate"><span class="pre">babel-core&#64;bridge</span></code>):</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Babel 6.x</span>
-npm install --save-dev babel-core@6
-<span class="c1"># yarn add --dev babel-core@6</span>
-
-<span class="c1"># Babel 7.x</span>
-npm install --save-dev babel-core@^7.0.0-bridge.0 @babel/core
-<span class="c1"># yarn add --dev babel-core@^7.0.0-bridge.0 @babel/core</span>
-</pre></div>
-</div>
 </div>
 </li>
 <li><p>Add following scripts to your <code class="docutils literal notranslate"><span class="pre">package.json</span></code>:</p>
@@ -263,25 +249,6 @@ is loaded as described in <a class="reference internal" href="conf.html"><span c
 </div>
 <div class="section" id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="init">
-<h3><code class="docutils literal notranslate"><span class="pre">init</span></code><a class="headerlink" href="#init" title="Permalink to this headline">¶</a></h3>
-<dl class="lingui-cli">
-<dt id="lingui-cli-init">
-<code class="descname">lingui init [--dry-run]</code><a class="headerlink" href="#lingui-cli-init" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Installs all required packages based on project type. Recognized projects are:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/facebook/create-react-app">Create React App</a></p></li>
-<li><p>General React app</p></li>
-</ul>
-<dl class="lingui-cli-option">
-<dt id="cmdoption-init-dry-run">
-<code class="descname">--dry-run</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-init-dry-run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p>Output commands which would run, but don’t execute them.</p>
-</div>
 <div class="section" id="add-locale">
 <h3><code class="docutils literal notranslate"><span class="pre">add-locale</span></code><a class="headerlink" href="#add-locale" title="Permalink to this headline">¶</a></h3>
 <dl class="lingui-cli">

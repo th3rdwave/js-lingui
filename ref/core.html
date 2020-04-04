@@ -117,6 +117,12 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Core (JavaScript)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#events">Events</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#activate">activate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load">load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#change">change</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="react.html">React</a></li>
@@ -217,11 +223,6 @@ catalog and 2) formatting it with runtime variables</p></li>
 </ul>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you’re using <a class="reference internal" href="react.html"><span class="doc">&#64;lingui/react</span></a>, you don’t need to install
-this package explicitly. Install <a class="reference internal" href="react.html"><span class="doc">&#64;lingui/react</span></a> instead.</p>
-</div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>yarn add @lingui/core
 <span class="c1"># npm install --save @lingui/core</span>
 </pre></div>
@@ -234,7 +235,7 @@ this package explicitly. Install <a class="reference internal" href="react.html"
 <code class="descname">Catalogs</code><a class="headerlink" href="#Catalogs" title="Permalink to this definition">¶</a></dt>
 <dd><p>Type of <code class="docutils literal notranslate"><span class="pre">catalogs</span></code> parameters in <a class="reference internal" href="#options.catalogs" title="options.catalogs"><code class="xref js js-func docutils literal notranslate"><span class="pre">setupI18n</span></code></a>
 constructor and <a class="reference internal" href="#I18n.load" title="I18n.load"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n.load()</span></code></a> method:</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">Catalogs</span> <span class="o">=</span> <span class="p">{[</span><span class="nx">language</span><span class="o">:</span> <span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">Catalog</span><span class="p">}</span>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">type</span> <span class="nx">Catalogs</span> <span class="o">=</span> <span class="p">{[</span><span class="nx">locale</span><span class="o">:</span> <span class="nx">string</span><span class="p">]</span><span class="o">:</span> <span class="nx">Catalog</span><span class="p">}</span>
 
 <span class="c1">// Example:</span>
 <span class="kr">const</span> <span class="nx">catalogs</span><span class="o">:</span> <span class="nx">Catalogs</span> <span class="o">=</span>  <span class="p">{</span>
@@ -303,12 +304,12 @@ and then use returned <code class="docutils literal notranslate"><span class="pr
 </div>
 <p>The factory function accepts one optional parameter, <code class="docutils literal notranslate"><span class="pre">options</span></code>:</p>
 <dl class="attribute">
-<dt id="options.language">
-<code class="descclassname">options.</code><code class="descname">language</code><a class="headerlink" href="#options.language" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initial active language.</p>
+<dt id="options.locale">
+<code class="descclassname">options.</code><code class="descname">locale</code><a class="headerlink" href="#options.locale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initial active locale.</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
 
-<span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">({</span> <span class="nx">language</span><span class="o">:</span> <span class="s2">&quot;en&quot;</span> <span class="p">})</span>
+<span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">({</span> <span class="nx">locale</span><span class="o">:</span> <span class="s2">&quot;en&quot;</span> <span class="p">})</span>
 
 <span class="c1">// This is a shortcut for:</span>
 <span class="c1">// const i18n = setupI18n()</span>
@@ -322,11 +323,11 @@ and then use returned <code class="docutils literal notranslate"><span class="pr
 <code class="descclassname">options.</code><code class="descname">locales</code><a class="headerlink" href="#options.locales" title="Permalink to this definition">¶</a></dt>
 <dd><p>List of alternative locales (BCP 47 langauge tags) which are used for number and date
 formatting (some countries use more than one number/date format). If not set, active
-language is used instead.</p>
+locale is used instead.</p>
 <div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
 
 <span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">({</span>
-   <span class="nx">language</span><span class="o">:</span> <span class="s2">&quot;ar&quot;</span><span class="p">,</span>
+   <span class="nx">locale</span><span class="o">:</span> <span class="s2">&quot;ar&quot;</span><span class="p">,</span>
    <span class="nx">locales</span><span class="o">:</span> <span class="p">[</span><span class="s2">&quot;en-UK&quot;</span><span class="p">,</span> <span class="s2">&quot;ar-AS&quot;</span><span class="p">]</span>
 <span class="p">})</span>
 
@@ -397,11 +398,11 @@ debugging:</p>
 <a class="reference internal" href="#setupI18n" title="setupI18n"><code class="xref js js-func docutils literal notranslate"><span class="pre">setupI18n()</span></code></a> factory function.</p>
 <dl class="method">
 <dt id="I18n.load">
-<code class="descclassname">I18n.</code><code class="descname">load</code><span class="sig-paren">(</span><em>catalogs: Catalogs</em><span class="sig-paren">)</span><a class="headerlink" href="#I18n.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load message catalogs and merge them with already loaded ones.</p>
+<code class="descclassname">I18n.</code><code class="descname">load</code><span class="sig-paren">(</span><em>locale: string</em>, <em>catalog: Catalog</em><span class="sig-paren">)</span><a class="headerlink" href="#I18n.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load catalog for given locale</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
 
-<span class="kr">const</span> <span class="nx">messagesEn</span> <span class="o">=</span>  <span class="p">{</span>
+<span class="kr">const</span> <span class="nx">messages</span> <span class="o">=</span>  <span class="p">{</span>
    <span class="s2">&quot;Hello&quot;</span><span class="o">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
    <span class="s2">&quot;Good bye&quot;</span><span class="o">:</span> <span class="s2">&quot;Good bye&quot;</span><span class="p">,</span>
 
@@ -453,10 +454,45 @@ messages must be compiled using <a class="reference internal" href="cli.html#lin
 </dd></dl>
 
 <dl class="method">
+<dt id="I18n.loadAll">
+<code class="descclassname">I18n.</code><code class="descname">loadAll</code><span class="sig-paren">(</span><em>catalogs: Catalogs</em><span class="sig-paren">)</span><a class="headerlink" href="#I18n.loadAll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load catalogs for multiple locales at once.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
+
+<span class="kr">const</span> <span class="nx">messagesEn</span> <span class="o">=</span>  <span class="p">{</span>
+   <span class="s2">&quot;Hello&quot;</span><span class="o">:</span> <span class="s2">&quot;Hello&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;Good bye&quot;</span><span class="o">:</span> <span class="s2">&quot;Good bye&quot;</span><span class="p">,</span>
+
+   <span class="c1">// Just an example how catalog looks internally.</span>
+   <span class="c1">// Formatting of string messages works in development only.</span>
+   <span class="c1">// See note below.</span>
+   <span class="s2">&quot;My name is {name}&quot;</span><span class="o">:</span> <span class="s2">&quot;My name is {name}&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">messagesCs</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="s2">&quot;Hello&quot;</span><span class="o">:</span> <span class="s2">&quot;Ahoj&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;Good bye&quot;</span><span class="o">:</span> <span class="s2">&quot;Nashledanou&quot;</span><span class="p">,</span>
+   <span class="s2">&quot;My name is {name}&quot;</span><span class="o">:</span> <span class="s2">&quot;Jmenuji se {name}&quot;</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">()</span>
+<span class="nx">i18n</span><span class="p">.</span><span class="nx">loadAll</span><span class="p">({</span>
+   <span class="nx">en</span><span class="o">:</span> <span class="nx">messagesEn</span><span class="p">,</span>
+   <span class="nx">cs</span><span class="o">:</span> <span class="nx">messagesCs</span>
+<span class="p">})</span>
+
+<span class="c1">// This is the same as loading message catalogs separately per language:</span>
+<span class="c1">// i18n.load(&quot;en&quot;, messagesEn)</span>
+<span class="c1">// i18n.load(&quot;cs&quot;, messagesCs)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
 <dt id="I18n.activate">
-<code class="descclassname">I18n.</code><code class="descname">activate</code><span class="sig-paren">(</span><em>language</em><span class="optional">[</span>, <em>locales</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#I18n.activate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Activate a language and locales. <a class="reference internal" href="#I18n._" title="I18n._"><code class="xref js js-meth docutils literal notranslate"><span class="pre">_()</span></code></a> from now on will return messages
-in given language.</p>
+<code class="descclassname">I18n.</code><code class="descname">activate</code><span class="sig-paren">(</span><em>locale</em><span class="optional">[</span>, <em>locales</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#I18n.activate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate a locale and locales. <a class="reference internal" href="#I18n._" title="I18n._"><code class="xref js js-meth docutils literal notranslate"><span class="pre">_()</span></code></a> from now on will return messages
+in given locale.</p>
 <div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
 
 <span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">({</span> <span class="nx">language</span><span class="o">:</span> <span class="s2">&quot;en&quot;</span> <span class="p">})</span>
@@ -464,21 +500,6 @@ in given language.</p>
 
 <span class="nx">i18n</span><span class="p">.</span><span class="nx">activate</span><span class="p">(</span><span class="s2">&quot;cs&quot;</span><span class="p">)</span>
 <span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>           <span class="c1">// Return &quot;Hello&quot; in Czech</span>
-</pre></div>
-</div>
-</dd></dl>
-
-<dl class="method">
-<dt id="I18n.use">
-<code class="descclassname">I18n.</code><code class="descname">use</code><span class="sig-paren">(</span><em>language</em><span class="optional">[</span>, <em>locales</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#I18n.use" title="Permalink to this definition">¶</a></dt>
-<dd><p>Activate a language and locales locally. This method returns a new instance of
-<a class="reference internal" href="#I18n" title="I18n"><code class="xref js js-class docutils literal notranslate"><span class="pre">I18n()</span></code></a> and doesn’t affect global language.</p>
-<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">setupI18n</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;@lingui/core&quot;</span>
-
-<span class="kr">const</span> <span class="nx">i18n</span> <span class="o">=</span> <span class="nx">setupI18n</span><span class="p">({</span> <span class="nx">language</span><span class="o">:</span> <span class="s2">&quot;en&quot;</span> <span class="p">})</span>
-
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="s2">&quot;cs&quot;</span><span class="p">).</span><span class="nx">_</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span> <span class="c1">// Return &quot;Hello&quot; in Czech</span>
-<span class="nx">i18n</span><span class="p">.</span><span class="nx">_</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">)</span>           <span class="c1">// Return &quot;Hello&quot; in active language (English)</span>
 </pre></div>
 </div>
 </dd></dl>
@@ -510,6 +531,30 @@ application doesn’t use message IDs in natural language (e.g.: <code class="do
 
 </dd></dl>
 
+</div>
+<div class="section" id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="activate">
+<h3>activate<a class="headerlink" href="#activate" title="Permalink to this headline">¶</a></h3>
+<p>Triggered when <a class="reference internal" href="#I18n.activate" title="I18n.activate"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n.activate()</span></code></a> is called.</p>
+<p>Arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">locale</span></code> - New locale which is about to be activated</p></li>
+</ul>
+</div>
+<div class="section" id="load">
+<h3>load<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h3>
+<p>Triggered when <a class="reference internal" href="#I18n.load" title="I18n.load"><code class="xref js js-meth docutils literal notranslate"><span class="pre">I18n.load()</span></code></a> is called.</p>
+<p>Arguments:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">locale</span></code> - Locale of loaded catalog</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">catalog</span></code> - Content of catalog.</p></li>
+</ul>
+</div>
+<div class="section" id="change">
+<h3>change<a class="headerlink" href="#change" title="Permalink to this headline">¶</a></h3>
+<p>Triggered <strong>after</strong> locale is changed or new catalog is loaded. There’re no arguments.</p>
+</div>
 </div>
 </div>
 
