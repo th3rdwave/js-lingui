@@ -1,4 +1,6 @@
-import { parseExpression } from "@babel/parser"
+import { parseExpression, parse, NodePath } from "@babel/parser"
+import generate from "@babel/generator"
+import traverse from "@babel/traverse"
 import * as types from "@babel/types"
 import MacroJs from "./macroJs"
 
@@ -217,6 +219,30 @@ describe("js macro", function () {
           ],
         },
       })
+    })
+  })
+
+  describe("replacePath", () => {
+    it("replaces path with descriptor object", () => {
+      const macro = createMacro()
+      const exp = parse("t`Message ${name}`")
+      let path: NodePath
+      traverse(exp, {
+        Expression(p) {
+          path = p
+          p.stop()
+        },
+      })
+      macro.replacePath(path)
+      expect(generate(path.node).code).toMatchInlineSnapshot(`
+        /*i18n*/
+        {
+          id: "Message {name}",
+          values: {
+            name: name
+          }
+        }
+      `)
     })
   })
 })

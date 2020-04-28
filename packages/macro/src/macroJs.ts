@@ -4,7 +4,7 @@ import { NodePath } from "@babel/traverse"
 
 import ICUMessageFormat from "./icu"
 import { zip, makeCounter } from "./utils"
-import { COMMENT, ID, MESSAGE } from "./constants"
+import { COMMENT, ID, MESSAGE, VALUES } from "./constants"
 
 const keepSpaceRe = /(?:\\(?:\r\n|\r|\n))+\s+/g
 const keepNewLineRe = /(?:\r\n|\r|\n)+\s+/g
@@ -33,27 +33,34 @@ export default class MacroJs {
     path: NodePath,
     { id, message, values, comment }
   ) => {
-    const args = []
-    const options = []
+    const properties = []
 
     const messageNode = isString(message)
       ? this.types.stringLiteral(message)
       : message
 
     if (id) {
-      args.push(this.types.stringLiteral(id))
+      properties.push(
+        this.types.objectProperty(
+          this.types.identifier(ID),
+          this.types.stringLiteral(id)
+        )
+      )
 
       if (process.env.NODE_ENV !== "production") {
-        options.push(
+        properties.push(
           this.types.objectProperty(this.types.identifier(MESSAGE), messageNode)
         )
       }
     } else {
-      args.push(messageNode)
+      console.log(messageNode)
+      properties.push(
+        this.types.objectProperty(this.types.identifier(ID), messageNode)
+      )
     }
 
     if (comment) {
-      options.push(
+      properties.push(
         this.types.objectProperty(
           this.types.identifier(COMMENT),
           this.types.stringLiteral(comment)
@@ -61,25 +68,20 @@ export default class MacroJs {
       )
     }
 
-    if (Object.keys(values).length || options.length) {
+    if (Object.keys(values).length) {
       const valuesObject = Object.keys(values).map((key) =>
         this.types.objectProperty(this.types.identifier(key), values[key])
       )
 
-      args.push(this.types.objectExpression(valuesObject))
+      properties.push(
+        this.types.objectProperty(
+          this.types.identifier(VALUES),
+          this.types.objectExpression(valuesObject)
+        )
+      )
     }
 
-    if (options.length) {
-      args.push(this.types.objectExpression(options))
-    }
-
-    const newNode = this.types.callExpression(
-      this.types.memberExpression(
-        this.types.identifier(this.i18nImportName),
-        this.types.identifier("_")
-      ),
-      args
-    )
+    const newNode = this.types.objectExpression(properties)
 
     // preserve line number
     newNode.loc = path.node.loc
