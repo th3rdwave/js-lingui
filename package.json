@@ -1,0 +1,38 @@
+{
+  "name": "@lingui/macro",
+  "version": "3.0.0",
+  "description": "Macro for generating messages in ICU MessageFormat syntax",
+  "main": "index.js",
+  "author": {
+    "name": "Tomáš Ehrlich",
+    "email": "tomas.ehrlich@gmail.com"
+  },
+  "license": "MIT",
+  "keywords": [
+    "babel-plugin-macros"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lingui/js-lingui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lingui/js-lingui/issues"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "*.js",
+    "index.d.ts"
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "@lingui/conf": "^3.0.0-11",
+    "ramda": "^0.27.0"
+  },
+  "peerDependencies": {
+    "babel-plugin-macros": "^2.5.1"
+  }
+}
